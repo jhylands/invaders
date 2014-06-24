@@ -180,17 +180,27 @@
         var aMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#FFFFFF', emissive: '#550000', shininess: 100});
         var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
 		//End of geometory of shapes----------------------------------------------------------------------------
-		//GENERATE STAR BACKGROUND
-		var spacetex = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/space.jpg");
-		var spacesphereGeo = new THREE.SphereGeometry(80,40,40);
-		var spacesphereMat = new THREE.MeshPhongMaterial();
-		spacesphereMat.map = spacetex;
-		var spacesphere = new THREE.Mesh(spacesphereGeo,spacesphereMat);
-		spacesphere.material.side = THREE.DoubleSide;
-		spacesphere.material.map.wrapS = THREE.RepeatWrapping;
-		spacesphere.material.map.wrapT = THREE.RepeatWrapping;
-		spacesphere.material.map.repeat.set(10,6);
-		scene.add(spacesphere);
+
+		var imagePrefix = "http://stemkoski.github.io/Three.js/images/nebula-";
+	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );	
+	
+	var imageURLs = [];
+	for (var i = 0; i < 6; i++)
+		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
+	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
+	var shader = THREE.ShaderLib[ "cube" ];
+	shader.uniforms[ "tCube" ].value = textureCube;
+	var skyMaterial = new THREE.ShaderMaterial( {
+		fragmentShader: shader.fragmentShader,
+		vertexShader: shader.vertexShader,
+		uniforms: shader.uniforms,
+		depthWrite: false,
+		side: THREE.BackSide
+	} );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	scene.add( skyBox );
 		//MAKEING SPACECRAFT
 		//spacephip components
 		var body = new Object();
