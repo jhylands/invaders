@@ -244,6 +244,44 @@
 				alians[x][z].shown = true;
 			}
 		}
+		//ADD PLANET
+  var planetGeometry = new THREE.SphereGeometry(4,20,20); 
+  
+  //Load the planet textures
+  var texture = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/planet-512.jpg");
+  var normalmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/normal-map-512.jpg");
+  var specmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/water-map-512.jpg");
+
+  var planetMaterial = new THREE.MeshPhongMaterial(); 
+  planetMaterial.map = texture;
+  
+  planetMaterial.specularMap = specmap;
+  planetMaterial.specular = new THREE.Color( 0xff0000 );
+  planetMaterial.shininess = 1;
+  
+  planetMaterial.normalMap = normalmap;
+  planetMaterial.normalScale.set(-0.3,-0.3);
+
+  var planet = new THREE.Mesh(planetGeometry, planetMaterial); 
+
+  //here we allow the texture/normal/specular maps to wrap
+  planet.material.map.wrapS = THREE.RepeatWrapping; 
+  planet.material.map.wrapT = THREE.RepeatWrapping;
+  planet.material.normalMap.wrapS = THREE.RepeatWrapping; 
+  planet.material.normalMap.wrapT = THREE.RepeatWrapping;
+  planet.material.specularMap.wrapS = THREE.RepeatWrapping; 
+  planet.material.specularMap.wrapT = THREE.RepeatWrapping;
+ 
+  //here we repeat the texture/normal/specular maps twice along X
+  planet.material.map.repeat.set( 2, 1);
+  planet.material.normalMap.repeat.set( 2, 1);
+  planet.material.specularMap.repeat.set( 2, 1);
+
+  planet.position.x = 0; 
+  planet.position.y = -10; 
+  planet.position.z = -40; 
+ 
+  scene.add(planet); 
 		timeCalculations();
 		production=1;
 		var myVar=setInterval(function(){updateIntroTimer();},10000);
