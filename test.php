@@ -229,10 +229,37 @@
  
   scene.add(planet); 
 	//GENERATE STAR BACKGROUND
-	starMaterial = new THREE.ParticleSystemMaterial();
-	partical = new THREE.ParticleSystem(planetGemetory, starMaterial);
-	partical.position.z = 20;
-	scene.add(partical);
+// create the particle variables
+var particleCount = 1800,
+    particles = new THREE.Geometry(),
+    pMaterial = new THREE.ParticleBasicMaterial({
+      color: 0xFFFFFF,
+      size: 20
+    });
+
+// now create the individual particles
+for (var p = 0; p < particleCount; p++) {
+
+  // create a particle with random
+  // position values, -250 -> 250
+  var pX = Math.random() * 500 - 250,
+      pY = Math.random() * 500 - 250,
+      pZ = Math.random() * 500 - 250,
+      particle = new THREE.Vertex(
+        new THREE.Vector3(pX, pY, pZ)
+      );
+
+  // add it to the geometry
+  particles.vertices.push(particle);
+}
+
+// create the particle system
+var particleSystem = new THREE.ParticleSystem(
+    particles,
+    pMaterial);
+
+// add it to the scene
+scene.addChild(particleSystem);
 	//create a set of genertic shape geometorys and textures to create the other objects in the scene
 	//Geometry of shapes-------------------------------------------------------------------------------------
 	var IcosahedronGeometry = new THREE.TorusGeometry(2.5,0.1);
