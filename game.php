@@ -142,7 +142,7 @@
             35,             // Field of view
             800 / 600,      // Aspect ratio
             0.1,            // Near plane
-            200           // Far plane
+            10000           // Far plane
         );
         
 		camera.position.set( -50, -20, 0 );//inishiation of camera
@@ -181,10 +181,10 @@
         var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
 		//End of geometory of shapes----------------------------------------------------------------------------
 
-		var imagePrefix = "http://stemkoski.github.io/Three.js/images/nebula-";
+		var imagePrefix = "images/nebula-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 10000, 10000, 10000 );	
+	var skyGeometry = new THREE.CubeGeometry( 500, 500, 500 );	
 	
 	var imageURLs = [];
 	for (var i = 0; i < 6; i++)
@@ -365,6 +365,8 @@
 			camera.position.x+=0.1;
 			}
 			}
+			//rotate the pannet
+			planet.rotation.y +=0.001;
 			//ANIMATE THE SHIP
 			angOfRot+=0.01;
 			for (i=0;i<6;i++){
