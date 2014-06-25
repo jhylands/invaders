@@ -59,6 +59,7 @@
 	window.onload = function() {
 	//define the roation of the camera
 	var Crotation = 0.35;//20* in rad
+	var Crad = 50 //radius of the rotation of the camera
 		//define world
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth-5,  window.innerHeight-5);
@@ -79,11 +80,12 @@
 		
 		//setup lighting conditions
 		var lightcolor =  0xFFFFFF
-		var light = new THREE.PointLight( lightcolor );
+		var light = new THREE.AmbientLight( lightcolor );
         light.position.set( 0, 10, 0 );
 		scene.add(light);
 		var light4 = new THREE.PointLight( lightcolor );
         light4.position.set( 0, 0,-10 );
+		scene.add(light);
 	var imagePrefix = "images/nebula-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
@@ -103,65 +105,73 @@
 	} );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
-		//ADD PLANET
-  var planetGeometry = new THREE.SphereGeometry(4,20,20); 
-  
-  //Load the planet textures
-//  var texture = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/planet-512.jpg");
-  var texture = THREE.ImageUtils.loadTexture("images/planet1.png");
-  var normalmap = THREE.ImageUtils.loadTexture("images/planet1.png");
-  var specmap = THREE.ImageUtils.loadTexture("images/planet1.png");
-//  var normalmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/normal-map-512.jpg");
-  //var specmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/water-map-512.jpg");
-
-  var planetMaterial = new THREE.MeshPhongMaterial(); 
-  planetMaterial.map = texture;
-  
- // planetMaterial.specularMap = specmap;
-  //planetMaterial.specular = new THREE.Color( 0xff0000 );
-  planetMaterial.shininess = 1;
-  
-  //planetMaterial.normalMap = normalmap;
-  //planetMaterial.normalScale.set(-0.3,-0.3);
-
-  var planet = new THREE.Mesh(planetGeometry, planetMaterial); 
-/*
-  //here we allow the texture/normal/specular maps to wrap
-  planet.material.map.wrapS = THREE.RepeatWrapping; 
-  planet.material.map.wrapT = THREE.RepeatWrapping;
-  planet.material.normalMap.wrapS = THREE.RepeatWrapping; 
-  planet.material.normalMap.wrapT = THREE.RepeatWrapping;
-  planet.material.specularMap.wrapS = THREE.RepeatWrapping; 
-  planet.material.specularMap.wrapT = THREE.RepeatWrapping;
- 
-  //here we repeat the texture/normal/specular maps twice along X
-  planet.material.map.repeat.set( 2, 1);
-  planet.material.normalMap.repeat.set( 2, 1);
-  planet.material.specularMap.repeat.set( 2, 1);
-*/
-  planet.position.x = 0; 
-  planet.position.y = -10; 
-  planet.position.z = -40; 
- 
-  scene.add(planet); 
-		production=1;
-		var myVar=setInterval(function(){updateIntroTimer();},10000);
-		function updateIntroTimer(){
-		production++;
-		if(production==2){
-		camera.position.set( 50, 20, 0 );
-		}else if(production==3){
-		camera.position.set( 0, -10, -50 );
-		}else if(production==5){
-		camera.position.set( 0, -50, -10 );
-		}
-		}
+	var planetNames = new Array('sun.jpg','planet1.png','venus.jpg','earth.jpg','mars.jpg','moon.jpg');
+	var planetPositions = new Object();
+	planetPositions.x = new Array(-100,10,30,60,80,65);
+	planetPositions.z = new Array(0,0,0,0,0,20);
+	var planetSizes = new Array(20,3,4,5,3,1);
+	var planet = new Array();
+	for(i=0;i<planetNames.length;i++){
+		planetGeometry = new THREE.SphereGeometry(planetSizes[i],32,32);
+	        var planetTexture = new THREE.ImageUtils.loadTexture('images/' + planetNames[i]);
+		var planetMaterial = new THREE.MeshPhongMaterial({map:planetTexture});
+		planet[i] = new THREE.Mesh(planetGeometry,planetMaterial);
+		planetMaterial.map.WrapS = THREE.RepeatWrapping;
+		planetMaterial.map.WrapT = THREE.RepeatWrapping;
+		planet[i].position.x = planetPositions.x[i];
+		planet[i].position.z = planetPositions.z[i];
+		planet[i].position.y=0;
+		scene.add(planet[i]);
+	}
+	/*
+	var planetTexture2 = new THREE.ImageUtils.loadTexture('images/venus.jpg');
+	var planetGeometry2 = new THREE.SphereGeometry(4,32,32);
+	var planetMaterial2 = new THREE.MeshPhongMaterial({map:planetTexture2});
+	var planet2 = new THREE.Mesh(planetGeometry2,planetMaterial2);
+	planetMaterial2.map.WrapS = THREE.RepeatWrapping;
+	planetMaterial2.map.WrapT = THREE.RepeatWrapping;
+	planet2.position.x=0;
+	planet2.position.y=0;
+	planet2.position.z=0;
+	scene.add(planet2);
+	var planetTexture3 = new THREE.ImageUtils.loadTexture('images/earth.jpg');
+	var planetGeometry3 = new THREE.SphereGeometry(4,32,32);
+	var planetMaterial3 = new THREE.MeshPhongMaterial({map:planetTexture3});
+	var planet3 = new THREE.Mesh(planetGeometry3,planetMaterial3);
+	planetMaterial3.map.WrapS = THREE.RepeatWrapping;
+	planetMaterial3.map.WrapT = THREE.RepeatWrapping;
+	planet3.position.x=10;
+	planet3.position.y=0;
+	planet3.position.z=0;
+	scene.add(planet3);
+	var planetTexture4 = new THREE.ImageUtils.loadTexture('images/planet1.png');
+	var planetGeometry4 = new THREE.SphereGeometry(4,32,32);
+	var planetMaterial4 = new THREE.MeshPhongMaterial({map:planetTexture4});
+	var planet4 = new THREE.Mesh(planetGeometry4,planetMaterial4);
+	planetMaterial4.map.WrapS = THREE.RepeatWrapping;
+	planetMaterial4.map.WrapT = THREE.RepeatWrapping;
+	planet4.position.x = 20;
+	planet4.position.y=0;
+	planet4.position.z=0;
+	scene.add(planet4);
+	var planetTexture5 = new THREE.ImageUtils.loadTexture('images/sun.jpg');
+	var planetGeometry5 = new THREE.SphereGeometry(4,32,32);
+	var planetMaterial5 = new THREE.MeshPhongMaterial({map:planetTexture5});
+	var planet5 = new THREE.Mesh(planetGeometry5,planetMaterial5);
+	planetMaterial5.map.WrapS = THREE.RepeatWrapping;
+	planetMaterial5.map.WrapT = THREE.RepeatWrapping;
+	planet5.position.x = -10;
+	planet5.position.y=0;
+	planet5.position.z=0;
+	scene.add(planet5);*/
 		//runLoader();
 		function update() {
+			//COUNT FPS
 			frameCount++;
-			//MOVEMENT CONTROLLS
-			//rotate the pannet
-			planet.rotation.y +=0.001;
+			//ROTATE PLANETS
+			for(i=0;i<planetNames.length;i++){
+				planet[i].rotation.y +=0.01/planetSizes[i];
+			}
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
 				Crotation+=0.01;
@@ -172,11 +182,15 @@
 				camera.position.x -=1;
 			}else if(keyboard.pressed("right")){
 				camera.position.x +=1;
+			}if(keyboard.pressed("q")){
+				Crad -=0.1;
+			}else if(keyboard.pressed("e")){
+				Crad +=0.1;
 			}
-			camera.position.y=50* Math.sin(Crotation);
-			camera.position.z=50* Math.cos(Crotation);
+			camera.position.y=Crad* Math.sin(Crotation);
+			camera.position.z=Crad* Math.cos(Crotation);
 			//get the camera to look at the spaceship
-			camera.lookAt( planet.position);
+			camera.lookAt( planet[0].position);
 		}
 	
 		//Render Loop
@@ -202,18 +216,5 @@
 <input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').play()" />
 <a style="color:white;" id="frame">Frame Rate:60fps</a>
 </div>
-
-<audio id=laser>
-    <source src="http://headstart.cs.aston.ac.uk/projects/2013_July/team5/sound/laserSHORT.wav">
-</audio>
-<audio id=hit>
-    <source src="http://headstart.cs.aston.ac.uk/projects/2013_July/team5/sound/hit.wav">
-</audio>
-<audio id=die>
-    <source src="http://headstart.cs.aston.ac.uk/projects/2013_July/team5/sound/dying.wav">
-</audio>
-<audio id=pendulum>
-    <source src="http://headstart.cs.aston.ac.uk/projects/2013_July/team5/sound/slam.mp3">
-</audio>
 </body>
 </html>
