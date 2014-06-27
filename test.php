@@ -1,4 +1,4 @@
-
+#
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,7 +81,7 @@
 		
 		//setup lighting conditions
 		
-		var light4 = new THREE.PointLight( lightcolor );
+		var light4 = new THREE.PointLight( 0xffffff );
         light4.position.set( 0, 10,0 );
 		scene.add(light4);
 //--------------------------------------------------------------------------------
@@ -132,7 +132,7 @@
 	spaceStation.cylinder = new Array();
 	spaceStation.plane = new Array();
 	spaceStation.position= new THREE.Vector3(0,0,0);
-	spaceStation.Cposition = new THREE.Vector3(-10,0,0);
+	spaceStation.Cposition = new THREE.Vector3(0,0,10);
 	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
@@ -171,7 +171,7 @@
 			//PLANET ROTATION
 			earth.rotation.y +=0.001;
 			//ORBIT
-			spaceStation.position.x = 321640* Math.cos(theta) - 321640;
+			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
 			spaceStation.position.z = 321640* Math.sin(theta);
 			for(i=0;i<spaceStation.plane.length;i++){ 
 				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
@@ -199,11 +199,16 @@
 			}else if(keyboard.pressed("e")){
 				spaceStation.Cposition.z +=1;
 			}
-			//camera.position.y=Crad* Math.sin(Crotation);
-			//camera.position.z=Crad* Math.cos(Crotation);
-			//get the camera to look at the spaceship
-			camera.position = THREE.addVectors(spaceStation.position,spaceStation.Cposition);
+			var A = new THREE.Vector3(0,0,0);
+			A.x=spaceStation.position.x + spaceStation.Cposition.x;
+			A.y=spaceStation.position.y + spaceStation.Cposition.y;
+			A.z=spaceStation.position.z + spaceStation.Cposition.z;
+			//A.add(spaceStation.Cposition);
+			light4.position = A;
+			camera.position = A;
+			document.getElementById('frame').innerHTML = "Camera(" + camera.position.x + "," + camera.position.y + "," + camera.position.z +")<br />SpaceStation:(" + spaceStation.position.x + "," + spaceStation.position.y + "," + spaceStation.position.z + ")";
 			camera.lookAt(spaceStation.position);
+
 		}
 	
 		//Render Loop
