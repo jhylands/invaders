@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,7 +131,8 @@
 	var spaceStation = new Object();
 	spaceStation.cylinder = new Array();
 	spaceStation.plane = new Array();
-	//spaceStation.x=0;
+	spaceStation.position= new THREE.Vector3(0,0,0);
+	spaceStation.Cposition = new THREE.Vector3(-10,0,0);
 	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
@@ -169,42 +171,39 @@
 			//PLANET ROTATION
 			earth.rotation.y +=0.001;
 			//ORBIT
-			/*
-			spaceStation.x = 3216400* Math.cos(theta);
-			spaceStation.z = 3216400* Math.sin(theta);
+			spaceStation.position.x = 321640* Math.cos(theta) - 321640;
+			spaceStation.position.z = 321640* Math.sin(theta);
 			for(i=0;i<spaceStation.plane.length;i++){ 
-				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.x;
-				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.y;
-				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.z;
+				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
+				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.position.y;
+				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.position.z;
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
-				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.x;
-				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.y;
-				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.z;
+				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.position.x;
+				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
+				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
 			}
-			theta += 0.001;*/
+			theta += 0.001;
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
-				camera.position.y +=1;
+				spaceStation.Cposition.y +=1;
 			}else if(keyboard.pressed("down")){
-				camera.position.y -=1;
+				spaceStation.Cposition.y -=1;
 			}
 			if(keyboard.pressed("left")){
-				camera.position.x -=1;
+				spaceStation.Cposition.x -=1;
 			}else if(keyboard.pressed("right")){
-				camera.position.x +=1;
+				spaceStation.Cposition.x +=1;
 			}if(keyboard.pressed("q")){
-				camera.position.z -=1;
+				spaceStation.Cposition.z -=1;
 			}else if(keyboard.pressed("e")){
-				camera.position.z +=1;
+				spaceStation.Cposition.z +=1;
 			}
 			//camera.position.y=Crad* Math.sin(Crotation);
 			//camera.position.z=Crad* Math.cos(Crotation);
 			//get the camera to look at the spaceship
-			//camera.position.x = spaceStation.x+10
-			//camera.position.z = spaceStation.z
-			var a = new THREE.Vector3(0,0,0);
-			camera.lookAt(a);
+			camera.position = THREE.addVectors(spaceStation.position,spaceStation.Cposition);
+			camera.lookAt(spaceStation.position);
 		}
 	
 		//Render Loop
