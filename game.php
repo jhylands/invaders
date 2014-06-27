@@ -131,7 +131,7 @@
 	//won?
 	
 	//set starting music
-	document.getElementById('pendulum').play()
+	//document.getElementById('pendulum').play()
 		//define world
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth-5,  window.innerHeight-5);
@@ -470,7 +470,7 @@
 			alians[x][z].shown = true;
 			}}
 			//increase difficulty
-			difficulty= difficulty*2;
+			difficulty= difficulty*1.25;
 			won=true;
 			}
 	}
@@ -495,7 +495,7 @@
 </div>
 <div style="position:absolute;top:0px;left:0px;z-index:4;">
 <h1 id="scorecard" style="color:white;">Score:0</h1>
-<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').play()" />
+<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').stop()" />
 <a style="color:white;" id="frame">Frame Rate:60fps</a>
 </div>
 
