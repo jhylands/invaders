@@ -225,9 +225,7 @@
 
     };
 
-//Shorter math functions
-function s(x){ return Math.sin(x);}
-function c(x){ return Math.cos(x);}
+//Math functions
 function addVectors(A,B){
 	var responce = new THREE.Vector3(0,0,0);
 	responce.x = A.x + b.x;
@@ -238,13 +236,11 @@ function addVectors(A,B){
 function translate(Vector,x,y,z){
 	//Vector are the coordinates to translate
 	//x,y,z are the respective rotations
-	p = Vector.x;
-	q = Vector.y;
-	r = Vector.z;
-	var responce = new THREE.Vector3(0,0,0);
-	responce.x = p*c(b)*c(c)+r*s(y)+q*c(y)*s(z);
-	responce.y = r*c(y)*s(x)+p*(c(z)*s(x)*s(y)+c(x)*s(z))+q(c(x)*c(z)+s(x)*s(y)*s(z));
-	responce.z = r*c(x)*c(y)+p*(c(x)*c(z)*s(y)+s(x)*s(z))+q(c(z)*s(x)+c(c)*s(y)*s(z));
+	response.x = Vector.x*Math.cos[y]*Math.cos[z] + Vector.z*Math.sin[y] + Vector.y*Math.cos[y]*Math.sin[z];
+
+	response.y = Vector.z*Math.cos[y]*Math.sin[x] + Vector.x*(Math.cos[z]*Math.sin[x]*Math.sin[y] + Math.cos[x]*Math.sin[z]) + Vector.y*(Math.cos[x]*Math.cos[z] + Math.sin[x]*Math.sin[y]*Math.sin[z]);
+
+	response.z = Vector.z*Math.cos[x]*Math.cos[y] + Vector.x*(Math.cos[x]*Math.cos[z]*Math.sin[y] + Math.sin[x]*Math.sin[z]) + Vector.y*(Math.cos[z]*Math.sin[x] + Math.cos[x]*Math.sin[y]*Math.sin[z]);
 	return response;
 }
     </script>
