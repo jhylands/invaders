@@ -133,6 +133,7 @@
 	spaceStation.plane = new Array();
 	spaceStation.position= new THREE.Vector3(0,0,0);
 	spaceStation.Cposition = new THREE.Vector3(0,0,10);
+	spaceStation.rotation = new THREE.Vector3(0,0,0);
 	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
@@ -175,14 +176,10 @@
 			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
 			spaceStation.position.z = 321640* Math.sin(theta);
 			for(i=0;i<spaceStation.plane.length;i++){ 
-				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
-				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.position.y;
-				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.position.z;
+				spaceStation.plane[i].position = addVectors(translate(pannelData[i],spaceStation.rotation), spaceStation.position);
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
-				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.position.x;
-				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
-				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
+				spaceStation.cylinder[i].position.x = addVectors(translate(bodyData[i],spaceStation.rotation), spaceStation.position);
 			}
 			theta += 0.00001;
 			//CAMERA MOVEMENT
@@ -233,9 +230,10 @@ function addVectors(A,B){
 	responce.z = A.z + b.z;
 	return response;
 }
-function translate(Vector,x,y,z){
+function translate(Vector,rotation){
 	//Vector are the coordinates to translate
 	//x,y,z are the respective rotations
+	var response = new THREE.Vector3(0,0,0);
 	response.x = Vector.x*Math.cos[y]*Math.cos[z] + Vector.z*Math.sin[y] + Vector.y*Math.cos[y]*Math.sin[z];
 
 	response.y = Vector.z*Math.cos[y]*Math.sin[x] + Vector.x*(Math.cos[z]*Math.sin[x]*Math.sin[y] + Math.cos[x]*Math.sin[z]) + Vector.y*(Math.cos[x]*Math.cos[z] + Math.sin[x]*Math.sin[y]*Math.sin[z]);
