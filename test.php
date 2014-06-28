@@ -150,8 +150,9 @@
 		scene.add(spaceStation.plane[i]);
 	}
 	var bodyData =[{x:-2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:-1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:-0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:nighty,Ry:0,Rz:0},{x:0,y:0.5,z:1,Rx:nighty,Ry:0,Rz:0}];
-	var cylinderMaterial = new THREE.MeshPhongMaterial({color:0x000000,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
-	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1);
+	var cylinderTexture = new THREE.ImageUtils.loadTexture('images/shell.jpg');
+	var cylinderMaterial = new THREE.MeshPhongMaterial({map:cylinderTexture,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
+	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
 	for(i=0;i<bodyData.length;i++){
 		spaceStation.cylinder[i] = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
 		spaceStation.cylinder[i].rotation.x = bodyData[i].Rx;
@@ -169,7 +170,7 @@
 			//COUNT FPS
 			frameCount++;
 			//PLANET ROTATION
-			earth.rotation.y +=0.001;
+			earth.rotation.y +=0.0001;
 			//ORBIT
 			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
 			spaceStation.position.z = 321640* Math.sin(theta);
@@ -183,7 +184,7 @@
 				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
 				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
 			}
-			theta += 0.001;
+			theta += 0.00001;
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
 				spaceStation.Cposition.y +=1;
@@ -223,6 +224,29 @@
 		requestAnimationFrame(render);
 
     };
+
+//Shorter math functions
+function s(x){ return Math.sin(x);}
+function c(x){ return Math.cos(x);}
+function addVectors(A,B){
+	var responce = new THREE.Vector3(0,0,0);
+	responce.x = A.x + b.x;
+	responce.y = A.y + b.y;
+	responce.z = A.z + b.z;
+	return response;
+}
+function translate(Vector,x,y,z){
+	//Vector are the coordinates to translate
+	//x,y,z are the respective rotations
+	p = Vector.x;
+	q = Vector.y;
+	r = Vector.z;
+	var responce = new THREE.Vector3(0,0,0);
+	responce.x = p*c(b)*c(c)+r*s(y)+q*c(y)*s(z);
+	responce.y = r*c(y)*s(x)+p*(c(z)*s(x)*s(y)+c(x)*s(z))+q(c(x)*c(z)+s(x)*s(y)*s(z));
+	responce.z = r*c(x)*c(y)+p*(c(x)*c(z)*s(y)+s(x)*s(z))+q(c(z)*s(x)+c(c)*s(y)*s(z));
+	return response;
+}
     </script>
 </head>
 <body>
