@@ -234,11 +234,11 @@ function translate(Vector,rotation){
 	//Vector are the coordinates to translate
 	//x,y,z are the respective rotations
 	var response = new THREE.Vector3(0,0,0);
-	response.x = Vector.x*Math.cos[y]*Math.cos[z] + Vector.z*Math.sin[y] + Vector.y*Math.cos[y]*Math.sin[z];
+	response.x = Vector.x*Math.cos(rotation.y)*Math.cos(rotation.z) + Vector.z*Math.sin(rotation.y) + Vector.y*Math.cos(rotation.y)*Math.sin(rotation.z);
 
-	response.y = Vector.z*Math.cos[y]*Math.sin[x] + Vector.x*(Math.cos[z]*Math.sin[x]*Math.sin[y] + Math.cos[x]*Math.sin[z]) + Vector.y*(Math.cos[x]*Math.cos[z] + Math.sin[x]*Math.sin[y]*Math.sin[z]);
+	response.y = Vector.z*Math.cos(rotation.y)*Math.sin(rotation.x) + Vector.x*(Math.cos(rotation.z)*Math.sin(rotation.x)*Math.sin(rotation.y) + Math.cos(rotation.x)*Math.sin(rotation.z)) + Vector.y*(Math.cos(rotation.x)*Math.cos(rotation.z) + Math.sin(rotation.x)*Math.sin(rotation.y)*Math.sin(rotation.z));
 
-	response.z = Vector.z*Math.cos[x]*Math.cos[y] + Vector.x*(Math.cos[x]*Math.cos[z]*Math.sin[y] + Math.sin[x]*Math.sin[z]) + Vector.y*(Math.cos[z]*Math.sin[x] + Math.cos[x]*Math.sin[y]*Math.sin[z]);
+	response.z = Vector.z*Math.cos(rotation.x)*Math.cos(rotation.y) + Vector.x*(Math.cos(rotation.x)*Math.cos(rotation.z)*Math.sin(rotation.y) + Math.sin(rotation.x)*Math.sin(rotation.z)) + Vector.y*(Math.cos(rotation.z)*Math.sin(rotation.x) + Math.cos(rotation.x)*Math.sin(rotation.y)*Math.sin(rotation.z));
 	return response;
 }
     </script>
