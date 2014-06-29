@@ -7,6 +7,7 @@
 	<script src="js/THREEx.KeyboardState.js"></script>	
 	
     <script>
+	var camera;
 	var production=0;
 	var scene;
 	 //declare a truly global variable to hold weather the user has just shot
@@ -61,12 +62,15 @@
 	var Crotation = 0.35;//20* in rad
 	var Crad = 50 //radius of the rotation of the camera
 		//define world
+	projector = new THREE.Projector();
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth-5,  window.innerHeight-5);
         document.getElementsByTagName('div')[0].appendChild( renderer.domElement );
         scene = new THREE.Scene();
+	document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
 		//setup camera
-        var camera = new THREE.PerspectiveCamera(
+        camera = new THREE.PerspectiveCamera(
             35,             // Field of view
             800 / 600,      // Aspect ratio
             0.1,            // Near plane
@@ -121,6 +125,7 @@
 		planet[i].position.x = planetPositions.x[i];
 		planet[i].position.z = planetPositions.z[i];
 		planet[i].position.y=0;
+		planet[i].name = planetNames[i];
 		scene.add(planet[i]);
 	}
 	/*
@@ -205,6 +210,26 @@
 		requestAnimationFrame(render);
 
     };
+
+			function onDocumentMouseDown( event ) {
+
+				event.preventDefault();
+
+				var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
+				projector.unprojectVector( vector, camera );
+
+				var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+
+				var intersects = raycaster.intersectObjects( scene.children );
+
+				if ( intersects.length > 0 ) {
+
+					alert(intersects[ 0 ].object.name );
+
+				}
+
+			
+			}
     </script>
 </head>
 <body>
