@@ -132,6 +132,7 @@
 	spaceStation.cylinder = new Array();
 	spaceStation.plane = new Array();
 	spaceStation.position= new THREE.Vector3(0,0,0);
+	var group = new THREE.Object3D();
 	spaceStation.Cposition = new THREE.Vector3(0,0,10);
 	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
@@ -162,7 +163,7 @@
 		spaceStation.plane[i].material.side = THREE.DoubleSide;
 		spaceStation.plane[i].rotation = pannelData[i].rotation;
 		spaceStation.plane[i].position = pannelData[i].position;// + spaceStation.x;
-		scene.add(spaceStation.plane[i]);
+		group.add(spaceStation.plane[i]);
 	}
 	var bodyData =[{position: new THREE.Vector3(-2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
 {position: new THREE.Vector3(-1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
@@ -181,8 +182,10 @@
 		spaceStation.cylinder[i] = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
 		spaceStation.cylinder[i].rotation = bodyData[i].rotation;
 		spaceStation.cylinder[i].position = bodyData[i].position;
-		scene.add(spaceStation.cylinder[i]);
+		group.add(spaceStation.cylinder[i]);
 	}
+	scene.add(group);
+	group.rotation.y=0.6;
 //-------------------------------------------------------------------------------
 
 		//runLoader();
@@ -192,14 +195,14 @@
 			//PLANET ROTATION
 			earth.rotation.y +=0.0001;
 			//ORBIT
-			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
-			spaceStation.position.z = 321640* Math.sin(theta);
-			for(i=0;i<spaceStation.plane.length;i++){ 
+			group.position.x = 321640 - 321640* Math.cos(theta);
+			group.position.z = 321640* Math.sin(theta);
+			/*for(i=0;i<spaceStation.plane.length;i++){ 
 				spaceStation.plane[i].position =addVectors( pannelData[i].position, spaceStation.position);
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
 				spaceStation.cylinder[i].position = addVectors( bodyData[i].position, spaceStation.position);
-			}
+			}*/
 			theta += 0.00001;
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
@@ -217,14 +220,12 @@
 				spaceStation.Cposition.z +=1;
 			}
 			var A = new THREE.Vector3(0,0,0);
-			A.x=spaceStation.position.x + spaceStation.Cposition.x;
-			A.y=spaceStation.position.y + spaceStation.Cposition.y;
-			A.z=spaceStation.position.z + spaceStation.Cposition.z;
+			A= addVectors(group.position,spaceStation.Cposition);
 			//A.add(spaceStation.Cposition);
 			light4.position = A;
 			camera.position = A;
 			document.getElementById('frame').innerHTML = "Camera(" + camera.position.x + "," + camera.position.y + "," + camera.position.z +")<br />SpaceStation:(" + spaceStation.position.x + "," + spaceStation.position.y + "," + spaceStation.position.z + ")";
-			camera.lookAt(spaceStation.position);
+			camera.lookAt(group.position);
 
 		}
 	
