@@ -110,7 +110,7 @@
 //SUN
 	var lightcolor =  0xFFFFFF
 		var light = new THREE.PointLight( lightcolor );
-        light.position.set( -1000000, 10, -10 );
+        light.position.set( -100000, 10, -10 );
 		scene.add(light);
 	var sunGeometry = new THREE.SphereGeometry(69550,32,32);
 	var sunTexture = new THREE.ImageUtils.loadTexture('images/sun.jpg');
@@ -186,6 +186,7 @@
 	}
 	scene.add(group);
 	group.rotation.y=0.6;
+	group.rotation.z=0.6;
 //-------------------------------------------------------------------------------
 
 		//runLoader();
@@ -222,7 +223,6 @@
 			var A = new THREE.Vector3(0,0,0);
 			A= addVectors(group.position,spaceStation.Cposition);
 			//A.add(spaceStation.Cposition);
-			light4.position = A;
 			camera.position = A;
 			document.getElementById('frame').innerHTML = "Camera(" + camera.position.x + "," + camera.position.y + "," + camera.position.z +")<br />SpaceStation:(" + spaceStation.position.x + "," + spaceStation.position.y + "," + spaceStation.position.z + ")";
 			camera.lookAt(group.position);

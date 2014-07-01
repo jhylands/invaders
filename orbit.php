@@ -3,10 +3,21 @@
 <html>
 <head>
     <title>Introduction to Computer Graphics</title>  
+	<style>
+	body{
+	background-color:black;
+	color:white;}
+	</style>
  <!-- include javascript libraries -->
     <script src="js/three.js"></script>
 	<script src="js/THREEx.KeyboardState.js"></script>	
-	
+<?php
+include 'scripts/sql.php';
+$results = mysqli_query($con,"select * from ships,users where ships.ShipCode = users.CurrentShip");
+while($row = mysqli_fetch_array($results)){
+	$ship = $row;
+}
+?>
     <script>
 	var production=0;
 	var scene;
@@ -69,7 +80,7 @@
 		//setup camera
         var camera = new THREE.PerspectiveCamera(
             35,             // Field of view
-            800 / 600,      // Aspect ratio
+            (window.innerWidth-5)/(window.innerHeight-5),      // Aspect ratio
             0.1,            // Near plane
             10000000          // Far plane
         );
@@ -110,7 +121,7 @@
 //SUN
 	var lightcolor =  0xFFFFFF
 		var light = new THREE.PointLight( lightcolor );
-        light.position.set( -1000000, 10, -10 );
+        light.position.set( -100000, 10, -10 );
 		scene.add(light);
 	var sunGeometry = new THREE.SphereGeometry(69550,32,32);
 	var sunTexture = new THREE.ImageUtils.loadTexture('images/sun.jpg');
@@ -132,37 +143,61 @@
 	spaceStation.cylinder = new Array();
 	spaceStation.plane = new Array();
 	spaceStation.position= new THREE.Vector3(0,0,0);
+	var group = new THREE.Object3D();
 	spaceStation.Cposition = new THREE.Vector3(0,0,10);
 	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
 	var nighty = Math.PI/2;
-	var pannelData = [{x:-2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty}];
+	var pannelData = [{position: new THREE.Vector3(-2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(-0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(-0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)}];
 	for(i=0;i<pannelData.length;i++){
 		spaceStation.plane[i] = new THREE.Mesh(planeGeometry,planeMaterial);
 		spaceStation.plane[i].material.side = THREE.DoubleSide;
-		spaceStation.plane[i].rotation.x = pannelData[i].Rx;
-		spaceStation.plane[i].rotation.y = pannelData[i].Ry;
-		spaceStation.plane[i].rotation.z = pannelData[i].Rz;
-		spaceStation.plane[i].position.x = pannelData[i].x;// + spaceStation.x;
-		spaceStation.plane[i].position.y = pannelData[i].y;// + spaceStation.y;
-		spaceStation.plane[i].position.z = pannelData[i].z;// + spaceStation.z;
-		scene.add(spaceStation.plane[i]);
+		spaceStation.plane[i].rotation = pannelData[i].rotation;
+		spaceStation.plane[i].position = pannelData[i].position;// + spaceStation.x;
+		group.add(spaceStation.plane[i]);
 	}
-	var bodyData =[{x:-2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:-1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:-0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:nighty,Ry:0,Rz:0},{x:0,y:0.5,z:1,Rx:nighty,Ry:0,Rz:0}];
+	var bodyData =[{position: new THREE.Vector3(-2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(-1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(0,-0.5,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(0,0.5,1), rotation: new THREE.Vector3(nighty,0,0)}];
 	var cylinderTexture = new THREE.ImageUtils.loadTexture('images/shell.jpg');
 	var cylinderMaterial = new THREE.MeshPhongMaterial({map:cylinderTexture,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
 	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
 	for(i=0;i<bodyData.length;i++){
 		spaceStation.cylinder[i] = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
-		spaceStation.cylinder[i].rotation.x = bodyData[i].Rx;
-		spaceStation.cylinder[i].rotation.y = bodyData[i].Ry;
-		spaceStation.cylinder[i].rotation.z = bodyData[i].Rz;
-		spaceStation.cylinder[i].position.x = bodyData[i].x;
-		spaceStation.cylinder[i].position.y = bodyData[i].y;
-		spaceStation.cylinder[i].position.z = bodyData[i].z;
-		scene.add(spaceStation.cylinder[i]);
+		spaceStation.cylinder[i].rotation = bodyData[i].rotation;
+		spaceStation.cylinder[i].position = bodyData[i].position;
+		group.add(spaceStation.cylinder[i]);
 	}
+	scene.add(group);
+	group.rotation.y=0.6;
+	group.rotation.z=0.6;
 //-------------------------------------------------------------------------------
 
 		//runLoader();
@@ -172,18 +207,14 @@
 			//PLANET ROTATION
 			earth.rotation.y +=0.0001;
 			//ORBIT
-			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
-			spaceStation.position.z = 321640* Math.sin(theta);
-			for(i=0;i<spaceStation.plane.length;i++){ 
-				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
-				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.position.y;
-				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.position.z;
+			group.position.x = 321640 - 321640* Math.cos(theta);
+			group.position.z = 321640* Math.sin(theta);
+			/*for(i=0;i<spaceStation.plane.length;i++){ 
+				spaceStation.plane[i].position =addVectors( pannelData[i].position, spaceStation.position);
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
-				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.position.x;
-				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
-				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
-			}
+				spaceStation.cylinder[i].position = addVectors( bodyData[i].position, spaceStation.position);
+			}*/
 			theta += 0.00001;
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
@@ -201,14 +232,11 @@
 				spaceStation.Cposition.z +=1;
 			}
 			var A = new THREE.Vector3(0,0,0);
-			A.x=spaceStation.position.x + spaceStation.Cposition.x;
-			A.y=spaceStation.position.y + spaceStation.Cposition.y;
-			A.z=spaceStation.position.z + spaceStation.Cposition.z;
+			A= addVectors(group.position,spaceStation.Cposition);
 			//A.add(spaceStation.Cposition);
-			light4.position = A;
 			camera.position = A;
 			document.getElementById('frame').innerHTML = "Camera(" + camera.position.x + "," + camera.position.y + "," + camera.position.z +")<br />SpaceStation:(" + spaceStation.position.x + "," + spaceStation.position.y + "," + spaceStation.position.z + ")";
-			camera.lookAt(spaceStation.position);
+			camera.lookAt(group.position);
 
 		}
 	
@@ -224,11 +252,25 @@
 		requestAnimationFrame(render);
 
     };
+   function addVectors(A,B){
+	var response = new THREE.Vector3(0,0,0);
+	response.x = A.x + B.x;
+	response.y = A.y + B.y;
+	response.z = A.z + B.z;
+	return response;
+}
     </script>
 </head>
 <body>
 <div style="position:absolute;top:0px;left:0px;z-index:3;">
 
+</div>
+<div style="position:absolute;top:85%;left:0px;z-index:5;">
+<table style="width:100%;height:9%;background-color:black;" border="1">
+<tr><td colspan="3"><b>Current ship:</b></td><td><a href="solar.php">Back to map</a></td></tr>
+<tr><td colspan="3">Resorces:</td></tr>
+<tr><td>Metal:<?php echo $ship['Metal']; ?>Tonnes</td><td>Helium:<?php echo $ship['Helium'];?></td><td>Uranium:<?php echo $ship['Uranium']; ?></td></tr>
+</table>
 </div>
 <div style="position:absolute;top:0px;left:0px;z-index:4;">
 <h1 id="scorecard" style="color:white;">Score:0</h1>
