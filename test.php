@@ -240,6 +240,13 @@
 		requestAnimationFrame(render);
 
     };
+   function addVectors(A,B){
+	var response = new THREE.Vector3(0,0,0);
+	response.x = A.x + B.x;
+	response.y = A.y + B.y;
+	response.z = A.z + B.z;
+	return response;
+}
     </script>
 </head>
 <body>
