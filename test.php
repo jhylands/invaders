@@ -137,7 +137,26 @@
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
 	var nighty = Math.PI/2;
-	var pannelData = [{x:-2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty}];
+	var pannelData = [{position: new THREE.Vector3(-2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-2.,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(-1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(-0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
+{position: new THREE.Vector3(-0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)}];
 	for(i=0;i<pannelData.length;i++){
 		spaceStation.plane[i] = new THREE.Mesh(planeGeometry,planeMaterial);
 		spaceStation.plane[i].material.side = THREE.DoubleSide;
@@ -149,7 +168,16 @@
 		spaceStation.plane[i].position.z = pannelData[i].z;// + spaceStation.z;
 		scene.add(spaceStation.plane[i]);
 	}
-	var bodyData =[{x:-2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:-1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:-0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:nighty,Ry:0,Rz:0},{x:0,y:0.5,z:1,Rx:nighty,Ry:0,Rz:0}];
+	var bodyData =[{position: new THREE.Vector3(-2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(-1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
+{position: new THREE.Vector3(0,-0.5,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(0,0,0)},
+{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(nighty,0,0)},
+{position: new THREE.Vector3(0,0.5,1), rotation: new THREE.Vector3(nighty,0,0)}];
 	var cylinderTexture = new THREE.ImageUtils.loadTexture('images/shell.jpg');
 	var cylinderMaterial = new THREE.MeshPhongMaterial({map:cylinderTexture,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
 	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
