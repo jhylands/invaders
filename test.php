@@ -130,61 +130,37 @@
 //space station
 	var spaceStation = new Object();
 	spaceStation.cylinder = new Array();
-	spaceStation.plane = new THREE.Object3D();
+	spaceStation.plane = new Array();
 	spaceStation.position= new THREE.Vector3(0,0,0);
-	Cposition = new THREE.Vector3(0,0,10);
-	spaceStation.rotation = new THREE.Vector3(0,(Math.PI/2),0);
-	//var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
-	var planeMaterial = new THREE.MeshPhongMaterial({map:new THREE.ImageUtils.loadTexture('images/panels.jpg')});
+	spaceStation.Cposition = new THREE.Vector3(0,0,10);
+	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
+	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
 	var nighty = Math.PI/2;
-	var iss = [{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{object: new THREE.Mesh(new THREE.PlaneGeometry(0.3,1), new THREE.MeshPhongMaterial({map: new THREE.ImageUtils.loadTexture('images/panels.jpg')})),position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)}];
-	var pannelData = [{position: new THREE.Vector3(-2.35,0,0.65), rotation: new THREE.Vector3(nighty,0,0)},{x:-2.,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty}];
-	var pannelData = [{position: new THREE.Vector3(-2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-2.,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(1.3,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(1.65,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(2,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(2.35,0,0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-2.,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(-1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(1.3,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(1.65,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(2,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(2.35,0,-0.65), rotation : new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
-{position: new THREE.Vector3(0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)},
-{position: new THREE.Vector3(-0.65,0.5,0.85), rotation : new THREE.Vector3(nighty,0,nighty)},
-{position: new THREE.Vector3(-0.65,0.5,1.35), rotation : new THREE.Vector3(nighty,0,nighty)}];
+	var pannelData = [{x:-2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-2.,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:-1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.3,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:1.65,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:2.35,y:0,z:-0.65,Rx:nighty,Ry:0,Rz:0},{x:0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:0.85,Rx:nighty,Ry:0,Rz:nighty},{x:-0.65,y:0.5,z:1.35,Rx:nighty,Ry:0,Rz:nighty}];
 	for(i=0;i<pannelData.length;i++){
-		var mesh = new THREE.Mesh(planeGeometry,planeMaterial);
-		mesh.material.side = THREE.DoubleSide;
-		mesh.rotation = pannelData[i].rotation;
-		mesh.position = pannelData[i].position;
-		spaceStation.plane.add(mesh);
+		spaceStation.plane[i] = new THREE.Mesh(planeGeometry,planeMaterial);
+		spaceStation.plane[i].material.side = THREE.DoubleSide;
+		spaceStation.plane[i].rotation.x = pannelData[i].Rx;
+		spaceStation.plane[i].rotation.y = pannelData[i].Ry;
+		spaceStation.plane[i].rotation.z = pannelData[i].Rz;
+		spaceStation.plane[i].position.x = pannelData[i].x;// + spaceStation.x;
+		spaceStation.plane[i].position.y = pannelData[i].y;// + spaceStation.y;
+		spaceStation.plane[i].position.z = pannelData[i].z;// + spaceStation.z;
+		scene.add(spaceStation.plane[i]);
 	}
-	scene.add(spaceStation.plane);
-	var bodyData =[{position: new THREE.Vector3(-2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
-{position: new THREE.Vector3(-1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
-{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,nighty)},
-{position: new THREE.Vector3(1,0,0), rotation: new THREE.Vector3(0,0,nighty)},
-{position: new THREE.Vector3(2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
-{position: new THREE.Vector3(0,-0.5,0), rotation: new THREE.Vector3(0,0,0)},
-{position: new THREE.Vector3(0,0,0), rotation: new THREE.Vector3(0,0,0)},
-{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(0,0,0)},
-{position: new THREE.Vector3(0,0.5,0), rotation: new THREE.Vector3(nighty,0,0)},
-{position: new THREE.Vector3(0,0.5,1), rotation: new THREE.Vector3(nighty,0,0)}];
+	var bodyData =[{x:-2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:-1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:1,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:2,y:0,z:0,Rx:0,Ry:0,Rz:nighty},{x:0,y:-0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:0,Ry:0,Rz:0},{x:0,y:0.5,z:0,Rx:nighty,Ry:0,Rz:0},{x:0,y:0.5,z:1,Rx:nighty,Ry:0,Rz:0}];
 	var cylinderTexture = new THREE.ImageUtils.loadTexture('images/shell.jpg');
 	var cylinderMaterial = new THREE.MeshPhongMaterial({map:cylinderTexture,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
 	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
 	for(i=0;i<bodyData.length;i++){
 		spaceStation.cylinder[i] = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
-		spaceStation.cylinder[i].rotation = bodyData[i].rotation;
-		spaceStation.cylinder[i].position = bodyData[i].position;
+		spaceStation.cylinder[i].rotation.x = bodyData[i].Rx;
+		spaceStation.cylinder[i].rotation.y = bodyData[i].Ry;
+		spaceStation.cylinder[i].rotation.z = bodyData[i].Rz;
+		spaceStation.cylinder[i].position.x = bodyData[i].x;
+		spaceStation.cylinder[i].position.y = bodyData[i].y;
+		spaceStation.cylinder[i].position.z = bodyData[i].z;
 		scene.add(spaceStation.cylinder[i]);
 	}
 //-------------------------------------------------------------------------------
@@ -199,11 +175,14 @@
 			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
 			spaceStation.position.z = 321640* Math.sin(theta);
 			for(i=0;i<spaceStation.plane.length;i++){ 
-				spaceStation.plane[i].position = addVectors(translate(pannelData[i],spaceStation.rotation), spaceStation.position);
-				//spaceStation.plane[i].rotation = addVectors(spaceStation.rotation,spaceStation.plane[i].rotation);
+				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
+				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.position.y;
+				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.position.z;
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
-				spaceStation.cylinder[i].position = addVectors(translate(bodyData[i],spaceStation.rotation), spaceStation.position);
+				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.position.x;
+				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
+				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
 			}
 			theta += 0.00001;
 			//CAMERA MOVEMENT
@@ -222,9 +201,9 @@
 				spaceStation.Cposition.z +=1;
 			}
 			var A = new THREE.Vector3(0,0,0);
-			A.x=spaceStation.position.x + Cposition.x;
-			A.y=spaceStation.position.y + Cposition.y;
-			A.z=spaceStation.position.z + Cposition.z;
+			A.x=spaceStation.position.x + spaceStation.Cposition.x;
+			A.y=spaceStation.position.y + spaceStation.Cposition.y;
+			A.z=spaceStation.position.z + spaceStation.Cposition.z;
 			//A.add(spaceStation.Cposition);
 			light4.position = A;
 			camera.position = A;
@@ -245,26 +224,6 @@
 		requestAnimationFrame(render);
 
     };
-
-//Math functions
-function addVectors(A,B){
-	var response = new THREE.Vector3(0,0,0);
-	response.x = A.x + B.x;
-	response.y = A.y + B.y;
-	response.z = A.z + B.z;
-	return response;
-}
-function translate(Vector,rotation){
-	//Vector are the coordinates to translate
-	//x,y,z are the respective rotations
-	var response = new THREE.Vector3(0,0,0);
-	response.x = Vector.x*Math.cos(rotation.y)*Math.cos(rotation.z) + Vector.z*Math.sin(rotation.y) + Vector.y*Math.cos(rotation.y)*Math.sin(rotation.z);
-
-	response.y = Vector.z*Math.cos(rotation.y)*Math.sin(rotation.x) + Vector.x*(Math.cos(rotation.z)*Math.sin(rotation.x)*Math.sin(rotation.y) + Math.cos(rotation.x)*Math.sin(rotation.z)) + Vector.y*(Math.cos(rotation.x)*Math.cos(rotation.z) + Math.sin(rotation.x)*Math.sin(rotation.y)*Math.sin(rotation.z));
-
-	response.z = Vector.z*Math.cos(rotation.x)*Math.cos(rotation.y) + Vector.x*(Math.cos(rotation.x)*Math.cos(rotation.z)*Math.sin(rotation.y) + Math.sin(rotation.x)*Math.sin(rotation.z)) + Vector.y*(Math.cos(rotation.z)*Math.sin(rotation.x) + Math.cos(rotation.x)*Math.sin(rotation.y)*Math.sin(rotation.z));
-	return response;
-}
     </script>
 </head>
 <body>
