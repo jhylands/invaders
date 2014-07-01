@@ -160,12 +160,8 @@
 	for(i=0;i<pannelData.length;i++){
 		spaceStation.plane[i] = new THREE.Mesh(planeGeometry,planeMaterial);
 		spaceStation.plane[i].material.side = THREE.DoubleSide;
-		spaceStation.plane[i].rotation.x = pannelData[i].Rx;
-		spaceStation.plane[i].rotation.y = pannelData[i].Ry;
-		spaceStation.plane[i].rotation.z = pannelData[i].Rz;
-		spaceStation.plane[i].position.x = pannelData[i].x;// + spaceStation.x;
-		spaceStation.plane[i].position.y = pannelData[i].y;// + spaceStation.y;
-		spaceStation.plane[i].position.z = pannelData[i].z;// + spaceStation.z;
+		spaceStation.plane[i].rotation = pannelData[i].rotation;
+		spaceStation.plane[i].position = pannelData[i].position;// + spaceStation.x;
 		scene.add(spaceStation.plane[i]);
 	}
 	var bodyData =[{position: new THREE.Vector3(-2,0,0), rotation: new THREE.Vector3(0,0,nighty)},
@@ -183,12 +179,8 @@
 	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
 	for(i=0;i<bodyData.length;i++){
 		spaceStation.cylinder[i] = new THREE.Mesh(cylinderGeometry, cylinderMaterial);
-		spaceStation.cylinder[i].rotation.x = bodyData[i].Rx;
-		spaceStation.cylinder[i].rotation.y = bodyData[i].Ry;
-		spaceStation.cylinder[i].rotation.z = bodyData[i].Rz;
-		spaceStation.cylinder[i].position.x = bodyData[i].x;
-		spaceStation.cylinder[i].position.y = bodyData[i].y;
-		spaceStation.cylinder[i].position.z = bodyData[i].z;
+		spaceStation.cylinder[i].rotation = bodyData[i].rotation;
+		spaceStation.cylinder[i].position = bodyData[i].position;
 		scene.add(spaceStation.cylinder[i]);
 	}
 //-------------------------------------------------------------------------------
@@ -203,14 +195,10 @@
 			spaceStation.position.x = 321640 - 321640* Math.cos(theta);
 			spaceStation.position.z = 321640* Math.sin(theta);
 			for(i=0;i<spaceStation.plane.length;i++){ 
-				spaceStation.plane[i].position.x = pannelData[i].x + spaceStation.position.x;
-				spaceStation.plane[i].position.y = pannelData[i].y + spaceStation.position.y;
-				spaceStation.plane[i].position.z = pannelData[i].z + spaceStation.position.z;
+				spaceStation.plane[i].position =addVectors( pannelData[i].position, spaceStation.position);
 			}
 			for(i=0;i<spaceStation.cylinder.length;i++){
-				spaceStation.cylinder[i].position.x = bodyData[i].x + spaceStation.position.x;
-				spaceStation.cylinder[i].position.y = bodyData[i].y + spaceStation.position.y;
-				spaceStation.cylinder[i].position.z = bodyData[i].z + spaceStation.position.z;
+				spaceStation.cylinder[i].position = addVectors( bodyData[i].position, spaceStation.position);
 			}
 			theta += 0.00001;
 			//CAMERA MOVEMENT
