@@ -39,7 +39,7 @@ $sql="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT,ShipType INT,OwnerID INT, M
 if (mysqli_query($con,$sql))
   {
   echo "Table persons created successfully<br/>";
-  mysqli_query($con,"INSERT INTO ships (ShipType,OwnerID,Metal,Helium,Uranium,Electricity,Bombs,Location) VALUES (0,738392784,100,100,100,100,0,0)");
+  mysqli_query($con,"INSERT INTO ships (ShipType,OwnerID,Metal,Helium,Uranium,Electricity,Bombs,Location) VALUES (1,738392784,100,100,100,100,0,3)");
   }
 else
   {
@@ -60,15 +60,15 @@ else
   echo "Error creating table: " . mysqli_error($con);
   }
 // Create questions table
-$sql="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, PlanetURL TEXT, OrbitalRadius FLOAT,PRIMARY KEY (PlaceID))";
+$sql="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, PlanetURL TEXT, OrbitalRadius FLOAT,FeHe FLOAT, HeUr FLOAT, PRIMARY KEY (PlaceID))";
 // Execute query
 if (mysqli_query($con,$sql))
   {
   echo "Table persons created successfully<br/>";
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius) VALUES ('Murcury','planet1.png',57910000)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius) VALUES ('Venus','venus.jpg',108200000)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius) VALUES ('Earth','earth.jpg',149600000)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius) VALUES ('Mars','mars.jpg',227900000)");
+  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,FeHe,HeUr) VALUES ('Murcury','planet1.png',579100,20,2)");
+  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,FeHe,HeUr) VALUES ('Venus','venus.jpg',108200,10,2)");
+  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,FeHe,HeUr) VALUES ('Earth','earth.jpg',149600,4,0.5)");
+  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,FeHe,HeUr) VALUES ('Mars','mars.jpg',227900,2,4)");
   }
 else
   {

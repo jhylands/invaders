@@ -1,4 +1,3 @@
-#
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,14 +5,17 @@
 	<style>
 	body{
 	background-color:black;
-	color:white;}
+	color:white;
+	font-size:80%;
+	}
 	</style>
  <!-- include javascript libraries -->
     <script src="js/three.js"></script>
 	<script src="js/THREEx.KeyboardState.js"></script>	
 <?php
+include 'scripts/security.php';
 include 'scripts/sql.php';
-$results = mysqli_query($con,"select * from ships,users where ships.ShipCode = users.CurrentShip");
+$results = mysqli_query($con,"SELECT * FROM ships,users,shipTypes,locations WHERE ships.ShipCode = users.CurrentShip AND ships.ShipType=shipTypes.ShipType AND ships.Location = locations.PlaceID ");
 while($row = mysqli_fetch_array($results)){
 	$ship = $row;
 }
@@ -132,7 +134,7 @@ while($row = mysqli_fetch_array($results)){
 //EARTH
 
 	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
-	var earthTexture = new THREE.ImageUtils.loadTexture('images/earth.jpg');
+	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship['PlanetURL']; ?>');
 	var earthMaterial = new THREE.MeshPhongMaterial({map:earthTexture});
 	var earth = new THREE.Mesh(earthGeometry,earthMaterial);
 	earth.position.x = 321640;
@@ -235,7 +237,6 @@ while($row = mysqli_fetch_array($results)){
 			A= addVectors(group.position,spaceStation.Cposition);
 			//A.add(spaceStation.Cposition);
 			camera.position = A;
-			document.getElementById('frame').innerHTML = "Camera(" + camera.position.x + "," + camera.position.y + "," + camera.position.z +")<br />SpaceStation:(" + spaceStation.position.x + "," + spaceStation.position.y + "," + spaceStation.position.z + ")";
 			camera.lookAt(group.position);
 
 		}
@@ -265,17 +266,12 @@ while($row = mysqli_fetch_array($results)){
 <div style="position:absolute;top:0px;left:0px;z-index:3;">
 
 </div>
-<div style="position:absolute;top:85%;left:0px;z-index:5;">
-<table style="width:100%;height:9%;background-color:black;" border="1">
-<tr><td colspan="3"><b>Current ship:</b></td><td><a href="solar.php">Back to map</a></td></tr>
-<tr><td colspan="3">Resorces:</td></tr>
-<tr><td>Metal:<?php echo $ship['Metal']; ?>Tonnes</td><td>Helium:<?php echo $ship['Helium'];?></td><td>Uranium:<?php echo $ship['Uranium']; ?></td></tr>
+<div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">
+<table style="width:100%;background-color:black;">
+<tr><td colspan="5" width="30%"><b>Current ship:<?php echo $ship['ShipCode'];?></b></td><td rowspan='3' width="20%"><a href="solar.php">View map</a></td><td rowspan='2'><h1>Console</h1><p>SpaceStation1>Welcome to earth orbit...<br />SpaceStation1><a href="combat.php">Fight for earth</a></td></tr>
+<tr><td>Metal:<br /><?php echo $ship['Metal']; ?></td><td>Helium:<br /><?php echo $ship['Helium'];?></td><td>Uranium:<br /><?php echo $ship['Uranium']; ?></td><td>Power:<br /><?php echo $ship['Electricity']; ?></td><td>Electric current:<br /><?php echo $ship['SolarEffecientcy']*$ship['OrbitalRadius']; ?></td></tr>
 </table>
 </div>
-<div style="position:absolute;top:0px;left:0px;z-index:4;">
-<h1 id="scorecard" style="color:white;">Score:0</h1>
-<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').play()" />
-<a style="color:white;" id="frame">Frame Rate:60fps</a>
-</div>
+
 </body>
 </html>

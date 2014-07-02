@@ -223,9 +223,9 @@
 				var intersects = raycaster.intersectObjects( scene.children );
 
 				if ( intersects.length > 0 ) {
-
-					alert(intersects[ 0 ].object.name );
-					window.location.replace('orbit.php?planet=' + intersects[0].object.name);
+					if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
+						window.location.replace('travel?planet=' + intersects[0].object.name);
+					}
 
 				}
 
