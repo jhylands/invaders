@@ -77,7 +77,7 @@
             10000           // Far plane
         );
         
-		camera.position.set( -50, -20, 0 );//inishiation of camera
+		camera.position.set( 160, -20, 0 );//inishiation of camera
         camera.lookAt( scene.position );
 		var keyboard = new THREEx.KeyboardState();
 		renderer.setClearColorHex( 0x000000, 1 );
@@ -125,7 +125,7 @@
 		planet[i].position.x = planetPositions.x[i];
 		planet[i].position.z = planetPositions.z[i];
 		planet[i].position.y=0;
-		planet[i].name = planetNames[i];
+		planet[i].name = i;
 		scene.add(planet[i]);
 	}
 	/*
@@ -224,7 +224,7 @@
 
 				if ( intersects.length > 0 ) {
 					if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
-						window.location.replace('travel?planet=' + intersects[0].object.name);
+						window.location.replace('travel.php?PlaceID=' + intersects[0].object.name);
 					}
 
 				}
@@ -238,9 +238,7 @@
 
 </div>
 <div style="position:absolute;top:0px;left:0px;z-index:4;">
-<h1 id="scorecard" style="color:white;">Score:0</h1>
-<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').play()" />
-<a style="color:white;" id="frame">Frame Rate:60fps</a>
+<a style="color:white;" id="frame"></a>
 </div>
 </body>
 </html>

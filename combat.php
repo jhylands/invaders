@@ -1,18 +1,21 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <?php
-include 'scripts/security.php';
 include 'scripts/sql.php';
-if(isset($_GET['win'])){
-	if($_GET['win']=="true"){
-		$result = mysqli_query($con,"SELECT * FROM ships,users WHERE users.FID=" . $_COOKIE['User'] . " AND users.CurrentShip=ships.ShipCode");
-		while($row=mysqli_fetch_array($result)){
-			$ship=$row;
-		}
-		mysqli_query($con,"UPDATE ships SET Helium = " . ($ship['Helium']+100) . " WHERE ShipCode = " . $ship['ShipCode']);
+include 'scripts/security.php';
+$result = mysqli_query($con, "SELECT * FROM ships,users,locations WHERE users.FID=" . $_COOKIE['User'] . " AND ships.ShipCode=users.CurrentShip AND ships.Location=locations.PlaceID");
+while($row=mysqli_fetch_array($result)){
+	$ship=$row;
+}
+if(isset($_GET['won'])){
+	if($_GET['won']=="true"){
+		mysqli_query($con,"UPDATE ships SET Helium=" . ($ship['Helium']+100) . " WHERE ShipCode=" . $ship['ShipCode']);
+		echo "<script>window.location.replace('orbit.php');</script>";
 	}
 }
+
 ?>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
@@ -154,7 +157,7 @@ if(isset($_GET['win'])){
             35,             // Field of view
             800 / 600,      // Aspect ratio
             0.1,            // Near plane
-            10000           // Far plane
+            10000000           // Far plane
         );
         
 		camera.position.set( -50, -20, 0 );//inishiation of camera
@@ -167,15 +170,6 @@ if(isset($_GET['win'])){
 		var light = new THREE.PointLight( lightcolor );
         light.position.set( 0, 10, 0 );
 		scene.add(light);
-		/*var light1 = new THREE.PointLight( lightcolor );
-        light1.position.set( 0, 0, -49 );
-		scene.add(light1);
-		var light2 = new THREE.PointLight( lightcolor );
-        light2.position.set( 0, 0, 49 );
-		scene.add(light2);
-		var light3 = new THREE.PointLight( lightcolor );
-        light3.position.set( 0, 49,0 );
-		scene.add(light3);*/
 		var light4 = new THREE.PointLight( lightcolor );
         light4.position.set( 0, 0,-10 );
 		//Geometry of shapes-------------------------------------------------------------------------------------
@@ -193,27 +187,6 @@ if(isset($_GET['win'])){
         var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
 		//End of geometory of shapes----------------------------------------------------------------------------
 
-		var imagePrefix = "images/nebula-";
-	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
-	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 500, 500, 500 );	
-	
-	var imageURLs = [];
-	for (var i = 0; i < 6; i++)
-		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
-	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
-	var shader = THREE.ShaderLib[ "cube" ];
-	shader.uniforms[ "tCube" ].value = textureCube;
-	var skyMaterial = new THREE.ShaderMaterial( {
-		fragmentShader: shader.fragmentShader,
-		vertexShader: shader.vertexShader,
-		uniforms: shader.uniforms,
-		depthWrite: false,
-		side: THREE.BackSide
-	} );
-	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-	scene.add( skyBox );
-		//MAKEING SPACECRAFT
 		//spacephip components
 		var body = new Object();
 		body.Object =  new THREE.Mesh( cubeGeometry,cubeMaterial );
@@ -266,55 +239,54 @@ if(isset($_GET['win'])){
 				alians[x][z].shown = true;
 			}
 		}
-		//ADD PLANET
-  var planetGeometry = new THREE.SphereGeometry(4,20,20); 
-  
-  //Load the planet textures
-  var texture = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/planet-512.jpg");
-  var normalmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/normal-map-512.jpg");
-  var specmap = THREE.ImageUtils.loadTexture("https://s3-us-west-2.amazonaws.com/s.cdpn.io/96252/water-map-512.jpg");
+//--------------------------------------------------------------------------------
+//SKYBOX
+	var imagePrefix = "images/nebula-";
+	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 5000000, 5000000, 5000000 );
+	var imageURLs = [];
+	for (var i = 0; i < 6; i++)
+		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
+	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
+	var shader = THREE.ShaderLib[ "cube" ];
+	shader.uniforms[ "tCube" ].value = textureCube;
+	var skyMaterial = new THREE.ShaderMaterial( {
+		fragmentShader: shader.fragmentShader,
+		vertexShader: shader.vertexShader,
+		uniforms: shader.uniforms,
+		depthWrite: false,
+		side: THREE.BackSide
+	} );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	scene.add( skyBox );
+//----------------------------------------------------------------------------------------
 
-  var planetMaterial = new THREE.MeshPhongMaterial(); 
-  planetMaterial.map = texture;
-  
-  planetMaterial.specularMap = specmap;
-  planetMaterial.specular = new THREE.Color( 0xff0000 );
-  planetMaterial.shininess = 1;
-  
-  planetMaterial.normalMap = normalmap;
-  planetMaterial.normalScale.set(-0.3,-0.3);
+//SUN
+	var lightcolor =  0xFFFFFF
+		var light = new THREE.PointLight( lightcolor );
+        light.position.set( -100000, 10, -10 );
+		scene.add(light);
+	var sunGeometry = new THREE.SphereGeometry(69550,32,32);
+	var sunTexture = new THREE.ImageUtils.loadTexture('images/sun.jpg');
+	var sunMaterial = new THREE.MeshPhongMaterial({map:sunTexture});
+	var sun = new THREE.Mesh(sunGeometry,sunMaterial);
+	sun.position.z = 7000000;
+	scene.add(sun);
+//EARTH
 
-  var planet = new THREE.Mesh(planetGeometry, planetMaterial); 
-
-  //here we allow the texture/normal/specular maps to wrap
-  planet.material.map.wrapS = THREE.RepeatWrapping; 
-  planet.material.map.wrapT = THREE.RepeatWrapping;
-  planet.material.normalMap.wrapS = THREE.RepeatWrapping; 
-  planet.material.normalMap.wrapT = THREE.RepeatWrapping;
-  planet.material.specularMap.wrapS = THREE.RepeatWrapping; 
-  planet.material.specularMap.wrapT = THREE.RepeatWrapping;
- 
-  //here we repeat the texture/normal/specular maps twice along X
-  planet.material.map.repeat.set( 2, 1);
-  planet.material.normalMap.repeat.set( 2, 1);
-  planet.material.specularMap.repeat.set( 2, 1);
-
-  planet.position.x = 0; 
-  planet.position.y = -10; 
-  planet.position.z = -40; 
- 
-  scene.add(planet); 
+	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
+	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship['PlanetURL']; ?>');
+	var earthMaterial = new THREE.MeshPhongMaterial({map:earthTexture});
+	var earth = new THREE.Mesh(earthGeometry,earthMaterial);
+	earth.position.z = -321640;
+	scene.add(earth);
   timeCalculations();
 //runLoader();
 function update() {
 frameCount++;
 ingameUpdate();
 }//end function
-//function to pan the camera for the first 5 seconds
-function firstfive(){
-camera.position.x+=0.1;
-camera.lookAt( light4.position );
-}
 		//function for the in game mechanics
 		function ingameUpdate(){
 	//MOVEMENT CONTROLLS
@@ -340,8 +312,6 @@ camera.lookAt( light4.position );
 			}
 			camera.position.x=body.Object.position.x
 
-			//rotate the pannet
-			planet.rotation.y +=0.001;
 			//ANIMATE THE SHIP
 			angOfRot+=0.01;
 			for (i=0;i<6;i++){
@@ -433,7 +403,8 @@ camera.lookAt( light4.position );
 				}
 			}//end of I loop
 			//GAME OVER!
-			if(score==300){
+			if(score==300 && won==false){
+			won=true;
 			alert("winRa is you!");
 			window.location.replace("combat.php?won=true");
 			}
