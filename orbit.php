@@ -268,7 +268,7 @@ while($row = mysqli_fetch_array($results)){
 </div>
 <div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">
 <table style="width:100%;background-color:black;">
-<tr><td colspan="5" width="30%"><b>Current ship:<?php echo $ship['ShipCode'];?></b></td><td rowspan='3' width="20%"><a href="solar.php">View map</a></td><td rowspan='2'><h1>Console</h1><p>SpaceStation1>Welcome to earth orbit...<br />SpaceStation1><a href="combat.php">Fight for earth</a></td></tr>
+<tr><td colspan="5" width="30%"><b>Current ship:<?php echo $ship['ShipCode'];?></b></td><td rowspan='3' width="20%"><a href="solar.php">View map</a></td><td rowspan='2' onclick="window.location.replace('console.php');"><h2>Goto console</h2></td></tr>
 <tr><td>Metal:<br /><?php echo $ship['Metal']; ?></td><td>Helium:<br /><?php echo $ship['Helium'];?></td><td>Uranium:<br /><?php echo $ship['Uranium']; ?></td><td>Power:<br /><?php echo $ship['Electricity']; ?></td><td>Electric current:<br /><?php echo $ship['SolarEffecientcy']*$ship['OrbitalRadius']; ?></td></tr>
 </table>
 </div>

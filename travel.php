@@ -26,7 +26,7 @@ color:white;
 <table style="width:100%;height:100%;">
 <tr>
 <td colspan="3"><center><h1>Travel agents</h1></td></tr>
-<tr><td></td><td>
+<tr><td width="30%"><iframe width="100%" height="100%" src="planetView.php?URL=mars.jpg"></iframe></td><td width="20%"><center>
 <?php
 //get travel distance
 include 'scripts/sql.php';
@@ -56,7 +56,7 @@ if($fuelRequirements==0){
 }else{
 	echo "<p>Not enough fuel to travel to that location!</p><p>Cost: " . $fuelRequirements . " Helium.</p><p>You only have " . $ship['Helium'] . " <a href='solar.php'>Go Back</a></p>";
 }
-?>
-</td><td></td></tr>
+?></center>
+</td><td width="30%"><iframe width="100%" height="100%" src="planetView.php?URL=earth.jpg"></iframe></td></tr>
 </table>
 </body>
