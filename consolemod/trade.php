@@ -29,12 +29,14 @@ if(codeTocolumnLocations($command[2])!="ERR" && codeToColumnLocations($command[3
 	}else{
 		mysqli_query($con,"UPDATE ships SET " . codeToColumnShips($command[3]) . "=" . ($ship[codeToColumnShips($command[3])] - $command[2]) . " WHERE ShipCode=" . $ship['ShipCode']);
 		//setprofit
+		//mysqli_query($con,"UPDATE ships SET " . codeToColumnSh
+		return "trade failed planet on international holiday";
 		//tell the user something
 	}
 }else{
 	return "ERROR: incorrect material codes<br />";
 }
-
+}
 function infoTrade($command){
 //command[0] = trade
 //command[1] = info
@@ -43,7 +45,7 @@ function infoTrade($command){
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
 if(codeTocolumnLocations($command[2])!="ERR" && codeToColumnLocations($command[3])!="ERR"){
-	$info = "The current rates are " . codeToColumnShip($command[2]) . ":" . codeToColumnShips($command[3]) . " @ " . $ship[codeToColumn($command[2])] . ":" . $ship[codeToColumn($command[3])] . " respectively with a tax rate of " . ($ship['Tax']*100) . "%<br />";
+	$info = "The current rates are " . codeToColumnShips($command[2]) . ":" . codeToColumnShips($command[3]) . " @ " . $ship[codeToColumnLocations($command[2])] . ":" . $ship[codeToColumnLocations($command[3])] . " respectively with a tax rate of " . ($ship['Tax']*100) . "%<br />";
 	return $info;
 }else{
 	return "ERROR: incorrect material codes<br />";
