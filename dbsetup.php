@@ -34,12 +34,12 @@ else
   }
 
 // Create questions table
-$sql="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT,ShipType INT,OwnerID INT, Metal INT, Helium INT, Uranium INT, Electricity INT, Bombs INT, Location INT, Sheilding INT, ShipsDestroyed INT, ShotsFired INT, PRIMARY KEY (ShipCode))";
+$sql="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT,ShipType INT, ShipName TEXT, OwnerID INT, Metal INT, Helium INT, Uranium INT, Electricity INT, Bombs INT, Location INT, Sheilding INT, ShipsDestroyed INT, ShotsFired INT, PRIMARY KEY (ShipCode))";
 // Execute query
 if (mysqli_query($con,$sql))
   {
   echo "Table persons created successfully<br/>";
-  mysqli_query($con,"INSERT INTO ships (ShipType,OwnerID,Metal,Helium,Uranium,Electricity,Bombs,Location,Sheilding) VALUES (1,738392784,100,100,100,100,0,3,100)");
+  mysqli_query($con,"INSERT INTO ships (ShipType,OwnerID,ShipName,Metal,Helium,Uranium,Electricity,Bombs,Location,Sheilding) VALUES (1,738392784,'Liberator',100,100,100,100,0,3,100)");
   }
 else
   {
@@ -51,7 +51,77 @@ $sql="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalC
 if (mysqli_query($con,$sql))
   {
   echo "Table persons created successfully<br/>";
-  $QRY = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('var ship',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
+  $QRY = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('
+	var Geometry1 = new THREE.SphereGeometry(2,32,32);
+	var Material1 = new THREE.MeshPhongMaterial({color:0x0000FF,side:THREE.DoubleSide});
+	var comp1 = new THREE.Mesh(Geometry1,Material1);
+	comp1.position.x=-1;
+	var Geometry2 = new THREE.CylinderGeometry(1,1,5,32);
+	var Material2 = new THREE.MeshPhongMaterial({color:0xc0c0c0});
+	var comp2 = new THREE.Mesh(Geometry2,Material2);
+	comp2.position.x=3;
+	comp2.rotation.z = Math.PI/2;
+	var Geometry3 = new THREE.CylinderGeometry(0,1,2,32);
+	var comp3 = new THREE.Mesh(Geometry3,Material2);
+	comp3.position.x=6;
+	comp3.rotation.z=-Math.PI/2;
+	var Geometry4 = new THREE.PlaneGeometry(5,1);
+	var comp4 = new THREE.Mesh(Geometry4,Material2);
+	comp4.rotation.z = Math.PI/4;
+	comp4.position  = new THREE.Vector3(3,2,0);
+	var comp5 = new THREE.Mesh(Geometry2,Material2);
+	comp5.position = new THREE.Vector3(3,4,0);
+	comp5.rotation.z=-Math.PI/2;
+	var comp6 = new THREE.Mesh(Geometry3,Material2);
+	comp6.position = new THREE.Vector3(6,4,0);
+	comp6.rotation.z=-Math.PI/2;
+	var Geometry7 = new THREE.SphereGeometry(1,32,32);
+	var comp7 = new THREE.Mesh(Geometry7,Material2);
+	comp7.position = new THREE.Vector3(0.5,4,0);
+	var Geometry8 = new THREE.PlaneGeometry(5,1);
+	var comp8 = new THREE.Mesh(Geometry8,Material2);
+	comp8.rotation.z = -Math.PI/4;
+	comp8.rotation.x = -Math.PI/4;
+	comp8.position = new THREE.Vector3(3,-1.4,1.4);
+	var Geometry9 = new THREE.PlaneGeometry(5,1,32,32);
+	var comp9 = new THREE.Mesh(Geometry9,Material2);
+	comp9.rotation.z = -Math.PI/4;
+	comp9.rotation.x = Math.PI/4;
+	comp9.position = new THREE.Vector3(3,-1.4,-1.4);
+	var Geometry10 = new THREE.SphereGeometry(1,32,32);
+	var comp10 = new THREE.Mesh(Geometry10,Material2);
+	comp10.position = new THREE.Vector3(0.5,-2.8,2.8);
+	var comp11 = new THREE.Mesh(Geometry10,Material2);
+	comp11.position = new THREE.Vector3(0.5,-2.8,-2.8);
+	var comp12 = new THREE.Mesh(Geometry2,Material2);
+	comp12.position = new THREE.Vector3(6,-2.8,-2.8);
+	comp12.rotation.z=-Math.PI/2;
+	var comp13 = new THREE.Mesh(Geometry2,Material2);
+	comp13.position = new THREE.Vector3(6,-2.8,2.8);
+	comp13.rotation.z=Math.PI/2;
+	var comp14 = new THREE.Mesh(Geometry2,Material2);
+	comp14.position = new THREE.Vector3(3,-2.8,2.8);
+	comp14.rotation.z=-Math.PI/2;
+	var comp15 = new THREE.Mesh(Geometry2,Material2);
+	comp15.position = new THREE.Vector3(3,-2.8,-2.8);
+	comp15.rotation.z=-Math.PI/2;
+	spaceShip.add(comp1);
+	spaceShip.add(comp2);
+	spaceShip.add(comp3);
+	spaceShip.add(comp4);
+	spaceShip.add(comp5);
+	spaceShip.add(comp6);
+	spaceShip.add(comp7);
+	spaceShip.add(comp8);
+	spaceShip.add(comp9);
+	spaceShip.add(comp10);
+	spaceShip.add(comp11);
+	spaceShip.add(comp12);
+	spaceShip.add(comp13);
+	spaceShip.add(comp14);
+	spaceShip.add(comp15);
+	spaceShip.rotation.y=Math.PI/2;
+',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
 echo "<br />" . $QRY . "<br />";
   mysqli_query($con,$QRY);
   }

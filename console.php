@@ -1,6 +1,7 @@
 <?php
 include 'scripts/security.php';
 include 'scripts/sql.php';
+include 'consolemod/trade.php';
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
@@ -20,21 +21,7 @@ switch($command[0]){
 		//echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
 		break;
 	case 'trade':
-		if(count($command)<3){
-			echo "Trade takes 3 arguments try help for more informaion.<br />";
-		}else{
-		switch($command[1]){
-			case 'info':
-				echo getTradeInfo($command[2],$command[3]);
-				break;
-			case 'do':
-				echo tradeAmount($command[2],$command[3],$command[4]);
-				break;
-			default:
-				echo "The trade command can be used to inquire about trade rates or to trade your resources.<br />";
-		}
-		echo "Trading...<br />";
-		}
+		echo trade($command);
 		break;
 	case 'fight':
 		echo "<script>window.location.replace('combat.php');</script>";

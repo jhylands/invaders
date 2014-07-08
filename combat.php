@@ -22,6 +22,7 @@ if(isset($_GET['won'])){
 	<script src="js/THREEx.KeyboardState.js"></script>	
 	
     <script>
+	var start = false;
 	var scene;
 	 //declare a truly global variable to hold weather the user has just shot
 	 var justshot=false;
@@ -29,6 +30,7 @@ if(isset($_GET['won'])){
 	 var score=0;
 	 //has the user won?
 	 var won = false;
+	var dead = false;
 	 var frameRate = 1;
 	 var frameCount = 0;
 	//function to update the position of objects based on their velocity and position
@@ -158,8 +160,10 @@ if(isset($_GET['won'])){
             0.1,            // Near plane
             10000000           // Far plane
         );
-        
-		camera.position.set( -50, -20, 0 );//inishiation of camera
+        document.getElementById('infoBox').top = window.innerHeight/2-100;
+        document.getElementById('infoBox').left = window.innerWidth/2-100;
+	
+		camera.position.set( 0, -20, 50 );//inishiation of camera
         camera.lookAt( scene.position );
 		var keyboard = new THREEx.KeyboardState();
 		renderer.setClearColorHex( 0x000000, 1 );
@@ -200,7 +204,6 @@ if(isset($_GET['won'])){
         body.power= new Array();
         var ship_radius = 2.2;
         var angle = 0;
-        
         for (i=0;i<6;i++){
                 angle = i*pi/3;
                 body.power[i]=new Object();
@@ -272,7 +275,13 @@ if(isset($_GET['won'])){
 	var sun = new THREE.Mesh(sunGeometry,sunMaterial);
 	sun.position.z = 7000000;
 	scene.add(sun);
-//EARTH
+//Panet
+<?php
+//if deep space battle then don't show a planet
+if(isset($_GET['deep'])){
+	echo "/*";
+}
+?>
 
 	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
 	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship['PlanetURL']; ?>');
@@ -280,11 +289,23 @@ if(isset($_GET['won'])){
 	var earth = new THREE.Mesh(earthGeometry,earthMaterial);
 	earth.position.z = -321640;
 	scene.add(earth);
+<?php
+//if deep space battle then don't show a planet
+if(isset($_GET['deep'])){
+	echo "*/";
+}
+?>
   timeCalculations();
 //runLoader();
 function update() {
-frameCount++;
-ingameUpdate();
+	frameCount++;
+	if(keyboard.pressed(" ")&&!dead){
+		start=true;
+		document.getElementById('infoBoxParent').hidden = true;
+	}
+	if(start&&!dead){
+		ingameUpdate();
+	}
 }//end function
 		//function for the in game mechanics
 		function ingameUpdate(){
@@ -396,16 +417,18 @@ ingameUpdate();
 				//bullit human collisions
 				if(Collision(bullit[i].object.position,body.Object.position,1)){
 				document.getElementById('die').play()
-				alert("You have died.");
-				window.location.replace("orbit.php");
+				document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
+				document.getElementById('infoBoxParent').hidden = false;
+				start= false;
+				dead=true;
 				}
 				}
 			}//end of I loop
 			//GAME OVER!
 			if(score==300 && won==false){
 			won=true;
-			alert("winRa is you!");
-			window.location.replace("combat.php?won=true");
+			document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><a href='combat.php?won=true'><input type='button' value='Back to orbit' /></a>";
+			document.getElementById('infoBoxParent').hidden = false;
 			}
 	}
 	
@@ -431,6 +454,13 @@ ingameUpdate();
 <h1 id="scorecard" style="color:white;">Score:0</h1>
 <input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').stop()" />
 <a style="color:white;" id="frame">Frame Rate:60fps</a>
+</div>
+<div id="infoBoxParent" style="position:absolute;top:250px;left:250px;z-index:5;width:300px;">
+<table style="background-color:black;color:white;">
+<tr><td id="infoBox">
+<h1>Press space to start</h1>
+</td></tr>
+</table>
 </div>
 
 <audio id=laser>

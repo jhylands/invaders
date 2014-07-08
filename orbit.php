@@ -8,6 +8,11 @@
 	color:white;
 	font-size:80%;
 	}
+	.clickable:hover{
+	background-color:#0000A0;
+	color:#FFFFE0;
+	cursor:pointer; cursor:hand;
+	}
 	</style>
  <!-- include javascript libraries -->
     <script src="js/three.js"></script>
@@ -15,10 +20,8 @@
 <?php
 include 'scripts/security.php';
 include 'scripts/sql.php';
-$results = mysqli_query($con,"SELECT * FROM ships,users,shipTypes,locations WHERE ships.ShipCode = users.CurrentShip AND ships.ShipType=shipTypes.ShipType AND ships.Location = locations.PlaceID ");
-while($row = mysqli_fetch_array($results)){
-	$ship = $row;
-}
+include 'scripts/shipInfo.php';
+
 ?>
     <script>
 	var production=0;
@@ -268,8 +271,29 @@ while($row = mysqli_fetch_array($results)){
 </div>
 <div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">
 <table style="width:100%;background-color:black;">
-<tr><td colspan="5" width="30%"><b>Current ship:<?php echo $ship['ShipCode'];?></b></td><td rowspan='3' width="20%"><a href="solar.php">View map</a></td><td rowspan='2' onclick="window.location.replace('console.php');"><h2>Goto console</h2></td></tr>
-<tr><td>Metal:<br /><?php echo $ship['Metal']; ?></td><td>Helium:<br /><?php echo $ship['Helium'];?></td><td>Uranium:<br /><?php echo $ship['Uranium']; ?></td><td>Power:<br /><?php echo $ship['Electricity']; ?></td><td>Electric current:<br /><?php echo $ship['SolarEffecientcy']*$ship['OrbitalRadius']; ?></td></tr>
+<tr>
+	<td width="30%"><h2>Current ship: <?php echo $ship['ShipName'];?></h2></td>
+	<td rowspan='2' width="20%">
+	<table style="width:100%;height:100%;">
+	<tr>
+		<td class="clickable" onclick="window.location.replace('solar.php');">Map</td>
+		<td class="clickable">Cargo Bay</td>
+	</tr>
+	<tr>
+		<td class="clickable">Trade</td>
+		<td class="clickable">Ship yard</td>
+	</tr>
+	<tr>
+		<td class="clickable" onclick="window.location.replace('combat.php');">Fight for <?php echo $ship['PlaceName']; ?></td>
+		<td class="clickable">Achivements</td>
+	</tr>
+	</table>
+	</td>
+	<td rowspan='2' ><h2>Current temperature on <?php echo $ship['PlaceName'];?> is <?php echo $ship['Temperature'];?>&#8451</h2></td>
+</tr>
+<tr>
+	<td class="clickable" onclick="window.location.replace('console.php');"><h2>Goto Console</h2></td>
+</tr>
 </table>
 </div>
 
