@@ -19,39 +19,32 @@ else
   echo "Error creating database: " . mysqli_error($con);
   }
 mysqli_close($con);
+//DATABASE CREATED 
+//CONNECT TO DATABASE
 include 'scripts/sql.php';
+//CREATE TABLES
 // Create main table
-$sql="CREATE TABLE users(FID INT,Name TEXT, CurrentShip INT,Experiance INT, PRIMARY KEY (FID))";
-// Execute query
-if (mysqli_query($con,$sql))
-  {
-  echo "Table Users created successfully<br/>";
-  mysqli_query($con,"INSERT INTO users (FID,Name,CurrentShip,Experiance) VALUES (738392784,'James Hylands',1,0)");
-  }
-else
-  {
-  echo "Error creating table: " . mysqli_error($con);
-  }
-
-// Create questions table
-$sql="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT,ShipType INT, ShipName TEXT, OwnerID INT, Metal INT, Helium INT, Uranium INT, Electricity INT, Bombs INT, Location INT, Sheilding INT, ShipsDestroyed INT, ShotsFired INT, PRIMARY KEY (ShipCode))";
-// Execute query
-if (mysqli_query($con,$sql))
-  {
-  echo "Table persons created successfully<br/>";
-  mysqli_query($con,"INSERT INTO ships (ShipType,OwnerID,ShipName,Metal,Helium,Uranium,Electricity,Bombs,Location,Sheilding) VALUES (1,738392784,'Liberator',100,100,100,100,0,3,100)");
-  }
-else
-  {
-  echo "Error creating table: " . mysqli_error($con);
-  }
-// Create questions table
-$sql="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalCost INT, HeliumCost INT, UraniumCost INT, ElectricalCost INT, Storage INT, Battery INT, HeliumConsumption INT, UraniumConsumption INT, ElectricConsumption INT, SolarEffecientcy FLOAT,LaserPower INT , PlasmaPower INT, BombStorageCapacity INT, Sheilding INT, PRIMARY KEY (ShipType))";
-// Execute query
-if (mysqli_query($con,$sql))
-  {
-  echo "Table persons created successfully<br/>";
-  $QRY = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('
+$QRY[0]="CREATE TABLE users(FID INT,Name TEXT, CurrentShip INT,Experiance INT, PRIMARY KEY (FID))";
+$QRY[1]="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT, ShipType INT, ShipName TEXT, OwnerID INT, Location INT, Sheilding INT, HoldCode INT, IventoryCode INT, PRIMARY KEY (ShipCode))";
+$QRY[2]="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalCost INT, HeliumCost INT, UraniumCost INT, ElectricalCost INT, Storage INT, Battery INT, HeliumConsumption INT, UraniumConsumption INT, ElectricConsumption INT, SolarEffecientcy FLOAT,LaserPower INT , PlasmaPower INT, BombStorageCapacity INT, Sheilding INT, PRIMARY KEY (ShipType))";
+$QRY[3]="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, PlanetURL TEXT, OrbitalRadius FLOAT,MetalPrice FLOAT, HeliumPrice FLOAT,UraniumPrice FLOAT, Temperature FLOAT, SurfaceGravity FLOAT, Tax FLOAT, PRIMARY KEY (PlaceID))";
+$QRY[4]="CREATE TABLE costList(CostCode INT AUTO_INCREMENT, PRIMARY KEY(CostCode))";
+$QRY[5]="CREATE TABLE cost(CostID INT AUTO_INCREMENT,CostCode INT, ResourceID INT,Cost INT, PRIMARY KEY(CostID))";
+$QRY[6]="CREATE TABLE hold(HoldCode INT AUTO_INCREMENT, PRIMARY KEY(HoldCode))";
+$QRY[7]="CREATE TABLE cargo(CargoID INT AUTO_INCREMENT, HoldCode INT, ResourceID INT,Amount INT, PRIMARY KEY(CargoID))";
+$QRY[8]="CREATE TABLE trades(TransactionID INT AUTO_INCREMENT, ShipCode INT, ResourceSold INT, ResourceBought INT, PlaceID INT, Amount INT, PRIMARY KEY(TransactionID))";
+$QRY[9]="CREATE TABLE tradeRates(RateID INT AUTO_INCREMENT,PlaceID INT, ResourceID INT,Rate INT, PRIMARY KEY(RateID))";
+$QRY[10]="CREATE TABLE resources(ResourceID INT AUTO_INCREMENT, Name TEXT,Code TEXT, PRIMARY KEY(ResourceID))";
+$QRY[11]="CREATE TABLE combatReport(ReportID INT AUTO_INCREMENT, ShipCode INT, ShipsDestroyed INT, Time INT, Won BOOLEAN, TypeID INT, PRIMARY KEY (ReportID))";
+$QRY[12]="CREATE TABLE combatType(OccuranceID INT AUTO_INCREMENT,PlaceID INT, Likelyhood FLOAT, EnemyID INT, Name TEXT, PRIMARY KEY(OccuranceID))";
+$QRY[13]="CREATE TABLE enemies(EnemyID INT AUTO_INCREMENT,ShipType INT, Name TEXT, HoldCode INT, IventoryCode INT, PRIMARY KEY(EnemyID))";
+$QRY[14]="CREATE TABLE weaponsIventory(IventoryCode INT AUTO_INCREMENT, PRIMARY KEY(IventoryCode))";
+$QRY[15]="CREATE TABLE weapons(WeaponID INT AUTO_INCREMENT, Name TEXT, Damage INT, BuildURL TEXT, CostCode INT, PRIMARY KEY(WeaponID))";
+$QRY[16]="CREATE TABLE weaponsBay(BayID INT AUTO_INCREMENT,WeaponID INT, IventoryCode INT, PRIMARY KEY(BayID))";
+//ENTRIES IN TABLES
+$QRY[17]="INSERT INTO users (FID,Name,CurrentShip,Experiance) VALUES (738392784,'James Hylands',1,0)";
+$QRY[18]="INSERT INTO ships (ShipType,OwnerID,ShipName,Metal,Helium,Uranium,Electricity,Bombs,Location,Sheilding) VALUES (1,738392784,'Liberator',100,100,100,100,0,3,100)";
+$QRY[19] = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('
 	var Geometry1 = new THREE.SphereGeometry(2,32,32);
 	var Material1 = new THREE.MeshPhongMaterial({color:0x0000FF,side:THREE.DoubleSide});
 	var comp1 = new THREE.Mesh(Geometry1,Material1);
@@ -122,28 +115,22 @@ if (mysqli_query($con,$sql))
 	spaceShip.add(comp15);
 	spaceShip.rotation.y=Math.PI/2;
 ',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
-echo "<br />" . $QRY . "<br />";
-  mysqli_query($con,$QRY);
-  }
-else
-  {
-  echo "Error creating table: " . mysqli_error($con);
-  }
-// Create questions table
-$sql="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, PlanetURL TEXT, OrbitalRadius FLOAT,MetalPrice FLOAT, HeliumPrice FLOAT,UraniumPrice FLOAT, Temperature FLOAT, SurfaceGravity FLOAT, Tax FLOAT, PRIMARY KEY (PlaceID))";
-// Execute query
-if (mysqli_query($con,$sql))
-  {
-  echo "Table persons created successfully<br/>";
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Murcury','planet1.png',579100,1,20,5,167,3.7,0.001)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Venus','venus.jpg',108200,1,20,3,462,8.87,0.05)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Earth','earth.jpg',149600,1,15,7,14,9.81,0.2)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Mars','mars.jpg',227900,1,4,1,-55,3.711,0.15)");
-  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Moon','moon.jpg',100000,1,4,1,-100,1.622,0.02)");
-  }
-else
-  {
-  echo "Error creating table: " . mysqli_error($con);
-  }
+//Locations
+$QRY[20] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Murcury','planet1.png',579100,1,20,5,167,3.7,0.001)";
+$QRY[21] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Venus','venus.jpg',108200,1,20,3,462,8.87,0.05)";
+$QRY[22] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Earth','earth.jpg',149600,1,15,7,14,9.81,0.2)";
+$QRY[23] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Mars','mars.jpg',227900,1,4,1,-55,3.711,0.15)";
+//RUN EACH OF THE QUERIES
+foreach($QRY as $query){
+	// Execute query
+	if (mysqli_query($con,$query))
+	  {
+	  echo "Table created successfully using " . $query . "<br/>";
+	  }
+	else
+	  {
+	  echo "Error creating table: " . mysqli_error($con);
+	  }
+}
 ?>
 <h1>Something</h1>
