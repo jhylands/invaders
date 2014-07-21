@@ -23,9 +23,9 @@ include 'scripts/shipInfo.php';
 //command[3] should be what the user is selling
 //command[4] should be what the user is buying
 //check if the user has enough to sell that much
-if(codeTocolumnLocations($command[2])!="ERR" && codeToColumnLocations($command[3])!="ERR"){
+if(codeTocolumnLocations($command[3])!="ERR" && codeToColumnLocations($command[4])!="ERR"){
 	if($command[2]>$ship[codeToColumnShips($command[3])]){
-		return "Not enough " . $ship[codeToColumnShips($command[3])];
+		return "Not enough " . $ship['Metal'] . $ship[codeToColumnShips($command[3])] . "<br />";
 	}else{
 		mysqli_query($con,"UPDATE ships SET " . codeToColumnShips($command[3]) . "=" . ($ship[codeToColumnShips($command[3])] - $command[2]) . " WHERE ShipCode=" . $ship['ShipCode']);
 		//setprofit

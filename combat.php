@@ -1,3 +1,5 @@
+<?php //WARNING if log out times during fight ship will be left stranded 
+?>
 <!DOCTYPE html>
 <html>
 <head>

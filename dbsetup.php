@@ -139,6 +139,7 @@ if (mysqli_query($con,$sql))
   mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Venus','venus.jpg',108200,1,20,3,462,8.87,0.05)");
   mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Earth','earth.jpg',149600,1,15,7,14,9.81,0.2)");
   mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Mars','mars.jpg',227900,1,4,1,-55,3.711,0.15)");
+  mysqli_query($con,"INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,MetalPrice,HeliumPrice,UraniumPrice,Temperature,SurfaceGravity,Tax) VALUES ('Moon','moon.jpg',100000,1,4,1,-100,1.622,0.02)");
   }
 else
   {
