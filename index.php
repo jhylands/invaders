@@ -1,4 +1,24 @@
 <?php
+
+FacebookSession::setDefaultApplication('926962160664336', 'e1fa4d52846f8f4787cb25bd4da97308');
+Facebook with the getSessionFromRedirect() method, which returns a FacebookSession.
+
+$helper = new FacebookRedirectLoginHelper('your redirect URL here');
+$loginUrl = $helper->getLoginUrl();
+// Use the login url on a link or button to redirect to Facebook for authentication
+
+$helper = new FacebookJavaScriptLoginHelper();
+try {
+  $session = $helper->getSession();
+} catch(FacebookRequestException $ex) {
+  // When Facebook returns an error
+} catch(\Exception $ex) {
+  // When validation fails or other local issues
+}
+if ($session) {
+  // Logged in
+}
+
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
 use Facebook\FacebookRequestException;
