@@ -192,17 +192,17 @@ if(isset($_GET['won'])){
         var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
 		//End of geometory of shapes----------------------------------------------------------------------------
 
-		//spacephip components
-		var body = new Object();
-		body.Object =  new THREE.Mesh( cubeGeometry,cubeMaterial );
-		body.Object.position.set(0,0,-5);
-		scene.add(body.Object);
-		body.asteroid = new Object();
-		body.asteroid = new THREE.Mesh(IcosahedronGeometry,icosaMaterial );
-		body.asteroid.position.set(0,0,-5);
-		scene.add(body.asteroid);
-		//create blue balls
-		var angOfRot = 0;
+	//spacephip components
+	var body = new Object();
+	body.Object =  new THREE.Mesh( cubeGeometry,cubeMaterial );
+	body.Object.position.set(0,0,-5);
+	scene.add(body.Object);
+	body.asteroid = new Object();
+	body.asteroid = new THREE.Mesh(IcosahedronGeometry,icosaMaterial );
+	body.asteroid.position.set(0,0,-5);
+	scene.add(body.asteroid);
+	//create blue balls
+	var angOfRot = 0;
         body.power= new Array();
         var ship_radius = 2.2;
         var angle = 0;

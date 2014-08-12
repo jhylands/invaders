@@ -281,7 +281,7 @@ include 'scripts/shipInfo.php';
 	</tr>
 	<tr>
 		<td class="clickable">Trade</td>
-		<td class="clickable">Ship yard</td>
+		<td class="clickable" onclick="window.location.replace('changeship.php');">Ship yard</td>
 	</tr>
 	<tr>
 		<td class="clickable" onclick="window.location.replace('combat.php');">Fight for <?php echo $ship['PlaceName']; ?></td>

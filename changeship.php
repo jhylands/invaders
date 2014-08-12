@@ -20,11 +20,15 @@ function useShip(shipCode){
 </script>
 </head>
 <body>
-<table style="position:absolute;width:100%;height:100%;top:0px;left:0px;">
+<center><h1>Ship Yard</h1><center>
+<input type="button" value="Back to orbit" onclick="window.location.replace('orbit.php')" />
+<table border="1" style="width:100%;">
 <tr>
-	<td><img src="<?php //ships image ?>" ?></td>
+	<td><img src="images/earth.jpg" width="250px" height="250px" /></td>
 	<td><h2><?php echo $ship['ShipName']; ?></h2></td>
-	<td style="vertical-align:text-bottom;"><input type="button" value="Use Ship" onclick="useShip(<?php echo ships['ShipCode']; ?>)" /></td>
+	<td style="vertical-align:text-bottom;"><input type="button" value="Use Ship" onclick="useShip(
+<?php echo $ship['ShipCode']; ?>
+)" /></td>
 </tr>
 </table>
 </body>

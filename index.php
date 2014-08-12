@@ -24,20 +24,21 @@
 FacebookSession::setDefaultApplication('926962160664336', 'e1fa4d52846f8f4787cb25bd4da97308');
 
 // login helper with redirect_uri
-$helper = new FacebookRedirectLoginHelper( 'http://86.158.149.194/invaders' );
+$helper = new FacebookRedirectLoginHelper( 'http://86.158.149.194/invaders/index.php' );
 
 // see if a existing session exists
 if ( isset( $_SESSION ) && isset( $_SESSION['fb_token'] ) ) {
   // create new session from saved access_token
   $session = new FacebookSession( $_SESSION['fb_token'] );
-
-  // validate the access_token to make sure it's still valid
+  echo $_SESSION['fb_token'];
+// validate the access_token to make sure it's still valid
   try {
     if ( !$session->validate() ) {
       $session = null;
     }
   } catch ( Exception $e ) {
     // catch any exceptions
+    echo "Error";
     $session = null;
   }
 
@@ -48,6 +49,7 @@ if ( isset( $_SESSION ) && isset( $_SESSION['fb_token'] ) ) {
     $session = $helper->getSessionFromRedirect();
   } catch( FacebookRequestException $ex ) {
     // When Facebook returns an error
+    echo  $ex->message;
   } catch( Exception $ex ) {
     // When validation fails or other local issues
     echo $ex->message;
@@ -57,7 +59,6 @@ if ( isset( $_SESSION ) && isset( $_SESSION['fb_token'] ) ) {
 
 // see if we have a session
 if ( isset( $session ) ) {
-
   // save the session
   $_SESSION['fb_token'] = $session->getToken();
   // create a session using saved token or the new one we generated at login
@@ -73,10 +74,12 @@ if ( isset( $session ) ) {
   echo '<pre>' . print_r( $graphObject, 1 ) . '</pre>';
 
   // print logout url using session and redirect_uri (logout.php page should destroy the session)
-  echo '<a href="' . $helper->getLogoutUrl( $session, 'http://yourwebsite.com/app/logout.php' ) . '">Logout</a>';
+  echo '<a href="' . $helper->getLogoutUrl( $session, 'http://86.158.149.194/invaders/logout.php' ) . '">Logout</a>';
 
 } else {
   // show login url
   echo '<a href="' . $helper->getLoginUrl( array( 'email', 'user_friends' ) ) . '">Login</a>';
   }
 ?>
+<h1>Text</h1>
+

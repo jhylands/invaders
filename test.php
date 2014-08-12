@@ -117,6 +117,7 @@
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 //SHIP---------------------------------------------------------------------------------------
+/*
 	var Geometry1 = new THREE.SphereGeometry(2,32,32);
 	var Material1 = new THREE.MeshPhongMaterial({color:0x0000FF});
 	var comp1 = new THREE.Mesh(Geometry1,Material1);
@@ -209,6 +210,12 @@
 	spaceShip.add(comp14);
 	spaceShip.add(comp15);
 	spaceShip.rotation.y=Math.PI/2;
+*/
+	var spaceShip = new THREE.Object3D();
+
+<?php 
+include 'ships/liberator.js';
+?>
 	scene.add(spaceShip);
 
 		//runLoader();
