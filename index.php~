@@ -21,7 +21,7 @@
     use Facebook\GraphObject;
 
 // init app with app id and secret
-FacebookSession::setDefaultApplication('926962160664336','e1fa4d52846f8f4787cb25bd4da97308');
+FacebookSession::setDefaultApplication('926962160664336', 'e1fa4d52846f8f4787cb25bd4da97308');
 
 // login helper with redirect_uri
 $helper = new FacebookRedirectLoginHelper( 'http://86.158.149.194/invaders/index.php' );

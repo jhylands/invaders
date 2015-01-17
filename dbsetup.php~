@@ -2,11 +2,7 @@
 error_reporting(E_ALL);
 ini_set("display_errors",1);
 // Create connection to database
-$mysql_host = "mysql1.000webhost.com";
-$mysql_database = "a9206732_dat";
-$mysql_user = "a9206732_jam";
-$mysql_password = "space(99)";
-$con=mysqli_connect($mysql_host,$mysql_user,$mysql_password);
+$con=mysqli_connect("localhost","root","space(11)");
 // Check connection
 if (mysqli_connect_errno($con))
   {
