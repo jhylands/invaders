@@ -22,8 +22,10 @@ include 'scripts/shipInfo.php';
 //command[2] should be an ammount
 //command[3] should be what the user is selling
 //command[4] should be what the user is buying
-//check if the user has enough to sell that much
+
+//check for errors in the code for what is being traded
 if(codeTocolumnLocations($command[3])!="ERR" && codeToColumnLocations($command[4])!="ERR"){
+	//check if the user has enough to sell that much
 	if($command[2]>$ship[codeToColumnShips($command[3])]){
 		return "Not enough " . $ship['Metal'] . $ship[codeToColumnShips($command[3])] . "<br />";
 	}else{
@@ -54,34 +56,34 @@ if(codeTocolumnLocations($command[2])!="ERR" && codeToColumnLocations($command[3
 
 //function to convert the code that the user enters into the column from which to get the information from the database
 function codeToColumnLocations($code){
-switch($code){
-case 'met':
-	return "MetalPrice";
-	break;
-case 'ur':
-	return "UraniumPrice";
-	break;
-case 'he':
-	return "HeliumPrice";
-	break;
-default:
-	return "ERR";
-}
+	switch(strtolower($code)){
+		case 'met':
+			return "MetalPrice";
+			break;
+		case 'ur':
+			return "UraniumPrice";
+			break;
+		case 'he':
+			return "HeliumPrice";
+			break;
+		default:
+			return "ERR";
+	}
 }
 
 //function to convert the code that the user enters into the column from which to get the information from the database
 function codeToColumnShips($code){
-switch($code){
-case 'met':
-	return "Metal";
-	break;
-case 'ur':
-	return "Uranium";
-	break;
-case 'he':
-	return "Helium";
-	break;
-default:
-	return "ERR";
-}
+	switch(strtolower($code)){
+		case 'met':
+			return "Metal";
+			break;
+		case 'ur':
+			return "Uranium";
+			break;
+		case 'he':
+			return "Helium";
+			break;
+		default:
+			return "ERR";
+	}
 }

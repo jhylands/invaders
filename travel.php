@@ -2,7 +2,9 @@
 if(!isset($_GET['PlaceID'])){
 	exit(404);
 }
+//include a connection to the database
 include 'scripts/sql.php';
+//include the genral query from the database
 include 'scripts/shipInfo.php';
 ?>
 <html>
@@ -30,13 +32,11 @@ color:white;
 <td colspan="3"><center><h1>Travel agents</h1></td></tr>
 <tr><td width="30%"><iframe width="100%" height="100%" src="planetView.php?URL=<?php echo $ship['PlanetURL']; ?>"></iframe></td><td width="20%"><center>
 <?php
-//get travel distance
+//needs to bet exported to a sperate file
+include 'scripts/distances.php';
+$fuelRequirements = intval(getOrbitalRadius($_GET['PlaceID'],$ship['PlaceID']/10000));
 
-$result = mysqli_query($con,"SELECT * FROM locations WHERE PlaceID=" . $_GET['PlaceID']);
-while($row=mysqli_fetch_array($result)){
-	$place = $row;
-}
-$fuelRequirements = intval(abs(($ship['OrbitalRadius']-$place['OrbitalRadius'])/10000));
+//this needs to be replace with if new planet location = current plannet location
 if($fuelRequirements==0){
 	echo "<script>window.location.replace('orbit.php');</script>";
 }elseif($ship['Helium']>=$fuelRequirements){

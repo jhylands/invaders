@@ -2,6 +2,7 @@
 include 'scripts/security.php';
 include 'scripts/sql.php';
 include 'consolemod/trade.php';
+
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);

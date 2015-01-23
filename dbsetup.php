@@ -53,15 +53,17 @@ $QRY[20]="INSERT INTO users (FID,Name,CurrentShip,Experiance) VALUES (738392784,
 $QRY[21]="INSERT INTO ships (ShipType,OwnerID,ShipName,Location,Sheilding,HoldCode,IventoryCode) VALUES (1,738392784,'Liberator',3,100,1,1)";
 $QRY[22]="INSERT INTO hold(HoldCode) VALUES (1)";
 $QRY[23]="INSERT INTO weaponsIventory(IventoryCode) VALUES(1)";
+//resources
 $QRY[24]="INSERT INTO resources(ResourceID,Name,Code) VALUES(1,'Metal','MET')";
 $QRY[25]="INSERT INTO resources(ResourceID,Name,Code) VALUES(2,'Helium','HE3')";
 $QRY[26]="INSERT INTO resources(ResourceID,Name,Code) VALUES(3,'Uranium','URA')";
 $QRY[27]="INSERT INTO resources(ResourceID,Name,Code) VALUES(4,'Electric Charge','ELC')";
+//cargo
 $QRY[28]="INSERT INTO Cargo(HoldCode,ResourceID,Amount) VALUES (1,1,100)";
 $QRY[28]="INSERT INTO Cargo(HoldCode,ResourceID,Amount) VALUES (2,1,100)";
 $QRY[29]="INSERT INTO Cargo(HoldCode,ResourceID,Amount) VALUES (3,1,100)";
 $QRY[30]="INSERT INTO Cargo(HoldCode,ResourceID,Amount) VALUES (4,1,1000)";
-
+//shiptypes
 $QRY[31] = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('liberator.js',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
 //Locations
 //to be in orbit of 0 is to orbit the sun
@@ -70,17 +72,54 @@ $QRY[32] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,InOrbitOf,T
 $QRY[33] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,InOrbitOf,Temperature,SurfaceGravity) VALUES ('Earth','earth.jpg',149600,14,9.81)";
 $QRY[34] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,InOrbitOf,Temperature,SurfaceGravity) VALUES ('Mars','mars.jpg',227900,0,-55,3.711)";
 $QRY[35] = "INSERT INTO locations (PlaceName,PlanetURL,OrbitalRadius,InOrbitOf,Temperature,SurfaceGravity) VALUES ('Moon','moon.jpg',227900,3,-55,3.711)";
-//RUN EACH OF THE QUERIES
-foreach($QRY as $query){
-	// Execute query
-	if (mysqli_query($con,$query))
-	  {
-	  echo "Table created successfully using " . $query . "<br/>";
-	  }
-	else
-	  {
-	  echo "Error creating table: " . mysqli_error($con);
-	  }
+//Markets
+$QRY[36] = "INSERT INTO markets (MarketID,PlaceID,Tax) VALUES (1,1,0.2)";//mucury
+$QRY[37] = "INSERT INTO markets (MarketID,PlaceID,Tax) VALUES (2,2,0.2)";//venus
+$QRY[38] = "INSERT INTO markets (MarketID,PlaceID,Tax) VALUES (3,3,0.2)";//earth
+$QRY[39] = "INSERT INTO markets (MarketID,PlaceID,Tax) VALUES (4,4,0.2)";//mars
+$QRY[40] = "INSERT INTO markets (MarketID,PlaceID,Tax) VALUES (5,5,0.2)";//moon
+
+//TradeRates
+//Mucury
+$QRY[41] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (1,1,100)";
+$QRY[42] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (1,2,100)";
+$QRY[43] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (1,3,100)";
+$QRY[44] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (1,4,100)";
+//venus
+$QRY[45] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (2,1,100)";
+$QRY[46] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (2,2,100)";
+$QRY[47] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (2,3,100)";
+$QRY[48] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (2,4,100)";
+//earth
+$QRY[49] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (3,1,100)";
+$QRY[50] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (3,2,100)";
+$QRY[51] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (3,3,100)";
+$QRY[52] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (3,4,100)";
+//mar
+$QRY[53] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (4,1,100)";
+$QRY[54] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (4,2,100)";
+$QRY[55] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (4,3,100)";
+$QRY[56] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (4,4,100)";
+//moon
+$QRY[57] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (5,1,100)";
+$QRY[58] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (5,2,100)";
+$QRY[59] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (5,3,100)";
+$QRY[60] = "INSERT INTO tradeRates (MarketID,ResourceID,Rate) VALUES (5,4,100)";
+
+doset($QRY);
+function doSet($AQRY){
+	//RUN EACH OF THE QUERIES
+	foreach($QRY as $query){
+		// Execute query
+		if (mysqli_query($con,$query))
+		  {
+		  echo "Table created successfully using " . $query . "<br/>";
+		  }
+		else
+		  {
+		  echo "Error creating table: " . mysqli_error($con);
+		  }
+	}
 }
 ?>
 <h1>Something</h1>

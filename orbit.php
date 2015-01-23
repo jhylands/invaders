@@ -21,7 +21,7 @@
 include 'scripts/security.php';
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
-
+echo $ship;
 ?>
     <script>
 	var production=0;
