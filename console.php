@@ -1,21 +1,24 @@
 <?php
 include 'scripts/security.php';
 include 'scripts/sql.php';
+//include consolemods
 include 'consolemod/trade.php';
-
+include 'consolemod/cargo.php';
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
 while($row=mysqli_fetch_array($result)){
 	$userName = $row['Name'];
 }
+
 if(isset($_GET['command'])){
-echo $userName . ">" . $_GET['command'] . "<br />";
+echo "<a style='color:#367FCD;'>" . $userName . "></a>" . $_GET['command'] . "<br />";
 $command = explode(' ',$_GET['command']);
 switch($command[0]){
 	case 'help':
 		echo "This is your ships console. From here you control communication with other systems in orbit around your current location.<br />You can use the following commands:<br />";
-		//echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
+		echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
+		echo "cargo [drop] [item] # The function to view what you currently have in your cargo hold<br />";
 		echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a...<br /> ";
 		echo "exit #Exit the console and go back to orbit view.<br />";
 		echo "clear #This clears the console window<br />";
@@ -23,6 +26,9 @@ switch($command[0]){
 		break;
 	case 'trade':
 		echo trade($command);
+		break;
+	case 'cargo':
+		echo cargo($command);
 		break;
 	case 'fight':
 		echo "<script>window.location.replace('combat.php');</script>";
@@ -82,38 +88,55 @@ width:100%;color:#F0F0F0;background-color:black;border:0;font-size:18pt;
 }
 </style>
 <script>
+var commands = ['help'];
+var i=0;
 function run(e){
-if(e.keyCode==13){
-var command = document.getElementById('writer').value;
-switch(command){
-case 'clear':
-	document.getElementById('console').innerHTML = "";
-	break;
-case 'fight':
-	nav('combat.php');
-	break;
-case 'exit':
-	nav('orbit.php');
-	break;
-}
-var xmlhttp;
-	if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-		xmlhttp=new XMLHttpRequest();
-	}else{// code for IE6, IE5
-		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange=function(){
-		if (xmlhttp.readyState==4 && xmlhttp.status==200){
-			var resp = xmlhttp.responseText;
-			//take the responce and put it in the class box
-			document.getElementById("console").innerHTML = 	document.getElementById("console").innerHTML + resp;
-
+	if(e.keyCode==13){
+		var command = document.getElementById('writer').value;
+		commands.push(command);
+		switch(command){
+			case 'clear':
+				document.getElementById('console').innerHTML = "";
+				break;
+			case 'fight':
+				nav('combat.php');
+				break;
+			case 'exit':
+				nav('orbit.php');
+				break;
+		}
+		var xmlhttp;
+		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}else{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		xmlhttp.onreadystatechange=function(){
+			if (xmlhttp.readyState==4 && xmlhttp.status==200){
+				var resp = xmlhttp.responseText;
+				//take the responce and put it in the class box
+				document.getElementById("console").innerHTML = 	document.getElementById("console").innerHTML + '<br />' +  resp;
+	
+			}
+			}
+		xmlhttp.open("GET","console.php?command=" + command ,true);
+		xmlhttp.send();
+		document.getElementById('writer').value="";
+	}else if(e.keyCode==38){
+		if (i<commands.length-1){
+			i++;
+			document.getElementById('writer').value=commands[commands.length-i];		
+		}
+	}else if(e.keyCode==40){
+		if(i<=1){
+			document.getElementById('writer').value="";
+			i==0;
+		}else{
+			i--;
+			document.getElementById('writer').value=commands[commands.length-i];
 		}
 	}
-	xmlhttp.open("GET","console.php?command=" + command ,true);
-	xmlhttp.send();
-	document.getElementById('writer').value="";
-}}
+}
 function nav(URL){
 	window.location.replace(URL);
 }
@@ -124,7 +147,7 @@ function nav(URL){
 Welcome <?php //echo $userName; ?>, Last login <?php echo "20/11/10"; ?><br />
 </p>
 <div style="position:absolute;bottom:15px;left:0px;width:100%;">
-<input id="writer" value="" tabindex="0" type="text" onkeypress="run(event)" style="" />
+<input id="writer" value="" tabindex="0" type="text" onkeydown="run(event)" style="" />
 </div>
 </body>
 </html>

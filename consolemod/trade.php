@@ -1,4 +1,8 @@
 <?php
+//include resouce information gathering functions
+
+include 'scripts/resourceInfo.php';
+
 function trade($command){
 switch($command[1]){
 case 'do':
@@ -15,7 +19,7 @@ default:
 }
 
 function doTrade($command){
-include 'scritps/sql.php';
+include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
 //command[0] = trade
 //command[1] = do
@@ -26,7 +30,7 @@ include 'scripts/shipInfo.php';
 //check for errors in the code for what is being traded
 if(codeTocolumnLocations($command[3])!="ERR" && codeToColumnLocations($command[4])!="ERR"){
 	//check if the user has enough to sell that much
-	if($command[2]>$ship[codeToColumnShips($command[3])]){
+	if($command[2]>codeToColumnShips($command[3])){
 		return "Not enough " . $ship['Metal'] . $ship[codeToColumnShips($command[3])] . "<br />";
 	}else{
 		mysqli_query($con,"UPDATE ships SET " . codeToColumnShips($command[3]) . "=" . ($ship[codeToColumnShips($command[3])] - $command[2]) . " WHERE ShipCode=" . $ship['ShipCode']);
@@ -36,7 +40,7 @@ if(codeTocolumnLocations($command[3])!="ERR" && codeToColumnLocations($command[4
 		//tell the user something
 	}
 }else{
-	return "ERROR: incorrect material codes<br />";
+	return "ERROR: incorrect mkkaterial codes<br />";
 }
 }
 function infoTrade($command){
@@ -45,9 +49,12 @@ function infoTrade($command){
 //command[2] should be the first material
 //command[3] should be the second material
 include 'scripts/sql.php';
+//includes information about the ship trade info not included
 include 'scripts/shipInfo.php';
+
+//extra SQL Query needed!
 if(codeTocolumnLocations($command[2])!="ERR" && codeToColumnLocations($command[3])!="ERR"){
-	$info = "The current rates are " . codeToColumnShips($command[2]) . ":" . codeToColumnShips($command[3]) . " @ " . $ship[codeToColumnLocations($command[2])] . ":" . $ship[codeToColumnLocations($command[3])] . " respectively with a tax rate of " . ($ship['Tax']*100) . "%<br />";
+	$info = "The current rates are " . codeToColumnShips($command[2]) . ":" . codeToColumnShips($command[3]) . " @ " . getResourceInfo($con,codeToColumnShips($command[2]),$ship['PlaceID']) . ":" . getResourceInfo($con,codeToColumnShips($command[3]),$ship['PlaceID']) . " respectively with a tax rate of " . ($ship['Tax']*100) . "%<br />";
 	return $info;
 }else{
 	return "ERROR: incorrect material codes<br />";

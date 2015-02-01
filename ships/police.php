@@ -3,8 +3,8 @@
 <head>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
-    <script src="js/three.js"></script>
-	<script src="js/THREEx.KeyboardState.js"></script>	
+    <script src="../js/three.js"></script>
+	<script src="../js/THREEx.KeyboardState.js"></script>	
 	
     <script>
 	var production=0;
