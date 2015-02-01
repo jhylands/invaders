@@ -194,26 +194,9 @@ if(isset($_GET['won'])){
 		//End of geometory of shapes----------------------------------------------------------------------------
 
 	//spacephip components
-	var body = new Object();
-	body.Object =  new THREE.Mesh( cubeGeometry,cubeMaterial );
-	body.Object.position.set(0,0,-5);
-	scene.add(body.Object);
-	body.asteroid = new Object();
-	body.asteroid = new THREE.Mesh(IcosahedronGeometry,icosaMaterial );
-	body.asteroid.position.set(0,0,-5);
-	scene.add(body.asteroid);
-	//create blue balls
-	var angOfRot = 0;
-        body.power= new Array();
-        var ship_radius = 2.2;
-        var angle = 0;
-        for (i=0;i<6;i++){
-                angle = i*pi/3;
-                body.power[i]=new Object();
-                body.power[i] = new THREE.Mesh(sphereGeometry2, sphereMaterial2);
-                body.power[i].position.set(-0.1+ship_radius*Math.cos(angle),0.1+ship_radius*Math.sin(angle),-5);
-                scene.add(body.power[i]);           
-        }
+<?php include 'ships/liberator.js'; ?>
+	scene.add(spaceShip);
+	
 		//make alians
 		var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
 		var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
@@ -314,37 +297,21 @@ function update() {
 		function ingameUpdate(){
 	//MOVEMENT CONTROLLS
 			if(keyboard.pressed("left")){
-			//check the object is in range
-			if(body.Object.position.x>-10){
-			body.Object.position.x-=0.1;
-			body.asteroid.position.x-=0.1;
-			for(i=0;i<6;i++){
-			body.power[i].position.x-=0.1
-			}
-			}
+				//check the object is in range
+				if(spaceShip.position.x>-10){
+					spaceShip.position.x-=0.1
+				}
 			}else if(keyboard.pressed("right")){
-			//check object is in range
-			if(body.Object.position.x<10){
-			body.Object.position.x+=0.1;
-			body.asteroid.position.x+=0.1;
-			for(i=0;i<6;i++){
-			body.power[i].position.x+=0.1
+				//check object is in range
+				if(spaceShip.position.x<10){
+					spaceShip.position.x+=0.1
+				}
 			}
-			camera.position.x+=0.1;
-			}
-			}
-			camera.position.x=body.Object.position.x
+			camera.position.x=spaceShip.position.x
 
 			//ANIMATE THE SHIP
-			angOfRot+=0.01;
-			for (i=0;i<6;i++){
-				angle = i*pi/3;
-				body.power[i].position.set(body.Object.position.x-0.1+ship_radius*Math.cos(angle+angOfRot),body.Object.position.y+0.1+ship_radius*Math.sin(angle+angOfRot),-5);  
-            }
-			body.asteroid.rotation.z = angOfRot;
-			body.Object.rotation.x+=0.01;
-			body.Object.rotation.y+=0.01;
-			body.Object.rotation.z+=0.01;
+			spaceShip.rotation.y+=0.01;
+
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
 			Crotation+=0.01;
@@ -354,7 +321,7 @@ function update() {
 			camera.position.y=50* Math.sin(Crotation);
 			camera.position.z=50* Math.cos(Crotation);
 			//get the camera to look at the spaceship
-			camera.lookAt( body.Object.position);
+			camera.lookAt( spaceShip.position);
 			//BULLITS
 			//add a bullit when the user presses space
 			//define bulit length outsideof if pressed space so alians can shoot
@@ -362,7 +329,7 @@ function update() {
 			if(keyboard.pressed("space")){
 			if(justshot==false){
 			//make new bullit
-			bullit[blength] = createBullit(body.Object.position,true);
+			bullit[blength] = createBullit(spaceShip.position,true);
 			scene.add(bullit[blength].object);
 			//stop bullits being produced too quickly
 			justshot=true;
@@ -418,18 +385,31 @@ function update() {
 				}//end of X loop
 				}else{
 				//bullit human collisions
-				if(Collision(bullit[i].object.position,body.Object.position,1) && health==0){
+				if(Collision(bullit[i].object.position,spaceShip.position,1) && health<5){
 				document.getElementById('die').play()
 				document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
 				document.getElementById('infoBoxParent').hidden = false;
 				start= false;
 				dead=true;
 				}
-				if(Collision(bullit[i].object.position,body.Object.position,1) && health!=0){
-				health =health-5;
-				var health_container = document.getElementById('health');
-				health_container.style.width=health*2.5;
+				if(Collision(bullit[i].object.position,spaceShip.position,1) && health!=0){
+				health = health-5;
+				document.getElementById('health').width=health*2.5 + "px";
 				document.getElementById('healthTXT').innerHTML = health;
+				var xmlhttp;
+				if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp=new XMLHttpRequest();
+				}else{// code for IE6, IE5
+					xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange=function(){
+					if (xmlhttp.readyState==4 && xmlhttp.status==200){
+						var resp = xmlhttp.responseText;
+						//take the responce and put it in the class box
+					}
+					}
+				xmlhttp.open("GET","scripts/combat/hit.php" ,true);
+				xmlhttp.send();
 				}
 				}
 			}//end of I loop
@@ -438,7 +418,29 @@ function update() {
 			//won=true;
 			document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><a href='combat.php?won=true'><input type='button' value='Back to orbit' /></a>";
 			document.getElementById('infoBoxParent').hidden = false;
+			
+			var xmlhttp;
+			if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp=new XMLHttpRequest();
+			}else{// code for IE6, IE5
+				xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
 			}
+			xmlhttp.onreadystatechange=function(){
+				if (xmlhttp.readyState==4 && xmlhttp.status==200){
+					var resp = xmlhttp.responseText;
+					//take the responce and put it in the class box
+					document.getElementById("console").innerHTML = 	document.getElementById("console").innerHTML + '<br />' +  resp;
+		
+				}
+				}
+			xmlhttp.open("GET","scripts/combat/won.php" ,true);
+			xmlhttp.send();
+			
+			
+			}
+			
+
+				
 	}
 	
 		//Render Loop
