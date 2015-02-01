@@ -245,7 +245,7 @@ if(isset($_GET['won'])){
 			}
 		}
 //--------------------------------------------------------------------------------
-/*//SKYBOX
+//SKYBOX
 	var imagePrefix = "images/nebula-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
@@ -262,11 +262,11 @@ if(isset($_GET['won'])){
 		uniforms: shader.uniforms,
 		depthWrite: false,
 		side: THREE.BackSide
-	} );
+	} ); 
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 //----------------------------------------------------------------------------------------
-*/
+
 //SUN
 	var lightcolor =  0xFFFFFF
 		var light = new THREE.PointLight( lightcolor );
