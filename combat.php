@@ -33,6 +33,7 @@ if(isset($_GET['won'])){
 	 //has the user won?
 	 var won = false;
 	var dead = false;
+	var health = <?php echo $ship['Sheilding']; ?>;
 	 var frameRate = 1;
 	 var frameCount = 0;
 	//function to update the position of objects based on their velocity and position
@@ -244,7 +245,7 @@ if(isset($_GET['won'])){
 			}
 		}
 //--------------------------------------------------------------------------------
-//SKYBOX
+/*//SKYBOX
 	var imagePrefix = "images/nebula-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
@@ -265,7 +266,7 @@ if(isset($_GET['won'])){
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 //----------------------------------------------------------------------------------------
-
+*/
 //SUN
 	var lightcolor =  0xFFFFFF
 		var light = new THREE.PointLight( lightcolor );
@@ -417,18 +418,24 @@ function update() {
 				}//end of X loop
 				}else{
 				//bullit human collisions
-				if(Collision(bullit[i].object.position,body.Object.position,1)){
+				if(Collision(bullit[i].object.position,body.Object.position,1) && health==0){
 				document.getElementById('die').play()
 				document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
 				document.getElementById('infoBoxParent').hidden = false;
 				start= false;
 				dead=true;
 				}
+				if(Collision(bullit[i].object.position,body.Object.position,1) && health!=0){
+				health =health-5;
+				var health_container = document.getElementById('health');
+				health_container.style.width=health*2.5;
+				document.getElementById('healthTXT').innerHTML = health;
+				}
 				}
 			}//end of I loop
 			//GAME OVER!
 			if(score==300 && won==false){
-			won=true;
+			//won=true;
 			document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><a href='combat.php?won=true'><input type='button' value='Back to orbit' /></a>";
 			document.getElementById('infoBoxParent').hidden = false;
 			}
@@ -454,16 +461,17 @@ function update() {
 </div>
 <div style="position:absolute;top:0px;left:0px;z-index:4;">
 <h1 id="scorecard" style="color:white;">Score:0</h1>
-<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').stop()" />
 <a style="color:white;" id="frame">Frame Rate:60fps</a>
 </div>
 <div id="infoBoxParent" style="position:absolute;top:250px;left:250px;z-index:5;width:300px;">
 <table style="background-color:black;color:white;">
 <tr><td id="infoBox">
 <h1>Press space to start</h1>
+<a href="orbit.php"><input type="button" value="Back to orbit"  /></a>
 </td></tr>
 </table>
 </div>
+<div style="position:absolute; top:0px;right:0px;z-index:6;"><table id="health" style="background-color:green;height:30px;" width="250px"><tr><td id="healthTXT"></td></tr></table></div>
 
 <audio id=laser>
     <source src="http://headstart.cs.aston.ac.uk/projects/2013_July/team5/sound/laserSHORT.wav">

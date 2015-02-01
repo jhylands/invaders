@@ -277,10 +277,10 @@ echo $ship;
 	<table style="width:100%;height:100%;">
 	<tr>
 		<td class="clickable" onclick="window.location.replace('solar.php');">Map</td>
-		<td class="clickable">Cargo Bay</td>
+		<td class="clickable" onclick="window.loaction.replace('cargo.php');">Cargo Bay</td>
 	</tr>
 	<tr>
-		<td class="clickable">Trade</td>
+		<td class="clickable" onclick="window.location.replace('trade.php');">Trade</td>
 		<td class="clickable" onclick="window.location.replace('changeship.php');">Ship yard</td>
 	</tr>
 	<tr>
