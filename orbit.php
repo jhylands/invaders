@@ -21,6 +21,7 @@
 include 'scripts/security.php';
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
+$ship = new ship($con,$ShipCode);
 echo $ship;
 ?>
     <script>
@@ -137,7 +138,7 @@ echo $ship;
 //EARTH
 
 	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
-	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship['PlanetURL']; ?>');
+	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship->place->URL; ?>');
 	var earthMaterial = new THREE.MeshPhongMaterial({map:earthTexture});
 	var earth = new THREE.Mesh(earthGeometry,earthMaterial);
 	earth.position.x = 321640;
@@ -272,7 +273,7 @@ echo $ship;
 <div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">
 <table style="width:100%;background-color:black;">
 <tr>
-	<td width="30%"><h2>Current ship: <?php echo $ship['ShipName'];?></h2></td>
+    <td width="30%"><h2>Current ship: <?php echo $ship->getName();?></h2></td>
 	<td rowspan='2' width="20%">
 	<table style="width:100%;height:100%;">
 	<tr>
@@ -284,12 +285,12 @@ echo $ship;
 		<td class="clickable" onclick="window.location.replace('changeship.php');">Ship yard</td>
 	</tr>
 	<tr>
-		<td class="clickable" onclick="window.location.replace('combat.php');">Fight for <?php echo $ship['PlaceName']; ?></td>
-		<td class="clickable">Achivements</td>
+		<td class="clickable" onclick="window.location.replace('combat.php');">Fight for <?php echo $ship->place->Name; ?></td>
+		<td class="clickable">Achievements</td>
 	</tr>
 	</table>
 	</td>
-	<td rowspan='2' ><h2>Current temperature on <?php echo $ship['PlaceName'];?> is <?php echo $ship['Temperature'];?>&#8451</h2></td>
+	<td rowspan='2' ><h2>Current temperature on <?php echo $ship->place->Name;?> is <?php echo $ship->place->Temperature;?>&#8451</h2></td>
 </tr>
 <tr>
 	<td class="clickable" onclick="window.location.replace('console.php');"><h2>Goto Console</h2></td>
