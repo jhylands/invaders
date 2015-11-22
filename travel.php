@@ -6,13 +6,49 @@ if(!isset($_GET['PlaceID'])){
 include 'scripts/sql.php';
 //include the genral query from the database
 include 'scripts/shipInfo.php';
+//needs to bet exported to a sperate file
+include 'scripts/distances.php';
+$place = new place($con);
+$place->fromID($_GET['PlaceID']);
+$ship = new ship($con,$ShipCode);
+$aTravel = new travel($con);
+$fuelReq=$aTravel->getFuelReq($ship->place, $place);
+$URL = $ship->place->URL;
+$currentPlanetFrame = <<<code
+<iframe width="100%" height="100%" src="planetView.php?URL=$URL"></iframe>
+code;
+$destinationPlanetFrame = <<<code
+<iframe width="100%" height="100%" src="planetView.php?URL=$place->URL"></iframe>
+code;
+if($aTravel->requiresTravel($ship, $place)){
+	$page = "<script>window.location.replace('orbit.php');</script>";
+}elseif($aTravel->goNoGoForLaunch($ship, $place)){
+	if(isset($_GET['go'])){
+		if($_GET['go']="true"){
+			//update ships location
+			$aTravel->move($ship, $place);
+                        $currentPlanetFrame="";
+                        $destinationPlanetFrame="";
+			$page =  "<script>window.location.replace('orbit.php');</script>";
+		}
+	}else{
+                $page = <<<code
+                <p>Traval cost:  $fuelReq Helium</p>
+		<input type='button' value='Go for launch' onclick='goForLaunch()' /><br />
+		<input type='button' value='No go for launch' onclick='noGoForLaunch()' />
+code;
+        
+	}
+}else{
+	$page = "<p>Not enough fuel to travel to that location!</p><p>Cost: " . $fuelReq . " Helium.</p><p>You only have " . $ship->getResource($aTravel->fuel()) . " <a href='solar.php'>Go Back</a></p>";
+}
 ?>
 <html>
 <head>
 <title>Travel agents</title>
 <script>
 function goForLaunch(){
-	window.location.replace('travel.php?PlaceID=<?php echo $_GET['PlaceID']; ?>&go=true');
+	window.location.replace('travel.php?PlaceID=<?php echo $place->ID; ?>&go=true');
 }
 function noGoForLaunch(){
 	window.location.replace('orbit.php');
@@ -30,31 +66,11 @@ color:white;
 <table style="width:100%;height:100%;">
 <tr>
 <td colspan="3"><center><h1>Travel agents</h1></td></tr>
-<tr><td width="30%"><iframe width="100%" height="100%" src="planetView.php?URL=<?php echo $ship['PlanetURL']; ?>"></iframe></td><td width="20%"><center>
+<tr><td width="30%"><?php echo $currentPlanetFrame;?></td><td width="20%"><center>
 <?php
-//needs to bet exported to a sperate file
-include 'scripts/distances.php';
-$fuelRequirements = intval(getOrbitalRadius($_GET['PlaceID'],$ship['PlaceID']/10000));
-
-//this needs to be replace with if new planet location = current plannet location
-if($fuelRequirements==0){
-	echo "<script>window.location.replace('orbit.php');</script>";
-}elseif($ship['Helium']>=$fuelRequirements){
-	if(isset($_GET['go'])){
-		if($_GET['go']="true"){
-			//update ships location
-			mysqli_query($con,"UPDATE ships SET Location=" . $_GET['PlaceID'] . ", Helium=" . ($ship['Helium']-$fuelRequirements) . " WHERE ShipCode=" . $ship['ShipCode']);
-			echo "<script>window.location.replace('orbit.php');</script>";
-		}
-	}else{
-		echo "<p>Traval cost: " . $fuelRequirements . " Helium</p>";
-		echo "<input type='button' value='Go for launch' onclick='goForLaunch()' /><br />";
-		echo "<input type='button' value='No go for launch' onclick='noGoForLaunch()' />";
-	}
-}else{
-	echo "<p>Not enough fuel to travel to that location!</p><p>Cost: " . $fuelRequirements . " Helium.</p><p>You only have " . $ship['Helium'] . " <a href='solar.php'>Go Back</a></p>";
-}
+echo $page;
 ?></center>
-</td><td width="30%"><iframe width="100%" height="100%" src="planetView.php?URL=<?php echo $place['PlanetURL']; ?>"></iframe></td></tr>
+</td><td width="30%">
+<?php echo $destinationPlanetFrame;?></td></tr>
 </table>
 </body>
