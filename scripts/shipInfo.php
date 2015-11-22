@@ -71,9 +71,10 @@ class ship{
     function update(){
         $this->_updateShip();
         $this->_updateHold();
+        $this->_updatePosition();
     }
     function _updateShip(){
-        $QRY = "SELECT * FROM ships,shipTypes,locations,Markets WHERE locations.PlaceID=Markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
+        $QRY = "SELECT * FROM ships,shipTypes,Markets WHERE ships.Location=Markets.PlaceID AND ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
         $result = mysqli_query($this->con,$QRY);
         while($row = mysqli_fetch_array($result)){
                 $ship = $row;
@@ -87,13 +88,18 @@ class ship{
                 $this->_hold[$row['ResourceID']] = $row['Amount'];
         }
     }
-    
-    function getPosition(){
-        return $this->_ship['PlaceID'];
+    function _updatePosition(){
+        $this->place = new place($this->con);
+        $this->place->fromID($this->_ship['Location']);
     }
-    function setPosition($place){
-        $query = "UPDATE ships SET Location=$place WHERE ShipCode=$this->ShipCode";
+    //getPosition depreshiated to $this->place->ID
+    //setPosition depreshiated to setPositionFromID
+    function setPositionFromID($placeID){
+        $query = "UPDATE ships SET Location=$placeID WHERE ShipCode=$this->ShipCode";
         return mysqli_query($this->con,$query);
+    }
+    function setPositionFromPlace($place){
+        return $this->setPositionFromID($place->ID);
     }
     function getName(){
         return $this->_ship['Name'];
@@ -115,11 +121,53 @@ class ship{
         $Amount = $this->getResource($Resource) + $Amount;
         return $this->setResource($Resource, $Amount);
     }
-    function getLocationURL(){
-        return $this->_ship['PlanetURL'];
+
+}
+
+class place{
+    function __construct($connect){
+        $this->con = $connect;
     }
-    function getPlaceName(){
-        return $this->_ship['PlaceName'];
+    function fromID($ID){
+        $this->ID=$ID;
+        $query = "SELECT * FROM locations WHERE PlaceID=$ID";
+        $result = mysqli_query($this->con,$query);
+        while($row = mysqli_fetch_array($result)){
+                $this->Name = $row['PlaceName'];
+                $this->URL = $row['PlanetURL'];
+                $this->OrbitalRadius = $row['OrbitalRadius'];
+                $this->InOrbitOf = $row['InOrbitOf'];
+                $this->Temperature = $row['Temperature'];
+                $this->SurfaceGravity = $row['SurfaceGravity'];
+                $this->Radius = $row['Radius'];
+        }
+    }
+    function __toString() {
+        return $this->URL;
+    }
+    function eq($place){
+        return $this->ID==$place->ID;
+    }
+    function getImage(){
+        return $this->URL;
+    }
+    function getName(){
+        return $this->Name;
+    }
+    function getTemperature(){
+        return $this->Temperature;
+    }
+    function getOrbitalRadius(){
+        return $this->OrbitalRadius;
+    }
+    function getInOrbitOfID(){
+        return $this->InOrbitOf;
+    }
+    function getSurfaceGravity(){
+        return $this->SurfaceGravity;
+    }
+    function getRadius(){
+        return $this->Radius;
     }
 }
 ?>
