@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Introduction to Computer Graphics</title>  
+ <!-- include javascript libraries -->
+    <script src="../js/three.js"></script>
+	<script src="../js/THREEx.KeyboardState.js"></script>	
+	
+    <script>
+	var production=0;
+	var scene;
+	 //declare a truly global variable to hold weather the user has just shot
+	 var justshot=false;
+	 //declare the score
+	 var score=0;
+	 //has the user won?
+	 var won = false;
+	 var frameRate = 1;
+	 var frameCount = 0;
+	//function to update the position of objects based on their velocity and position
+	function UpdatePosition(asteroid){
+	asteroid.object.position.x+=asteroid.velocity.x;
+	asteroid.object.position.y+=asteroid.velocity.y;
+	asteroid.object.position.z+=asteroid.velocity.z;
+	}
+	//Function to reverce the velocity if cirtai bounds are hit
+	function BounceBox(asteroid){
+	if(asteroid.object.position.x>6 || asteroid.position.x<-2){
+			asteroid.velocity.x=asteroid.velocity.x*-1;
+			}
+			if(asteroid.object.position.y>4 || asteroid.object.position.y<-4){
+			asteroid.velocity.y=asteroid.velocity.y*-1;
+			}
+			if(asteroid.object.position.z>-16 || asteroid.object.position.z<-40){
+			asteroid.velocity.z=asteroid.velocity.z*-1;
+			}
+	}
+	function Collision(position1,position2,r){
+	//calculate the distancew the objects are appart and compare it to the distance their surfaces would be appart if they were only just touching
+	//find differnces in position vector
+	var dx=position1.x-position2.x;
+	var dy=position1.y-position2.y;
+	var dz=position1.z-position2.z;
+	//sum of the squares
+	var Exyz = Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2);
+	if(Math.sqrt(Exyz) < r){
+	return true;
+	}else{
+	return false;
+	}
+	}
+	function timeCalculations(){
+		frameRate = frameCount;
+		frameCount = 0;
+		document.getElementById('frame').innerHTML = "Frame Rate:" + frameRate + "fps";
+	 	setTimeout("timeCalculations()",1000);
+	}
+	function siran(){
+		if(won){
+			cube.material.color = new THREE.Color(0xFF0000);
+			cube2.material.color = new THREE.Color(0x0000FF);
+			won = false;
+		}else{
+			cube.material.color = new THREE.Color(0x0000FF);
+			cube2.material.color = new THREE.Color(0xFF0000);
+			won = true;
+		}
+	 	setTimeout("siran()",500);
+	}
+	window.onload = function() {
+	//define the roation of the camera
+	var Crotation = 0.35;//20* in rad
+	var Crad = 50 //radius of the rotation of the camera
+		//define world
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize( window.innerWidth-5,  window.innerHeight-5);
+        document.getElementsByTagName('div')[0].appendChild( renderer.domElement );
+        scene = new THREE.Scene();
+		//setup camera
+        var camera = new THREE.PerspectiveCamera(
+            35,             // Field of view
+            800 / 600,      // Aspect ratio
+            0.1,            // Near plane
+            10000           // Far plane
+        );
+        
+		camera.position.set( -50, -20, 0 );//inishiation of camera
+        camera.lookAt( scene.position );
+		var keyboard = new THREEx.KeyboardState();
+		//renderer.setColorHex( 0x000000, 1 );
+		
+		//setup lighting conditions
+		var lightcolor =  0xFFFFFF
+		var light = new THREE.PointLight( lightcolor );
+        light.position.set( 10, 10, 10 );
+		scene.add(light);
+		var light4 = new THREE.PointLight( lightcolor );
+        light4.position.set( -10, -5,-10 );
+		scene.add(light4);
+	var imagePrefix = "../images/nebula-";
+	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
+	var imageSuffix = ".png";
+	var skyGeometry = new THREE.CubeGeometry( 500, 500, 500 );
+	var imageURLs = [];
+	for (var i = 0; i < 6; i++)
+		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
+	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
+	var shader = THREE.ShaderLib[ "cube" ];
+	shader.uniforms[ "tCube" ].value = textureCube;
+	var skyMaterial = new THREE.ShaderMaterial( {
+		fragmentShader: shader.fragmentShader,
+		vertexShader: shader.vertexShader,
+		uniforms: shader.uniforms,
+		depthWrite: false,
+		side: THREE.BackSide
+	} );
+	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
+	scene.add( skyBox );
+	scale=0.5
+//SHIP---------------------------------------------------------------------------------------
+//the Geometry of the engin bay
+var LiberatorGeometry1 = new THREE.SphereGeometry(2*scale,32,32);
+//the blue color of the engin bay
+var LiberatorMaterial1 = new THREE.MeshPhongMaterial({color:0x0000FF,side:THREE.DoubleSide});
+	//the component of the engine bay
+	var comp1 = new THREE.Mesh(LiberatorGeometry1,LiberatorMaterial1);
+		comp1.position.x=-1*scale;
+
+//The Geometry of the cylinders
+var LiberatorGeometry2 = new THREE.CylinderGeometry(scale,scale,2*scale,32);
+//the gray metal that most of the ship is made of
+var LiberatorMaterial2 = new THREE.MeshPhongMaterial({color:0xc0c0c0,side:THREE.DoubleSide});
+//add the central column
+var comp2 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
+comp2.position.x= 4*scale;
+comp2.rotation.z = Math.PI/2;
+//create the cone on the front of the central column
+var LiberatorGeometry2p = new THREE.CylinderGeometry(scale,2*scale,2*scale,32);
+	var comp2p = new THREE.Mesh(LiberatorGeometry2p,LiberatorMaterial2);
+		comp2p.position.x=4*scale;
+		comp2p.rotation.z=-Math.PI/2;
+var LiberatorGeometry2pp = new THREE.CylinderGeometry(2*scale,scale,2*scale,32);
+	var comp2pp = new THREE.Mesh(LiberatorGeometry2pp,LiberatorMaterial2);
+		comp2pp.position.x=2*scale;
+		comp2pp.rotation.z=-Math.PI/2;
+
+
+
+//create the cone on the front of the central column
+var LiberatorGeometry3 = new THREE.CylinderGeometry(0,1*scale,2*scale,32);
+	var comp3 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
+		comp3.position.x=8*scale;
+		comp3.rotation.z=-Math.PI/2;
+//create the plane that connects the outer columns
+var LiberatorGeometry4 = new THREE.PlaneGeometry(5*scale,1);
+	//plane
+	var comp4 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
+		comp4.rotation.z = Math.PI/4;
+		comp4.position  = new THREE.Vector3(3,2,0).multiplyScalar(scale);
+	//cyliner
+	var comp5 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
+		comp5.position = new THREE.Vector3(3,4,0).multiplyScalar(scale);
+		comp5.rotation.z=-Math.PI/2;
+	//cone
+	var comp6 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
+		comp6.position = new THREE.Vector3(6,4,0).multiplyScalar(scale);
+		comp6.rotation.z=-Math.PI/2;
+var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
+	//sphere
+	var comp7 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
+		comp7.position = new THREE.Vector3(0.5,4,0).multiplyScalar(scale);
+	//plane
+	var comp8 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
+		comp8.rotation.z = -Math.PI/4;
+		comp8.rotation.x = -Math.PI/4;
+		comp8.position = new THREE.Vector3(3,-1.4,1.4).multiplyScalar(scale);
+	//plane
+	var comp9 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
+		comp9.rotation.z = -Math.PI/4;
+		comp9.rotation.x = Math.PI/4;
+		comp9.position = new THREE.Vector3(3,-1.4,-1.4).multiplyScalar(scale);
+	//sphere
+	var comp10 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
+		comp10.position = new THREE.Vector3(0.5,-2.8,2.8).multiplyScalar(scale);
+	//sphere
+	var comp11 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
+		comp11.position = new THREE.Vector3(0.5,-2.8,-2.8).multiplyScalar(scale);
+	//cone
+	var comp12 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
+		comp12.position = new THREE.Vector3(6,-2.8,-2.8).multiplyScalar(scale);
+		comp12.rotation.z=-Math.PI/2;
+	//cone
+	var comp13 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
+		comp13.position = new THREE.Vector3(6,-2.8,2.8).multiplyScalar(scale);
+		comp13.rotation.z=-Math.PI/2;
+	//cylinder
+	var comp14 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
+		comp14.position = new THREE.Vector3(3,-2.8,2.8).multiplyScalar(scale);
+		comp14.rotation.z=-Math.PI/2;
+	//cyloinder
+	var comp15 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
+		comp15.position = new THREE.Vector3(3,-2.8,-2.8).multiplyScalar(scale);
+		comp15.rotation.z=-Math.PI/2;
+	spaceShip = new THREE.Object3D()
+	spaceShip.add(comp1);
+	spaceShip.add(comp2);
+	spaceShip.add(comp2p);
+	spaceShip.add(comp2pp);
+	spaceShip.add(comp3);
+	spaceShip.add(comp4);
+	spaceShip.add(comp5);
+	spaceShip.add(comp6);
+	spaceShip.add(comp7);
+	spaceShip.add(comp8);
+	spaceShip.add(comp9);
+	spaceShip.add(comp10);
+	spaceShip.add(comp11);
+	spaceShip.add(comp12);
+	spaceShip.add(comp13);
+	spaceShip.add(comp14);
+	spaceShip.add(comp15);
+	spaceShip.rotation.x=-Math.PI/2;
+	spaceShip.rotation.z=Math.PI/2;
+
+	//scene.add(spaceShip);
+var loader = new THREE.ObjectLoader();
+loader.load("ship1.js",function ( obj ) {
+		var material = new THREE.MeshPhongMaterial( {
+					color: 0xdddddd,
+					specular: 0x222222,
+					shininess: 35,
+					map: THREE.ImageUtils.loadTexture( "shell.jpg" ),
+					normalMap: THREE.ImageUtils.loadTexture( "shell.jpg" ),
+					normalScale: new THREE.Vector2( 0.8, 0.8 ),
+                                        side: THREE.DoubleSide
+				} );
+     obj.children[4].children[0].material = material;
+     obj.children[4].children[1].material = material;
+     obj.children[4].children[2].material = material;
+     obj.children[0].material = material;
+     obj.children[1].material = material;
+     obj.children[2].material = material;
+     obj.children[5].material = material;
+    /* spaceShip.add(obj.children[4]);
+     spaceShip.add(obj.children[0]);
+     spaceShip.add(obj.children[1]);
+     spaceShip.add(obj.children[2]);
+     spaceShip.add(obj.children[5]);*/
+     scene.add( obj );
+});
+	//siran();
+		//runLoader();
+		function update() {
+			//COUNT FPS
+			frameCount++;
+			//CAMERA MOVEMENT
+			if(keyboard.pressed("up")){
+				Crotation+=0.01;
+			}else if(keyboard.pressed("down")){
+				Crotation-=0.01;
+			}
+			if(keyboard.pressed("left")){
+				camera.position.x -=1;
+			}else if(keyboard.pressed("right")){
+				camera.position.x +=1;
+			}if(keyboard.pressed("q")){
+				Crad -=0.1;
+			}else if(keyboard.pressed("e")){
+				Crad +=0.1;
+			}
+			camera.position.y=Crad* Math.sin(Crotation);
+			camera.position.z=Crad* Math.cos(Crotation);
+			//get the camera to look at the spaceship
+			
+			camera.lookAt(spaceShip.position);
+		}
+	
+		//Render Loop
+		function render() {
+			//Call the update function
+			update();
+			//Re-draw the scene
+			renderer.render(scene, camera);
+			//Re-call the render function when the next frame is ready to be drawn
+			requestAnimationFrame(render);
+		}
+		requestAnimationFrame(render);
+
+    };
+    </script>
+</head>
+<body>
+<div style="position:absolute;top:0px;left:0px;z-index:3;">
+
+</div>
+<div style="position:absolute;top:0px;left:0px;z-index:4;">
+<h1 id="scorecard" style="color:white;">Score:0</h1>
+<input type="button" value="Music" id="button1" onclick="document.getElementById('pendulum').play()" />
+<a style="color:white;" id="frame">Frame Rate:60fps</a>
+</div>
+</body>
+</html>
