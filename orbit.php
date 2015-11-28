@@ -22,7 +22,7 @@ include 'scripts/security.php';
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
 $ship = new ship($con,$ShipCode);
-echo $ship;
+//echo $ship;
 ?>
     <script>
 	var production=0;
@@ -94,7 +94,7 @@ echo $ship;
 		camera.position.set( 0, 0, -10 );//inishiation of camera
         camera.lookAt( scene.position );
 		var keyboard = new THREEx.KeyboardState();
-		renderer.setClearColorHex( 0x000000, 1 );
+		//renderer.setClearColorHex( 0x000000, 1 );
 		
 		//setup lighting conditions
 		
