@@ -38,11 +38,11 @@ function doTrade(){
 <body>
     <table border="1" style="width:100%;height:100%;">
         <tr>
-            <td colspan="2" width="50%">Buy Sell Box</td>
+            <td colspan="2" style="height:50%;width:50%;"><input type="button" value="Buy" /><input type="button" value="Sell" /><br /><input type="number" /></td>
             <td colspan="1" width="50%">Graph</td>
         </tr>
         <tr>
-            <td rowspan="2" width="33%">listbox</td>
+            <td rowspan="2" style="width:33%;height: 50%;">listbox</td>
             <td colspan="2"><img src="images/moon.jpg" width="100%" height="100%"></td>
         </tr>
         <tr height="20px">

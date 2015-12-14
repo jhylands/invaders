@@ -6,10 +6,8 @@
 <?php
 include 'scripts/sql.php';
 include 'scripts/security.php';
-$result = mysqli_query($con, "SELECT * FROM ships,users,locations WHERE users.FID=" . $_COOKIE['User'] . " AND ships.ShipCode=users.CurrentShip AND ships.Location=locations.PlaceID");
-while($row=mysqli_fetch_array($result)){
-	$ship=$row;
-}
+include "scripts/shipInfo.php";
+$ship = new ship($con, $ShipCode);
 if(isset($_GET['won'])){
 	if($_GET['won']=="true"){
 		mysqli_query($con,"UPDATE ships SET Helium=" . ($ship['Helium']+100) . " WHERE ShipCode=" . $ship['ShipCode']);
@@ -33,7 +31,7 @@ if(isset($_GET['won'])){
 	 //has the user won?
 	 var won = false;
 	var dead = false;
-	var health = <?php echo $ship['Sheilding']; ?>;
+	var health = <?php echo $ship->getSheilding(); ?>;
 	 var frameRate = 1;
 	 var frameCount = 0;
 	//function to update the position of objects based on their velocity and position
@@ -270,7 +268,7 @@ if(isset($_GET['deep'])){
 ?>
 
 	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
-	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship['PlanetURL']; ?>');
+	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship->place->URL; ?>');
 	var earthMaterial = new THREE.MeshPhongMaterial({map:earthTexture});
 	var earth = new THREE.Mesh(earthGeometry,earthMaterial);
 	earth.position.z = -321640;

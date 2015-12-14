@@ -1,6 +1,6 @@
 <?php
 include 'sql.php';
-$QRY = "SELECT * FROM users,ships,shipTypes,locations,Markets WHERE users.FID=ships.OwnerID AND locations.PlaceID=Markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND users.FID=";
+$QRY = "SELECT * FROM users,ships,shipTypes,locations,markets WHERE users.FID=ships.OwnerID AND locations.PlaceID=markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND users.FID=";
 //echo $QRY . $_COOKIE['User'];
 $result = mysqli_query($con,$QRY . $_COOKIE['User']);
 while($row = mysqli_fetch_array($result)){
@@ -22,7 +22,7 @@ class resource{
     function resourceFromID($ID){
         $this->ID = $ID;
         $query = "SELECT * FROM resources WHERE ResourceID=$ID";
-        $result = mysqli_query($this->con,$QRY);
+        $result = mysqli_query($this->con,$query);
         while($row = mysqli_fetch_array($result)){
                 $this->Name = $row['Name'];
                 $this->Code = $row['Code'];
@@ -74,7 +74,7 @@ class ship{
         $this->_updatePosition();
     }
     function _updateShip(){
-        $QRY = "SELECT * FROM ships,shipTypes,Markets WHERE ships.Location=Markets.PlaceID AND ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
+        $QRY = "SELECT * FROM ships,shipTypes,markets WHERE ships.Location=markets.PlaceID AND ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
         $result = mysqli_query($this->con,$QRY);
         while($row = mysqli_fetch_array($result)){
                 $ship = $row;
@@ -102,7 +102,12 @@ class ship{
         return $this->setPositionFromID($place->ID);
     }
     function getName(){
-        return $this->_ship['Name'];
+        if($this->_ship['Name']){
+            return $this->_ship['Name'];
+            
+        }else{ 
+            return 0;
+        }
     }
     //security floor
     function setName($name){
@@ -158,6 +163,9 @@ class place{
     }
     function getName(){
         return $this->Name;
+    }
+    function getID(){
+        return $this->ID;
     }
     function getTemperature(){
         return $this->Temperature;
