@@ -114,14 +114,19 @@ class ship{
     }
     function setResource($Resource,$Amount){
         $RID =$Resource->getID();
-        $query = "UPDATE ships,cargo SET cargo.Amount='$Amount' WHERE ships.ShipCode=$this->ShipCode AND ships.HoldCode=cargo.HoldCode AND cargo.ResourceID=$RID)";
+        $query = "UPDATE ships,cargo SET cargo.Amount='$Amount' WHERE ships.ShipCode=$this->ShipCode AND ships.HoldCode=cargo.HoldCode AND cargo.ResourceID=$RID";
         return mysqli_query($this->con,$query);
+    }
+    function getSheilding(){
+        return $this->_ship['Sheilding'];
     }
     function changeResource($Resource,$Amount){
         $Amount = $this->getResource($Resource) + $Amount;
         return $this->setResource($Resource, $Amount);
     }
-
+    function getBuildCode(){
+        return $this->_ship['BuildCode'];
+    }
 }
 
 class place{

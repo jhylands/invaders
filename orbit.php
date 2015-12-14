@@ -80,7 +80,7 @@ $ship = new ship($con,$ShipCode);
 	var Crad = 50 //radius of the rotation of the camera
 		//define world
         var renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth-5,  window.innerHeight-5);
+        renderer.setSize( window.innerWidth,window.innerHeight);//4320,  window.innerHeight/window.innerWidth*4320);
         document.getElementsByTagName('div')[0].appendChild( renderer.domElement );
         scene = new THREE.Scene();
 		//setup camera
@@ -267,7 +267,7 @@ $ship = new ship($con,$ShipCode);
     </script>
 </head>
 <body>
-<div style="position:absolute;top:0px;left:0px;z-index:3;">
+<div style="position:absolute;top:0px;left:0px;z-index:3;width:100%;height:100%;">
 
 </div>
 <div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">

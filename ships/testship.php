@@ -3,9 +3,9 @@
 <head>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
-    <script src="js/three(52).js"></script>
-	<script src="js/THREEx.KeyboardState.js"></script>	
-	<script src="js/CSS3DRenderer.js"></script>
+    <script src="../js/three.js"></script>
+	<script src="../js/THREEx.KeyboardState.js"></script>	
+	
     <script>
 	var production=0;
 	var scene;
@@ -17,14 +17,57 @@
 	 var won = false;
 	 var frameRate = 1;
 	 var frameCount = 0;
-
+         var obj;
+	//function to update the position of objects based on their velocity and position
+	function UpdatePosition(asteroid){
+	asteroid.object.position.x+=asteroid.velocity.x;
+	asteroid.object.position.y+=asteroid.velocity.y;
+	asteroid.object.position.z+=asteroid.velocity.z;
+	}
+	//Function to reverce the velocity if cirtai bounds are hit
+	function BounceBox(asteroid){
+	if(asteroid.object.position.x>6 || asteroid.position.x<-2){
+			asteroid.velocity.x=asteroid.velocity.x*-1;
+			}
+			if(asteroid.object.position.y>4 || asteroid.object.position.y<-4){
+			asteroid.velocity.y=asteroid.velocity.y*-1;
+			}
+			if(asteroid.object.position.z>-16 || asteroid.object.position.z<-40){
+			asteroid.velocity.z=asteroid.velocity.z*-1;
+			}
+	}
+	function Collision(position1,position2,r){
+	//calculate the distancew the objects are appart and compare it to the distance their surfaces would be appart if they were only just touching
+	//find differnces in position vector
+	var dx=position1.x-position2.x;
+	var dy=position1.y-position2.y;
+	var dz=position1.z-position2.z;
+	//sum of the squares
+	var Exyz = Math.pow(dx,2) + Math.pow(dy,2) + Math.pow(dz,2);
+	if(Math.sqrt(Exyz) < r){
+	return true;
+	}else{
+	return false;
+	}
+	}
 	function timeCalculations(){
 		frameRate = frameCount;
 		frameCount = 0;
 		document.getElementById('frame').innerHTML = "Frame Rate:" + frameRate + "fps";
 	 	setTimeout("timeCalculations()",1000);
 	}
-
+	function siran(){
+		if(won){
+			cube.material.color = new THREE.Color(0xFF0000);
+			cube2.material.color = new THREE.Color(0x0000FF);
+			won = false;
+		}else{
+			cube.material.color = new THREE.Color(0x0000FF);
+			cube2.material.color = new THREE.Color(0xFF0000);
+			won = true;
+		}
+	 	setTimeout("siran()",500);
+	}
 	window.onload = function() {
 	//define the roation of the camera
 	var Crotation = 0.35;//20* in rad
@@ -45,7 +88,7 @@
 		camera.position.set( -50, -20, 0 );//inishiation of camera
         camera.lookAt( scene.position );
 		var keyboard = new THREEx.KeyboardState();
-		renderer.setClearColorHex( 0x000000, 1 );
+		//renderer.setColorHex( 0x000000, 1 );
 		
 		//setup lighting conditions
 		var lightcolor =  0xFFFFFF
@@ -53,9 +96,9 @@
         light.position.set( 10, 10, 10 );
 		scene.add(light);
 		var light4 = new THREE.PointLight( lightcolor );
-        light4.position.set( -10, -10,-10 );
+        light4.position.set( -10, -5,-10 );
 		scene.add(light4);
-/*	var imagePrefix = "images/nebula-";
+	var imagePrefix = "../images/nebula-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 500, 500, 500 );
@@ -73,56 +116,40 @@
 		side: THREE.BackSide
 	} );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-	scene.add( skyBox );*/
-		var planeMaterial   = new THREE.MeshBasicMaterial({color: 0x000000, opacity: 0.1, side: THREE.DoubleSide });
-	var planeWidth = 360;
-    var planeHeight = 120;
-	var planeGeometry = new THREE.PlaneGeometry( planeWidth, planeHeight );
-	var planeMesh= new THREE.Mesh( planeGeometry, planeMaterial );
-	planeMesh.position.y += planeHeight/2;
-	// add it to the standard (WebGL) scene
-	scene.add(planeMesh);
-	
-	// create a new scene to hold CSS
-	cssScene = new THREE.Scene();
-	// create the iframe to contain webpage
-	var element	= document.createElement('iframe')
-	// webpage to be loaded into iframe
-	element.src	= "index.html";
-	// width of iframe in pixels
-	var elementWidth = 1024;
-	// force iframe to have same relative dimensions as planeGeometry
-	var aspectRatio = planeHeight / planeWidth;
-	var elementHeight = elementWidth * aspectRatio;
-	element.style.width  = elementWidth + "px";
-	element.style.height = elementHeight + "px";
-	
-	// create a CSS3DObject to display element
-	var cssObject = new THREE.CSS3DObject( element );
-	// synchronize cssObject position/rotation with planeMesh position/rotation 
-	cssObject.position = planeMesh.position;
-	cssObject.rotation = planeMesh.rotation;
-	// resize cssObject to same size as planeMesh (plus a border)
-	var percentBorder = 0.05;
-	cssObject.scale.x /= (1 + percentBorder) * (elementWidth / planeWidth);
-	cssObject.scale.y /= (1 + percentBorder) * (elementWidth / planeWidth);
-	cssScene.add(cssObject);
-	
-	// create a renderer for CSS
-	rendererCSS	= new THREE.CSS3DRenderer();
-	rendererCSS.setSize( window.innerWidth, window.innerHeight );
-	rendererCSS.domElement.style.position = 'absolute';
-	rendererCSS.domElement.style.top	  = 0;
-	rendererCSS.domElement.style.margin	  = 0;
-	rendererCSS.domElement.style.padding  = 0;
-	document.body.appendChild( rendererCSS.domElement );
-
-
-	renderer.domElement.style.position = 'absolute';
-	renderer.domElement.style.top      = 0;
-	// make sure original renderer appears on top of CSS renderer
-	renderer.domElement.style.zIndex   = 1;
-	rendererCSS.domElement.appendChild( renderer.domElement );
+	scene.add( skyBox );
+	scale=0.5
+//SHIP---------------------------------------------------------------------------------------
+	mirrorCubeCamera = new THREE.CubeCamera( 0.1, 321640, 512 );
+        	scene.add( mirrorCubeCamera );
+                	mirrorCubeCamera.position = new THREE.Vector3(0,0,0);
+var loader = new THREE.ObjectLoader();
+loader.load("ship1.js",function ( obj1 ) {
+		var material = new THREE.MeshPhongMaterial( {
+					color: 0xdddddd,
+					specular: 0x222222,
+					shininess: 35,
+                                        envMap: mirrorCubeCamera.renderTarget,
+					map: THREE.ImageUtils.loadTexture( "shell.jpg" ),
+					normalMap: THREE.ImageUtils.loadTexture( "shell.jpg" ),
+					normalScale: new THREE.Vector2( 0.8, 0.8 ),
+                                        side: THREE.DoubleSide
+				} );
+     obj1.children[4].children[0].material = material;
+     obj1.children[4].children[1].material = material;
+     obj1.children[4].children[2].material = material;
+     obj1.children[0].material = material;
+     obj1.children[1].material = material;
+     obj1.children[2].material = material;
+     obj1.children[5].material = material;
+     obj=obj1;
+    /* spaceShip.add(obj.children[4]);
+     spaceShip.add(obj.children[0]);
+     spaceShip.add(obj.children[1]);
+     spaceShip.add(obj.children[2]);
+     spaceShip.add(obj.children[5]);*/
+     scene.add( obj );
+});
+	//siran();
 		//runLoader();
 		function update() {
 			//COUNT FPS
@@ -146,13 +173,16 @@
 			camera.position.z=Crad* Math.cos(Crotation);
 			//get the camera to look at the spaceship
 			
-			camera.lookAt(cssObject);
+			camera.lookAt(new THREE.Vector3(0,0,0));
 		}
 	
 		//Render Loop
 		function render() {
 			//Call the update function
 			update();
+                        obj.visible = false;
+	mirrorCubeCamera.updateCubeMap( renderer, scene );
+	obj.visible = true;
 			//Re-draw the scene
 			renderer.render(scene, camera);
 			//Re-call the render function when the next frame is ready to be drawn

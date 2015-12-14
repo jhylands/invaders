@@ -1,60 +1,36 @@
 <?php
+
 class distance{
-    function getTravelDistance($place1ID,$place2ID){
-            return abs(getOrbitalRadius($Place1ID)-getOrbitalRadius($Place2ID));
-    }
-    function getOrbitalRadius($PlaceID){
-            $result = mysqli_query($con,"SELECT * FROM locations WHERE PlaceID=" . $_GET['PlaceID']);
-            while($row=mysqli_fetch_array($result)){
-                    $orbitalRadi = $row['OrbitalRadius'];
-            }
-            return $orbitalRadi;
+    function getTravelDistance($Place1,$Place2){
+            return abs( $Place1->getOrbitalRadius()-$Place2->getOrbitalRadius() );
     }
 }
 
 class travel extends distance{
     
-    function _construct($connection){
+    function __construct($connection){
         $this->con = $connection;
     }
-    
-    function getLocationURL($place){
-        //asert($place, isINT)
-        $query ="SELECT * FROM locations WHERE PlaceID=" . $place;
-        $result = mysqli_query($this->con,$query);
-        if($result){
-            $row = mysqli_fetch_array($result);
-            return $row[0]['PlanetURL'];
-        }else{
-            return "Planet does not Exist!";
-        }
+    function fuel(){
+        $Resource = new resource($this->con);
+        $Resource->resourceFromCode('HE3');
+        return $Resource;
     }
-    function getShipsFuel($ship){
-        $query = "SELECT * FROM ships,resources,cargo WHERE ships.HoldCode=cargo.HoldCode AND cargo.ResourceID=resources.ResourceID AND ships.ShipCode=". $ship['ShipCode'] . " AND resources.Code='He'";
-        $result = mysqli_query($this->con,$query);
-        if($result){
-            $row = mysqli_fetch_array($result);
-            return $row[0]['Amount'];
-        }else{
-            return -1;
-        }
+    function requiresTravel($ship,$place){
+        return $ship->place->eq($place);
     }
     function getFuelReq($place1,$place2){
         $distance = $this->getTravelDistance($place1, $place2);
-        return $distance * 100;
+        return $distance / 1000;
     }
     
     function goNoGoForLaunch($ship,$place){
-        return $this->getShipsFuel($ship) >= $this->getFuelReq($ship['PlaceID'],$place);
+        return $ship->getResource($this->fuel()) >= $this->getFuelReq($ship->place,$place);
     }
     
     function move($ship,$place){
-        if($this->goNoGoForLaunch($ship, $place)){
-            $query = "UPDATE ships SET Location=" . $place . " WHERE ShipCode=" . $ship['ShipCode'];
-            return mysqli_query($this->con,$query);
-        }else{
-            return False;
-        }
+        $ship->setPositionFromPlace($place);
+        $ship->changeResource($this->fuel(), -1 * $this->getFuelReq($ship->place, $place) );
     }
     
 }

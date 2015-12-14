@@ -19,7 +19,7 @@ var stock = new Array(<?php
 $names = getResources($con,'Name',$ship['PlaceID']);
 $rates = getResources($con,'Rate',$ship['PlaceID']);
 $id = getResources($con,'ResourceID',$ship['PlaceID']);
-echo join(",",$rates);
+//echo join(",",$rates);
 ?>);
 function updateAmount(){
 var amount=document.getElementById('amount').value;
@@ -36,28 +36,19 @@ function doTrade(){
 </script>
 </head>
 <body>
-<div style="position: absolute;top:10px;left: 10px;"><a href="orbit.php"><h1>Back to orbit</h1></a></div>
-<center><h1>Trading information</h1></center>
-<marquee></marquee>
-<input type="number" id="amount" />
-<select id="res1" onchange="updateAmount();">
-<?php
-for($i=0;$i<count($names);$i++){
-	echo "<option id='" . $id[$i] . "'>" . $names[$i] . "</option>";
-}
-?>
-</select>
-<select id="res2" onchange="updateAmount();">
-<?php
-for($i=0;$i<count($names);$i++){
-	echo "<option id='" . $id[$i] . "'>" . $names[$i] . "</option>";
-}
-
-?>
-</select>
-<br />
-<p>This will yeild <x id='result'></x></p>
-<input type="button" value="Trade on this" onclick="doTrade();"/>
+    <table border="1" style="width:100%;height:100%;">
+        <tr>
+            <td colspan="2" width="50%">Buy Sell Box</td>
+            <td colspan="1" width="50%">Graph</td>
+        </tr>
+        <tr>
+            <td rowspan="2" width="33%">listbox</td>
+            <td colspan="2"><img src="images/moon.jpg" width="100%" height="100%"></td>
+        </tr>
+        <tr height="20px">
+            <td colspan="2" width="50%"><marquee>Newsweek</marquee></td>
+        </tr>
+    </table>
 </body>
 </html>
 

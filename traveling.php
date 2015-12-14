@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php
 include 'scripts/sql.php';
-include 'scripts/security';
+include 'scripts/security.php';
 include 'scripts/shipInfo.php';
 ?>
 <html>
