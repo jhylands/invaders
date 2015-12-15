@@ -183,18 +183,18 @@ if(isset($_GET['won'])){
 		var light4 = new THREE.PointLight( lightcolor );
         light4.position.set( 0, 0,-10 );
 		//Geometry of shapes-------------------------------------------------------------------------------------
-		var IcosahedronGeometry = new THREE.TorusGeometry(2.5,0.1);
-		var sphereGeometry2 = new THREE.IcosahedronGeometry(0.5,2);
-        var cubeGeometry = new THREE.CubeGeometry(1,1,1)
+		//var IcosahedronGeometry = new THREE.TorusGeometry(2.5,0.1);
+		//var sphereGeometry2 = new THREE.IcosahedronGeometry(0.5,2);
+       // var cubeGeometry = new THREE.CubeGeometry(1,1,1)
         var aGeometry = new THREE.SphereGeometry(0.5,0);
         var aWingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20);
         var aWingGeometryc = new THREE.CylinderGeometry(0.4,0.9,0.4,20);
 		var icosaMaterial = new THREE.MeshLambertMaterial('images/cockpit.gif' );
 		var sphereMaterial2 = new THREE.MeshLambertMaterial({ color: 0x00FFFF });
 		var crateTexture = new THREE.ImageUtils.loadTexture( 'images/cockpit.gif' );
-		var sphereTexture = new THREE.MeshLambertMaterial( { color: 0xFF00FF });
-		var cubeMaterial = new THREE.MeshLambertMaterial( { map:crateTexture } );
-        var aMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#00FFFF', emissive: '#550000', shininess: 100 ,transparent:true,opacity:0.8});
+		//var sphereTexture = new THREE.MeshLambertMaterial( { color: 0xFF00FF });
+		//var cubeMaterial = new THREE.MeshLambertMaterial( { map:crateTexture } );
+                var aMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#00FFFF', emissive: '#550000', shininess: 100 ,transparent:true,opacity:0.9});
 		//End of geometory of shapes----------------------------------------------------------------------------
 
 	//spacephip components
@@ -202,14 +202,14 @@ if(isset($_GET['won'])){
 	scene.add(spaceShip);
 	
 		//make alians
-		var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
-		var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
-		var alianGeometry = new THREE.SphereGeometry(1,1,1);
+		//var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
+		//var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
+		//var alianGeometry = new THREE.SphereGeometry(1,1,1);
                 mirrorWingCamera = new THREE.CubeCamera( 0.1, 10000000, 512 );
                 mirrorWingCamera.position.set(-10,0,-30);
                 scene.add( mirrorWingCamera );
                 var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FFFFFF', emissive: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget, transparent:true,opacity:0.6 })
-                var aWingMaterialc = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
+                var aWingMaterialc = new THREE.MeshBasicMaterial({color: '#FF0000', emissive: '#FFFFFF'})
                 aBody = new THREE.Mesh(aGeometry, aMaterial);
                 aWing = new THREE.Mesh(aWingGeometry, aWingMaterial);
                 aWingc = new THREE.Mesh(aWingGeometryc, aWingMaterialc);
@@ -354,6 +354,13 @@ function update() {
 			for(x=0;x<alians.length;x++){
                             for(z=0;z<alians[x].length;z++){
                                 if(alians[x][z].shown == true){
+                                        moveSeed = Math.random();
+                                        if(moveSeed<0.1){
+                                            alians[x][z].velocity.y +=0.0001;
+                                        }else if (moveSeed<0.2){
+                                            alians[x][z].velocity.y -=0.0001;
+                                        }
+                                        alians[x][z].velocity.y += (-alians[x][z].mesh.position.y) / 1000;
                                         if(Math.random()<difficulty){
                                         //make new bullit
                                         blength=bullit.length;
