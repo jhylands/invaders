@@ -15452,7 +15452,7 @@ THREE.LoadingManager = function ( onLoad, onProgress, onError ) {
 
 THREE.DefaultLoadingManager = new THREE.LoadingManager();
 
-// File:src/loaders/BufferGeometryLoader.js
+// File:src/loaderXHRs/BufferGeometryLoader.js
 
 /**
  * @author mrdoob / http://mrdoob.com/
@@ -34180,21 +34180,21 @@ THREE.DodecahedronGeometry = function ( radius, detail ) {
 
 	var vertices = [
 
-		// (±1, ±1, ±1)
+		// (ï¿½1, ï¿½1, ï¿½1)
 		- 1, - 1, - 1,    - 1, - 1,  1,
 		- 1,  1, - 1,    - 1,  1,  1,
 		 1, - 1, - 1,     1, - 1,  1,
 		 1,  1, - 1,     1,  1,  1,
 
-		// (0, ±1/&#966;, ±&#966;)
+		// (0, ï¿½1/&#966;, ï¿½&#966;)
 		 0, - r, - t,     0, - r,  t,
 		 0,  r, - t,     0,  r,  t,
 
-		// (±1/&#966;, ±&#966;, 0)
+		// (ï¿½1/&#966;, ï¿½&#966;, 0)
 		- r, - t,  0,    - r,  t,  0,
 		 r, - t,  0,     r,  t,  0,
 
-		// (±&#966;, 0, ±1/&#966;)
+		// (ï¿½&#966;, 0, ï¿½1/&#966;)
 		- t,  0, - r,     t,  0, - r,
 		- t,  0,  r,     t,  0,  r
 	];
