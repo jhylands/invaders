@@ -6,8 +6,20 @@
  <!-- include javascript libraries -->
 <script src="js/three.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
-<include skyBox />
+<script src="js/planetMaker.js"></script>
+<script src="js/skybox.js"></script>
 <script>
+//create page file
+var pages = [];
+function loadPage(pageName,pageID,renderer,scene.camera){
+	$.ajax({url:"pages/" + pageName}).done(function (data){ 
+		//evaluate the class object to create the class from the text
+		temp=eval(data);
+		//create an instance of the class
+		pages[pageID]= new temp(renderer,scene,camera);
+		});
+}
+
 window.onload = function() {
 	//define world
         var renderer = new THREE.WebGLRenderer();
@@ -24,9 +36,10 @@ window.onload = function() {
 	//setup keyboard event handler
 	var keyboard = new THREEx.KeyboardState();
 	//SKYBOX
-	scene.add( makeSkyBox );
-	//Load first page
-	//var page = new orbit(renderer,scene,camera);
+	scene.add( makeSkyBox() );
+	//import the page
+	loadPage("orbit.js",0,renderer,scene,camera);
+
 
 	function update() {
 		//keybinding
@@ -40,7 +53,7 @@ window.onload = function() {
 	//Render Loop
 	function render() {
 		//Call the update function
-		update();
+	 	update();
 		//Re-draw the scene
 		renderer.render(scene, camera);
 		//Re-call the render function when the next frame is ready to be drawn
