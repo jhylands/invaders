@@ -2,50 +2,13 @@
 <html>
 <head>
     <title>Introduction to Computer Graphics</title>  
-	<style>
-	body{
-	background-color:black;
-	color:white;
-	}
-	.clickable:hover{
-	background-color:#0000A0;
-	color:#FFFFE0;
-	cursor:pointer; cursor:hand;
-	}
-	</style>
+<include type="style" />
  <!-- include javascript libraries -->
 <script src="js/three.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
-<?php
-include 'scripts/security.php';
-include 'scripts/sql.php';
-include 'scripts/shipInfo.php';
-$ship = new ship($con,$ShipCode);
-//echo $ship;
-?>
-    <script>
-function makeSkyBox(){
-	var imagePrefix = "images/nebula-";
-	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
-	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 5000000, 5000000, 5000000 );
-	var imageURLs = [];
-	for (var i = 0; i < 6; i++)
-		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
-	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
-	var shader = THREE.ShaderLib[ "cube" ];
-	shader.uniforms[ "tCube" ].value = textureCube;
-	var skyMaterial = new THREE.ShaderMaterial( {
-		fragmentShader: shader.fragmentShader,
-		vertexShader: shader.vertexShader,
-		uniforms: shader.uniforms,
-		depthWrite: false,
-		side: THREE.BackSide
-	} );
-	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
-	return skyBox;
-}
-	window.onload = function() {
+<include skyBox />
+<script>
+window.onload = function() {
 	//define world
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth,window.innerHeight);
@@ -58,28 +21,26 @@ function makeSkyBox(){
             0.1,            // Near plane
             10000000          // Far plane
         );
-        
-	camera.position.set( 0, 0, -10 );//inishiation of camera
-        camera.lookAt( scene.position );
 	//setup keyboard event handler
 	var keyboard = new THREEx.KeyboardState();
-	//add lighting
 	//SKYBOX
 	scene.add( makeSkyBox );
+	//Load first page
+	//var page = new orbit(renderer,scene,camera);
+
 	function update() {
 		//keybinding
-		
-		var A = new THREE.Vector3(0,0,0);
-		A= addVectors(group.position,spaceStation.Cposition);
-		camera.position = A;
-		camera.lookAt(group.position);
+		page.keypress(keyboard);
+		page.update();
+		if(page.change()){
+			//invoke page changing protocol
+		}
 	}
 
 	//Render Loop
 	function render() {
 		//Call the update function
 		update();
-		//update cubecams
 		//Re-draw the scene
 		renderer.render(scene, camera);
 		//Re-call the render function when the next frame is ready to be drawn
