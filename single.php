@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Introduction to Computer Graphics</title>  
-<include type="style" />
+    <title>Introduction to Computer Graphics</title>
  <!-- include javascript libraries -->
 <script src="js/three.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
@@ -11,7 +10,7 @@
 <script>
 //create page file
 var pages = [];
-function loadPage(pageName,pageID,renderer,scene.camera){
+function loadPage(pageName,pageID,renderer,scene,camera){
 	$.ajax({url:"pages/" + pageName}).done(function (data){ 
 		//evaluate the class object to create the class from the text
 		temp=eval(data);
@@ -60,8 +59,7 @@ window.onload = function() {
 		requestAnimationFrame(render);
 	}
 	requestAnimationFrame(render);
-    };
-}
+};
 </script>
 </head>
 <body>
