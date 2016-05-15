@@ -10,10 +10,9 @@ function (renderer,scene,camera){
 	this.orbitPos = 0;
 	
 	//get information from server about current planet, lightitng ect
-	$.ajax(url:"get.php",post:"data:shipInfo";}.done(function(data){
+	$.ajax(url:"get.php",post:"data:shipInfo;}.done(function(data){
 		temp = eval(data);
 		this.planet = temp.planet;
-		create();
 		});
 	
 	//function to create page from nothing
@@ -31,6 +30,9 @@ function (renderer,scene,camera){
 	//function to handle keyboard events
 	function keyboard(keyState){
 		//no keyboard events for orbit
+		if(keyState.pressed("up"){
+			//code to be run when this happens
+		}
 	}
 	
 	//function to update scene each frame

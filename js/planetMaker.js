@@ -1,10 +1,10 @@
-function makePlanet(imgMap,specMap,bumpMap,emMap,size){
-	var planetGeometry = new THREE.SphereGeometry(size,32,32);
+function makePlanet(planet){
+	var planetGeometry = new THREE.SphereGeometry(planet['Radius'],32,32);
 	
-	var img = new THREE.TextureLoader().load(imgMap);
-	if(specMap!=null){var spec = new THREE.TextureLoader().load(specMap);}
-	if(bumpMap!=null){var bump = new THREE.TextureLoader().load(bumpMap);}
-	if(emMap!=null){var em = new THREE.TextureLoader().load(emMap);}
+	var img = new THREE.TextureLoader().load(planet['Image']);
+	if(specMap!=null){var spec = new THREE.TextureLoader().load(planet['Specular']);}
+	if(bumpMap!=null){var bump = new THREE.TextureLoader().load(planet['Bump']);}
+	if(emMap!=null){var em = new THREE.TextureLoader().load(planet['Emissive']);}
 	
 	var planetMaterial = new THREE.MeshPhongMaterial({
 		map:img,
@@ -15,10 +15,10 @@ function makePlanet(imgMap,specMap,bumpMap,emMap,size){
 	return new THREE.Mesh(planetGeometry,PlanetMaterial);
 }
 
-function bindLighting(planet,planetColour){
-	var planetLight = new THREE.pointLight(planetColour);
+function bindLights(threePlanet,planet){
+	var planetLight = new THREE.pointLight(planet['Reflection']);
 	var planetObject = new THREE.Group();
-	planetObject.add(planet);
+	planetObject.add(threePlanet);
 	planetObject.add(planetLight);
 	return planetObject;
 }
