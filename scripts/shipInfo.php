@@ -144,7 +144,10 @@ class place{
         $result = mysqli_query($this->con,$query);
         while($row = mysqli_fetch_array($result)){
                 $this->Name = $row['PlaceName'];
-                $this->URL = $row['PlanetURL'];
+                $this->Image = $row['Image'];
+		$this->Specular = $row['Specular'];
+		$this->Emissive = $row['Emissive'];
+		$this->Bump = $row['Bump'];
                 $this->OrbitalRadius = $row['OrbitalRadius'];
                 $this->InOrbitOf = $row['InOrbitOf'];
                 $this->Temperature = $row['Temperature'];
@@ -153,7 +156,7 @@ class place{
         }
     }
     function __toString() {
-        return $this->URL;
+        return json_encode(get_object_vars($this));
     }
     function eq($place){
         return $this->ID==$place->ID;
