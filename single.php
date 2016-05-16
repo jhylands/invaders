@@ -1,22 +1,27 @@
-<!DOCTYPE html>
 <html>
 <head>
     <title>Introduction to Computer Graphics</title>
  <!-- include javascript libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="js/three.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/planetMaker.js"></script>
-<script src="js/skybox.js"></script>
+<script src="js/skyBox.js"></script>
 <script>
 //create page file
 var pages = [];
 function loadPage(pageName,pageID,renderer,scene,camera){
-	$.ajax({url:"pages/" + pageName}).done(function (data){ 
+	$.ajax({url:"pages/" + pageName, success: function (data){ 
 		//evaluate the class object to create the class from the text
 		temp=eval(data);
 		//create an instance of the class
 		pages[pageID]= new temp(renderer,scene,camera);
-		});
+		page = pages[pageID];
+		if(pageID==0){
+			//first page loaded start rendering
+			requestAnimationFrame(render);
+		}
+		}});
 }
 
 window.onload = function() {
@@ -58,7 +63,6 @@ window.onload = function() {
 		//Re-call the render function when the next frame is ready to be drawn
 		requestAnimationFrame(render);
 	}
-	requestAnimationFrame(render);
 };
 </script>
 </head>
