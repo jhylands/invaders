@@ -10,8 +10,8 @@ function (renderer,scene,camera){
 	this.orbitPos = 0;
 	
 	//get information from server about current planet, lightitng ect
-	$.ajax(url:"pages/orbit.php",post:"data:shipInfo";}.done(function(data){
-		temp = eval(data);
+  $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(function(data){
+		var temp = eval(data);
 		this.planet = temp.planet;
 		create();
 		});
@@ -50,5 +50,3 @@ function (renderer,scene,camera){
 
 	
 }
-
-	
