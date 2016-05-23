@@ -8,8 +8,11 @@
 <script src="js/planetMaker.js"></script>
 <script src="js/skyBox.js"></script>
 <script>
+//inishiate page globals
+var render;
 //create page file
 var pages = [];
+
 function loadPage(pageName,pageID,renderer,scene,camera){
 	$.ajax({url:"pages/" + pageName, success: function (data){ 
 		//evaluate the class object to create the class from the text
@@ -23,6 +26,7 @@ function loadPage(pageName,pageID,renderer,scene,camera){
 		}
 		}});
 }
+
 
 window.onload = function() {
 	//define world
@@ -41,21 +45,18 @@ window.onload = function() {
 	var keyboard = new THREEx.KeyboardState();
 	//SKYBOX
 	scene.add( makeSkyBox() );
-	//import the page
-	loadPage("orbit.js",0,renderer,scene,camera);
-
-
+  //define the update function 
 	function update() {
 		//keybinding
-		page.keypress(keyboard);
+		page.keyboard(keyboard);
 		page.update();
 		if(page.change()){
 			//invoke page changing protocol
 		}
 	}
 
-	//Render Loop
-	function render() {
+	//define the Render Loop
+	render = function() {
 		//Call the update function
 	 	update();
 		//Re-draw the scene
@@ -63,6 +64,9 @@ window.onload = function() {
 		//Re-call the render function when the next frame is ready to be drawn
 		requestAnimationFrame(render);
 	}
+	
+	//import the page
+	loadPage("orbit.js",0,renderer,scene,camera);
 };
 </script>
 </head>

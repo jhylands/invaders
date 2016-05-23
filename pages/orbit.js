@@ -1,6 +1,6 @@
 //orbit class file
  
-function (renderer,scene,camera){
+{a = function (renderer,scene,camera){
 	this.name = "Orbit";
 	this.id = 0;
 	this.renderer = renderer;
@@ -17,7 +17,7 @@ function (renderer,scene,camera){
 		});
 	
 	//function to create page from nothing
-	function create(){
+	this.create = function(){
 		//add any planets
 		this.threePlanet = makePlanet(this.planet);
 		this.scene.add(this.threePlanet);
@@ -29,19 +29,19 @@ function (renderer,scene,camera){
 	}
 	
 	//function to handle keyboard events
-	function keyboard(keyState){
+	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	}
 	
 	//function to update scene each frame
-	function update(){
+	this.update = function(){
 		this.orbitPos+=0.00001;
-		this.camera.position = calculateOrbit();
+		this.camera.position = this.calculateOrbit();
 		this.camera.lookAt(this.planet.position);
 		this.planet.rotation.y += 0.0001;
 	}
 
-	function calculateOrbit(){
+	this.calculateOrbit = function(){
 		return new THREE.Vector3(
 			2*this.planet['Radius']*Math.cos(this.orbitPos),
 			0,
@@ -49,4 +49,5 @@ function (renderer,scene,camera){
 	}
 
 	
+};
 }
