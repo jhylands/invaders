@@ -11,9 +11,9 @@
 	
 	//get information from server about current planet, lightitng ect
   $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(function(data){
-		var temp = eval(data);
+		var temp = JSON.parse(data);
 		this.planet = temp.planet;
-		create();
+		this.create();
 		});
 	
 	//function to create page from nothing

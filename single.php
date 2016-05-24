@@ -14,17 +14,27 @@ var render;
 var pages = [];
 
 function loadPage(pageName,pageID,renderer,scene,camera){
-	$.ajax({url:"pages/" + pageName, success: function (data){ 
-		//evaluate the class object to create the class from the text
-		temp=eval(data);
-		//create an instance of the class
-		pages[pageID]= new temp(renderer,scene,camera);
-		page = pages[pageID];
-		if(pageID==0){
-			//first page loaded start rendering
-			requestAnimationFrame(render);
-		}
-		}});
+  if(pages[pageID]==null){
+    //page fault  
+  	$.ajax({url:"pages/" + pageName, success: function (data){ 
+  		//evaluate the class object to create the class from the text
+  		temp=eval(data);
+  		//create an instance of the class
+  		pages[pageID]= new temp(renderer,scene,camera);
+  		//there needs to be an onclass ready here
+  		page = pages[pageID];
+  		if(pageID==0){
+  			//first page loaded start rendering
+  			requestAnimationFrame(render);
+  		}
+  		}});
+  }else{
+    //reconstruct page
+    
+    //load page in
+    page = pages[pageID];
+  }
+  
 }
 
 
