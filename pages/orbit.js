@@ -12,8 +12,9 @@
 	//get information from server about current planet, lightitng ect
   $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(function(data){
 		var temp = JSON.parse(data);
-		this.planet = temp.planet;
-		this.create();
+		//need to use global reference as I don't as of yet understand javascript callback scoping
+		pages[0].planet = temp.planet;
+		pages[0].create();
 		});
 	
 	//function to create page from nothing
