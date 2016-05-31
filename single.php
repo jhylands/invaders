@@ -1,12 +1,14 @@
 <html>
 <head>
     <title>Introduction to Computer Graphics</title>
+    <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="js/three(73).js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="pages/Page.js"></script>
 <script src="js/skyBox.js"></script>
+<script src="js/spaceStation.js"></script>
 <script>
     //DATA definitions
     //list of page urls, indexed by id
@@ -70,6 +72,7 @@ window.onload = function() {
 		page.update();
 		if(page.change){
 			//invoke page changing protocol
+                        loadPage("",page.nextPage,renderer,scene,camera);
 		}
 	}
 
@@ -92,7 +95,7 @@ window.onload = function() {
 <div style="position:absolute;top:0px;left:0px;z-index:3;width:100%;height:100%;">
 
 </div>
-<div id="overlay" style="position:absolute;top:80%;width:100%;left:0px;z-index:5;">
+<div id="overlay" style="position:absolute;top:0px;width:100%;left:0px;height:100%;z-index:5;">
 </div>
 
 </body>
