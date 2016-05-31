@@ -12,7 +12,7 @@
 <script>
     //DATA definitions
     //list of page urls, indexed by id
-    var pageURLs = [];
+    var pageURLs = ['orbit.js','map.js','cargo.js','trade.js','shipYard.js','combat.js','achivement.js'];
     var onPageReady = function(pageID){
                     page = pages[pageID];
                     if(pageID==0){
@@ -27,10 +27,10 @@ var render;
 //create page file
 var pages = [];
 
-function loadPage(pageName,pageID,renderer,scene,camera){
+function loadPage(pageID,renderer,scene,camera){
   if(pages[pageID]==null){
     //page fault  
-  	$.ajax({url:"pages/" + pageName, success: function (data){ 
+  	$.ajax({url:"pages/" + pageURLs[pageID], success: function (data){ 
   		//evaluate the class object to create the class from the text
   		temp=eval(data);
   		//create an instance of the class
@@ -75,7 +75,7 @@ window.onload = function() {
                         page.change = false;
 			//invoke page changing protocol
                         alert(page.nextPage);
-                        loadPage("",page.nextPage,renderer,scene,camera);
+                        //loadPage("",page.nextPage,renderer,scene,camera);
 		}
 	}
 
@@ -90,7 +90,7 @@ window.onload = function() {
 	}
 	
 	//import the page
-	loadPage("orbit.js",0,renderer,scene,camera);
+	loadPage(0,renderer,scene,camera);
 };
 </script>
 </head>
