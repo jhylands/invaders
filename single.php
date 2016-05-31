@@ -3,10 +3,22 @@
     <title>Introduction to Computer Graphics</title>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three.js"></script>
+<script src="js/three(73).js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
-<script src="js/planetMaker.js"></script>
+<script src="pages/Page.js"></script>
 <script src="js/skyBox.js"></script>
+<script>
+    //DATA definitions
+    //list of page urls, indexed by id
+    var pageURLs = [];
+    var onPageReady = function(pageID){
+                    page = pages[pageID];
+                    if(pageID==0){
+                            //first page loaded start rendering
+                            requestAnimationFrame(render);
+                    }
+                }; 
+</script>
 <script>
 //inishiate page globals
 var render;
@@ -20,14 +32,9 @@ function loadPage(pageName,pageID,renderer,scene,camera){
   		//evaluate the class object to create the class from the text
   		temp=eval(data);
   		//create an instance of the class
-  		pages[pageID]= new temp(renderer,scene,camera);
-  		//there needs to be an onclass ready here
-  		page = pages[pageID];
-  		if(pageID==0){
-  			//first page loaded start rendering
-  			requestAnimationFrame(render);
-  		}
-  		}});
+  		pages[pageID]= new temp(renderer,scene,camera, onPageReady);//end of page onreadyfunction
+  		pages[pageID].create();
+  		}});//end of pageonload function
   }else{
     //reconstruct page
     
@@ -51,6 +58,7 @@ window.onload = function() {
             0.1,            // Near plane
             10000000          // Far plane
         );
+        scene.add(camera);
 	//setup keyboard event handler
 	var keyboard = new THREEx.KeyboardState();
 	//SKYBOX
@@ -60,7 +68,7 @@ window.onload = function() {
 		//keybinding
 		page.keyboard(keyboard);
 		page.update();
-		if(page.change()){
+		if(page.change){
 			//invoke page changing protocol
 		}
 	}

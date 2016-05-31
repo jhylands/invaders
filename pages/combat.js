@@ -10,7 +10,7 @@ function (renderer,scene,camera){
 	this.orbitPos = 0;
 	
 	//get information from server about current planet, lightitng ect
-	$.ajax(url:"get.php",post:"data:shipInfo;}.done(function(data){
+	$.ajax(url:"get.php",post:data:shipInfo}.done(function(data){
 		temp = eval(data);
 		this.planet = temp.planet;
 		});
