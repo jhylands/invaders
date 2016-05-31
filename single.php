@@ -71,7 +71,10 @@ window.onload = function() {
 		page.keyboard(keyboard);
 		page.update();
 		if(page.change){
+                        //flip the change bit to indicate we are handeling it
+                        page.change = false;
 			//invoke page changing protocol
+                        alert(page.nextPage);
                         loadPage("",page.nextPage,renderer,scene,camera);
 		}
 	}

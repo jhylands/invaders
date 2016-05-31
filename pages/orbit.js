@@ -66,21 +66,25 @@
             htmlOverlay += '&#8451</h2></td></tr><tr>	<td class="clickable" ><h2>Goto Console</h2></td></tr></table></div>';
             document.getElementById('overlay').innerHTML = htmlOverlay;
             document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
-            //create invoke page change reference closure whatever that means
-            var __invokePageChange = this.invokePageChange;
+            
             //add eventhandlers
-            for(i=0;i<options.length;i++){
-                //create what I hope will work as a closure for i
-                var __i;
-                document.getElementById(options[i]).addEventListener("click", function(){invokePageChange(__i);});
+            for(i=0;i<4/*options.length*/;i++){
+                var func = this.makeChanger(this,i+1);
+                console.log(func);
+                document.getElementById(options[i]).addEventListener("click", func);
             }
         }
         
-        //need a function to handle page changing
-        this.invokePageChange = function(nextPage){
-            this.change = true;
-            this.nextPage = nextPage;
+        //create a closure containing a reference to this class and the index of the page to be loaded in
+        this.makeChanger = function(page,nextPageID){
+            var locPage = page;
+            var locNextPage = nextPageID;
+            return function (){
+                locPage.change=true;
+                locPage.nextPage = locNextPage; 
+            }
         }
+
 	
 	//function to handle keyboard events
 	this.keyboard= function(keyState){
