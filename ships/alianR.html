@@ -234,8 +234,8 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
 
 	//scene.add(spaceShip);
 //make alians
-        var aGeometry = new THREE.SphereGeometry(0.5,0);
-        var aWingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20)
+        var aGeometry = new THREE.SphereGeometry(0.5,0,60,60);
+        var aWingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,30)
 		var icosaMaterial = new THREE.MeshLambertMaterial('images/cockpit.gif' );
 		var sphereMaterial2 = new THREE.MeshLambertMaterial({ color: 0x00FFFF });
 		var crateTexture = new THREE.ImageUtils.loadTexture( 'images/cockpit.gif' );
@@ -245,7 +245,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
 
 mirrorWingCamera = new THREE.CubeCamera( 0.1, 321640, 512 );
 	scene.add( mirrorWingCamera );
-        var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100, envMap: mirrorWingCamera.renderTarget})
+        var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FFFFFF', emissive: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget})
 		var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
 		var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
 		var alianGeometry = new THREE.SphereGeometry(1,1,1);
@@ -253,9 +253,9 @@ mirrorWingCamera = new THREE.CubeCamera( 0.1, 321640, 512 );
 				alians = new Object();
 				//create the alian as a mesh object and set the apropreate properties
 				alians.aBody = new THREE.Mesh(aGeometry, aMaterial);
-				alians.aBody.position.set(2-10,0,2-30);
+				alians.aBody.position.set(0,0,0);
 				alians.aWing = new THREE.Mesh(aWingGeometry, aWingMaterial);
-				alians.aWing.position.set(2-10,0,2-30);
+				alians.aWing.position.set(0,0,0);
 	mirrorWingCamera.position = alians.aWing.position;
 				//add the alian to the scene
 				scene.add(alians.aBody);
@@ -276,11 +276,12 @@ var cubeGeom1 = new THREE.CubeGeometry(10, 10, 10, 1, 1, 1);
         var CubeMaterial = new THREE.MeshBasicMaterial( {color: 0xFFFFFF} );
 	mirrorCube = new THREE.Mesh( cubeGeom, mirrorCubeMaterial );
         Cube = new THREE.Mesh( cubeGeom1, CubeMaterial );
-	mirrorCube.position.set(0,0,0);
+	mirrorCube.position.set(-10,0,0);
         //mirrorCube.rotation.y=Math.pi/4;
 	mirrorCubeCamera.position = mirrorCube.position;
+        Cube.position = mirrorCube.position;
 	scene.add(mirrorCube);	
-        scene.add(Cube);
+        //scene.add(Cube);
 	//siran();
 		//runLoader();
 		function update() {
@@ -315,7 +316,7 @@ var cubeGeom1 = new THREE.CubeGeometry(10, 10, 10, 1, 1, 1);
 Cube.visible=false;
 mirrorCube.visible = false;
 	mirrorCubeCamera.updateCubeMap( renderer, scene );
-	mirrorCube.visible = true;
+	//mirrorCube.visible = true;
 Cube.visible=true;
 alians.aWing.visible = false;
 	mirrorWingCamera.updateCubeMap( renderer, scene );

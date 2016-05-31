@@ -1,10 +1,14 @@
 <?php
-include 'sql.php';
+//include 'sql.php';
 $QRY = "SELECT * FROM users,ships,shipTypes,locations,markets WHERE users.FID=ships.OwnerID AND locations.PlaceID=markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND users.FID=";
-//echo $QRY . $_COOKIE['User'];
-$result = mysqli_query($con,$QRY . $_COOKIE['User']);
-while($row = mysqli_fetch_array($result)){
-	$ShipCode = $row['ShipCode'];
+
+if($_COOKIE['User']){
+  $result = mysqli_query($con,$QRY . $_COOKIE['User']);
+  while($row = mysqli_fetch_array($result)){
+    $ShipCode = $row['ShipCode'];
+  }
+}else{
+  echo "ERROR user not logged in";
 }
 //echo $ship;
 class resource{
@@ -153,7 +157,7 @@ class place{
         }
     }
     function __toString() {
-        return $this->URL;
+        return json_encode(get_object_vars($this));;
     }
     function eq($place){
         return $this->ID==$place->ID;

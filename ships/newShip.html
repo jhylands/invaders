@@ -3,10 +3,12 @@
 <head>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
-    <script src="../js/three(73).js"></script>
+    <script src="../js/three(52L).js"></script>
+    <script src="geom.js"></script>
 	<script src="../js/THREEx.KeyboardState.js"></script>	
 	
     <script>
+        var ship;
 	var production=0;
 	var scene;
 	 //declare a truly global variable to hold weather the user has just shot
@@ -203,7 +205,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
 		comp15.rotation.z=-Math.PI/2;
 	spaceShip = new THREE.Object3D()
 	spaceShip.add(comp1);
-	spaceShip.add(comp2);
+	//scene.add(comp2);
 	spaceShip.add(comp2p);
 	spaceShip.add(comp2pp);
 	spaceShip.add(comp3);
@@ -225,6 +227,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
 	//scene.add(spaceShip);
 var loader = new THREE.ObjectLoader();
 loader.load("ship1.js",function ( obj ) {
+    
 		var material = new THREE.MeshPhongMaterial( {
 					color: 0xdddddd,
 					specular: 0x222222,
@@ -241,12 +244,6 @@ loader.load("ship1.js",function ( obj ) {
      obj.children[1].material = material;
      obj.children[2].material = material;
      obj.children[5].material = material;
-    /* spaceShip.add(obj.children[4]);
-     spaceShip.add(obj.children[0]);
-     spaceShip.add(obj.children[1]);
-     spaceShip.add(obj.children[2]);
-     spaceShip.add(obj.children[5]);*/
-
      scene.add( obj );
      alert(obj);
      

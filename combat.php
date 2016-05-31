@@ -19,11 +19,13 @@ if(isset($_GET['won'])){
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
     <script src="js/three.js"></script>
-	<script src="js/THREEx.KeyboardState.js"></script>	
+	<script src="js/THREEx.KeyboardState.js"></script>
+        <script src="ships/liberator/build.js"></script>
 	
     <script>
 	var start = false;
 	var scene;
+        var spacing=3;
 	 //declare a truly global variable to hold weather the user has just shot
 	 var justshot=false;
 	 //declare the score
@@ -81,14 +83,14 @@ if(isset($_GET['won'])){
 	//set the bullits coming towards you
 	bullits.velocity.z=1;
 	//set the color
-	var Material = new THREE.MeshLambertMaterial( { color:0xFF0000 } );
+	var Material = new THREE.MeshBasicMaterial( { color:0xFF0000,transparent:true,opacity:0.8  } );
 	//set them as alian
 	bullits.own = false;
 	}else{
 	//set the bullits going away from you
 	bullits.velocity.z=-1;
 	//set the color
-	var Material = new THREE.MeshLambertMaterial( { color:0x00FFFF } );
+	var Material = new THREE.MeshBasicMaterial( { color:0x00FFFF ,transparent:true,opacity:0.8} );
 	bullits.own = true;
 	}
 	bullits.object = new THREE.Mesh( Geometry,Material );
@@ -113,13 +115,9 @@ if(isset($_GET['won'])){
 	var change=false;
 	for(x=0;x<alian.length;x++){
 		for(z=0;z<alian[x].length;z++){
-			alian[x][z].aBody.position.x+=alian[x][z].velocity.x;
-			alian[x][z].aBody.position.y+=alian[x][z].velocity.y;
-			alian[x][z].aBody.position.z+=alian[x][z].velocity.z;
-			alian[x][z].aWing.position.x+=alian[x][z].velocity.x;
-			alian[x][z].aWing.position.y+=alian[x][z].velocity.y;
-			alian[x][z].aWing.position.z+=alian[x][z].velocity.z;
-		if(alian[x][z].aBody.position.x>15 || alian[x][z].aBody.position.x<-15){
+			alian[x][z].mesh.position.add(alian[x][z].velocity);
+                        //alian[x][z].camera.position = alian[x][z].mesh.position;
+		if(alian[x][z].mesh.position.x>7*spacing || alian[x][z].mesh.position.x<-7*spacing){
 		change= true;
 		}
 		}
@@ -133,6 +131,15 @@ if(isset($_GET['won'])){
 	}
 	}
 	}//end of move alian function
+        function renderAlians(alian,renderer,scene){
+	for(x=0;x<alian.length;x++){
+		for(z=0;z<alian[x].length;z++){
+                    alian[x][z].mesh.visible = false;
+                    alian[x][z].camera.updateCubeMap( renderer, scene );
+                    alian[x][z].mesh.visible = true;
+                }
+            }
+        }
 
 	//function to toggle the justshot
 	function Canshoot(){justshot=false;}
@@ -169,58 +176,58 @@ if(isset($_GET['won'])){
 		var keyboard = new THREEx.KeyboardState();
 		renderer.setClearColorHex( 0x000000, 1 );
 		
-		//setup lighting conditions
-		var lightcolor =  0xFFFFFF
-		var light = new THREE.PointLight( lightcolor );
-        light.position.set( 0, 10, 0 );
-		scene.add(light);
-		var light4 = new THREE.PointLight( lightcolor );
-        light4.position.set( 0, 0,-10 );
+
 		//Geometry of shapes-------------------------------------------------------------------------------------
-		var IcosahedronGeometry = new THREE.TorusGeometry(2.5,0.1);
-		var sphereGeometry2 = new THREE.IcosahedronGeometry(0.5,2);
-        var cubeGeometry = new THREE.CubeGeometry(1,1,1)
+		//var IcosahedronGeometry = new THREE.TorusGeometry(2.5,0.1);
+		//var sphereGeometry2 = new THREE.IcosahedronGeometry(0.5,2);
+       // var cubeGeometry = new THREE.CubeGeometry(1,1,1)
         var aGeometry = new THREE.SphereGeometry(0.5,0);
-        var aWingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20)
+        var aWingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20);
+        var aWingGeometryc = new THREE.CylinderGeometry(0.4,0.9,0.4,20);
 		var icosaMaterial = new THREE.MeshLambertMaterial('images/cockpit.gif' );
 		var sphereMaterial2 = new THREE.MeshLambertMaterial({ color: 0x00FFFF });
 		var crateTexture = new THREE.ImageUtils.loadTexture( 'images/cockpit.gif' );
-		var sphereTexture = new THREE.MeshLambertMaterial( { color: 0xFF00FF });
-		var cubeMaterial = new THREE.MeshLambertMaterial( { map:crateTexture } );
-        var aMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#FFFFFF', emissive: '#550000', shininess: 100});
-        var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FF0000', emissive: '#000000', shininess: 100})
+		//var sphereTexture = new THREE.MeshLambertMaterial( { color: 0xFF00FF });
+		//var cubeMaterial = new THREE.MeshLambertMaterial( { map:crateTexture } );
+                var aMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#00FFFF', emissive: '#550000', shininess: 100 ,transparent:true,opacity:0.9});
 		//End of geometory of shapes----------------------------------------------------------------------------
 
 	//spacephip components
 <?php include 'ships/liberator.js'; ?>
-	scene.add(spaceShip);
+        loadGeometry('ship');
+	//scene.add(spaceShip);
 	
 		//make alians
-		var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
-		var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
-		var alianGeometry = new THREE.SphereGeometry(1,1,1);
+		//var alianTexture = new THREE.ImageUtils.loadTexture( 'images/crate.gif' );
+		//var alianMaterial = new THREE.MeshLambertMaterial( { map:alianTexture } );
+		//var alianGeometry = new THREE.SphereGeometry(1,1,1);
+                mirrorWingCamera = new THREE.CubeCamera( 0.1, 10000000, 512 );
+                mirrorWingCamera.position.set(-10,0,-30);
+                scene.add( mirrorWingCamera );
+                var aWingMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FFFFFF', emissive: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget, transparent:true,opacity:0.6 })
+                var aWingMaterialc = new THREE.MeshBasicMaterial({color: '#FF0000', emissive: '#FFFFFF'})
+                aBody = new THREE.Mesh(aGeometry, aMaterial);
+                aWing = new THREE.Mesh(aWingGeometry, aWingMaterial);
+                aWingc = new THREE.Mesh(aWingGeometryc, aWingMaterialc);
+                alianMesh = new THREE.Object3D();
+                alianMesh.add(aBody);
+                alianMesh.add(aWing);
+                alianMesh.add(aWingc);
 		var alians = new Array();
 		for (x=0;x<10;x++){
 			//X loop
 			alians[x] = new Array()
 			for(z=0;z<3;z++){
 				//Z loop
-//create the user defined types
-				alians[x][z] = new Object();
+                                //create the user defined types
 				alians[x][z] = new Object();
 				//create the alian as a mesh object and set the apropreate properties
-				alians[x][z].aBody = new THREE.Mesh(aGeometry, aMaterial);
-				alians[x][z].aBody.position.set(2*x-10,0,2*z-30);
-				alians[x][z].aWing = new THREE.Mesh(aWingGeometry, aWingMaterial);
-				alians[x][z].aWing.position.set(2*x-10,0,2*z-30);
+				alians[x][z].mesh = alianMesh.clone();
+				alians[x][z].mesh.position.set(spacing*x-10,0,spacing*z-30);
 				//add the alian to the scene
-				scene.add(alians[x][z].aBody);
-				scene.add(alians[x][z].aWing);
+				scene.add(alians[x][z].mesh);
 				//give the alian some velocity or at least inishiate the variables
-				alians[x][z].velocity = new Object()
-				alians[x][z].velocity.x=0.01;
-				alians[x][z].velocity.y=0;
-				alians[x][z].velocity.z=0;
+				alians[x][z].velocity = new THREE.Vector3(0.01,0,0);
 				//add a bool showing weather the object should be treated as being there or not
 				alians[x][z].shown = true;
 			}
@@ -249,7 +256,7 @@ if(isset($_GET['won'])){
 //----------------------------------------------------------------------------------------
 
 //SUN
-	var lightcolor =  0xFFFFFF
+	var lightcolor =  0xFFE0E0;
 		var light = new THREE.PointLight( lightcolor );
         light.position.set( -100000, 10, -10 );
 		scene.add(light);
@@ -266,7 +273,11 @@ if(isset($_GET['deep'])){
 	echo "/*";
 }
 ?>
-
+		//setup lighting conditions
+        var Earthlightcolor =  0x50A0A0;
+        var Earthlight = new THREE.PointLight( Earthlightcolor );
+        Earthlight.position.set( 0, 10, -30000 );
+        scene.add(Earthlight);
 	var earthGeometry = new THREE.SphereGeometry(63781,32,32);
 	var earthTexture = new THREE.ImageUtils.loadTexture('images/<?php echo $ship->place->URL; ?>');
 	var earthMaterial = new THREE.MeshPhongMaterial({map:earthTexture});
@@ -296,19 +307,20 @@ function update() {
 	//MOVEMENT CONTROLLS
 			if(keyboard.pressed("left")){
 				//check the object is in range
-				if(spaceShip.position.x>-10){
+				if(spaceShip.position.x>-5*spacing){
 					spaceShip.position.x-=0.1
 				}
 			}else if(keyboard.pressed("right")){
 				//check object is in range
-				if(spaceShip.position.x<10){
+				if(spaceShip.position.x<5*spacing){
 					spaceShip.position.x+=0.1
 				}
 			}
-			camera.position.x=spaceShip.position.x
+			camera.position.x=spaceShip.position.x;
+                        liberator.position = spaceShip.position;
 
 			//ANIMATE THE SHIP
-			spaceShip.rotation.y+=0.01;
+			liberator.rotation.z+=0.01;
 
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
@@ -341,16 +353,23 @@ function update() {
 			MoveAlians(alians);
 			//alians shoot back
 			for(x=0;x<alians.length;x++){
-			for(z=0;z<alians[x].length;z++){
-			if(alians[x][z].shown == true){
-			if(Math.random()<difficulty){
-			//make new bullit
-			blength=bullit.length;
-			bullit[blength] = createBullit(alians[x][z].aBody.position,false);
-			scene.add(bullit[blength].object);
-			}
-			}
-			}
+                            for(z=0;z<alians[x].length;z++){
+                                if(alians[x][z].shown == true){
+                                        moveSeed = Math.random();
+                                        if(moveSeed<0.1){
+                                            alians[x][z].velocity.y +=0.0001;
+                                        }else if (moveSeed<0.2){
+                                            alians[x][z].velocity.y -=0.0001;
+                                        }
+                                        alians[x][z].velocity.y += (-alians[x][z].mesh.position.y) / 1000;
+                                        if(Math.random()<difficulty){
+                                        //make new bullit
+                                        blength=bullit.length;
+                                        bullit[blength] = createBullit(alians[x][z].mesh.position,false);
+                                        scene.add(bullit[blength].object);
+                                    }
+                                }
+                            }
 			}
 			
 			
@@ -366,12 +385,11 @@ function update() {
 					//if both objects are actually there
 					if(bullit[i].shown && alians[x][z].shown){
 					//I'm guessing the sum of the radi is about 2
-					if(Collision(bullit[i].object.position,alians[x][z].aBody.position,1)){
+					if(Collision(bullit[i].object.position,alians[x][z].mesh.position,1)){
 					//the objects have collided
 					scene.remove(bullit[i].object);
 					bullit[i].shown = false;
-					scene.remove(alians[x][z].aBody);
-					scene.remove(alians[x][z].aWing);
+					scene.remove(alians[x][z].mesh);
 					alians[x][z].shown = false;
 					score+=10;
 					document.getElementById('hit').play()
@@ -445,6 +463,19 @@ function update() {
 		function render() {
 			//Call the update function
 			update();
+                        //renderAlians(alians,renderer,scene);
+                        for(x=0;x<alians.length;x++){
+                            for(z=0;z<alians[x].length;z++){
+                                alians[x][z].mesh.visible = false;
+                            }
+                        }
+                        mirrorWingCamera.position = alians[5][1].mesh.position;
+                        mirrorWingCamera.updateCubeMap( renderer, scene );
+                        for(x=0;x<alians.length;x++){
+                            for(z=0;z<alians[x].length;z++){
+                                alians[x][z].mesh.visible = true;
+                            }
+                        }
 			//Re-draw the scene
 			renderer.render(scene, camera);
 			//Re-call the render function when the next frame is ready to be drawn

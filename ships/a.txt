@@ -1,0 +1,63 @@
+
+}],
+    "textures": [],
+    "animations": [{
+        "fps": 24,
+        "name": "default",
+        "tracks": []
+    }],
+    "images": [],
+    "object": {
+        "uuid": "557E6756-FAAE-4577-8C62-715A4B73B5B6",
+        "type": "Scene",
+        "children": [{
+            "name": "Camera",
+            "uuid": "DE0714B3-5D16-30EF-9A0A-6C5D6DD394B9",
+            "matrix": [-0.685881,-0.010817,0.727634,0,0.31737,0.895343,0.312469,0,-0.654862,0.445245,-0.610666,0,-7.48113,5.34366,-6.50764,1],
+            "visible": true,
+            "type": "PerspectiveCamera",
+            "far": 100,
+            "near": 0.1,
+            "aspect": 1.77778,
+            "fov": 35
+        },{
+            "name": "Cube",
+            "uuid": "F29D1AC4-D789-3D8E-BAB5-59DC1B758FE2",
+            "matrix": [-5.23419,0,0,0,0,0,5.23419,0,0,5.23419,0,0,-1,-0.223941,0.05074,1],
+            "visible": true,
+            "type": "Mesh",
+            "material": "FC9C3C1C-87E7-3748-8148-105003E5F3D5",
+            "castShadow": true,
+            "receiveShadow": true,
+            "geometry": "13A102A2-FCD7-346C-97EF-339AC4D7C55E"
+        },{
+            "name": "Lamp",
+            "uuid": "480358C5-FC08-314B-A146-DEE8993A0407",
+            "matrix": [0.290865,-0.055189,0.955171,0,0.771101,0.604525,-0.199883,0,-0.566393,0.794672,0.218391,0,-4.07625,5.90386,1.00545,1],
+            "visible": true,
+            "type": "PointLight",
+            "color": 16777215,
+            "intensity": 1,
+            "distance": 0
+        }],
+        "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]
+    },
+    "metadata": {
+        "version": 4.4,
+        "type": "Object",
+        "generator": "io_three",
+        "sourceFile": "asteroid.blend"
+    },
+    "materials": [{
+        "color": 10724259,
+        "vertexColors": false,
+        "depthTest": true,
+        "depthWrite": true,
+        "blending": "NormalBlending",
+        "uuid": "FC9C3C1C-87E7-3748-8148-105003E5F3D5",
+        "type": "MeshLambertMaterial",
+        "ambient": 10724259,
+        "name": "Material",
+        "emissive": 0
+    }]
+}
