@@ -15,7 +15,9 @@
         
         //class variables
         this.eventHandlers =[];
-        this.bullets = new BulletHandler();
+        this.bullets = new BulletHandler(1000,5000);
+        this.friendAllegiance = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(0,0,1));
+        this.foeAllegiance = this.bullets.createAllegiance("Foe",0xFF000,new THREE.Vector3(0,0,-1));
         
         //Finished loading variables
         this.ready = false;
@@ -113,6 +115,10 @@
             camera.position.z=50* Math.cos(Crotation);
             //get the camera to look at the spaceship
             camera.lookAt( spaceShip.position);
+            //SHOOTING
+            if(keyState.pressed("space")){
+                this.bullets.create(this.friendAllegiance,spaceShip.position);
+            }
 	}
 	
 	//function to update scene each frame
