@@ -9,6 +9,7 @@
 <script src="pages/Page.js"></script>
 <script src="js/skyBox.js"></script>
 <script src="js/spaceStation.js"></script>
+<script src="js/bullet.js"></script><!-- Too many loaded better management needed-->
 <script>
     //DATA definitions
     //list of page urls, indexed by id
@@ -27,21 +28,22 @@ var render;
 //create page file
 var pages = [];
 
-function loadPage(pageID,renderer,scene,camera){
-  if(pages[pageID]==null){
+function loadPage(toPageID,fromPageID,renderer,scene,camera){
+  if(pages[toPageID]==null){
     //page fault  
-  	$.ajax({url:"pages/" + pageURLs[pageID], success: function (data){ 
+  	$.ajax({url:"pages/" + pageURLs[toPageID], success: function (data){ 
   		//evaluate the class object to create the class from the text
   		temp=eval(data);
   		//create an instance of the class
-  		pages[pageID]= new temp(renderer,scene,camera, onPageReady);//end of page onreadyfunction
-  		pages[pageID].create();
+  		pages[toPageID]= new temp(renderer,scene,camera, onPageReady);//end of page onreadyfunction
+  		pages[toPageID].create(fromPageID);
   		}});//end of pageonload function
   }else{
     //reconstruct page
-    
+    page.create(fromPageID);
     //load page in
-    page = pages[pageID];
+    //should be in the onready function in the page
+
   }
   
 }
@@ -90,7 +92,7 @@ window.onload = function() {
 	}
 	
 	//import the page
-	loadPage(0,renderer,scene,camera);
+	loadPage(0,0,renderer,scene,camera);
 };
 </script>
 </head>

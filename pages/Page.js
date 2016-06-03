@@ -1,7 +1,8 @@
 function Page(){
     //abstract functions for a page
     
-    this.create = function(){console.log('Abstract function create not overwritten!');};
+    this.create = function(from){console.log('Abstract function create not overwritten!');};
+    this.destroy = function(to){console.log('Abstract function destroy not overwritten!');};
     this.keyboard = function(keystate){console.log('Abstract function keyboard not overwritten!');};
     this.update = function(){console.log('Abstract function update not overwritten!');};
     this.reload = function(){console.log('Abstract function reload not overwritten!');};

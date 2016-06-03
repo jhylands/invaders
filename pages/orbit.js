@@ -30,8 +30,37 @@
         
         
 	//function to create page from nothing
-	this.create = function(){
-		//add any planets
+	this.create = function(from){
+                //switch based on where the page is coming from
+                switch(from){
+                    case 0:
+                        //constructor (this is the first time the 'single' page
+                        //has been loaded
+                        this.constructFirst();
+                        break;
+                        
+                }
+		
+                //Notify that this function is ready to be run
+                this.ready = true;
+                this.onready(this.id);
+	}
+        this.destroy = function(to){
+            //switch based on who the page is going to next
+            switch(to){
+                case 1:
+                    //Go to the map
+                    
+                    break;
+                case 5:
+                    //go to combat
+                    
+                    break;
+            }
+        }
+        //function to construct the scene if nothing has yet been constructed.
+        this.constructFirst = function(){
+                //add any planets
 		this.threePlanet = this.makePlanet(this.planet);
 		
 		//set up lighting
@@ -47,11 +76,7 @@
 		//setup space station overlay
                 //create user interface
                 this.createUserInterface();
-                //Notify that this function is ready to be run
-                this.ready = true;
-                this.onready(this.id);
-                
-	}
+        }
         
         this.createUserInterface = function(){
             var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink'];
@@ -80,6 +105,7 @@
             var locPage = page;
             var locNextPage = nextPageID;
             return function (){
+                locPage.destroy(locNextPage);
                 locPage.change=true;
                 locPage.nextPage = locNextPage; 
             }
