@@ -1,4 +1,5 @@
 //orbit class file
+//planet-centric coordinates
  
 {a = function (renderer,scene,camera,onready){
         //inherits from page class
@@ -54,7 +55,10 @@
                     break;
                 case 5:
                     //go to combat
-                    
+                    //remove the saterlite from the scene
+                    this.scene.remove(this.threeSpaceStation);
+                    //remove the overlay
+                    document.getElementById('overlay').innerHTML = "";
                     break;
             }
         }
@@ -64,8 +68,9 @@
 		this.threePlanet = this.makePlanet(this.planet);
 		
 		//set up lighting
-		
-                this.scene.add(this.bindLights(this.threePlanet,this.planet));
+		var temp = this.bindLights(this.threePlanet,this.planet);
+                temp.name = "planet";
+                this.scene.add(temp);
                 
                 //add the sun
                 this.scene.add(this.addSun());
@@ -93,7 +98,7 @@
             document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
             
             //add eventhandlers
-            for(i=0;i<4/*options.length*/;i++){
+            for(i=0;i<6/*options.length*/;i++){
                 var func = this.makeChanger(this,i+1);
                 console.log(func);
                 document.getElementById(options[i]).addEventListener("click", func);
@@ -153,6 +158,6 @@
             //get information from server about current planet, lightitng ect
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
         }
-	
+	//this.create();
 };
 }

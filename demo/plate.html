@@ -1,0 +1,129 @@
+   <body> <script src="../js/three(73).js"></script>
+<script>
+var SCREEN_WIDTH = window.innerWidth - 100;
+var SCREEN_HEIGHT = window.innerHeight - 100;
+
+var camera, scene;
+var canvasRenderer, webglRenderer;
+
+var container, mesh, geometry, plane;
+
+var windowHalfX = window.innerWidth / 2;
+var windowHalfY = window.innerHeight / 2;
+var cube;
+var loaded=false;
+init();
+animate();
+
+function init() {
+
+    container = document.createElement('div');
+    document.body.appendChild(container);
+
+    camera = new THREE.PerspectiveCamera(30, window.innerWidth / window.innerHeight, 1, 100000);
+    camera.position.x = 1200;
+    camera.position.y = 200;
+    camera.lookAt({x: 0, y: 0, z: 0});
+
+    scene = new THREE.Scene();
+    
+    var groundMaterial = new THREE.MeshPhongMaterial({
+        color: 0x3C3C3C
+    });
+    plane = new THREE.Mesh(new THREE.PlaneGeometry(500, 500), groundMaterial);
+    plane.rotation.x = -Math.PI / 2;
+    plane.receiveShadow = true;
+
+    scene.add(plane);
+
+    // LIGHTS
+
+    var light;
+
+    light = new THREE.DirectionalLight(0xdfebff, 1.75);
+    light.position.set(300, 400, 50);
+    light.position.multiplyScalar(1.3);
+
+    light.castShadow = true;
+    light.shadowCameraVisible = true;
+
+    light.shadowMapWidth = 2048;
+    light.shadowMapHeight = 2048;
+
+    var d = 400;
+
+    light.shadowCameraLeft = -d;
+    light.shadowCameraRight = d;
+    light.shadowCameraTop = d;
+    light.shadowCameraBottom = -d;
+
+    light.shadowCameraFar = 1000;
+    light.shadowDarkness = 1;
+
+    scene.add(light);
+    
+    // TorusKnotGeometry(radius, tube, radialSegments, tubularSegments, p, q, heightScale)
+    var boxgeometry = new THREE.TorusKnotGeometry(100, 40, 128, 32, 2, 3, 1);
+    var boxmaterial = new THREE.MeshLambertMaterial({
+        color: 0x0aeedf
+    });
+    cube = new THREE.Mesh(boxgeometry, boxmaterial);
+    cube.castShadow = true;
+    cube.receiveShadow = true;
+    cube.position.x = 0;
+    cube.position.y = 250;
+    cube.position.z = 0;
+    //var ast;
+
+
+    //scene.add(cube);
+var loader = new THREE.ObjectLoader();
+loader.load("../ships/asteroidScene.js",function ( obj ) {
+    	var asteroidTexture = new THREE.ImageUtils.loadTexture('../images/asteroid.jpg');
+	var asteroidMaterial = new THREE.MeshLambertMaterial({map:asteroidTexture,normalMap:asteroidTexture});
+        obj.children[1].material = asteroidMaterial;
+        obj.children[1].castShadow = true;
+        obj.children[1].receiveShadow = true;
+        ast = obj.children[1];
+        ast.position.y=50;
+        loaded=true;
+     scene.add( ast);
+});
+    // RENDERER
+    webglRenderer = new THREE.WebGLRenderer();
+    webglRenderer.setSize(SCREEN_WIDTH, SCREEN_HEIGHT);
+    webglRenderer.domElement.style.position = "relative";
+    webglRenderer.shadowMapEnabled = true;
+    webglRenderer.shadowMapSoft = true;
+
+    container.appendChild(webglRenderer.domElement);
+    window.addEventListener('resize', onWindowResize, false);
+
+
+}
+
+function onWindowResize() {
+    windowHalfX = window.innerWidth / 2;
+    windowHalfY = window.innerHeight / 2;
+
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+
+    webglRenderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function animate() {
+    var timer = Date.now() * 0.0002;
+    camera.position.x = Math.cos(timer) * 100;
+    camera.position.z = Math.sin(timer) * 100;
+    //if(loaded){ast.rotation.x+=0.01;}
+    requestAnimationFrame(animate);
+    render();
+}
+
+function render() {
+    camera.lookAt(scene.position);
+    webglRenderer.render(scene, camera);
+}
+</script>
+</body>	

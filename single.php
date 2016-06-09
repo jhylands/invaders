@@ -28,6 +28,8 @@ var render;
 //create page file
 var pages = [];
 
+function deg(angle){ return angle*2*Math.PI/360;}
+
 function loadPage(toPageID,fromPageID,renderer,scene,camera){
   if(pages[toPageID]==null){
     //page fault  
@@ -76,8 +78,7 @@ window.onload = function() {
                         //flip the change bit to indicate we are handeling it
                         page.change = false;
 			//invoke page changing protocol
-                        alert(page.nextPage);
-                        //loadPage("",page.nextPage,renderer,scene,camera);
+                        loadPage(page.nextPage,page.id,renderer,scene,camera);
 		}
 	}
 
