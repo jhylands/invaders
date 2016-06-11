@@ -88,28 +88,41 @@ function BulletHandler(scene,timeOut){
         }
     };
     
-    this.checkCollision = function (aliens,radius,allegiance){
-        
+    this.checkCollision = function (aliens,Me){
+        var hitLst ={'aliens':[],'friend':false};
         //loop through each active bullet
         for(var i = 0;i<this.bullets.length;i++){
             if(this.bullets[i].team=="Friend"){
-            var originPoint = this.bullets[i].Mesh.position.clone();
-            for (var vertexIndex = 0; vertexIndex < this.bullets[i].Mesh.geometry.vertices.length; vertexIndex++)
-            {		
-                    var localVertex = this.bullets[i].Mesh.geometry.vertices[vertexIndex].clone();
-                    var globalVertex = localVertex.applyMatrix4( this.bullets[i].Mesh.matrix );
-                    var directionVector = globalVertex.sub( this.bullets[i].Mesh.position );
+                var originPoint = this.bullets[i].Mesh.position.clone();
+                var vertexIndex = 0;
+                var localVertex = this.bullets[i].Mesh.geometry.vertices[vertexIndex].clone();
+                var globalVertex = localVertex.applyMatrix4( this.bullets[i].Mesh.matrix );
+                var directionVector = globalVertex.sub( this.bullets[i].Mesh.position );
 
-                    var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
-                    var collisionResults = ray.intersectObjects([aliens] ,true);
-                    if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){ 
-                        //object to destroy is the collisionResukts[0].object
-                        this.scene.remove(collisionResults[0].object);
-                        break;
-                    }
-            }	}
+                var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+                var collisionResults = ray.intersectObjects([aliens] ,true);
+                if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){ 
+                    //object to destroy is the collisionResukts[0].object
+                    hitLst.aliens.push(collisionResults[0].object.name);
+                    this.bullets[i].dead=true;
+                }	
+            }else if(this.bullets[i].team=="Foe"){
+                var originPoint = this.bullets[i].Mesh.position.clone();
+                var vertexIndex = 0;
+                var localVertex = this.bullets[i].Mesh.geometry.vertices[vertexIndex].clone();
+                var globalVertex = localVertex.applyMatrix4( this.bullets[i].Mesh.matrix );
+                var directionVector = globalVertex.sub( this.bullets[i].Mesh.position );
+
+                var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+                var collisionResults = ray.intersectObjects([Me] ,true);
+                if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){ 
+                    //object to destroy is the collisionResukts[0].object
+                    hitLst.friend=true;
+                    this.bullets[i].dead=true;
+                }	
+            }
         }
-        return false;
+        return hitLst;
     };
     
 }

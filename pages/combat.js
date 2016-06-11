@@ -152,6 +152,7 @@
             
             //create array of aliens
             var aliens = new THREE.Group();
+            aliens.name="all";
             this.cube = mirrorWingCamera;
             for (x=0;x<COLS;x++){
                     //X loop
@@ -162,6 +163,8 @@
                             //aliens[x][z] = new Object();
                             //create the alian as a mesh object and set the apropreate properties
                             var alien = alienMesh.clone();
+                            alien.children[1].name = aliens.children.length;
+                            
                             alien.position.set(this.SPACING*z,0,this.SPACING*x-10);
                             alien.velocity = new THREE.Vector3(0.01,0,0);
                             //add the alian to the scene
@@ -292,8 +295,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                     this.alienAI();
                     //this.updateCamera();
                     //detect collisions
-                    //this.detectCollisions();
-                    this.bullets.checkCollision(this.aliens,1,1);
+                    this.detectCollisions();
                     break;
                 case 1:
                     this.animationUpdate();
@@ -354,7 +356,18 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                         }
         }
         this.detectCollisions = function(){
-            //check with spaceShip
+            var hit = this.bullets.checkCollision(this.aliens,this.ship);
+            for(n=0;n<this.aliens.children.length;n++){
+                for(i=0;i<hit.aliens.length;i++){
+                    if(this.aliens.children[n].children[1].name==hit.aliens[i]){
+                        this.aliens.remove(this.aliens.children[n]);
+                    }
+                }
+            }
+            if(hit.friend){
+                alert('death');
+            }
+            /*//check with spaceShip
             if(this.bullets.checkCollision(this.ship.position,3,this.friendAllegiance)){
                 this.health--;
                 //play sound
@@ -378,7 +391,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                     //explode alien
                     //play sound
                 }
-            }
+            }*/
         };
         this.checkGameOver = function(){
             if(this.score==300 && this.won==false){

@@ -26,7 +26,7 @@
         this.change = false; //set to true if request page change.
         this.nextPage; //set to the id of the next page.
         //planet should adhear to JS-Planet standard
-        this.planet = {"ID":"2","Name":"Venus","OrbitalRadius":"108200","InOrbitOf":"0","Temperature":"462","SurfaceGravity":"8.87","Radius":6052,"Map":{"IMG":"venus_img.jpg"}};
+        this.planet = {"ID":"2","Name":"Venus","OrbitalRadius":"108200","InOrbitOf":"0","Temperature":"462","SurfaceGravity":"8.87","Reflection":'FFEFD5',"Radius": '6052',"Map":{"IMG":"venus_img.jpg"}};
     
         
         
