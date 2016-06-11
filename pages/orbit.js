@@ -39,9 +39,17 @@
                         //has been loaded
                         this.constructFirst();
                         break;
+                    case 2:
+                        //from cargo
+                        this.createUserInterface();
+                        break;
                     case 5:
                         //from combat.php
                         this.constructFromCombat();
+                        break;
+                    case 7:
+                        //from console
+                        this.createUserInterface();
                         break;
                 }
 		
@@ -54,7 +62,9 @@
             switch(to){
                 case 1:
                     //Go to the map
-                    
+                    this.scene.remove(this.threeSpaceStation);
+                    //temperarely
+                    this.scene.remove(this.threePlanetLights);
                     break;
                 case 5:
                     //go to combat
@@ -71,9 +81,9 @@
 		this.threePlanet = this.makePlanet(this.planet);
 		
 		//set up lighting
-		var temp = this.bindLights(this.threePlanet,this.planet);
-                temp.name = "planet";
-                this.scene.add(temp);
+		this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);
+                this.threePlanetLights.name = "planet";
+                this.scene.add(this.threePlanetLights);
                 
                 //add the sun
                 this.scene.add(this.addSun());
@@ -95,7 +105,7 @@
         
         
         this.createUserInterface = function(){
-            var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink'];
+            var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink','consoleLink'];
             var shipName = "Need to dynamically get ship name";
             htmlOverlay = '<div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;"><table style="width:100%;background-color:black;"><tr>    <td width="30%"><h2>Current ship: ';
             htmlOverlay += shipName;
@@ -104,28 +114,18 @@
             htmlOverlay += '</td>		<td id="achivementsLink" class="clickable">Achievements</td>	</tr>	</table>	</td>	<td rowspan="2" ><h2>Current temperature on ';
             htmlOverlay += this.planet.Name;
             htmlOverlay += ' is ' + this.planet.Temperature;
-            htmlOverlay += '&#8451</h2></td></tr><tr>	<td class="clickable" ><h2>Goto Console</h2></td></tr></table></div>';
+            htmlOverlay += '&#8451</h2></td></tr><tr>	<td class="clickable" id="consoleLink"><h2>Goto Console</h2></td></tr></table></div>';
             document.getElementById('overlay').innerHTML = htmlOverlay;
             document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
             
             //add eventhandlers
-            for(i=0;i<6/*options.length*/;i++){
+            for(i=0;i<options.length;i++){
                 var func = this.makeChanger(this,i+1);
                 console.log(func);
                 document.getElementById(options[i]).addEventListener("click", func);
             }
         }
         
-        //create a closure containing a reference to this class and the index of the page to be loaded in
-        this.makeChanger = function(page,nextPageID){
-            var locPage = page;
-            var locNextPage = nextPageID;
-            return function (){
-                locPage.destroy(locNextPage);
-                locPage.change=true;
-                locPage.nextPage = locNextPage; 
-            }
-        }
 
 	
 	//function to handle keyboard events

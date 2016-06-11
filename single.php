@@ -13,7 +13,7 @@
 <script>
     //DATA definitions
     //list of page urls, indexed by id
-    var pageURLs = ['orbit.js','map.js','cargo.js','trade.js','shipYard.js','combat.js','achivement.js'];
+    var pageURLs = ['orbit.js','map.js','cargo.js','trade.js','shipYard.js','combat.js','achivement.js','console.js'];
     var onPageReady = function(pageID){
                     page = pages[pageID];
                     if(pageID==0){

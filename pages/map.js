@@ -15,14 +15,15 @@
         //global THREE references
 	this.renderer = renderer;
 	this.scene = scene;
-	this.__camera = camera;
+	this.camera = camera;
         
         //class variables
-        this.planetNames = new Array('sun.jpg','planet1.png','venus.jpg','earth.jpg','mars.jpg','moon.jpg');
-	this.planetPositions = {'x':new Array(-100,10,30,60,80,65),'z':new Array(0,0,0,0,0,20)};
-	this.planetSizes = new Array(20,3,4,5,3,1);
-
+        this.planetNames = new Array('sun.jpg','mercury_img.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
+	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
+	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
+        //this.projector = new THREE.Projector;
         this.eventHandlers =[];
+        this.inAnimation = 1;
         
         //Finished loading variables
         this.ready = false;
@@ -37,25 +38,28 @@
         
         
 	//function to create page from nothing
-	this.create = function(){
+	this.create = function(from){
+            //from orbit
+            this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
+            this.scene.add(this.ambient);
             	var planet = new Array();
-                for(i=0;i<planetNames.length;i++){
-                        planetGeometry = new THREE.SphereGeometry(this.planetSizes[i],32,32);
-                        var planetTexture = new THREE.ImageUtils.loadTexture('images/' + this.planetNames[i]);
-                        var planetMaterial = new THREE.MeshPhongMaterial({map:planetTexture});
-                        planet[i] = new THREE.Mesh(planetGeometry,planetMaterial);
-                        planetMaterial.map.WrapS = THREE.RepeatWrapping;
-                        planetMaterial.map.WrapT = THREE.RepeatWrapping;
+                for(i=1;i<=this.planetNames.length;i++){
+                        planet[i] = this.makePlanet({'Map':{'IMG':this.planetNames[i]},'Radius':this.planetSizes[i]});
                         planet[i].position.set(this.planetPositions.x[i],0,this.planetPositions.z[i]);
                         planet[i].name = i;
                         this.scene.add(planet[i]);
                 }
                 
+                //function needs updating for the lates three.js
+                //it also needs a closure
+                var self=this;
                 var onDocumentMouseDown= function( event ) {
                     event.preventDefault();
-                    var vector = new THREE.Vector3( ( event.clientX / window.innerWidth ) * 2 - 1, - ( event.clientY / window.innerHeight ) * 2 + 1, 0.5 );
-                    projector.unprojectVector( vector, camera );
-                    var raycaster = new THREE.Raycaster( camera.position, vector.sub( camera.position ).normalize() );
+                    var vector = new THREE.Vector2( ( event.clientX / window.innerWidth ) * 2 - 1,
+                    - ( event.clientY / window.innerHeight ) * 2 + 1);
+                    
+                    var raycaster = new THREE.Raycaster();
+                    raycaster.setFromCamera(vector,camera)
                     var intersects = raycaster.intersectObjects( scene.children );
                     if ( intersects.length > 0 ) {
                         if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
@@ -66,11 +70,13 @@
                 
 		//Make an event listner for when the user click on the planet they want to travel to
                 document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-                this.camera.position.set( 160, -20, 0 );//inishiation of camera
-        
+                this.camera.position.set( this.planetPositions.x[2],  0,this.planet.Radius*3 );//inishiation of camera
+                this.x = this.planetPositions.x[2];
+                this.z = this.planet.Radius*3;
 		//setup space station overlay
                 //create user interface
                 this.createUserInterface();
+                this.camera.lookAt(new THREE.Vector3(this.planetPositions.x[2],0,0));
                 //Notify that this function is ready to be run
                 this.ready = true;
                 this.onready(this.id);
@@ -79,7 +85,7 @@
         
         //function to make the overlay html what is needed for this page
         this.createUserInterface = function(){
-            document.getElementById('overlay').innerHTML = "";
+            document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
         }
 
 	
@@ -90,7 +96,23 @@
 	
 	//function to update scene each frame
 	this.update = function(){
-
+            if(this.inAnimation==1){
+                if(this.z<this.planet.Radius*3+6*60*100){
+                    this.camera.position.set(this.x,0,this.z);
+                    this.z+=100;
+                }else{
+                    this.inAnimation=2;//0;
+                }
+            }else if(this.inAnimation==2){
+                if(this.z>this.planet.Radius*3){
+                    this.camera.position.set(this.x,0,this.z);
+                    this.z=100;
+                }else{
+                    //back to orbit
+                }
+            }
+                
+            
 	}
 
         this.reload = function(){

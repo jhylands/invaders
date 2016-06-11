@@ -54,6 +54,8 @@ switch($command[0]){
 		echo "Sorry I didn't understand that. Try typing 'help' for information on the commands to use<br />";
 }
 exit(404);
+}else{
+    echo '<commandNotPresented>';
 }
 //fucntion to get the trading information from the server
 function getTadeinfo($Res1,$Res2){
@@ -147,7 +149,7 @@ function nav(URL){
 Welcome <?php //echo $userName; ?>, Last login <?php echo "20/11/10"; ?><br />
 </p>
 <div style="position:absolute;bottom:15px;left:0px;width:100%;">
-<input id="writer" value="" tabindex="0" type="text" onkeydown="run(event)" style="" />
+    <input id="writer" value="" tabindex="0" type="text" onkeydown="run(event)" style="" autofocus/>
 </div>
 </body>
 </html>
