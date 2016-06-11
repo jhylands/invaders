@@ -42,7 +42,7 @@ function loadPage(toPageID,fromPageID,renderer,scene,camera){
   		}});//end of pageonload function
   }else{
     //reconstruct page
-    page.create(fromPageID);
+    pages[toPageID].create(fromPageID);
     //load page in
     //should be in the onready function in the page
 

@@ -39,7 +39,10 @@
                         //has been loaded
                         this.constructFirst();
                         break;
-                        
+                    case 5:
+                        //from combat.php
+                        this.constructFromCombat();
+                        break;
                 }
 		
                 //Notify that this function is ready to be run
@@ -82,6 +85,14 @@
                 //create user interface
                 this.createUserInterface();
         }
+        this.constructFromCombat = function(){
+            this.orbitPos=Math.PI/2;
+            //add spacestation to scene
+            this.scene.add(this.threeSpaceStation);
+            //create UI
+            this.createUserInterface();
+        }
+        
         
         this.createUserInterface = function(){
             var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink'];
@@ -124,7 +135,7 @@
 	
 	//function to update scene each frame
 	this.update = function(){
-            this.orbitPos+=0.00001;
+            //this.orbitPos+=0.00001;
             this.__camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
             this.threeSpaceStation.position.copy(this.calculateOrbit(3))
             this.__camera.lookAt(this.threePlanet.position);

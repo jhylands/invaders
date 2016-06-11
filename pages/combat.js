@@ -30,7 +30,7 @@
         this.orbitPos = Math.PI/2;
         this.thi = 0;
         this.SPACING = 3;
-        this.inAnimation=true;//false for testing only
+        this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
         this.dead=false;
         this.moveToShip=0;
         
@@ -67,6 +67,7 @@
         }
         //function to construct the scene if nothing has yet been constructed.
         this.constructFirst = function(){
+                this.inAnimation = 1;
                 //planet should already exist
 		//lighting should already be set up
                 //The sun should lready be there
@@ -76,7 +77,6 @@
                 //add spaceship
                 this.ship = this.loadBasicLib();
                 this.ship.position.copy(this.calculateOrbit(0));
-                console.log(this.ship.position.y);
                 this.scene.add(this.ship);
 		//add aliens
                 this.aliens = this.makeAlien();
@@ -266,33 +266,41 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             //health bar            
             htmlOverlay = '<div style="position:absolute; top:0px;right:0px;z-index:6;"><table id="health" style="background-color:green;height:30px;" width="250px"><tr><td id="healthTXT"></td></tr></table></div>';            
             //Info box telling the user to press space to start
-            htmlOverlay += '<div id="infoBoxParent" style="position:absolute;top:250px;left:250px;z-index:5;width:300px;"><table style="background-color:black;color:white;"><tr><td id="infoBox"><h1>Press space to start</h1><a href="orbit.php"><input type="button" value="Back to orbit"  /></a></td></tr></table></div>';
+            htmlOverlay += '<div id="infoBoxParent" style="position:absolute;top:250px;left:250px;z-index:5;width:300px;"><table style="background-color:black;color:white;"><tr><td id="infoBox"><h1>Press space to start</h1><input id="bk2o" type="button" value="Back to orbit"  /></td></tr></table></div>';
             document.getElementById('overlay').innerHTML = htmlOverlay;
             document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
             document.getElementById('infoBox').top = window.innerHeight/2-100;
             document.getElementById('infoBox').left = window.innerWidth/2-100;
             
             //add eventhandlers
-
+            //closure needed 
+            var _self = this;
+            document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
         }
         
         //UPDATES (frame by frame)
         //function to update scene each frame
 	this.update = function(){
-            if(this.inAnimation){
-                this.animationUpdate();
-            }else{
-                this.cube.updateCubeMap(this.renderer,scene);
-                //Rotate the ship
-                this.moveEntities();
-                //GAME OVER!
-                this.checkGameOver();
-                //Update an alien wing camera
-                this.alienAI();
-                //this.updateCamera();
-                //detect collisions
-                //this.detectCollisions();
-                this.bullets.checkCollision(this.aliens,1,1);
+            switch(this.inAnimation){
+                case 0:
+                    this.cube.updateCubeMap(this.renderer,scene);
+                    //Rotate the ship
+                    this.moveEntities();
+                    //GAME OVER!
+                    this.checkGameOver();
+                    //Update an alien wing camera
+                    this.alienAI();
+                    //this.updateCamera();
+                    //detect collisions
+                    //this.detectCollisions();
+                    this.bullets.checkCollision(this.aliens,1,1);
+                    break;
+                case 1:
+                    this.animationUpdate();
+                    break;
+                case 2:
+                    this.animationUpdateB();
+                    break;
             }
         }
         //function to handle keyboard events
@@ -424,27 +432,23 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             this.bullets.update();
             this.moveAliens();
         }
+        
         //ANIMATIONS
         this.animationUpdate = function (){
             //target (0,20)
-            
             //increase latitude
             if(this.thi<deg(20)){
                 this.thi+=deg(20)/120;
             }
-            
             //decrease longditude
             if(this.orbitPos<deg(180)){
                 this.orbitPos+=deg(180)/240;
             }
-            
-            
-            
             //check to end animation 
             if(this.orbitPos>deg(180) && this.thi>deg(20)){
-                if(this.log(this.moveToShip)>1){
+                if(this.log(this.moveToShip)>=1){
                     console.log('Movement Fin')
-                    this.inAnimation = false;
+                    this.inAnimation = 0;
                     this.thi=deg(20);
                     this.orbitPos=deg(180);
                 }else{
@@ -461,6 +465,48 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             //this.threePlanet.position.copy( this.calculateOrbit(0).negate() );
             this.updateCameraPosition();
             this.camera.lookAt(lookat);
+        }
+        this.backToOrbit = function(){
+            this.inAnimation = 2;
+        }
+        this.animationUpdateB = function(){
+            //start by moving focus
+            if(this.log(this.moveToShip)>=1){
+                this.moveToShip-=0.1;
+                var planetpos = new THREE.Vector3(0,0,0).multiplyScalar(1-this.log(this.moveToShip));
+                var shipPos = new THREE.Vector3(0,0,0).copy(this.ship.position).multiplyScalar(this.log(this.moveToShip));
+
+                lookat = planetpos.add(shipPos);
+            }else{
+                //then move camera
+                //decrease latitude
+                if(this.thi>0){
+                    this.thi-=deg(20)/120;
+                }
+                //decrease longditude
+                if(this.orbitPos>deg(90)){
+                    this.orbitPos-=deg(180)/240;
+                }
+                //check to end animation 
+                if(this.orbitPos<=deg(90) && this.thi<=0){
+                        console.log('Movement Fin')
+                        this.thi=0;
+                        this.orbitPos=deg(90);
+                        this.scene.remove(this.ship);
+                        this.scene.remove(this.aliens);
+                        this.change = true;
+                        this.nextPage = 0;
+                }
+                lookat = this.threePlanet.position;
+            }
+            this.updateCameraPosition();
+            this.camera.lookAt(lookat);
+        };
+        
+        //DESTRUCTORS
+        this.destructor = function(){
+            this.scene.remove(this.ship);
+            this.scene.remove(this.aliens);
         }
         
         //CALCULATIONS
