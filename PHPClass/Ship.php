@@ -8,8 +8,10 @@ class Ship{
         //assert ShipCode is int 
         $this->con = $connection;
         $this->ShipCode = $ShipCode;
-        $this->update();
+        $this->_updateShip();
         $this->hold = new Hold($connection, $this->_ship['HoldCode']);
+        $this->place = new Place($this->con);
+        $this->update();
     }
     function __toString(){
         return json_encode(array("ship" => $this->_ship, "hold" => $this->hold->__toString()));
@@ -20,7 +22,7 @@ class Ship{
         $this->_updatePosition();
     }
     function _updateShip(){
-        $QRY = "SELECT * FROM ships,shipTypes,markets WHERE ships.Location=markets.PlaceID AND ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
+        $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
         $result = mysqli_query($this->con,$QRY);
         while($row = mysqli_fetch_array($result)){
                 $ship = $row;
@@ -31,7 +33,6 @@ class Ship{
         $this->hold->update();
     }
     function _updatePosition(){
-        $this->place = new Place($this->con);
         $this->place->fromID($this->_ship['Location']);
     }
     //getPosition depreshiated to $this->place->ID
@@ -52,7 +53,7 @@ class Ship{
         }
     }
     function getCode(){
-        return $this->_ship['Code'];
+        return $this->_ship['ShipCode'];
     }
     //security floor
     function setName($name){

@@ -16,7 +16,7 @@ class Market {
      * @param Resource $resource
      */
     function get($resource){
-        $query = "select * FROM tradeRates WHERE ResourceID=$resource->ID AND MarketID=$this->id";
+        $query = "SELECT * FROM tradeRates WHERE ResourceID=$resource->ID AND MarketID=$this->id";
         $result = mysqli_query($this->con, $query);
         $rates1 = mysqli_fetch_array($result);
         return $rate1 = $rates1[0]['Rate'];

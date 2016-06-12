@@ -20,7 +20,7 @@ class Place{
                 $this->SurfaceGravity = $row['SurfaceGravity'];
                 $this->Radius = $row['Radius'];
         }
-        $this->market = new Market($connect,$this->ID);
+        $this->market = new Market($this->con,$this->ID);
     }
     function __toString() {
         return json_encode(get_object_vars($this));;

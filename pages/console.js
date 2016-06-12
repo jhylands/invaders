@@ -54,7 +54,8 @@
                                     break;
                     }
                     $.ajax({url:"console.php?command="+command}).done(function(resp){
-                            document.getElementById("console").innerHTML += '<br />' +  resp;
+                            //document.getElementById("console").innerHTML = document.getElementById("console").innerHTML.substr(0,document.getElementById("console").innerHTML.length-6);
+                            document.getElementById("console").innerHTML += resp + '<br /><br />';
                             document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
                         });
                     document.getElementById('writer').value="";

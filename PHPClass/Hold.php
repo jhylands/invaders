@@ -73,9 +73,10 @@ class Hold{
      * @return success
      */
     function change($resource,$change){
-        //can be done as a single sql query
         $RID =$resource->getID();
-        $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo..HoldCode=" . $this->code . " AND cargo.ResourceID=$RID";
+        //thats not mysql just sql so doesnt work
+        $query = "IF EXISTS(SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID ) UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo.HoldCode=" . $this->code . " AND cargo.ResourceID=$RID ELSE INSERT INTO cargo (HoldCode,ResourceID,Amount) values($this->code,$RID,$change)";
+        echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
         return mysqli_query($this->con,$query);
@@ -87,5 +88,13 @@ class Hold{
      */
     function __toString() {
         return json_encode(get_object_vars($this));
+    }
+    
+    /**
+     * Return all the resources in the hold
+     * @return array
+     */
+    function all(){
+        return $this->resources;
     }
 }

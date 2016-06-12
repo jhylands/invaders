@@ -1,6 +1,9 @@
 <?php
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
+
+//create ship object 
+$ship = new Ship($con,$ShipCode);
 //include consolemods
 $mods = array('','Cargo','Ship','Trade','Travel');
 for($i=0;$i<5;$i++){
@@ -48,6 +51,15 @@ switch($command[0]){
 	case 'clear':
                 //echo "ERROR: should be handled by user side console";
 		break;
+        case 'hello':
+                echo "I'm not a chat-bot I am your ship console!<br />";
+                break;
+        case 'cd':
+                echo "No directory selected<br />";
+                break;
+        case 'ls':
+                echo "Nothing to list<br />";
+            break;
 	case 'shop':
 		switch($command[1]){
 			case 'help':

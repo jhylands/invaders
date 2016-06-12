@@ -26,11 +26,13 @@
 			<ul>
 				<li><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li><a href="class-Travel.html">Travel</a></li>
@@ -43,8 +45,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -95,7 +96,7 @@
 </span></span><span id="16" class="l"><a href="#16">16: </a><span class="php-comment">     * @param Resource $resource
 </span></span><span id="17" class="l"><a href="#17">17: </a><span class="php-comment">     */</span>
 </span><span id="18" class="l"><a href="#18">18: </a>    <span class="php-keyword1">function</span> get(<span class="php-var">$resource</span>){
-</span><span id="19" class="l"><a href="#19">19: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;select * FROM tradeRates WHERE ResourceID=</span><span class="php-var">$resource</span><span class="php-quote">-&gt;ID AND MarketID=</span><span class="php-var">$this</span><span class="php-quote">-&gt;id&quot;</span>;
+</span><span id="19" class="l"><a href="#19">19: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;SELECT * FROM tradeRates WHERE ResourceID=</span><span class="php-var">$resource</span><span class="php-quote">-&gt;ID AND MarketID=</span><span class="php-var">$this</span><span class="php-quote">-&gt;id&quot;</span>;
 </span><span id="20" class="l"><a href="#20">20: </a>        <span class="php-var">$result</span> = <span class="php-keyword2">mysqli_query</span>(<span class="php-var">$this</span>-&gt;con, <span class="php-var">$query</span>);
 </span><span id="21" class="l"><a href="#21">21: </a>        <span class="php-var">$rates1</span> = <span class="php-keyword2">mysqli_fetch_array</span>(<span class="php-var">$result</span>);
 </span><span id="22" class="l"><a href="#22">22: </a>        <span class="php-keyword1">return</span> <span class="php-var">$rate1</span> = <span class="php-var">$rates1</span>[<span class="php-num">0</span>][<span class="php-quote">'Rate'</span>];
@@ -126,6 +127,6 @@
 </div>
 </div>
 <script src="resources/combined.js?407e4577a4d7a545109ce847fb2486764a7b000a"></script>
-<script src="elementlist.js?2d92243a6a24f0724d634a416c030dd41a90e4b7"></script>
+<script src="elementlist.js?4d43309cf4c6583757f45376ed03df44b6ae44ae"></script>
 </body>
 </html>

@@ -26,11 +26,13 @@
 			<ul>
 				<li><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li><a href="class-Travel.html">Travel</a></li>
@@ -43,8 +45,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -100,10 +101,10 @@
 </span><span id="21" class="l"><a href="#21">21: </a>        <span class="php-comment">//function needs better error handleing</span>
 </span><span id="22" class="l"><a href="#22">22: </a>        
 </span><span id="23" class="l"><a href="#23">23: </a>        <span class="php-comment">//check trade is valid</span>
-</span><span id="24" class="l"><a href="#24">24: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$ship</span>-&gt;hold-&gt;get(<span class="php-var">$res1</span>)&gt;<span class="php-var">$amount</span>){
+</span><span id="24" class="l"><a href="#24">24: </a>        <span class="php-keyword1">if</span>(<span class="php-var">$this</span>-&gt;ship-&gt;hold-&gt;get(<span class="php-var">$res1</span>)&gt;<span class="php-var">$amount</span>){
 </span><span id="25" class="l"><a href="#25">25: </a>            <span class="php-comment">//changeResources</span>
-</span><span id="26" class="l"><a href="#26">26: </a>            <span class="php-var">$ship</span>-&gt;hold-&gt;change(<span class="php-var">$res1</span>,-<span class="php-num">1</span>*<span class="php-var">$amount</span>);
-</span><span id="27" class="l"><a href="#27">27: </a>            <span class="php-var">$ship</span>-&gt;hold-&gt;change(<span class="php-var">$res2</span>,<span class="php-var">$amount</span>*<span class="php-var">$this</span>-&gt;get(<span class="php-var">$res1</span>,<span class="php-var">$res2</span>));
+</span><span id="26" class="l"><a href="#26">26: </a>            <span class="php-var">$this</span>-&gt;ship-&gt;hold-&gt;change(<span class="php-var">$res1</span>,-<span class="php-num">1</span>*<span class="php-var">$amount</span>);
+</span><span id="27" class="l"><a href="#27">27: </a>            <span class="php-var">$this</span>-&gt;ship-&gt;hold-&gt;change(<span class="php-var">$res2</span>,<span class="php-var">$amount</span>*<span class="php-var">$this</span>-&gt;get(<span class="php-var">$res1</span>,<span class="php-var">$res2</span>));
 </span><span id="28" class="l"><a href="#28">28: </a>            <span class="php-comment">//make trade card</span>
 </span><span id="29" class="l"><a href="#29">29: </a>            <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;makeCard(<span class="php-var">$res1</span>, <span class="php-var">$amount</span>, <span class="php-var">$res2</span>);
 </span><span id="30" class="l"><a href="#30">30: </a>        }<span class="php-keyword1">else</span>{
@@ -162,6 +163,6 @@
 </div>
 </div>
 <script src="resources/combined.js?407e4577a4d7a545109ce847fb2486764a7b000a"></script>
-<script src="elementlist.js?2d92243a6a24f0724d634a416c030dd41a90e4b7"></script>
+<script src="elementlist.js?4d43309cf4c6583757f45376ed03df44b6ae44ae"></script>
 </body>
 </html>

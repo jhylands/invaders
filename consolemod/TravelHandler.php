@@ -41,7 +41,7 @@ class TravelHandler extends Handler{
      */
     function getCost($comand){
         $place = new Place($this->con);
-        $place->fromID($command[2]);
+        $place->fromID($comand[2]);
         return $this->travel->getFuelReqTo($place);
     }
     
@@ -52,7 +52,7 @@ class TravelHandler extends Handler{
      * @return string
      */
     function _goto($comand){
-        $palce = new Place($this->con);
+        $place = new Place($this->con);
         $place->fromID($comand[2]);
         if($this->travel->tryMove($place)){
             return "Traveled to :" . $place->getName();

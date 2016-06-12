@@ -25,11 +25,13 @@
 			<ul>
 				<li><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li class="active"><a href="class-Travel.html">Travel</a></li>
@@ -42,8 +44,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -109,7 +110,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-Travel.html#3-30" title="Go to source code">PHPClass/Travel.php</a>
+			<b>Located at</b> <a href="source-class-Travel.html#3-87" title="Go to source code">PHPClass/Travel.php</a>
 		<br>
 	</div>
 
@@ -129,16 +130,23 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#___construct">#</a>
-		<code><a href="source-class-Travel.html#5-7" title="Go to source code">__construct</a>( <span> <var>$connection</var></span> )</code>
+		<code><a href="source-class-Travel.html#5-13" title="Go to source code">__construct</a>( <span>SQL_connection <var>$connection</var></span>, <span><code><a href="class-Ship.html">Ship</a></code> <var>$ship</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Constructs with the ship traveling with</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Constructs with the ship traveling with</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$connection</var></dt>
+					<dd></dd>
+					<dt><var>$ship</var></dt>
+					<dd></dd>
+				</dl></div>
 
 
 
@@ -152,24 +160,28 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			<code><a href="class-Resource.html">Resource</a></code>
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_fuel">#</a>
-		<code><a href="source-class-Travel.html#8-12" title="Go to source code">fuel</a>( )</code>
+		<code><a href="source-class-Travel.html#15-23" title="Go to source code">fuel</a>( )</code>
 
 		<div class="description short">
-			
+			<p>Function that returns the fuel resource</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Function that returns the fuel resource</p>
 
 
 
+				<h4>Returns</h4>
+				<div class="list">
+					<code><a href="class-Resource.html">Resource</a></code>
+				</div>
 
 
 
@@ -182,24 +194,33 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			Bool
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_requiresTravel">#</a>
-		<code><a href="source-class-Travel.html#13-15" title="Go to source code">requiresTravel</a>( <span> <var>$ship</var></span>, <span> <var>$place</var></span> )</code>
+		<code><a href="source-class-Travel.html#25-32" title="Go to source code">requiresTravel</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Function decides if a place needs traveling to if already there</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Function decides if a place needs traveling to if already there</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					Bool
+				</div>
 
 
 
@@ -212,14 +233,14 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			INT
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_getFuelReq">#</a>
-		<code><a href="source-class-Travel.html#16-19" title="Go to source code">getFuelReq</a>( <span> <var>$place1</var></span>, <span> <var>$place2</var></span> )</code>
+		<code><a href="source-class-Travel.html#34-43" title="Go to source code">getFuelReq</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place1</var></span>, <span><code><a href="class-Place.html">Place</a></code> <var>$place2</var></span> )</code>
 
 		<div class="description short">
 			
@@ -229,7 +250,57 @@
 			
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place1</var></dt>
+					<dd></dd>
+					<dt><var>$place2</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					INT
+				</div>
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="getFuelReqTo" id="_getFuelReqTo">
+
+		<td class="attributes"><code>
+			 public 
+
+			INT
+			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_getFuelReqTo">#</a>
+		<code><a href="source-class-Travel.html#45-53" title="Go to source code">getFuelReqTo</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place</var></span> )</code>
+
+		<div class="description short">
+			<p>Function to get fuel requirements to get to place from ships current location</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Function to get fuel requirements to get to place from ships current location</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place</var></dt>
+					<dd></dd>
+				</dl></div>
+
+				<h4>Returns</h4>
+				<div class="list">
+					INT
+				</div>
 
 
 
@@ -242,24 +313,33 @@
 		<td class="attributes"><code>
 			 public 
 
-			
+			Bool
 			
 			</code>
 		</td>
 
 		<td class="name"><div>
 		<a class="anchor" href="#_goNoGoForLaunch">#</a>
-		<code><a href="source-class-Travel.html#21-23" title="Go to source code">goNoGoForLaunch</a>( <span> <var>$ship</var></span>, <span> <var>$place</var></span> )</code>
+		<code><a href="source-class-Travel.html#55-62" title="Go to source code">goNoGoForLaunch</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Can this ship go to place</p>
 		</div>
 
 		<div class="description detailed hidden">
-			
+			<p>Can this ship go to place</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					Bool
+				</div>
 
 
 
@@ -279,17 +359,61 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_move">#</a>
-		<code><a href="source-class-Travel.html#25-28" title="Go to source code">move</a>( <span> <var>$ship</var></span>, <span> <var>$place</var></span> )</code>
+		<code><a href="source-class-Travel.html#64-71" title="Go to source code">move</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place</var></span> )</code>
 
 		<div class="description short">
-			
+			<p>Function to move ship to place</p>
 		</div>
 
 		<div class="description detailed hidden">
+			<p>Function to move ship to place</p>
+
+
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place</var></dt>
+					<dd></dd>
+				</dl></div>
+
+
+
+
+
+		</div>
+		</div></td>
+	</tr>
+	<tr data-order="tryMove" id="_tryMove">
+
+		<td class="attributes"><code>
+			 public 
+
+			boolean
 			
+			</code>
+		</td>
+
+		<td class="name"><div>
+		<a class="anchor" href="#_tryMove">#</a>
+		<code><a href="source-class-Travel.html#73-85" title="Go to source code">tryMove</a>( <span><code><a href="class-Place.html">Place</a></code> <var>$place</var></span> )</code>
+
+		<div class="description short">
+			<p>Function to check if fuel requirements are met before traveling</p>
+		</div>
+
+		<div class="description detailed hidden">
+			<p>Function to check if fuel requirements are met before traveling</p>
 
 
+				<h4>Parameters</h4>
+				<div class="list"><dl>
+					<dt><var>$place</var></dt>
+					<dd></dd>
+				</dl></div>
 
+				<h4>Returns</h4>
+				<div class="list">
+					boolean
+				</div>
 
 
 

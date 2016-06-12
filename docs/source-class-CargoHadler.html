@@ -26,11 +26,13 @@
 			<ul>
 				<li><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li><a href="class-Travel.html">Travel</a></li>
@@ -43,8 +45,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -81,8 +82,8 @@
 </span><span id="2" class="l"><a href="#2"> 2: </a><span class="php-comment">/**
 </span></span><span id="3" class="l"><a href="#3"> 3: </a><span class="php-comment"> * Class to handle cargo comands
 </span></span><span id="4" class="l"><a href="#4"> 4: </a><span class="php-comment"> */</span>
-</span><span id="5" class="l"><a href="#5"> 5: </a><span class="php-keyword1">class</span> CargoHadler{
-</span><span id="6" class="l"><a href="#6"> 6: </a>    <span class="php-keyword1">function</span> cargoHandler(<span class="php-var">$con</span>,<span class="php-var">$ship</span>){
+</span><span id="5" class="l"><a href="#5"> 5: </a><span class="php-keyword1">class</span> CargoHadler <span class="php-keyword1">extends</span> Handler{
+</span><span id="6" class="l"><a href="#6"> 6: </a>    <span class="php-keyword1">function</span> __construct(<span class="php-var">$con</span>,<span class="php-var">$ship</span>){
 </span><span id="7" class="l"><a href="#7"> 7: </a>        <span class="php-var">$this</span>-&gt;con = <span class="php-var">$con</span>;
 </span><span id="8" class="l"><a href="#8"> 8: </a>        <span class="php-var">$this</span>-&gt;ship = <span class="php-var">$ship</span>;
 </span><span id="9" class="l"><a href="#9"> 9: </a>    }
@@ -96,7 +97,7 @@
 </span><span id="17" class="l"><a href="#17">17: </a>                <span class="php-keyword1">return</span> <span class="php-quote">&quot;Cargo allows you to view and drop elements of cargo in the hold of your ship. cargo [drop] [resource]&lt;br /&gt;&quot;</span>;
 </span><span id="18" class="l"><a href="#18">18: </a>                <span class="php-keyword1">break</span>;
 </span><span id="19" class="l"><a href="#19">19: </a>        <span class="php-keyword1">default</span>:
-</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-keyword1">return</span> info();
+</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;info();
 </span><span id="21" class="l"><a href="#21">21: </a>        }
 </span><span id="22" class="l"><a href="#22">22: </a>    }
 </span><span id="23" class="l"><a href="#23">23: </a>    
@@ -120,12 +121,17 @@
 </span></span><span id="41" class="l"><a href="#41">41: </a><span class="php-comment">     * @return responce
 </span></span><span id="42" class="l"><a href="#42">42: </a><span class="php-comment">     */</span>
 </span><span id="43" class="l"><a href="#43">43: </a>    <span class="php-keyword1">function</span> info(){
-</span><span id="44" class="l"><a href="#44">44: </a>        <span class="php-var">$response</span> = <span class="php-quote">&quot;On this ship you have:&quot;</span>;
-</span><span id="45" class="l"><a href="#45">45: </a>        <span class="php-var">$response</span> .= <span class="php-var">$this</span>-&gt;ship-&gt;hold-&gt;__toString();
-</span><span id="46" class="l"><a href="#46">46: </a>        <span class="php-keyword1">return</span> <span class="php-var">$response</span>;
-</span><span id="47" class="l"><a href="#47">47: </a>    }
-</span><span id="48" class="l"><a href="#48">48: </a>}
-</span><span id="49" class="l"><a href="#49">49: </a><span class="xlang">?&gt;</span></span></code></pre>
+</span><span id="44" class="l"><a href="#44">44: </a>        <span class="php-var">$response</span> = <span class="php-quote">&quot;On this ship you have:&lt;br /&gt;&quot;</span>;
+</span><span id="45" class="l"><a href="#45">45: </a>        <span class="php-var">$resources</span> = <span class="php-var">$this</span>-&gt;ship-&gt;hold-&gt;all();
+</span><span id="46" class="l"><a href="#46">46: </a>        <span class="php-keyword1">foreach</span>(<span class="php-var">$resources</span> <span class="php-keyword1">as</span> <span class="php-var">$key</span>=&gt;<span class="php-var">$value</span>){
+</span><span id="47" class="l"><a href="#47">47: </a>            <span class="php-var">$res</span> = <span class="php-keyword1">new</span> Resource(<span class="php-var">$this</span>-&gt;con);
+</span><span id="48" class="l"><a href="#48">48: </a>            <span class="php-var">$res</span>-&gt;fromID(<span class="php-var">$key</span>);
+</span><span id="49" class="l"><a href="#49">49: </a>            <span class="php-var">$response</span>.= <span class="php-var">$res</span>-&gt;getName() . <span class="php-quote">&quot; : &quot;</span> . <span class="php-var">$value</span> . <span class="php-quote">&quot;&lt;br /&gt;&quot;</span>;
+</span><span id="50" class="l"><a href="#50">50: </a>        }
+</span><span id="51" class="l"><a href="#51">51: </a>        <span class="php-keyword1">return</span> <span class="php-var">$response</span>;
+</span><span id="52" class="l"><a href="#52">52: </a>    }
+</span><span id="53" class="l"><a href="#53">53: </a>}
+</span><span id="54" class="l"><a href="#54">54: </a><span class="xlang">?&gt;</span></span></code></pre>
 
 	<div id="footer">
 		invaders API documentation generated by <a href="http://apigen.org">ApiGen</a>
@@ -133,6 +139,6 @@
 </div>
 </div>
 <script src="resources/combined.js?407e4577a4d7a545109ce847fb2486764a7b000a"></script>
-<script src="elementlist.js?2d92243a6a24f0724d634a416c030dd41a90e4b7"></script>
+<script src="elementlist.js?4d43309cf4c6583757f45376ed03df44b6ae44ae"></script>
 </body>
 </html>

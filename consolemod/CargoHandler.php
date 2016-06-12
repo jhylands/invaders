@@ -3,7 +3,7 @@
  * Class to handle cargo comands
  */
 class CargoHadler extends Handler{
-    function cargoHandler($con,$ship){
+    function __construct($con,$ship){
         $this->con = $con;
         $this->ship = $ship;
     }
@@ -41,8 +41,13 @@ class CargoHadler extends Handler{
      * @return responce
      */
     function info(){
-        $response = "On this ship you have:";
-        $response .= (string)$this->ship->hold;
+        $response = "On this ship you have:<br />";
+        $resources = $this->ship->hold->all();
+        foreach($resources as $key=>$value){
+            $res = new Resource($this->con);
+            $res->fromID($key);
+            $response.= $res->getName() . " : " . $value . "<br />";
+        }
         return $response;
     }
 }

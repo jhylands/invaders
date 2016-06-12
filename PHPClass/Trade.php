@@ -21,10 +21,10 @@ class Trade{
         //function needs better error handleing
         
         //check trade is valid
-        if($ship->hold->get($res1)>$amount){
+        if($this->ship->hold->get($res1)>$amount){
             //changeResources
-            $ship->hold->change($res1,-1*$amount);
-            $ship->hold->change($res2,$amount*$this->get($res1,$res2));
+            $this->ship->hold->change($res1,-1*$amount);
+            $this->ship->hold->change($res2,$amount*$this->get($res1,$res2));
             //make trade card
             return $this->makeCard($res1, $amount, $res2);
         }else{

@@ -25,10 +25,10 @@ class TradeHandler extends Handler{
     
     /**
      *  Function to carry out trade
-     * @param type $command
+     * @param type $comand
      * @return responce
      */
-    function _do($command){
+    function _do($comand){
         //command[0] = trade
         //command[1] = do
         //command[2] should be an ammount
@@ -37,11 +37,12 @@ class TradeHandler extends Handler{
         
         $res1 = new Resource($this->con);
         $res2 = new Resource($this->con);
+        $amount = $comand[2];
         //commands need cleaning
-        if($res1->fromCode($command[2]) &&$res2->fromCode($command[3])){
+        if($res1->fromCode($comand[3]) &&$res2->fromCode($comand[4])){
                 //check if the user has enough to sell that much
-                if($this->ship->hold->get($res1)>$amount){
-                        return "Not enough " . $res1->getName() . "<br />";
+                if($this->ship->hold->get($res1)<$amount){
+                        return "Not enough " . $res1->getName() .  "<br />";
                 }else{
                         if($this->trade->make($res1,$amount,$res2)){
                             return "Trade made<br />";
@@ -65,10 +66,10 @@ class TradeHandler extends Handler{
         $res1 = new Resource($this->con);
         $res2 = new Resource($this->con);
         //commands need cleaning
-        if($res1->fromCode($command[2]) &&$res2->fromCode($command[3])){
+        if($res1->fromCode($command[2]) && $res2->fromCode($command[3])){
             $info = "The current rates are " . $res1->getName() . ":" . $res2->getName . " @ ";
             $info .= $this->trade->getMarket($res1) . ":" . $this->trade->getMarket($res2) ;
-            $info .=" respectively with a tax rate of " . ($this->ship->market->getTax()*100) . "%<br />";
+            $info .=" respectively with a tax rate of " . ($this->ship->place->market->getTax()*100) . "%<br />";
                 return $info;
         }else{
                 return "ERROR: incorrect material codes<br />";

@@ -25,11 +25,13 @@
 			<ul>
 				<li class="active"><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li><a href="class-Travel.html">Travel</a></li>
@@ -42,8 +44,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -84,6 +85,20 @@
 	<p>Class to handle cargo comands</p>
 	</div>
 
+	<dl class="tree">
+		<dd style="padding-left:0px">
+			<a href="class-Handler.html"><span>Handler</span></a>
+			
+			
+			
+		</dd>
+		<dd style="padding-left:30px">
+			<img src="resources/inherit.png" alt="Extended by">
+<b><span>CargoHadler</span></b>			
+			
+			
+		</dd>
+	</dl>
 
 
 
@@ -98,7 +113,7 @@
 		
 		
 
-			<b>Located at</b> <a href="source-class-CargoHadler.html#2-48" title="Go to source code">consolemod/CargoHandler.php</a>
+			<b>Located at</b> <a href="source-class-CargoHadler.html#2-53" title="Go to source code">consolemod/CargoHandler.php</a>
 		<br>
 	</div>
 
@@ -106,7 +121,7 @@
 
 	<table class="summary methods" id="methods">
 	<caption>Methods summary</caption>
-	<tr data-order="cargoHandler" id="_cargoHandler">
+	<tr data-order="__construct" id="___construct">
 
 		<td class="attributes"><code>
 			 public 
@@ -117,8 +132,8 @@
 		</td>
 
 		<td class="name"><div>
-		<a class="anchor" href="#_cargoHandler">#</a>
-		<code><a href="source-class-CargoHadler.html#6-9" title="Go to source code">cargoHandler</a>( <span> <var>$con</var></span>, <span> <var>$ship</var></span> )</code>
+		<a class="anchor" href="#___construct">#</a>
+		<code><a href="source-class-CargoHadler.html#6-9" title="Go to source code">__construct</a>( <span> <var>$con</var></span>, <span> <var>$ship</var></span> )</code>
 
 		<div class="description short">
 			
@@ -162,6 +177,8 @@
 
 
 
+				<h4>Overrides</h4>
+				<div class="list"><code><a href="class-Handler.html#_handle">Handler::handle()</a></code></div>
 
 		</div>
 		</div></td>
@@ -217,7 +234,7 @@
 
 		<td class="name"><div>
 		<a class="anchor" href="#_info">#</a>
-		<code><a href="source-class-CargoHadler.html#39-47" title="Go to source code">info</a>( )</code>
+		<code><a href="source-class-CargoHadler.html#39-52" title="Go to source code">info</a>( )</code>
 
 		<div class="description short">
 			<p>Function to get information about the contense of the hold</p>

@@ -58,7 +58,7 @@ class Travel extends Distance{
      * @return Bool
      */
     function goNoGoForLaunch($place){
-        return $ship->hull->get($this->fuel()) >= $this->getFuelReqTo($place);
+        return $this->ship->hold->get($this->fuel()) >= $this->getFuelReqTo($place);
     }
     
     /**
@@ -66,8 +66,8 @@ class Travel extends Distance{
      * @param Place $place
      */
     function move($place){
-        $ship->setPositionFromPlace($place);
-        $ship->hull->change($this->fuel(), -1 * $this->getFuelReqTo($place) );
+        $this->ship->setPositionFromPlace($place);
+        $this->ship->hold->change($this->fuel(), -1 * $this->getFuelReqTo($place) );
     }
     
     /**
@@ -76,8 +76,8 @@ class Travel extends Distance{
      * @return boolean
      */
     function tryMove($place){
-        if($this->goNoGoForLaunch($palce)){
-            $this->move($palce);
+        if($this->goNoGoForLaunch($place)){
+            $this->move($place);
             return TRUE;
         }else{
             return False;

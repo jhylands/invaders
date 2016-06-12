@@ -26,11 +26,13 @@
 			<ul>
 				<li><a href="class-CargoHadler.html">CargoHadler</a></li>
 				<li><a href="class-Distance.html">Distance</a></li>
+				<li><a href="class-Handler.html">Handler</a></li>
 				<li><a href="class-Hold.html">Hold</a></li>
 				<li><a href="class-Market.html">Market</a></li>
 				<li><a href="class-Place.html">Place</a></li>
 				<li><a href="class-Resource.html">Resource</a></li>
 				<li><a href="class-Ship.html">Ship</a></li>
+				<li><a href="class-ShipHandler.html">ShipHandler</a></li>
 				<li><a href="class-Trade.html">Trade</a></li>
 				<li><a href="class-TradeHandler.html">TradeHandler</a></li>
 				<li><a href="class-Travel.html">Travel</a></li>
@@ -43,8 +45,7 @@
 
 			<h3>Functions</h3>
 			<ul>
-				<li><a href="function-getResourceInfo.html">getResourceInfo</a></li>
-				<li><a href="function-getResources.html">getResources</a></li>
+				<li><a href="function-classLoader.html">classLoader</a></li>
 			</ul>
 		</div>
 	</div>
@@ -85,21 +86,21 @@
 </span><span id="6" class="l"><a href="#6"> 6: </a><span class="php-keyword1">class</span> Place{
 </span><span id="7" class="l"><a href="#7"> 7: </a>    <span class="php-keyword1">function</span> __construct(<span class="php-var">$connect</span>){
 </span><span id="8" class="l"><a href="#8"> 8: </a>        <span class="php-var">$this</span>-&gt;con = <span class="php-var">$connect</span>;
-</span><span id="9" class="l"><a href="#9"> 9: </a>        <span class="php-var">$this</span>-&gt;market = <span class="php-keyword1">new</span> Market(<span class="php-var">$connect</span>);
-</span><span id="10" class="l"><a href="#10">10: </a>    }
-</span><span id="11" class="l"><a href="#11">11: </a>    <span class="php-keyword1">function</span> fromID(<span class="php-var">$ID</span>){
-</span><span id="12" class="l"><a href="#12">12: </a>        <span class="php-var">$this</span>-&gt;ID=<span class="php-var">$ID</span>;
-</span><span id="13" class="l"><a href="#13">13: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;SELECT * FROM locations WHERE PlaceID=</span><span class="php-var">$ID</span><span class="php-quote">&quot;</span>;
-</span><span id="14" class="l"><a href="#14">14: </a>        <span class="php-var">$result</span> = <span class="php-keyword2">mysqli_query</span>(<span class="php-var">$this</span>-&gt;con,<span class="php-var">$query</span>);
-</span><span id="15" class="l"><a href="#15">15: </a>        <span class="php-keyword1">while</span>(<span class="php-var">$row</span> = <span class="php-keyword2">mysqli_fetch_array</span>(<span class="php-var">$result</span>)){
-</span><span id="16" class="l"><a href="#16">16: </a>                <span class="php-var">$this</span>-&gt;Name = <span class="php-var">$row</span>[<span class="php-quote">'PlaceName'</span>];
-</span><span id="17" class="l"><a href="#17">17: </a>                <span class="php-var">$this</span>-&gt;URL = <span class="php-var">$row</span>[<span class="php-quote">'PlanetURL'</span>];
-</span><span id="18" class="l"><a href="#18">18: </a>                <span class="php-var">$this</span>-&gt;OrbitalRadius = <span class="php-var">$row</span>[<span class="php-quote">'OrbitalRadius'</span>];
-</span><span id="19" class="l"><a href="#19">19: </a>                <span class="php-var">$this</span>-&gt;InOrbitOf = <span class="php-var">$row</span>[<span class="php-quote">'InOrbitOf'</span>];
-</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-var">$this</span>-&gt;Temperature = <span class="php-var">$row</span>[<span class="php-quote">'Temperature'</span>];
-</span><span id="21" class="l"><a href="#21">21: </a>                <span class="php-var">$this</span>-&gt;SurfaceGravity = <span class="php-var">$row</span>[<span class="php-quote">'SurfaceGravity'</span>];
-</span><span id="22" class="l"><a href="#22">22: </a>                <span class="php-var">$this</span>-&gt;Radius = <span class="php-var">$row</span>[<span class="php-quote">'Radius'</span>];
-</span><span id="23" class="l"><a href="#23">23: </a>        }
+</span><span id="9" class="l"><a href="#9"> 9: </a>    }
+</span><span id="10" class="l"><a href="#10">10: </a>    <span class="php-keyword1">function</span> fromID(<span class="php-var">$ID</span>){
+</span><span id="11" class="l"><a href="#11">11: </a>        <span class="php-var">$this</span>-&gt;ID=<span class="php-var">$ID</span>;
+</span><span id="12" class="l"><a href="#12">12: </a>        <span class="php-var">$query</span> = <span class="php-quote">&quot;SELECT * FROM locations WHERE PlaceID=</span><span class="php-var">$ID</span><span class="php-quote">&quot;</span>;
+</span><span id="13" class="l"><a href="#13">13: </a>        <span class="php-var">$result</span> = <span class="php-keyword2">mysqli_query</span>(<span class="php-var">$this</span>-&gt;con,<span class="php-var">$query</span>);
+</span><span id="14" class="l"><a href="#14">14: </a>        <span class="php-keyword1">while</span>(<span class="php-var">$row</span> = <span class="php-keyword2">mysqli_fetch_array</span>(<span class="php-var">$result</span>)){
+</span><span id="15" class="l"><a href="#15">15: </a>                <span class="php-var">$this</span>-&gt;Name = <span class="php-var">$row</span>[<span class="php-quote">'PlaceName'</span>];
+</span><span id="16" class="l"><a href="#16">16: </a>                <span class="php-var">$this</span>-&gt;URL = <span class="php-var">$row</span>[<span class="php-quote">'PlanetURL'</span>];
+</span><span id="17" class="l"><a href="#17">17: </a>                <span class="php-var">$this</span>-&gt;OrbitalRadius = <span class="php-var">$row</span>[<span class="php-quote">'OrbitalRadius'</span>];
+</span><span id="18" class="l"><a href="#18">18: </a>                <span class="php-var">$this</span>-&gt;InOrbitOf = <span class="php-var">$row</span>[<span class="php-quote">'InOrbitOf'</span>];
+</span><span id="19" class="l"><a href="#19">19: </a>                <span class="php-var">$this</span>-&gt;Temperature = <span class="php-var">$row</span>[<span class="php-quote">'Temperature'</span>];
+</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-var">$this</span>-&gt;SurfaceGravity = <span class="php-var">$row</span>[<span class="php-quote">'SurfaceGravity'</span>];
+</span><span id="21" class="l"><a href="#21">21: </a>                <span class="php-var">$this</span>-&gt;Radius = <span class="php-var">$row</span>[<span class="php-quote">'Radius'</span>];
+</span><span id="22" class="l"><a href="#22">22: </a>        }
+</span><span id="23" class="l"><a href="#23">23: </a>        <span class="php-var">$this</span>-&gt;market = <span class="php-keyword1">new</span> Market(<span class="php-var">$this</span>-&gt;con,<span class="php-var">$this</span>-&gt;ID);
 </span><span id="24" class="l"><a href="#24">24: </a>    }
 </span><span id="25" class="l"><a href="#25">25: </a>    <span class="php-keyword1">function</span> __toString() {
 </span><span id="26" class="l"><a href="#26">26: </a>        <span class="php-keyword1">return</span> <span class="php-keyword2">json_encode</span>(<span class="php-keyword2">get_object_vars</span>(<span class="php-var">$this</span>));;
@@ -142,6 +143,6 @@
 </div>
 </div>
 <script src="resources/combined.js?407e4577a4d7a545109ce847fb2486764a7b000a"></script>
-<script src="elementlist.js?2d92243a6a24f0724d634a416c030dd41a90e4b7"></script>
+<script src="elementlist.js?4d43309cf4c6583757f45376ed03df44b6ae44ae"></script>
 </body>
 </html>

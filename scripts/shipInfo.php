@@ -10,9 +10,10 @@ if($_COOKIE['User']){
 }else{
   echo "ERROR user not logged in";
 }
-//echo $ship;
+
 function classLoader($class) {
     include 'PHPClass/' . $class . '.php';
 }
 spl_autoload_register(classLoader);
+
 ?>
