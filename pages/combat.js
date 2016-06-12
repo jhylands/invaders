@@ -32,6 +32,7 @@
         this.SPACING = 3;
         this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
         this.dead=false;
+        this.health = 10;
         this.moveToShip=0;
         
         
@@ -265,6 +266,9 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
         spaceShip.position.set(0,0,10);
         return spaceShip;
         }
+        this.loadLib = function(){
+            loadGeometry('ship');
+        }
         this.createUserInterface = function(){
             //health bar            
             htmlOverlay = '<div style="position:absolute; top:0px;right:0px;z-index:6;"><table id="health" style="background-color:green;height:30px;" width="250px"><tr><td id="healthTXT"></td></tr></table></div>';            
@@ -292,8 +296,9 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                     //GAME OVER!
                     this.checkGameOver();
                     //Update an alien wing camera
-                    this.alienAI();
-                    //this.updateCamera();
+                    if(this.start){
+                        this.alienAI();
+                    }
                     //detect collisions
                     this.detectCollisions();
                     break;
@@ -312,12 +317,12 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             //MOVEMENT CONTROLLS
             if(keyState.pressed("left")){
                 //check the object is in range
-                if(this.ship.position.z>-5*this.SPACING+offset.z){
+                if(this.ship.position.z>-8*this.SPACING+offset.z){
                         this.ship.position.z-=0.1
                 }
             }else if(keyState.pressed("right")){
                 //check object is in range
-                if(this.ship.position.z<5*this.SPACING+offset.z){
+                if(this.ship.position.z<8*this.SPACING+offset.z){
                         this.ship.position.z+=0.1
                 }
             }
@@ -365,7 +370,20 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                 }
             }
             if(hit.friend){
-                alert('death');
+                this.health-=5;
+                document.getElementById('health').width=health*2.5 + "px";
+                document.getElementById('healthTXT').innerHTML = this.health;
+            }
+            if(this.health<5){
+                //document.getElementById('die').play()
+                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2o' value='Back to orbit' />";
+                document.getElementById('infoBoxParent').hidden = false;
+                this.start= false;
+                this.dead=true;
+                            //add eventhandlers
+            //closure needed 
+            var _self = this;
+            document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
             }
             /*//check with spaceShip
             if(this.bullets.checkCollision(this.ship.position,3,this.friendAllegiance)){
@@ -373,13 +391,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                 //play sound
                 
             }
-            if(Collision(bullit[i].object.position,spaceShip.position,1) && health<5){
-                document.getElementById('die').play()
-                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
-                document.getElementById('infoBoxParent').hidden = false;
-                start= false;
-                dead=true;
-            }
+
             if(Collision(bullit[i].object.position,spaceShip.position,1) && health!=0){
                 health = health-5;
                 document.getElementById('health').width=health*2.5 + "px";
@@ -414,32 +426,19 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                     this.aliens.children[x].velocity.y -=0.0001;
                 }
                 this.aliens.children[x].velocity.y += (-this.aliens.children[x].position.y) / 1000;
+                this.aliens.children[x].position.setY(this.aliens.children[x].position.y+this.aliens.children[x].velocity.y);
                 if(Math.random()<difficulty){
                     //make new bullit
                     this.bullets.create(this.foeAllegiance,(new THREE.Vector3(0,0,0).add(this.aliens.children[x].position)).add(this.aliens.position));
                 }
             }
         }
+        this.alienParity = 1;
         this.moveAliens = function(){
-            /*//variable if they all need to change direction
-            var change=false;
-            for(x=0;x<alian.length;x++){
-                    for(z=0;z<alian[x].length;z++){
-                            alian[x][z].mesh.position.add(alian[x][z].velocity);
-                            //alian[x][z].camera.position = alian[x][z].mesh.position;
-                    if(alian[x][z].mesh.position.z>7*spacing || alian[x][z].mesh.position.z<-7*spacing){
-                    change= true;
-                    }
-                    }
+            this.aliens.position.setZ(this.aliens.position.z+0.01*this.alienParity);
+            if(this.aliens.position.z>this.SPACING*7||this.aliens.position.z<this.SPACING*-7){
+                this.alienParity *=-1;
             }
-            //if they need to change direction change their direction
-            if(change){
-            for(x=0;x<alian.length;x++){
-                    for(z=0;z<alian[x].length;z++){
-                    alian[x][z].velocity.z = alian[x][z].velocity.z*-1;
-                    }
-            }
-            }*/
         }
         this.moveEntities = function(){
             this.bullets.update();

@@ -34,7 +34,7 @@
         this.nextPage; //set to the id of the next page.
         //planet should adhear to JS-Planet standard
         this.planet = {"ID":"2","Name":"Venus","OrbitalRadius":"108200","InOrbitOf":"0","Temperature":"462","SurfaceGravity":"8.87","Radius":6052,"Map":{"IMG":"venus_img.jpg"}};
-    
+        this.threePlanets=[];
         
         
 	//function to create page from nothing
@@ -42,12 +42,11 @@
             //from orbit
             this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
             this.scene.add(this.ambient);
-            	var planet = new Array();
                 for(i=1;i<=this.planetNames.length;i++){
-                        planet[i] = this.makePlanet({'Map':{'IMG':this.planetNames[i]},'Radius':this.planetSizes[i]});
-                        planet[i].position.set(this.planetPositions.x[i],0,this.planetPositions.z[i]);
-                        planet[i].name = i;
-                        this.scene.add(planet[i]);
+                        this.threePlanets[i] = this.makePlanet({'Map':{'IMG':this.planetNames[i]},'Radius':this.planetSizes[i]});
+                        this.threePlanets[i].position.set(this.planetPositions.x[i],0,this.planetPositions.z[i]);
+                        this.threePlanets[i].name = i;
+                        this.scene.add(this.threePlanets[i]);
                 }
                 
                 //function needs updating for the lates three.js
@@ -63,7 +62,7 @@
                     var intersects = raycaster.intersectObjects( scene.children );
                     if ( intersects.length > 0 ) {
                         if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
-                                window.location.replace('travel.php?PlaceID=' + intersects[0].object.name);
+                                self.travel(intersects[0].object.name);
                         }
                     }
                 }
@@ -82,18 +81,24 @@
                 this.onready(this.id);
                 
 	}
-        
+        this.destroy = function(){
+            this.scene.remove(this.ambient);
+            for(var i=0;i<this.threePlanets.length;i++){
+                this.scene.remove(this.threePlanets[i]);
+            }
+        }
         //function to make the overlay html what is needed for this page
         this.createUserInterface = function(){
             document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
         }
-
-	
-	//function to handle keyboard events
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	}
-	
+	this.travel = function(location){
+            //idk
+            //need to go back to orbit at some point
+            this.makeChanger(this,0)();
+        }
 	//function to update scene each frame
 	this.update = function(){
             if(this.inAnimation==1){

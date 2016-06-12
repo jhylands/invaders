@@ -39,6 +39,10 @@
                         //has been loaded
                         this.constructFirst();
                         break;
+                    case 1:
+                        //has been loaded from map
+                        this.constructFirst();
+                        break;
                     case 2:
                         //from cargo
                         this.createUserInterface();
@@ -65,6 +69,7 @@
                     this.scene.remove(this.threeSpaceStation);
                     //temperarely
                     this.scene.remove(this.threePlanetLights);
+                    this.scene.remove(this.sun);
                     break;
                 case 5:
                     //go to combat
@@ -86,7 +91,8 @@
                 this.scene.add(this.threePlanetLights);
                 
                 //add the sun
-                this.scene.add(this.addSun());
+                this.sun = this.addSun();
+                this.scene.add(this.sun);
 		//add spacestation
                 this.threeSpaceStation = makeSpaceStation();
                 this.scene.add(this.threeSpaceStation);
@@ -102,8 +108,6 @@
             //create UI
             this.createUserInterface();
         }
-        
-        
         this.createUserInterface = function(){
             var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink','consoleLink'];
             var shipName = "Need to dynamically get ship name";
@@ -125,14 +129,10 @@
                 document.getElementById(options[i]).addEventListener("click", func);
             }
         }
-        
-
-	
 	//function to handle keyboard events
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	}
-	
 	//function to update scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;

@@ -18,7 +18,7 @@
     this.onready = onready;
 
     //page changing handshake
-    this.change = false; //set to true if request page change.
+    this.change = false; //set to true if request page change
     this.nextPage; //set to the id of the next page.
     this.commands = ['help'];
     this.i=0;
@@ -33,8 +33,12 @@
         this.ready = true;
         this.onready(this.id);
     };
-    this.keyboard = function(keyState){
-        if(keyState.pressed('enter')){
+    this.keyboard = function(keyState){};
+    
+    //This fucntion doesn't work verry well, first up press doesn't line up
+    this.run = function(e){
+        this.change=false;
+        if(e.keyCode==13){
                 var command = document.getElementById('writer').value;
                 if(command!=""){
                     this.commands.push(command);
@@ -55,22 +59,26 @@
                         });
                     document.getElementById('writer').value="";
             }
-        }else if(keyState.pressed('up')){
-                if (i<this.commands.length-1){
-                        i++;
-                        document.getElementById('writer').value=this.commands[this.commands.length-i];		
+        }else if(e.keyCode==38){
+                if (this.i<this.commands.length){
+                    this.i++;
+                    document.getElementById('writer').value=this.commands[this.commands.length-this.i];		   
                 }
-        }else if(keyState.pressed('down')){
-            if(i<=1){
-                    document.getElementById('writer').value="";
-                    i==0;
+        }else if(e.keyCode==40){
+            if(this.i<=1){
+                document.getElementById('writer').value="";
+                this.i==0;
             }else{
-                    i--;
-                    document.getElementById('writer').value=this.commands[this.commands.length-i];
+                this.i--;
+                document.getElementById('writer').value=this.commands[this.commands.length-this.i];
+
             }
         }
+          
     };
-    this.update = function(){/*no time based events (earths rotation maybe?*/};
+    this.update = function(){/*no time based events (earths rotation maybe?*/
+        pages[0].update();
+    };
     this.destroy = function(){/*All overlay information should be overwitten by next action*/};
     this.constructFromOrbit = function(){
         var console = '<p id= "console" style="height:80%;max-height:80%;overflow:hidden;">Welcome <?php //echo $userName; ?>, Last login <?php echo "20/11/10"; ?><br /></p>';
@@ -78,6 +86,8 @@
         //create overlay
         this.makeSTDOverlay(console+writer);
         
+        var _self = this;
+        $('#writer').keydown(function(event){_self.run(event);});
         //keep box in focus
         $('#writer').focus();
         $('#writer').focusout(function(){$('#writer').focus()});
