@@ -6,7 +6,6 @@
 class Place{
     function __construct($connect){
         $this->con = $connect;
-        $this->market = new Market($connect);
     }
     function fromID($ID){
         $this->ID=$ID;
@@ -21,6 +20,7 @@ class Place{
                 $this->SurfaceGravity = $row['SurfaceGravity'];
                 $this->Radius = $row['Radius'];
         }
+        $this->market = new Market($connect,$this->ID);
     }
     function __toString() {
         return json_encode(get_object_vars($this));;

@@ -1,6 +1,6 @@
 <?php
 
-class TradeHandler{
+class TradeHandler extends Handler{
     
     function __construct($con,$ship) {
         $this->con = $con;

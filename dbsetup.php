@@ -30,8 +30,8 @@ include 'scripts/sql.php';
 $i=0;
 // Create main table
 $QRY[$i++]="CREATE TABLE users(FID INT,Name TEXT, CurrentShip INT,Experiance INT, PRIMARY KEY (FID))";
-$QRY[$i++]="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT, ShipType INT, ShipName TEXT, OwnerID INT, Location INT, Sheilding INT, HoldCode INT, IventoryCode INT, PRIMARY KEY (ShipCode))";
-$QRY[$i++]="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalCost INT, HeliumCost INT, UraniumCost INT, ElectricalCost INT, Storage INT, Battery INT, HeliumConsumption INT, UraniumConsumption INT, ElectricConsumption INT, SolarEffecientcy FLOAT,LaserPower INT , PlasmaPower INT, BombStorageCapacity INT, Sheilding INT, PRIMARY KEY (ShipType))";
+$QRY[$i++]="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT, ShipType INT, ShipName TEXT, OwnerID INT, Location INT, Shielding INT, HoldCode INT, IventoryCode INT, PRIMARY KEY (ShipCode))";
+$QRY[$i++]="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalCost INT, HeliumCost INT, UraniumCost INT, ElectricalCost INT, Storage INT, Battery INT, HeliumConsumption INT, UraniumConsumption INT, ElectricConsumption INT, SolarEffecientcy FLOAT,LaserPower INT , PlasmaPower INT, BombStorageCapacity INT, Shielding INT, PRIMARY KEY (ShipType))";
 $QRY[$i++]="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, OrbitalRadius FLOAT, InOrbitOf INT, Temperature FLOAT, SurfaceGravity FLOAT,Radius INT, Reflection CHAR(6), PRIMARY KEY (PlaceID))";
 $QRY[$i++]="CREATE TABLE auctions(AuctionID INT AUTO_INCREMENT, PosterShipCode INT, SellerShipCode INT, Res1 INT, Res2 INT, TradeID INT, Amount1 INT, Amount2 INT, PRIMARY KEY(AuctionID))";
 $QRY[$i++]="CREATE TABLE markets(MarketID INT AUTO_INCREMENT, PlaceID INT, Tax Float, PRIMARY KEY(MarketID))";
@@ -52,7 +52,7 @@ $QRY[$i++]="CREATE TABLE weaponUse(FireID INT AUTO_INCREMENT, Uses INT, WeaponID
 $QRY[$i++]="CREATE TABLE map(MapID INT AUTO_INCREMENT PRIMARY KEY, PlaceID INT,MapType TEXT,URL TEXT)";
 //ENTRIES IN TABLES
 $QRY[$i++]="INSERT INTO users (FID,Name,CurrentShip,Experiance) VALUES (738392784,'James Hylands',1,0)";
-$QRY[$i++]="INSERT INTO ships (ShipType,OwnerID,ShipName,Location,Sheilding,HoldCode,IventoryCode) VALUES (1,738392784,'Liberator',3,100,1,1)";
+$QRY[$i++]="INSERT INTO ships (ShipType,OwnerID,ShipName,Location,Shielding,HoldCode,IventoryCode) VALUES (1,738392784,'Liberator',3,100,1,1)";
 $QRY[$i++]="INSERT INTO hold(HoldCode) VALUES (1)";
 $QRY[$i++]="INSERT INTO weaponsIventory(IventoryCode) VALUES(1)";
 //resources
@@ -66,7 +66,7 @@ $QRY[$i++]="INSERT INTO cargo(HoldCode,ResourceID,Amount) VALUES (1,2,100)";
 $QRY[$i++]="INSERT INTO cargo(HoldCode,ResourceID,Amount) VALUES (1,3,100)";
 $QRY[$i++]="INSERT INTO cargo(HoldCode,ResourceID,Amount) VALUES (1,4,1000)";
 //shiptypes
-$QRY[$i++] = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Sheilding) VALUES('liberator.js',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
+$QRY[$i++] = "INSERT INTO shipTypes (BuildCode,MetalCost,HeliumCost,UraniumCost,ElectricalCost,Storage,Battery,HeliumConsumption,UraniumConsumption,ElectricConsumption,SolarEffecientcy,LaserPower,PlasmaPower,BombStorageCapacity,Shielding) VALUES('liberator.js',100,100,100,1000,10000,10000,1,1,1,0.3,10,10,2,100)";
 //Locations
 //to be in orbit of 0 is to orbit the sun
 $QRY[$i++] = "INSERT INTO locations (PlaceName,OrbitalRadius,InOrbitOf,Temperature,SurfaceGravity,Radius,Relection) VALUES ('Mercury',579100,0,167,3.7,2440,'ABABAB')";

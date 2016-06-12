@@ -2,7 +2,7 @@
 /**
  * Class to handle cargo comands
  */
-class CargoHadler{
+class CargoHadler extends Handler{
     function cargoHandler($con,$ship){
         $this->con = $con;
         $this->ship = $ship;
@@ -17,7 +17,7 @@ class CargoHadler{
                 return "Cargo allows you to view and drop elements of cargo in the hold of your ship. cargo [drop] [resource]<br />";
                 break;
         default:
-                return info();
+                return $this->info();
         }
     }
     
@@ -42,7 +42,7 @@ class CargoHadler{
      */
     function info(){
         $response = "On this ship you have:";
-        $response .= $this->ship->hold->__toString();
+        $response .= (string)$this->ship->hold;
         return $response;
     }
 }

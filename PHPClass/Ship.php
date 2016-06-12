@@ -59,11 +59,19 @@ class Ship{
         $query = "UPDATE ships SET Name='$name' WHERE ShipCode=$this->ShipCode";
         return mysqli_query($this->con,$query);
     }
-    function getSheilding(){
-        return $this->_ship['Sheilding'];
+    function getShielding(){
+        return $this->_ship['Shielding'];
     }
     function getBuildCode(){
         return $this->_ship['BuildCode'];
+    }
+    
+    /**
+     * Function changed the current ship of a user
+     * @param type $shipCode
+     */
+    function change($shipCode){
+        
     }
 }
 ?>

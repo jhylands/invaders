@@ -1,9 +1,11 @@
 <?php
 include 'scripts/sql.php';
-include 'scripts.shipInfo.php';
+include 'scripts/shipInfo.php';
 //include consolemods
-include 'consolemod/trade.php';
-include 'consolemod/cargo.php';
+$mods = array('','Cargo','Ship','Trade','Travel');
+for($i=0;$i<5;$i++){
+    include 'consolemod/' . $mods[$i] . 'Handler.php';
+}
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
@@ -26,13 +28,16 @@ switch($command[0]){
 		//echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
 		break;
 	case 'trade':
-		$handler =  new TradeHandler($con);
+		$handler =  new TradeHandler($con,$ship);
 		break;
 	case 'cargo':
 		$handler = new cargoHadler($con,$ship);
 		break;
         case 'travel':
-                $handler = new TravelHandler($con);
+                $handler = new TravelHandler($con,$ship);
+                break;
+        case 'ship':
+                $handler = new ShipHandler($con,$ship);
                 break;
 	case 'fight':
 		echo "ERROR: Should be handled by user side console";
@@ -41,7 +46,7 @@ switch($command[0]){
 		echo "ERROR: should be handled by user side console";
 		break;
 	case 'clear':
-                echo "ERROR: should be handled by user side console";
+                //echo "ERROR: should be handled by user side console";
 		break;
 	case 'shop':
 		switch($command[1]){
