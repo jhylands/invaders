@@ -81,7 +81,7 @@
     };
     this.destroy = function(){/*All overlay information should be overwitten by next action*/};
     this.constructFromOrbit = function(){
-        var console = '<p id= "console" style="height:80%;max-height:80%;overflow:hidden;">Welcome <?php //echo $userName; ?>, Last login <?php echo "20/11/10"; ?><br /></p>';
+        var console = '<p id= "console" style="height:80%;max-height:80%;overflow:hidden;color:#F0F0F0;font-family: `Lucida Console`;font-size:18px;">Welcome name, Last login nowish"; ?><br /></p>';
         var writer = '<div style="position:relative;bottom:30px;left:0px;width:100%;"><input id="writer" value="" tabindex="0" type="text"  style="width:100%;color:#F0F0F0;background-color:black;border:0;font-size:18pt;" autofocus/></div>';
         //create overlay
         this.makeSTDOverlay(console+writer);

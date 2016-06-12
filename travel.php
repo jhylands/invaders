@@ -33,7 +33,7 @@ if($aTravel->requiresTravel($ship, $place)){
 		}
 	}else{
                 $page = <<<code
-                <p>Traval cost:  $fuelReq Helium</p>
+                <p>Travel cost:  $fuelReq Helium</p>
 		<input type='button' value='Go for launch' onclick='goForLaunch()' /><br />
 		<input type='button' value='No go for launch' onclick='noGoForLaunch()' />
 code;
