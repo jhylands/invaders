@@ -36,6 +36,8 @@ var render;
 //create page file
 var pages = [];
 
+var timerSet=false;
+
 function deg(angle){ return angle*2*Math.PI/360;}
 
 function loadPage(toPageID,fromPageID,renderer,scene,camera){
@@ -93,7 +95,10 @@ window.onload = function() {
 	//define the Render Loop
 	render = function() {
 		//Call the update function
-	 	update();
+                if(!timerSet){
+                    timerSet = true;
+                    window.setInterval( function() {update();}, 1000 / 60 );
+                }
 		//Re-draw the scene
 		renderer.render(scene, camera);
 		//Re-call the render function when the next frame is ready to be drawn

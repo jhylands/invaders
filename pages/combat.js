@@ -48,6 +48,16 @@
         
 	//function to create page from nothing
 	this.create = function(from){
+            this.start = false;
+            this.won = false;
+            this.Crotation = deg(-80);
+            this.orbitPos = Math.PI/2;
+            this.thi = 0;
+            this.SPACING = 3;
+            this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
+            this.dead=false;
+            this.health = 10;
+            this.moveToShip=0;
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:
@@ -374,16 +384,16 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                 document.getElementById('health').width=health*2.5 + "px";
                 document.getElementById('healthTXT').innerHTML = this.health;
             }
-            if(this.health<5){
+            if(this.health<5 && !this.dead){
                 //document.getElementById('die').play()
-                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2o' value='Back to orbit' />";
+                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2od' value='Back to orbit' />";
                 document.getElementById('infoBoxParent').hidden = false;
+                var _self = this;
+                document.getElementById('bk2od').addEventListener("click",function(){_self.backToOrbit();});
+        
                 this.start= false;
                 this.dead=true;
-                            //add eventhandlers
-            //closure needed 
-            var _self = this;
-            document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
+                //add eventhandlers
             }
             /*//check with spaceShip
             if(this.bullets.checkCollision(this.ship.position,3,this.friendAllegiance)){
@@ -408,8 +418,11 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
         this.checkGameOver = function(){
             if(this.score==300 && this.won==false){
                 //won=true;
-                document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><a href='combat.php?won=true'><input type='button' value='Back to orbit' /></a>";
+                document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><input id='bk2o' type='button' value='Back to orbit' />";
                 document.getElementById('infoBoxParent').hidden = false;
+                var _self = this;
+                document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
+        
                 $.ajax({url:"scripts/combat/won.php",post:"data:shipInfo"}).done(function(resp){
                     //take the responce and put it in the class box
                     document.getElementById("console").innerHTML = document.getElementById("console").innerHTML + '<br />' +  resp;});            
