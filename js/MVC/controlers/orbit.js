@@ -1,7 +1,7 @@
 //orbit class file
 //planet-centric coordinates
  
-{a = function (renderer,scene,camera,onready){
+function conOrbit(onready){
         //inherits from page class
         this.__proto__ = new Page();
         
@@ -9,10 +9,6 @@
 	this.name = "Orbit";
 	this.id = 0;
         
-        //global THREE references
-	this.renderer = renderer;
-	this.scene = scene;
-	this.__camera = camera;
         
         //class variables
 	this.orbitPos = Math.PI/2;
@@ -20,14 +16,11 @@
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onready;
+        this.onready = onPageReady
         
         //page changing handshake
         this.change = false; //set to true if request page change.
         this.nextPage; //set to the id of the next page.
-        //planet should adhear to JS-Planet standard
-        this.planet = {"ID":"2","Name":"Venus","OrbitalRadius":"108200","InOrbitOf":"0","Temperature":"462","SurfaceGravity":"8.87","Reflection":'FFEFD5',"Radius": '6052',"Map":{"IMG":"venus_img.jpg"}};
-    
         
         
 	//function to create page from nothing
@@ -69,15 +62,15 @@
             switch(to){
                 case 1:
                     //Go to the map
-                    this.scene.remove(this.threeSpaceStation);
+                    scene.remove(this.threeSpaceStation);
                     //temperarely
-                    this.scene.remove(this.threePlanetLights);
-                    this.scene.remove(this.sun);
+                    scene.remove(this.threePlanetLights);
+                    scene.remove(this.sun);
                     break;
                 case 5:
                     //go to combat
                     //remove the saterlite from the scene
-                    this.scene.remove(this.threeSpaceStation);
+                    scene.remove(this.threeSpaceStation);
                     //remove the overlay
                     document.getElementById('overlay').innerHTML = "";
                     break;
@@ -91,14 +84,14 @@
 		//set up lighting
 		this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);
                 this.threePlanetLights.name = "planet";
-                this.scene.add(this.threePlanetLights);
+                scene.add(this.threePlanetLights);
                 
                 //add the sun
                 this.sun = this.addSun();
-                this.scene.add(this.sun);
+                scene.add(this.sun);
 		//add spacestation
                 this.threeSpaceStation = makeSpaceStation();
-                this.scene.add(this.threeSpaceStation);
+                scene.add(this.threeSpaceStation);
 		//use an objectloader as this is a larger object
 		//setup space station overlay
                 //create user interface
@@ -107,7 +100,7 @@
         this.constructFromCombat = function(){
             this.orbitPos=Math.PI/2;
             //add spacestation to scene
-            this.scene.add(this.threeSpaceStation);
+            scene.add(this.threeSpaceStation);
             //create UI
             this.createUserInterface();
         }
@@ -139,9 +132,9 @@
 	//function to update scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;
-            this.__camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
+            camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
             this.threeSpaceStation.position.copy(this.calculateOrbit(3))
-            this.__camera.lookAt(this.threePlanet.position);
+            camera.lookAt(this.threePlanet.position);
             this.threePlanet.rotation.y += 0.0001;
 	}
 
@@ -173,5 +166,4 @@
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
         }
 	//this.create();
-};
 }

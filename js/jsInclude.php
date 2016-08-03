@@ -14,6 +14,7 @@ function list_all_files($path) {
       if(is_dir("$path/$file")) {
 	list_all_files("$path/$file");
       }else{
+          echo "//$path/$file\n";
           readfile("$path/$file");
       }
     }

@@ -1,7 +1,7 @@
 //battles class file
 //scene-centric coordinates
  
-{a = function (renderer,scene,camera,onready){
+function conCombat(renderer,scene,camera,onready){
         //inherits from page class
         this.__proto__ = new Page();
         
@@ -38,7 +38,7 @@
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onready;
+        this.onready = onPageReady
         
         //page changing handshake
         this.change = false; //set to true if request page change.
@@ -557,5 +557,4 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
         this.log = function(x){
             return Math.log(x*Math.pow(10,17))/40;
         }
-};
 }

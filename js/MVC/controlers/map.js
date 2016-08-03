@@ -1,10 +1,6 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-{b= function(renderer,scene,camera,onready){
+
+function conMap(renderer,scene,camera,onready){
         //inherits from page class
         this.__proto__ = new Page();
         
@@ -27,7 +23,7 @@
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onready;
+        this.onready = onPageReady
         
         //page changing handshake
         this.change = false; //set to true if request page change.
@@ -141,6 +137,5 @@
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
         }
 	
-};
 }
 

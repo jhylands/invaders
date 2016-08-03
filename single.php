@@ -1,30 +1,25 @@
 <html>
 <head>
-    <?php
-include 'scripts/sql.php';
-include 'scripts/shipInfo.php';
+<?php
+    //check that the user has logged in
+    if(!isset($_COOKIE['User'])){
+        echo "<script>window.location.replace('login.php');</script>";
+    }
+    include 'scripts/sql.php';
+    include 'scripts/shipInfo.php';
 
-$ship = new Ship($con,$ShipCode);
-//check that the user has logged in
-if(!isset($_COOKIE['User'])){
-    echo "<script>window.location.replace('login.php');</script>";
-}
-
-    ?>
+    $ship = new Ship($con,$ShipCode);
+?>
     <title>Introduction to Computer Graphics</title>
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="js/three(73).js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
-<script src="pages/Page.js"></script>
-<script src="js/skyBox.js"></script>
-<script src="js/spaceStation.js"></script>
-<script src="js/bullet.js"></script><!-- Too many loaded better management needed-->
+<script src="js/jsInclude.php"></script>
 <script>
     //DATA definitions
     //list of page urls, indexed by id
-    var pageURLs = ['orbit.js','map.js','cargo.js','trade.js','shipYard.js','combat.js','achivement.js','console.js'];
     var onPageReady = function(pageID){
                     page = pages[pageID];
                     if(pageID==0){
@@ -39,35 +34,23 @@ if(!isset($_COOKIE['User'])){
 <script>
 //inishiate page globals
 var render;
+var renderer;
+var scene;
+var camera;
+
 //create page file
 var pages = [];
-
 var timerSet=false;
 
 function deg(angle){ return angle*2*Math.PI/360;}
 
-function loadPage(toPageID,fromPageID,renderer,scene,camera){
-  if(pages[toPageID]==null){
-    //page fault  
-  	$.ajax({url:"pages/" + pageURLs[toPageID], success: function (data){ 
-  		//evaluate the class object to create the class from the text
-  		temp=eval(data);
-  		//create an instance of the class
-  		pages[toPageID]= new temp(renderer,scene,camera, onPageReady);//end of page onreadyfunction
-  		pages[toPageID].create(fromPageID);
-  		}});//end of pageonload function
-  }else{
-    //reconstruct page
+function loadPage(toPageID,fromPageID){
     pages[toPageID].create(fromPageID);
-    //load page in
-    //should be in the onready function in the page
-
-  }
-  
 }
 
 
 window.onload = function() {
+        pages = [new conOrbit(),new conMap,new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize( window.innerWidth,window.innerHeight);
@@ -94,7 +77,7 @@ window.onload = function() {
                         //flip the change bit to indicate we are handeling it
                         page.change = false;
 			//invoke page changing protocol
-                        loadPage(page.nextPage,page.id,renderer,scene,camera);
+                        loadPage(page.nextPage,page.id);
 		}
 	}
 

@@ -1,6 +1,6 @@
 //console class file
  
-{a = function (renderer,scene,camera,onready){
+function conConsole(renderer,scene,camera,onready){
     //inherits from page class
     this.__proto__ = new Page();
 
@@ -15,7 +15,7 @@
 
     //Finished loading variables
     this.ready = false;
-    this.onready = onready;
+    this.onready = onPageReady
 
     //page changing handshake
     this.change = false; //set to true if request page change
@@ -94,5 +94,4 @@
         $('#writer').focusout(function(){$('#writer').focus()});
     };
 
-};
 }
