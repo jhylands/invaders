@@ -8,6 +8,7 @@ class Place{
         $this->con = $connect;
     }
     function fromID($ID){
+        //get information from the location table
         $this->ID=$ID;
         $query = "SELECT * FROM locations WHERE PlaceID=$ID";
         $result = mysqli_query($this->con,$query);
@@ -19,6 +20,13 @@ class Place{
                 $this->Temperature = $row['Temperature'];
                 $this->SurfaceGravity = $row['SurfaceGravity'];
                 $this->Radius = $row['Radius'];
+                $this->Reflection = $row['Reflection'];
+        }
+        //get information from the map table
+        $query = "SELECT * FROM maps WHERE PlaceID=$ID";
+        $result = mysqli_query($this->con, $query);
+        while($row = mysqli_fetch_array($result)){
+            $this->Map[$row['MapType']] = $row['URL'];
         }
         $this->market = new Market($this->con,$this->ID);
     }

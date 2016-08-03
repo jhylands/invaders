@@ -32,6 +32,9 @@
         
 	//function to create page from nothing
 	this.create = function(from){
+                //update planet 
+                this.planet = place;
+            
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:

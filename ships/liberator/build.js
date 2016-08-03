@@ -1,14 +1,9 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 
 var liberator = new THREE.Object3D();
 var lambda;
 var loader = new Object();
 
+//$.ajax("");
 
 function loadGeometry(objectName) {
   var xhttp = new XMLHttpRequest();

@@ -139,17 +139,18 @@
             
             
             //Geometry of aliens
-            var hullGeometry = new THREE.SphereGeometry(0.5,0);
+            var hullGeometry = new THREE.SphereGeometry(0.5,32);
             var wingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20);
             
             //materials of aliens
+            var spec = new THREE.TextureLoader().load('images/shell.jpg');
             //envirment map for reflections
             var mirrorWingCamera = new THREE.CubeCamera( 0.1, 10000000, 512 );
-            var wingMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#00FFFF', emissive: '#FF0000', shininess: 100 ,envMap: mirrorWingCamera.renderTarget,reflectivity:0.4});
+            var wingMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#E00000', emissive: '#300000',emissiveIntensity:0.,specularMap:spec, shininess: 100 ,envMap: mirrorWingCamera.renderTarget,reflectivity:0.4});
 
-            
+
             mirrorWingCamera.updateCubeMap(this.renderer,this.scene);
-            var hullMaterial = new THREE.MeshPhongMaterial({specular:'#ffff00', color: '#FFFFFF', emissive: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget,transparent:true,opacity:0.5,reflectivity:0.9})
+            var hullMaterial = new THREE.MeshPhongMaterial({specular:'#ffffff', color: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget,transparent:true,opacity:0.7,reflectivity:0.9})
             
             //make alian mesh's
             aBody = new THREE.Mesh(hullGeometry, hullMaterial);

@@ -76,7 +76,7 @@ class Hold{
         $RID =$resource->getID();
         //thats not mysql just sql so doesnt work
         $query = "IF EXISTS(SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID ) UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo.HoldCode=" . $this->code . " AND cargo.ResourceID=$RID ELSE INSERT INTO cargo (HoldCode,ResourceID,Amount) values($this->code,$RID,$change)";
-        echo $query;
+        //echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
         return mysqli_query($this->con,$query);

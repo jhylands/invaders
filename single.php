@@ -1,7 +1,10 @@
 <html>
 <head>
     <?php
-    
+include 'scripts/sql.php';
+include 'scripts/shipInfo.php';
+
+$ship = new Ship($con,$ShipCode);
 //check that the user has logged in
 if(!isset($_COOKIE['User'])){
     echo "<script>window.location.replace('login.php');</script>";
@@ -29,6 +32,9 @@ if(!isset($_COOKIE['User'])){
                             requestAnimationFrame(render);
                     }
                 }; 
+    //need an asset manager
+    //need a method for updating information about where the user is
+    var place = <?php echo $ship->place->__toString(); ?>;
 </script>
 <script>
 //inishiate page globals
