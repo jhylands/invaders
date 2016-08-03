@@ -1,13 +1,33 @@
 function Page(){
     //abstract functions for a page
     
-    this.create = function(){console.log('Abstract function create not overwritten!');};
+    this.create = function(from){console.log('Abstract function create not overwritten!');};
+    this.destroy = function(to){console.log('Abstract function destroy not overwritten!');};
     this.keyboard = function(keystate){console.log('Abstract function keyboard not overwritten!');};
     this.update = function(){console.log('Abstract function update not overwritten!');};
     this.reload = function(){console.log('Abstract function reload not overwritten!');};
     this.onready = function(pageID){console.log('Abstract function onready not overwritten for page:' + pageID);};
     
     //Superclass functions
+    
+    //function to create page overlay
+    this.makeSTDOverlay = function(innerHTML){
+        var overlay = "<div id='content' style='background-color:rgba(0,0,0,0.7);border-radius:25px;margin-top:3%;margin-bottom:3%;margin-left:5%;margin-right:5%;'>";
+        overlay +=innerHTML;
+        overlay += "</div>";
+        document.getElementById('overlay').innerHTML = overlay;
+    }
+    //create a closure containing a reference to this class and the index of the page to be loaded in
+    this.makeChanger = function(page,nextPageID){
+        var locPage = page;
+        var locNextPage = nextPageID;
+        return function (){
+            locPage.destroy(locNextPage);
+            locPage.change=true;
+            locPage.nextPage = locNextPage; 
+        }
+    };
+
     
     //function to generate the Mesh for a planet from a JS-Planet object
     this.makePlanet = function(planet /*Should adhear to JS-Planet standard*/){

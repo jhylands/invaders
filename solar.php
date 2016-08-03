@@ -109,7 +109,7 @@
 	} );
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
-	var planetNames = new Array('sun.jpg','planet1.png','venus.jpg','earth.jpg','mars.jpg','moon.jpg');
+	var planetNames = new Array('sun.jpg','mucury_img.png','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
 	var planetPositions = new Object();
 	planetPositions.x = new Array(-100,10,30,60,80,65);
 	planetPositions.z = new Array(0,0,0,0,0,20);

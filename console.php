@@ -1,9 +1,14 @@
 <?php
-include 'scripts/security.php';
 include 'scripts/sql.php';
+include 'scripts/shipInfo.php';
+
+//create ship object 
+$ship = new Ship($con,$ShipCode);
 //include consolemods
-include 'consolemod/trade.php';
-include 'consolemod/cargo.php';
+$mods = array('','Cargo','Ship','Trade','Travel');
+for($i=0;$i<5;$i++){
+    include 'consolemod/' . $mods[$i] . 'Handler.php';
+}
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
@@ -12,7 +17,8 @@ while($row=mysqli_fetch_array($result)){
 }
 
 if(isset($_GET['command'])){
-echo "<a style='color:#367FCD;'>" . $userName . "></a>" . $_GET['command'] . "<br />";
+
+    echo "<a style='color:#367FCD;'>" . $userName . "></a>" . $_GET['command'] . "<br />";
 $command = explode(' ',$_GET['command']);
 switch($command[0]){
 	case 'help':
@@ -25,19 +31,35 @@ switch($command[0]){
 		//echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
 		break;
 	case 'trade':
-		echo trade($command);
+		$handler =  new TradeHandler($con,$ship);
 		break;
 	case 'cargo':
-		echo cargo($command);
+		$handler = new cargoHadler($con,$ship);
 		break;
+        case 'travel':
+                $handler = new TravelHandler($con,$ship);
+                break;
+        case 'ship':
+                $handler = new ShipHandler($con,$ship);
+                break;
 	case 'fight':
-		echo "<script>window.location.replace('combat.php');</script>";
+		echo "ERROR: Should be handled by user side console";
 		break;
 	case 'exit':
-		echo "Bye<script>window.location.replace('orbit.php')</script>";
+		echo "ERROR: should be handled by user side console";
 		break;
 	case 'clear':
+                //echo "ERROR: should be handled by user side console";
 		break;
+        case 'hello':
+                echo "I'm not a chat-bot I am your ship console!<br />";
+                break;
+        case 'cd':
+                echo "No directory selected<br />";
+                break;
+        case 'ls':
+                echo "Nothing to list<br />";
+            break;
 	case 'shop':
 		switch($command[1]){
 			case 'help':
@@ -53,101 +75,14 @@ switch($command[0]){
 	default:
 		echo "Sorry I didn't understand that. Try typing 'help' for information on the commands to use<br />";
 }
+if(isset($handler))
+{
+    echo $handler->handle($command);
+}
 exit(404);
-}
-//fucntion to get the trading information from the server
-function getTadeinfo($Res1,$Res2){
-if($Res1!="met" && $Res1!="ur" && $Res1!="he"){
-	return "Error first resource not understood both materials must be either Met (metal), Ur (Uranium) or He (Helium)";
-}elseif($Res1!="met" && $Res1!="ur" && $Res1!="he"){
-	return "Error second resource not understood both materials must be either Met (metal), Ur (Uranium) or He (Helium)";
+
+
 }else{
-//both resources are correct 
-$result = mysqli_query($con,"SELECT * FROM users,ships,locations WHERE FID=" . $_COOKIE['User'] . " AND users.CurrentShip=ships.ShipCode AND ships.Location = Locations.PlaceID");
-while($row=mysqli_fetch_array($result)){
-	$ship = $row;
+    echo '<commandNotPresented>';
 }
-return $ship['PlaceName'] . " is currently trading " . $Res1 . "," . $Res2 . " at " . $ship['FeHe'];
-}
-}//end function
 ?>
-<html>
-<head>
-<title>Console</title>
-<style>
-body
-{
-	background-color:black;
-	color:#F0F0F0;
-	font-family: "Lucida Console";
-	font-size:18px;
-}
-input
-{
-width:100%;color:#F0F0F0;background-color:black;border:0;font-size:18pt;
-}
-</style>
-<script>
-var commands = ['help'];
-var i=0;
-function run(e){
-	if(e.keyCode==13){
-		var command = document.getElementById('writer').value;
-		commands.push(command);
-		switch(command){
-			case 'clear':
-				document.getElementById('console').innerHTML = "";
-				break;
-			case 'fight':
-				nav('combat.php');
-				break;
-			case 'exit':
-				nav('orbit.php');
-				break;
-		}
-		var xmlhttp;
-		if (window.XMLHttpRequest){// code for IE7+, Firefox, Chrome, Opera, Safari
-			xmlhttp=new XMLHttpRequest();
-		}else{// code for IE6, IE5
-			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-		}
-		xmlhttp.onreadystatechange=function(){
-			if (xmlhttp.readyState==4 && xmlhttp.status==200){
-				var resp = xmlhttp.responseText;
-				//take the responce and put it in the class box
-				document.getElementById("console").innerHTML = 	document.getElementById("console").innerHTML + '<br />' +  resp;
-	
-			}
-			}
-		xmlhttp.open("GET","console.php?command=" + command ,true);
-		xmlhttp.send();
-		document.getElementById('writer').value="";
-	}else if(e.keyCode==38){
-		if (i<commands.length-1){
-			i++;
-			document.getElementById('writer').value=commands[commands.length-i];		
-		}
-	}else if(e.keyCode==40){
-		if(i<=1){
-			document.getElementById('writer').value="";
-			i==0;
-		}else{
-			i--;
-			document.getElementById('writer').value=commands[commands.length-i];
-		}
-	}
-}
-function nav(URL){
-	window.location.replace(URL);
-}
-</script>
-</head>
-<body>
-<p id= "console" style="height:90%;">
-Welcome <?php //echo $userName; ?>, Last login <?php echo "20/11/10"; ?><br />
-</p>
-<div style="position:absolute;bottom:15px;left:0px;width:100%;">
-<input id="writer" value="" tabindex="0" type="text" onkeydown="run(event)" style="" />
-</div>
-</body>
-</html>

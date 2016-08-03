@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Introduction to Computer Graphics</title>  
-	<style>
+	<style id="style">
 	body{
 	background-color:black;
 	color:white;
