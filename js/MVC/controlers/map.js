@@ -1,6 +1,6 @@
 
 
-function conMap(renderer,scene,camera,onready){
+function conMap(){
         //inherits from page class
         this.__proto__ = new Page();
         
@@ -9,9 +9,9 @@ function conMap(renderer,scene,camera,onready){
 	this.id = 1;
         
         //global THREE references
-	this.renderer = renderer;
-	this.scene = scene;
-	this.camera = camera;
+	
+	;
+	
         
         //class variables
         this.planetNames = new Array('sun.jpg','mercury_img.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
@@ -37,12 +37,12 @@ function conMap(renderer,scene,camera,onready){
 	this.create = function(from){
             //from orbit
             this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
-            this.scene.add(this.ambient);
+            __scene.add(this.ambient);
                 for(i=1;i<=this.planetNames.length;i++){
                         this.threePlanets[i] = this.makePlanet({'Map':{'IMG':this.planetNames[i]},'Radius':this.planetSizes[i]});
                         this.threePlanets[i].position.set(this.planetPositions.x[i],0,this.planetPositions.z[i]);
                         this.threePlanets[i].name = i;
-                        this.scene.add(this.threePlanets[i]);
+                        __scene.add(this.threePlanets[i]);
                 }
                 
                 //function needs updating for the lates three.js
@@ -54,8 +54,8 @@ function conMap(renderer,scene,camera,onready){
                     - ( event.clientY / window.innerHeight ) * 2 + 1);
                     
                     var raycaster = new THREE.Raycaster();
-                    raycaster.setFromCamera(vector,camera)
-                    var intersects = raycaster.intersectObjects( scene.children );
+                    raycaster.setFromCamera(vector,__camera)
+                    var intersects = raycaster.intersectObjects( __scene.children );
                     if ( intersects.length > 0 ) {
                         if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
                                 self.travel(intersects[0].object.name);
@@ -65,22 +65,22 @@ function conMap(renderer,scene,camera,onready){
                 
 		//Make an event listner for when the user click on the planet they want to travel to
                 document.addEventListener( 'mousedown', onDocumentMouseDown, false );
-                this.camera.position.set( this.planetPositions.x[2],  0,this.planet.Radius*3 );//inishiation of camera
+                __camera.position.set( this.planetPositions.x[2],  0,this.planet.Radius*3 );//inishiation of camera
                 this.x = this.planetPositions.x[2];
                 this.z = this.planet.Radius*3;
 		//setup space station overlay
                 //create user interface
                 this.createUserInterface();
-                this.camera.lookAt(new THREE.Vector3(this.planetPositions.x[2],0,0));
+                __camera.lookAt(new THREE.Vector3(this.planetPositions.x[2],0,0));
                 //Notify that this function is ready to be run
                 this.ready = true;
                 this.onready(this.id);
                 
 	}
         this.destroy = function(){
-            this.scene.remove(this.ambient);
+            __scene.remove(this.ambient);
             for(var i=0;i<this.threePlanets.length;i++){
-                this.scene.remove(this.threePlanets[i]);
+                __scene.remove(this.threePlanets[i]);
             }
         }
         //function to make the overlay html what is needed for this page
@@ -95,18 +95,18 @@ function conMap(renderer,scene,camera,onready){
             //need to go back to orbit at some point
             this.makeChanger(this,0)();
         }
-	//function to update scene each frame
+	//function to update __scene each frame
 	this.update = function(){
             if(this.inAnimation==1){
                 if(this.z<this.planet.Radius*3+6*60*100){
-                    this.camera.position.set(this.x,0,this.z);
+                    __camera.position.set(this.x,0,this.z);
                     this.z+=100;
                 }else{
                     this.inAnimation=2;//0;
                 }
             }else if(this.inAnimation==2){
                 if(this.z>this.planet.Radius*3){
-                    this.camera.position.set(this.x,0,this.z);
+                    __camera.position.set(this.x,0,this.z);
                     this.z=100;
                 }else{
                     //back to orbit

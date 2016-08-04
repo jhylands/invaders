@@ -1,25 +1,18 @@
 //battles class file
-//scene-centric coordinates
+//__scene-centric coordinates
  
-function conCombat(renderer,scene,camera,onready){
+function conCombat(){
         //inherits from page class
         this.__proto__ = new Page();
         
         //class information
 	this.name = "Combat";
 	this.id = 5;
+	
         
-        //global THREE references
-	this.renderer = renderer;
-	this.scene = scene;
-	this.camera = camera;
-        
-        //class variables
-        //planet should adhear to JS-Planet standard
-        this.planet = {"ID":"2","Name":"Venus","OrbitalRadius":"108200","InOrbitOf":"0","Temperature":"462","SurfaceGravity":"8.87","Radius":"6052","Map":{"IMG":"venus_img.jpg"}};
-    
+
         this.eventHandlers =[];
-        this.bullets = new BulletHandler(scene,5000);
+        this.bullets = new BulletHandler(__scene,5000);
         
         //Allegiances
         this.friendAllegiance = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(1,0,0),1000);
@@ -76,7 +69,7 @@ function conCombat(renderer,scene,camera,onready){
             switch(to){
             }
         }
-        //function to construct the scene if nothing has yet been constructed.
+        //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 this.inAnimation = 1;
                 //planet should already exist
@@ -88,11 +81,11 @@ function conCombat(renderer,scene,camera,onready){
                 //add spaceship
                 this.ship = this.loadBasicLib();
                 this.ship.position.copy(this.calculateOrbit(0));
-                this.scene.add(this.ship);
+                __scene.add(this.ship);
 		//add aliens
                 this.aliens = this.makeAlien();
                 this.aliens.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
-                this.scene.add(this.aliens);
+                __scene.add(this.aliens);
                 //reset thi and orbitpos
                 this.thi=0;
                 this.orbitPos = Math.PI/2;
@@ -132,150 +125,11 @@ function conCombat(renderer,scene,camera,onready){
         }
 
         //CREATORS
-        this.makeAlien = function(){
-            //group constants 
-            var COLS=10;
-            var ROWS=3 ;
-            
-            
-            //Geometry of aliens
-            var hullGeometry = new THREE.SphereGeometry(0.5,32);
-            var wingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20);
-            
-            //materials of aliens
-            var spec = new THREE.TextureLoader().load('images/shell.jpg');
-            //envirment map for reflections
-            var mirrorWingCamera = new THREE.CubeCamera( 0.1, 10000000, 512 );
-            var wingMaterial = new THREE.MeshPhongMaterial({specular:'#ffcc00', color: '#E00000', emissive: '#300000',emissiveIntensity:0.,specularMap:spec, shininess: 100 ,envMap: mirrorWingCamera.renderTarget,reflectivity:0.4});
 
-
-            mirrorWingCamera.updateCubeMap(this.renderer,this.scene);
-            var hullMaterial = new THREE.MeshPhongMaterial({specular:'#ffffff', color: '#FFFFFF', shininess: 100, envMap: mirrorWingCamera.renderTarget,transparent:true,opacity:0.7,reflectivity:0.9})
-            
-            //make alian mesh's
-            aBody = new THREE.Mesh(hullGeometry, hullMaterial);
-            aWing = new THREE.Mesh(wingGeometry, wingMaterial);
-
-            //create alien group (group of things that one alien is composed of)
-            alienMesh = new THREE.Group();
-            alienMesh.add(aBody);
-            alienMesh.add(aWing);
-
-            
-            //create array of aliens
-            var aliens = new THREE.Group();
-            aliens.name="all";
-            this.cube = mirrorWingCamera;
-            for (x=0;x<COLS;x++){
-                    //X loop
-                    //aliens[x] = new Array()
-                    for(z=0;z<ROWS;z++){
-                            //Z loop
-                            //create the user defined types
-                            //aliens[x][z] = new Object();
-                            //create the alian as a mesh object and set the apropreate properties
-                            var alien = alienMesh.clone();
-                            alien.children[1].name = aliens.children.length;
-                            
-                            alien.position.set(this.SPACING*z,0,this.SPACING*x-10);
-                            alien.velocity = new THREE.Vector3(0.01,0,0);
-                            //add the alian to the scene
-                            aliens.add(alien);
-                    }
-            }
-            return aliens; 
-        }
         this.loadBasicLib = function(){
-            scale=0.5
-//SHIP---------------------------------------------------------------------------------------
-//the Geometry of the engin bay
-var LiberatorGeometry1 = new THREE.SphereGeometry(2*scale,32,32);
-//the blue color of the engin bay
-var LiberatorMaterial1 = new THREE.MeshPhongMaterial({color:0x0000FF,side:THREE.DoubleSide});
-	//the component of the engine bay
-	var comp1 = new THREE.Mesh(LiberatorGeometry1,LiberatorMaterial1);
-		comp1.position.x=-1*scale;
-//The Geometry of the cylinders
-var LiberatorGeometry2 = new THREE.CylinderGeometry(1*scale,1*scale,5*scale,32);
-//the gray metal that most of the ship is made of
-var LiberatorMaterial2 = new THREE.MeshPhongMaterial({color:0xc0c0c0,side:THREE.DoubleSide});
-	//add the central column
-	var comp2 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
-		comp2.position.x=3*scale;
-		comp2.rotation.z = Math.PI/2;
-//create the cone on the front of the central column
-var LiberatorGeometry3 = new THREE.CylinderGeometry(0,1*scale,2*scale,32);
-	var comp3 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
-		comp3.position.x=6*scale;
-		comp3.rotation.z=-Math.PI/2;
-//create the plane that connects the outer columns
-var LiberatorGeometry4 = new THREE.PlaneGeometry(5*scale,1);
-	//plane
-	var comp4 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
-		comp4.rotation.z = Math.PI/4;
-		comp4.position  = new THREE.Vector3(3,2,0).multiplyScalar(scale);
-	//cyliner
-	var comp5 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
-		comp5.position = new THREE.Vector3(3,4,0).multiplyScalar(scale);
-		comp5.rotation.z=-Math.PI/2;
-	//cone
-	var comp6 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
-		comp6.position = new THREE.Vector3(6,4,0).multiplyScalar(scale);
-		comp6.rotation.z=-Math.PI/2;
-var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
-	//sphere
-	var comp7 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
-		comp7.position = new THREE.Vector3(0.5,4,0).multiplyScalar(scale);
-	//plane
-	var comp8 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
-		comp8.rotation.z = -Math.PI/4;
-		comp8.rotation.x = -Math.PI/4;
-		comp8.position = new THREE.Vector3(3,-1.4,1.4).multiplyScalar(scale);
-	//plane
-	var comp9 = new THREE.Mesh(LiberatorGeometry4,LiberatorMaterial2);
-		comp9.rotation.z = -Math.PI/4;
-		comp9.rotation.x = Math.PI/4;
-		comp9.position = new THREE.Vector3(3,-1.4,-1.4).multiplyScalar(scale);
-	//sphere
-	var comp10 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
-		comp10.position = new THREE.Vector3(0.5,-2.8,2.8).multiplyScalar(scale);
-	//sphere
-	var comp11 = new THREE.Mesh(LiberatorGeometry7,LiberatorMaterial2);
-		comp11.position = new THREE.Vector3(0.5,-2.8,-2.8).multiplyScalar(scale);
-	//cone
-	var comp12 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
-		comp12.position = new THREE.Vector3(6,-2.8,-2.8).multiplyScalar(scale);
-		comp12.rotation.z=-Math.PI/2;
-	//cone
-	var comp13 = new THREE.Mesh(LiberatorGeometry3,LiberatorMaterial2);
-		comp13.position = new THREE.Vector3(6,-2.8,2.8).multiplyScalar(scale);
-		comp13.rotation.z=-Math.PI/2;
-	//cylinder
-	var comp14 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
-		comp14.position = new THREE.Vector3(3,-2.8,2.8).multiplyScalar(scale);
-		comp14.rotation.z=-Math.PI/2;
-	//cyloinder
-	var comp15 = new THREE.Mesh(LiberatorGeometry2,LiberatorMaterial2);
-		comp15.position = new THREE.Vector3(3,-2.8,-2.8).multiplyScalar(scale);
-		comp15.rotation.z=-Math.PI/2;
-	spaceShip = new THREE.Group()
-	spaceShip.add(comp1);
-	spaceShip.add(comp2);
-	spaceShip.add(comp3);
-	spaceShip.add(comp4);
-	spaceShip.add(comp5);
-	spaceShip.add(comp6);
-	spaceShip.add(comp7);
-	spaceShip.add(comp8);
-	spaceShip.add(comp9);
-	spaceShip.add(comp10);
-	spaceShip.add(comp11);
-	spaceShip.add(comp12);
-	spaceShip.add(comp13);
-	spaceShip.add(comp14);
-	spaceShip.add(comp15);
-        spaceShip.position.set(0,0,10);
-        return spaceShip;
+            var ship = new LiberatorBasicShip();
+            ship.create();
+            return ship.getThree();
         }
         this.loadLib = function(){
             loadGeometry('ship');
@@ -297,11 +151,11 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
         }
         
         //UPDATES (frame by frame)
-        //function to update scene each frame
+        //function to update __scene each frame
 	this.update = function(){
             switch(this.inAnimation){
                 case 0:
-                    this.cube.updateCubeMap(this.renderer,scene);
+                    this.cube.updateCubeMap(__renderer,__scene);
                     //Rotate the ship
                     this.moveEntities();
                     //GAME OVER!
@@ -326,17 +180,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             var offset = this.calculateOrbit(0);
             //need to check is game is active first
             //MOVEMENT CONTROLLS
-            if(keyState.pressed("left")){
-                //check the object is in range
-                if(this.ship.position.z>-8*this.SPACING+offset.z){
-                        this.ship.position.z-=0.1
-                }
-            }else if(keyState.pressed("right")){
-                //check object is in range
-                if(this.ship.position.z<8*this.SPACING+offset.z){
-                        this.ship.position.z+=0.1
-                }
-            }
+            loopThroughObjects();
             //CAMERA MOVEMENT
             if(keyState.pressed("up")){
                 this.Crotation+=0.01;
@@ -345,7 +189,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             }
             this.updateCameraPosition();
             //get the camera to look at the spaceship
-            this.camera.lookAt( this.ship.position);
+            __camera.lookAt( this.ship.position);
             //SHOOTING
             if(keyState.pressed("space")){
                 //might need to ad sound
@@ -364,7 +208,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                             }
                         }
                         mirrorWingCamera.position = alians[5][1].mesh.position;
-                        mirrorWingCamera.updateCubeMap( renderer, scene );
+                        mirrorWingCamera.updateCubeMap( renderer, __scene );
                         for(x=0;x<alians.length;x++){
                             for(z=0;z<alians[x].length;z++){
                                 alians[x][z].mesh.visible = true;
@@ -396,25 +240,6 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                 this.dead=true;
                 //add eventhandlers
             }
-            /*//check with spaceShip
-            if(this.bullets.checkCollision(this.ship.position,3,this.friendAllegiance)){
-                this.health--;
-                //play sound
-                
-            }
-
-            if(Collision(bullit[i].object.position,spaceShip.position,1) && health!=0){
-                health = health-5;
-                document.getElementById('health').width=health*2.5 + "px";
-                document.getElementById('healthTXT').innerHTML = health;
-                //"GET","scripts/combat/hit.php"
-                //check for collision with alien
-                //loop through aliens 
-                if(this.bullets.checkCollision(thisAlien,1,this.foeAllegiance)){
-                    //explode alien
-                    //play sound
-                }
-            }*/
         };
         this.checkGameOver = function(){
             if(this.score==300 && this.won==false){
@@ -487,10 +312,10 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
             }else{
                 lookat = this.threePlanet.position;
             }
-            //update scene
+            //update __scene
             //this.threePlanet.position.copy( this.calculateOrbit(0).negate() );
             this.updateCameraPosition();
-            this.camera.lookAt(lookat);
+            __camera.lookAt(lookat);
         }
         this.backToOrbit = function(){
             this.inAnimation = 2;
@@ -518,29 +343,29 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                         console.log('Movement Fin')
                         this.thi=0;
                         this.orbitPos=deg(90);
-                        this.scene.remove(this.ship);
-                        this.scene.remove(this.aliens);
+                        __scene.remove(this.ship);
+                        __scene.remove(this.aliens);
                         this.change = true;
                         this.nextPage = 0;
                 }
                 lookat = this.threePlanet.position;
             }
             this.updateCameraPosition();
-            this.camera.lookAt(lookat);
+            __camera.lookAt(lookat);
         };
         
         //DESTRUCTORS
         this.destructor = function(){
-            this.scene.remove(this.ship);
-            this.scene.remove(this.aliens);
+            __scene.remove(this.ship);
+            __scene.remove(this.aliens);
         }
         
         //CALCULATIONS
-        //function to generate a reference to the planet in the scene so it can be moved
+        //function to generate a reference to the planet in the __scene so it can be moved
         this.findPlanet = function (){
-            for(i=0;i<this.scene.children.length;i++){
-                if(this.scene.children[i].name=="planet"){
-                    this.threePlanet = this.scene.children[i];
+            for(i=0;i<__scene.children.length;i++){
+                if(__scene.children[i].name=="planet"){
+                    this.threePlanet = __scene.children[i];
                     return null;
                 }
             }
@@ -552,7 +377,7 @@ var LiberatorGeometry7 = new THREE.SphereGeometry(1*scale,32,32);
                 3*(this.planet['Radius']-radialOffset)*Math.sin(this.orbitPos)*Math.cos(this.thi));
 	}
         this.updateCameraPosition = function(){
-            this.camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(50* Math.sin(this.Crotation),50* Math.cos(this.Crotation),this.ship.position.z)));
+            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(50* Math.sin(this.Crotation),50* Math.cos(this.Crotation),this.ship.position.z)));
         }
         this.log = function(x){
             return Math.log(x*Math.pow(10,17))/40;

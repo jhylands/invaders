@@ -38,13 +38,12 @@ function Bullet(allegience,position,timeOut){
     
 }
 
-function BulletHandler(scene,timeOut){
+function BulletHandler(timeOut){
     //initiate bullet list
     this.bullets = [];
     this.firendlyFire = false;
     //set timeout for bullets
     this.timeOut = timeOut;
-    this.scene = scene;
     //set max fire rate
     this.canShoot = {'AmIHerer':function(){return 'yes';}};
     //canshoot timing need to be 
@@ -64,7 +63,7 @@ function BulletHandler(scene,timeOut){
             }
             var bullet = new Bullet(allegiance,position,this.timeOut);
             this.bullets.push(bullet);
-            this.scene.add(bullet.Mesh);
+            __scene.add(bullet.Mesh);
         }
     };
     
@@ -78,7 +77,7 @@ function BulletHandler(scene,timeOut){
             //destroy if nessasery 
             if(this.bullets[i].dead){
                 //if(this.bullets[i].team=="Friend"){alert('removed');}
-                this.scene.remove(this.bullets[i].Mesh);
+                __scene.remove(this.bullets[i].Mesh);
                 this.bullets.splice(i,1);
             }else{
                 var aB = this.bullets[i];;//aB ... ullet

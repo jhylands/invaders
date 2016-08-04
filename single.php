@@ -34,9 +34,9 @@
 <script>
 //inishiate page globals
 var render;
-var renderer;
-var scene;
-var camera;
+var __renderer;
+var __scene;
+var __camera;
 
 //create page file
 var pages = [];
@@ -52,22 +52,22 @@ function loadPage(toPageID,fromPageID){
 window.onload = function() {
         pages = [new conOrbit(),new conMap,new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize( window.innerWidth,window.innerHeight);
-        document.getElementsByTagName('div')[0].appendChild( renderer.domElement );
-        scene = new THREE.Scene();
-	//setup camera
-        var camera = new THREE.PerspectiveCamera(
+        __renderer = new THREE.WebGLRenderer();
+        __renderer.setSize( window.innerWidth,window.innerHeight);
+        document.getElementsByTagName('div')[0].appendChild( __renderer.domElement );
+        __scene = new THREE.Scene();
+	//setup __camera
+        __camera = new THREE.PerspectiveCamera(
             35,             // Field of view
             (window.innerWidth)/(window.innerHeight),      // Aspect ratio
             0.1,            // Near plane
             10000000          // Far plane
         );
-        scene.add(camera);
+        __scene.add(__camera);
 	//setup keyboard event handler
 	var keyboard = new THREEx.KeyboardState();
 	//SKYBOX
-	scene.add( makeSkyBox() );
+	__scene.add( makeSkyBox() );
   //define the update function 
 	function update() {
 		//keybinding
@@ -88,14 +88,14 @@ window.onload = function() {
                     timerSet = true;
                     window.setInterval( function() {update();}, 1000 / 60 );
                 }
-		//Re-draw the scene
-		renderer.render(scene, camera);
+		//Re-draw the __scene
+		__renderer.render(__scene, __camera);
 		//Re-call the render function when the next frame is ready to be drawn
 		requestAnimationFrame(render);
 	}
 	
 	//import the page
-	loadPage(0,0,renderer,scene,camera);
+	loadPage(0,0);
 };
 </script>
 </head>

@@ -3,7 +3,8 @@
 <head>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
-    <script src="../js/three.js"></script>
+    <script src="../js/three(78).js"></script>
+    <script src="../js/ColladaLoader.js"></script>
 	<script src="../js/THREEx.KeyboardState.js"></script>	
 	
     <script>
@@ -122,9 +123,38 @@
 	mirrorCubeCamera = new THREE.CubeCamera( 0.1, 321640, 512 );
         	scene.add( mirrorCubeCamera );
                 	mirrorCubeCamera.position = new THREE.Vector3(0,0,0);
-var loader = new THREE.ObjectLoader();
-loader.load("ship1.js",function ( obj1 ) {
-		var material = new THREE.MeshPhongMaterial( {
+                        
+                        // instantiate a loader
+var loader = new THREE.ColladaLoader();
+
+loader.load(
+	// resource URL
+	'asteroid2.dae',
+	// Function when resource is loaded
+	function ( collada ) {
+            texture = new THREE.ImageUtils.loadTexture( "../images/asteroid.jpg" );
+    texture.wrapS = THREE.RepeatWrapping;
+    texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.x=4;
+    texture.repeat.y=4;
+    material = new THREE.MeshPhongMaterial( {
+                                    color: 0xdddddd,
+                                    specular: 0x222222,
+                                    shininess: 0,
+                                    map: texture,
+                                    shading:THREE.FlatShading});
+            collada.scene.children[2].children[0].material = material;
+		scene.add( collada.scene.children[2].children[0] );
+	},
+	// Function called when download progresses
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	}
+);
+/*var loader = new THREE.ObjectLoader();
+loader.load("ship1.js",function ( geometry,materials ) {
+    var obj = new THREE.Mesh( geometry, new THREE.MeshFaceMaterial( materials ) );
+	/*	var material = new THREE.MeshPhongMaterial( {
 					color: 0xdddddd,
 					specular: 0x222222,
 					shininess: 35,
@@ -146,9 +176,9 @@ loader.load("ship1.js",function ( obj1 ) {
      spaceShip.add(obj.children[0]);
      spaceShip.add(obj.children[1]);
      spaceShip.add(obj.children[2]);
-     spaceShip.add(obj.children[5]);*/
+     spaceShip.add(obj.children[5]);
      scene.add( obj );
-});
+});*/
 	//siran();
 		//runLoader();
 		function update() {
@@ -180,9 +210,9 @@ loader.load("ship1.js",function ( obj1 ) {
 		function render() {
 			//Call the update function
 			update();
-                        obj.visible = false;
+                        /*obj.visible = false;
 	mirrorCubeCamera.updateCubeMap( renderer, scene );
-	obj.visible = true;
+	obj.visible = true;*/
 			//Re-draw the scene
 			renderer.render(scene, camera);
 			//Re-call the render function when the next frame is ready to be drawn

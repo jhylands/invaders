@@ -1,9 +1,10 @@
 //top level class for ships
-function ship(){
+function Ship(){
     /**
      * Function returns the three object of the ship
      */
     this.getThree = function(){console.log('Abstract function getThree not overwritten!');};
+    //this.getThree = function(){return this.object;};
     /**
      * Function to handle any updates to the ship that should occurer every update
      * @returns void

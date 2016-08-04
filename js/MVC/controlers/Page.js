@@ -59,7 +59,7 @@ function Page(){
             planetObject.add(planetLight);
             return planetObject;
     }
-    //function to add the sun and its lights into the scene
+    //function to add the sun and its lights into the __scene
     this.addSun = function(){
         var sun = new THREE.Group();
         var lightcolor =  0xFFFFFF

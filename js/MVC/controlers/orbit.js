@@ -1,7 +1,7 @@
 //orbit class file
 //planet-centric coordinates
  
-function conOrbit(onready){
+function conOrbit(){
         //inherits from page class
         this.__proto__ = new Page();
         
@@ -62,21 +62,21 @@ function conOrbit(onready){
             switch(to){
                 case 1:
                     //Go to the map
-                    scene.remove(this.threeSpaceStation);
+                    __scene.remove(this.threeSpaceStation);
                     //temperarely
-                    scene.remove(this.threePlanetLights);
-                    scene.remove(this.sun);
+                    __scene.remove(this.threePlanetLights);
+                    __scene.remove(this.sun);
                     break;
                 case 5:
                     //go to combat
-                    //remove the saterlite from the scene
-                    scene.remove(this.threeSpaceStation);
+                    //remove the saterlite from the __scene
+                    __scene.remove(this.threeSpaceStation);
                     //remove the overlay
                     document.getElementById('overlay').innerHTML = "";
                     break;
             }
         }
-        //function to construct the scene if nothing has yet been constructed.
+        //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
 		this.threePlanet = this.makePlanet(this.planet);
@@ -84,14 +84,14 @@ function conOrbit(onready){
 		//set up lighting
 		this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);
                 this.threePlanetLights.name = "planet";
-                scene.add(this.threePlanetLights);
+                __scene.add(this.threePlanetLights);
                 
                 //add the sun
                 this.sun = this.addSun();
-                scene.add(this.sun);
+                __scene.add(this.sun);
 		//add spacestation
                 this.threeSpaceStation = makeSpaceStation();
-                scene.add(this.threeSpaceStation);
+                __scene.add(this.threeSpaceStation);
 		//use an objectloader as this is a larger object
 		//setup space station overlay
                 //create user interface
@@ -99,8 +99,8 @@ function conOrbit(onready){
         }
         this.constructFromCombat = function(){
             this.orbitPos=Math.PI/2;
-            //add spacestation to scene
-            scene.add(this.threeSpaceStation);
+            //add spacestation to __scene
+            __scene.add(this.threeSpaceStation);
             //create UI
             this.createUserInterface();
         }
@@ -129,12 +129,12 @@ function conOrbit(onready){
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	}
-	//function to update scene each frame
+	//function to update __scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;
-            camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
+            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
             this.threeSpaceStation.position.copy(this.calculateOrbit(3))
-            camera.lookAt(this.threePlanet.position);
+            __camera.lookAt(this.threePlanet.position);
             this.threePlanet.rotation.y += 0.0001;
 	}
 

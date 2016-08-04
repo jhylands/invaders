@@ -1,6 +1,6 @@
 //console class file
  
-function conConsole(renderer,scene,camera,onready){
+function conConsole(){
     //inherits from page class
     this.__proto__ = new Page();
 
@@ -9,9 +9,9 @@ function conConsole(renderer,scene,camera,onready){
     this.id = 7;
 
     //global THREE references
-    this.renderer = renderer;
-    this.scene = scene;
-    this.__camera = camera;
+    
+    ;
+    
 
     //Finished loading variables
     this.ready = false;
