@@ -1,3 +1,5 @@
+/* global __renderer, __scene */
+
 //battles class file
 //__scene-centric coordinates
  
@@ -22,7 +24,6 @@ function conCombat(){
         this.Crotation = deg(-80);
         this.orbitPos = Math.PI/2;
         this.thi = 0;
-        this.SPACING = 3;
         this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
         this.dead=false;
         this.health = 10;
@@ -79,20 +80,20 @@ function conCombat(){
                 this.thi=deg(20);
                 this.orbitPos=deg(180);
                 //add spaceship
-                this.ship = this.loadBasicLib();
-                this.ship.position.copy(this.calculateOrbit(0));
-                __scene.add(this.ship);
+                this.ship = this.loadLib();
+                this.ship.setPosition(this.calculateOrbit(0));
+                __scene.add(this.ship.getThree());
 		//add aliens
-                this.aliens = this.makeAlien();
-                this.aliens.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
-                __scene.add(this.aliens);
+                this.aliens = new AlienFleet();
+                this.aliens.setPosition(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
+                __scene.add(this.aliens.getThree());
                 //reset thi and orbitpos
                 this.thi=0;
                 this.orbitPos = Math.PI/2;
                 this.findPlanet();
                 //create user interface
                 this.createUserInterface();
-        }
+        };
         //create a closure containing a reference to this class and the index of the page to be loaded in
         this.makeChanger = function(page,nextPageID){
             var locPage = page;
@@ -125,14 +126,10 @@ function conCombat(){
         }
 
         //CREATORS
-
-        this.loadBasicLib = function(){
-            var ship = new LiberatorBasicShip();
+        this.loadLib = function(){
+            var ship = new LiberatorShip();
             ship.create();
             return ship.getThree();
-        }
-        this.loadLib = function(){
-            loadGeometry('ship');
         }
         this.createUserInterface = function(){
             //health bar            
@@ -153,26 +150,22 @@ function conCombat(){
         //UPDATES (frame by frame)
         //function to update __scene each frame
 	this.update = function(){
-            switch(this.inAnimation){
-                case 0:
-                    this.cube.updateCubeMap(__renderer,__scene);
-                    //Rotate the ship
-                    this.moveEntities();
-                    //GAME OVER!
-                    this.checkGameOver();
-                    //Update an alien wing camera
-                    if(this.start){
-                        this.alienAI();
-                    }
-                    //detect collisions
-                    this.detectCollisions();
-                    break;
-                case 1:
-                    this.animationUpdate();
-                    break;
-                case 2:
-                    this.animationUpdateB();
-                    break;
+            if(this.animation.is()){
+                this.animation.do();
+            }else{
+                this.cube.updateCubeMap(__renderer,__scene);
+                //Rotate the ship
+                this.bullets.update();
+                this.alienFleet.update();
+                this.ship.update();
+                //GAME OVER!
+                this.checkGameOver();
+                //Update an alien wing camera
+                if(this.start){
+                    this.alienFleet.canShoot();
+                }
+                //detect collisions
+                this.detectCollisions();
             }
         }
         //function to handle keyboard events
@@ -180,7 +173,7 @@ function conCombat(){
             var offset = this.calculateOrbit(0);
             //need to check is game is active first
             //MOVEMENT CONTROLLS
-            loopThroughObjects();
+            this.ship.keyboard(keyState);
             //CAMERA MOVEMENT
             if(keyState.pressed("up")){
                 this.Crotation+=0.01;
@@ -199,48 +192,9 @@ function conCombat(){
                     document.getElementById('infoBoxParent').hidden = true;
                 }
             }
-	}
-        this.updateCamera = function (){
-            //update a single camera from the aliens 
-                                    for(x=0;x<alians.length;x++){
-                            for(z=0;z<alians[x].length;z++){
-                                alians[x][z].mesh.visible = false;
-                            }
-                        }
-                        mirrorWingCamera.position = alians[5][1].mesh.position;
-                        mirrorWingCamera.updateCubeMap( renderer, __scene );
-                        for(x=0;x<alians.length;x++){
-                            for(z=0;z<alians[x].length;z++){
-                                alians[x][z].mesh.visible = true;
-                            }
-                        }
-        }
-        this.detectCollisions = function(){
-            var hit = this.bullets.checkCollision(this.aliens,this.ship);
-            for(n=0;n<this.aliens.children.length;n++){
-                for(i=0;i<hit.aliens.length;i++){
-                    if(this.aliens.children[n].children[1].name==hit.aliens[i]){
-                        this.aliens.remove(this.aliens.children[n]);
-                    }
-                }
-            }
-            if(hit.friend){
-                this.health-=5;
-                document.getElementById('health').width=health*2.5 + "px";
-                document.getElementById('healthTXT').innerHTML = this.health;
-            }
-            if(this.health<5 && !this.dead){
-                //document.getElementById('die').play()
-                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2od' value='Back to orbit' />";
-                document.getElementById('infoBoxParent').hidden = false;
-                var _self = this;
-                document.getElementById('bk2od').addEventListener("click",function(){_self.backToOrbit();});
+	};
+
         
-                this.start= false;
-                this.dead=true;
-                //add eventhandlers
-            }
-        };
         this.checkGameOver = function(){
             if(this.score==300 && this.won==false){
                 //won=true;
@@ -253,106 +207,8 @@ function conCombat(){
                     //take the responce and put it in the class box
                     document.getElementById("console").innerHTML = document.getElementById("console").innerHTML + '<br />' +  resp;});            
             }
-        }
-        this.alienAI = function(){
-            difficulty = 0.001;
-            //alians shoot back
-            for(var x=0;x<this.aliens.children.length;x++){
-                moveSeed = Math.random();
-                if(moveSeed<0.1){
-                    this.aliens.children[x].velocity.y +=0.0001;
-                }else if (moveSeed<0.2){
-                    this.aliens.children[x].velocity.y -=0.0001;
-                }
-                this.aliens.children[x].velocity.y += (-this.aliens.children[x].position.y) / 1000;
-                this.aliens.children[x].position.setY(this.aliens.children[x].position.y+this.aliens.children[x].velocity.y);
-                if(Math.random()<difficulty){
-                    //make new bullit
-                    this.bullets.create(this.foeAllegiance,(new THREE.Vector3(0,0,0).add(this.aliens.children[x].position)).add(this.aliens.position));
-                }
-            }
-        }
-        this.alienParity = 1;
-        this.moveAliens = function(){
-            this.aliens.position.setZ(this.aliens.position.z+0.01*this.alienParity);
-            if(this.aliens.position.z>this.SPACING*7||this.aliens.position.z<this.SPACING*-7){
-                this.alienParity *=-1;
-            }
-        }
-        this.moveEntities = function(){
-            this.bullets.update();
-            this.moveAliens();
-        }
-        
-        //ANIMATIONS
-        this.animationUpdate = function (){
-            //target (0,20)
-            //increase latitude
-            if(this.thi<deg(20)){
-                this.thi+=deg(20)/120;
-            }
-            //decrease longditude
-            if(this.orbitPos<deg(180)){
-                this.orbitPos+=deg(180)/240;
-            }
-            //check to end animation 
-            if(this.orbitPos>deg(180) && this.thi>deg(20)){
-                if(this.log(this.moveToShip)>=1){
-                    console.log('Movement Fin')
-                    this.inAnimation = 0;
-                    this.thi=deg(20);
-                    this.orbitPos=deg(180);
-                }else{
-                    this.moveToShip+=0.1;
-                    var planetpos = new THREE.Vector3(0,0,0).multiplyScalar(1-this.log(this.moveToShip));
-                    var shipPos = new THREE.Vector3(0,0,0).copy(this.ship.position).multiplyScalar(this.log(this.moveToShip));
-                    
-                    lookat = planetpos.add(shipPos);
-                }
-            }else{
-                lookat = this.threePlanet.position;
-            }
-            //update __scene
-            //this.threePlanet.position.copy( this.calculateOrbit(0).negate() );
-            this.updateCameraPosition();
-            __camera.lookAt(lookat);
-        }
-        this.backToOrbit = function(){
-            this.inAnimation = 2;
-        }
-        this.animationUpdateB = function(){
-            //start by moving focus
-            if(this.log(this.moveToShip)>=1){
-                this.moveToShip-=0.1;
-                var planetpos = new THREE.Vector3(0,0,0).multiplyScalar(1-this.log(this.moveToShip));
-                var shipPos = new THREE.Vector3(0,0,0).copy(this.ship.position).multiplyScalar(this.log(this.moveToShip));
-
-                lookat = planetpos.add(shipPos);
-            }else{
-                //then move camera
-                //decrease latitude
-                if(this.thi>0){
-                    this.thi-=deg(20)/120;
-                }
-                //decrease longditude
-                if(this.orbitPos>deg(90)){
-                    this.orbitPos-=deg(180)/240;
-                }
-                //check to end animation 
-                if(this.orbitPos<=deg(90) && this.thi<=0){
-                        console.log('Movement Fin')
-                        this.thi=0;
-                        this.orbitPos=deg(90);
-                        __scene.remove(this.ship);
-                        __scene.remove(this.aliens);
-                        this.change = true;
-                        this.nextPage = 0;
-                }
-                lookat = this.threePlanet.position;
-            }
-            this.updateCameraPosition();
-            __camera.lookAt(lookat);
         };
+        
         
         //DESTRUCTORS
         this.destructor = function(){

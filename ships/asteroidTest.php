@@ -129,22 +129,24 @@ var loader = new THREE.ColladaLoader();
 
 loader.load(
 	// resource URL
-	'ship1.dae',
+	'asteroid2.dae',
 	// Function when resource is loaded
-	function ( collada ) {/*
+	function ( collada ) {
             texture = new THREE.ImageUtils.loadTexture( "../images/asteroid.jpg" );
     texture.wrapS = THREE.RepeatWrapping;
     texture.wrapT = THREE.RepeatWrapping;
-    texture.repeat.x=4;
-    texture.repeat.y=4;
+    texture.repeat.x=2;
+    texture.repeat.y=2;
     material = new THREE.MeshPhongMaterial( {
                                     color: 0xdddddd,
                                     specular: 0x222222,
                                     shininess: 0,
                                     map: texture,
-                                    shading:THREE.FlatShading});
-            collada.scene.children[2].children[0].material = material;*/
-		scene.add( collada.scene );
+                                    /*shading:THREE.FlatShading,*/
+                                    bumpMap:texture,
+                                    bumbScale:0.2});
+            collada.scene.children[2].children[0].material = material;
+		scene.add( collada.scene.children[2].children[0] );
 	},
 	// Function called when download progresses
 	function ( xhr ) {

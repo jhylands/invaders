@@ -16,5 +16,30 @@ function Ship(){
      */
     this.keyboard = function(keystate){console.log('Abstract function keyboard not overwritten!');};
     
-    
+    this.detectCollisions = function(){
+            var hit = this.bullets.checkCollision(this.aliens,this.ship);
+            for(n=0;n<this.aliens.children.length;n++){
+                for(i=0;i<hit.aliens.length;i++){
+                    if(this.aliens.children[n].children[1].name==hit.aliens[i]){
+                        this.aliens.remove(this.aliens.children[n]);
+                    }
+                }
+            }
+            if(hit.friend){
+                this.health-=5;
+                document.getElementById('health').width=health*2.5 + "px";
+                document.getElementById('healthTXT').innerHTML = this.health;
+            }
+            if(this.health<5 && !this.dead){
+                //document.getElementById('die').play()
+                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2od' value='Back to orbit' />";
+                document.getElementById('infoBoxParent').hidden = false;
+                var _self = this;
+                document.getElementById('bk2od').addEventListener("click",function(){_self.backToOrbit();});
+        
+                this.start= false;
+                this.dead=true;
+                //add eventhandlers
+            }
+        };
 }

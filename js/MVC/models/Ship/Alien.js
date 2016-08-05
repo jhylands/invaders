@@ -1,12 +1,9 @@
-function AlienShip(){
+function AlienShip(bulletHandler){
     //inherits from ship class
     this.__proto__ = new Ship();
+    this.bulletHandler = bulletHandler;
+    this.getThree = function(){return object;};
     this.make = function(){
-        //group constants 
-        var COLS=10;
-        var ROWS=3 ;
-
-
         //Geometry of aliens
         var hullGeometry = new THREE.SphereGeometry(0.5,32);
         var wingGeometry = new THREE.CylinderGeometry(0.5,1,0.5,20);
@@ -29,6 +26,35 @@ function AlienShip(){
         alienMesh = new THREE.Group();
         alienMesh.add(aBody);
         alienMesh.add(aWing);
+        this.object = alienMesh;
+    };
+    //allow for the mesh to be passed as reference to one in a fleet so to reduce memory
+    this.makeAsFleet = function(group){this.object = group;};
+    this.setPosition = function(vector3){this.object.position.set(vector3);};
+    this.getPosition = function(){return this.object.position;};
+    this.setVelocity = function(vector3){this.velocity = vector3;};
+    this.getVelocity = function(){return this.velocity;};
+    this.update = function (){
+        //To include some reference to local ships
+        this.object.position.add(this.velocity);
+    };
+    this.alienAI = function(){
+            difficulty = 0.001;
+            //alians shoot back
+            for(var x=0;x<this.aliens.children.length;x++){
+                moveSeed = Math.random();
+                if(moveSeed<0.1){
+                    this.aliens.children[x].velocity.y +=0.0001;
+                }else if (moveSeed<0.2){
+                    this.aliens.children[x].velocity.y -=0.0001;
+                }
+                this.aliens.children[x].velocity.y += (-this.aliens.children[x].position.y) / 1000;
+                this.aliens.children[x].position.setY(this.aliens.children[x].position.y+this.aliens.children[x].velocity.y);
+                if(Math.random()<difficulty){
+                    //make new bullit
+                    this.bullets.create(this.foeAllegiance,(new THREE.Vector3(0,0,0).add(this.aliens.children[x].position)).add(this.aliens.position));
+                }
+            }
     };
 }
 
