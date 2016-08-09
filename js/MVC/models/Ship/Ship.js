@@ -1,5 +1,10 @@
 //top level class for ships
-function Ship(){
+function Ship(bulletHandler){
+    this.bullets = bulletHandler;
+    this.health;
+    
+    this.getHealth= function(){return this.health;};
+    this.setHealth=function(health){this.health= health;};
     /**
      * Function returns the three object of the ship
      */
@@ -42,4 +47,7 @@ function Ship(){
                 //add eventhandlers
             }
         };
+        this.FRIEND = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(1,0,0),1000);
+        this.FOE = this.bullets.createAllegiance("Foe",0xFF000,new THREE.Vector3(-1,0,0),0);
+        
 }

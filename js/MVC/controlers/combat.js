@@ -11,22 +11,17 @@ function conCombat(){
 	this.name = "Combat";
 	this.id = 5;
 	
-        
+        this.overlayHandle = new vwCombat();
+        this.animationHandle = new CombatAnimation();
 
         this.eventHandlers =[];
         this.bullets = new BulletHandler(__scene,5000);
-        
-        //Allegiances
-        this.friendAllegiance = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(1,0,0),1000);
-        this.foeAllegiance = this.bullets.createAllegiance("Foe",0xFF000,new THREE.Vector3(-1,0,0),0);
-        
+       
         this.dificulty = 0.001;
         this.Crotation = deg(-80);
         this.orbitPos = Math.PI/2;
         this.thi = 0;
-        this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
         this.dead=false;
-        this.health = 10;
         this.moveToShip=0;
         
         
@@ -50,7 +45,6 @@ function conCombat(){
             this.SPACING = 3;
             this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
             this.dead=false;
-            this.health = 10;
             this.moveToShip=0;
                 //switch based on where the page is coming from
                 switch(from){
@@ -60,7 +54,6 @@ function conCombat(){
                         break;
                         
                 }
-		
                 //Notify that this function is ready to be run
                 this.ready = true;
                 this.onready(this.id);
@@ -131,21 +124,6 @@ function conCombat(){
             ship.create();
             return ship.getThree();
         }
-        this.createUserInterface = function(){
-            //health bar            
-            htmlOverlay = '<div style="position:absolute; top:0px;right:0px;z-index:6;"><table id="health" style="background-color:green;height:30px;" width="250px"><tr><td id="healthTXT"></td></tr></table></div>';            
-            //Info box telling the user to press space to start
-            htmlOverlay += '<div id="infoBoxParent" style="position:absolute;top:250px;left:250px;z-index:5;width:300px;"><table style="background-color:black;color:white;"><tr><td id="infoBox"><h1>Press space to start</h1><input id="bk2o" type="button" value="Back to orbit"  /></td></tr></table></div>';
-            document.getElementById('overlay').innerHTML = htmlOverlay;
-            document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
-            document.getElementById('infoBox').top = window.innerHeight/2-100;
-            document.getElementById('infoBox').left = window.innerWidth/2-100;
-            
-            //add eventhandlers
-            //closure needed 
-            var _self = this;
-            document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
-        }
         
         //UPDATES (frame by frame)
         //function to update __scene each frame
@@ -185,8 +163,6 @@ function conCombat(){
             __camera.lookAt( this.ship.position);
             //SHOOTING
             if(keyState.pressed("space")){
-                //might need to ad sound
-                this.bullets.create(this.friendAllegiance,this.ship.position);
                 if(!this.dead){
                     this.start=true;//allow the aliens to start shooting
                     document.getElementById('infoBoxParent').hidden = true;
@@ -197,15 +173,7 @@ function conCombat(){
         
         this.checkGameOver = function(){
             if(this.score==300 && this.won==false){
-                //won=true;
-                document.getElementById('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><input id='bk2o' type='button' value='Back to orbit' />";
-                document.getElementById('infoBoxParent').hidden = false;
-                var _self = this;
-                document.getElementById('bk2o').addEventListener("click",function(){_self.backToOrbit();});
-        
-                $.ajax({url:"scripts/combat/won.php",post:"data:shipInfo"}).done(function(resp){
-                    //take the responce and put it in the class box
-                    document.getElementById("console").innerHTML = document.getElementById("console").innerHTML + '<br />' +  resp;});            
+                this.overlayHandle.displayWinScreen();            
             }
         };
         

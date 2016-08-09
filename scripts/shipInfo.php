@@ -12,7 +12,7 @@ if($_COOKIE['User']){
 }
 
 function classLoader($class) {
-    include 'PHPClass/' . $class . '.php';
+    include '/home/a9206732/public_html/invaders-master/PHPClass/' . $class . '.php';
 }
 spl_autoload_register(classLoader);
 

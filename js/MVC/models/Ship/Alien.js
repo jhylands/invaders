@@ -1,7 +1,6 @@
 function AlienShip(bulletHandler){
     //inherits from ship class
-    this.__proto__ = new Ship();
-    this.bulletHandler = bulletHandler;
+    this.__proto__ = new Ship(bulletHandler);
     this.getThree = function(){return object;};
     this.make = function(){
         //Geometry of aliens
