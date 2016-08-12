@@ -44,7 +44,7 @@ function conCargo(){
             //add event listeners
             var func = this.makeChanger(this,0);
             document.getElementById('bk2o').addEventListener("click",func);
-        }
+        };
         this.backToOrbit = function(){
             this.change = true;
             this.nextPage = 0;

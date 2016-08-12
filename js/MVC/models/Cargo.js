@@ -1,20 +1,13 @@
-function Cargo(id,amount){
-    this.getName = function(){return this.name;};
-    this.getAmmount = function(){return this.amount;};
-    this.getID = function(){return this.id;};
-    this.names = ['','','Helium','Metal','Urainium']
-    this.amount = amount;
-    this.id=id;
-    this.name = this.names[this.id];
-    /**
-     * 
-     * @returns {String} 
-     */
-    this.toString = function(){return this.name + ": " + this.amount + this.getDrop();};
-    
+function Cargo(resource,ammount){
+    this.resource = resource;
+    this.ammount = ammount;
+    this.getResource = function(){return this.resource;};
+    this.getAmmount = function(){return this.ammount;};
+    this.getName = function(){return this.resource.getName();};
     this.getDrop = function(){
-        return "<a href='i/do/drop.php?id=" + this.id + "'>Drop</a>";
+        return "<a href='i/do/drop.php?id=" + this.resource.getID() + "'>Drop</a>";
     };
+    this.toString = function(){
+        return this.resource + this.getDrop();
+    }
 }
-
-

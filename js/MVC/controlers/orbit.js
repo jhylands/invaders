@@ -41,6 +41,8 @@ function conOrbit(){
                         break;
                     case 2:
                         //from cargo
+                    case 3:
+                        //from trade
                         this.createUserInterface();
                         break;
                     case 5:

@@ -21,7 +21,7 @@ function CargoHold(){
     this.convertToResource = function(res){
         var resources = [];
         for(id in res){
-            resources.push(new Cargo(id,res[id]));
+            resources.push(new Cargo(new Resource(id),res[id]));
         }
         return resources;
     };
