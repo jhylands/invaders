@@ -4,6 +4,17 @@
  * Class to manage a ship object and its relations with the db
  */
 class Ship{
+    /**
+     *
+     * @var Hold 
+     */
+    public $hold;
+    /**
+     *
+     * @var Place 
+     */
+    public $place;
+    
     function __construct($connection,$ShipCode){
         //assert ShipCode is int 
         $this->con = $connection;

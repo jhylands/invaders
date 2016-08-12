@@ -1,6 +1,6 @@
 function vwCargo(){
-    this.makeOverlay = function(){
+    this.makeOverlay = function(hold){
         var htmlOverlay = '<h1>Cargo</h1>';
-        //get list of cargo from database
+        htmlOverlay = htmlOverlay + hold.toString();
     }
 }

@@ -1,14 +1,22 @@
 
 function CargoHold(){
-    this.update = function(){
-        var __self = this;
-        $.ajax("get/cargo.php",function(data){__self.updateData(data);});
+    this.update = function(callback){
+        this.callback = callback;
+        var self=this;
+        //var updateData = this.updateData;
+        $.ajax({url:"i/get/cargo.php",async:false}).done(
+                function(data){
+                    self.results=data;
+                    self.updateData(self.results);
+                }
+                );
     };
+    this.resources=[];
     this.updateData = function(data){
         this.data = JSON.parse(data);
         var res = this.data.resources;
         this.resources = this.convertToResource(res);
-        
+        this.callback();
     };
     this.convertToResource = function(res){
         var resources = [];
@@ -17,12 +25,14 @@ function CargoHold(){
         }
         return resources;
     };
-    this.makePage = function(){
-        var table = "<table id='cargo'>"
+    this.toString = function(){
+        var table = "<table id='cargo'><tr><th>Name</th><th>Ammount</th><th>Drop</th></tr>";
         for(var i=0;i<this.resources.length;i++){
-            var table = table + "<tr><td>" + this.reources[i].getName() + "</td<td>" + this.resources.getAmount() + "</td></tr>";
+            table = table + "<tr><td>" + this.resources[i].getName() + "</td><td>" + this.resources[i].getAmmount() + "</td><td>" + this.resources[i].getDrop() + "</td></tr>";
         }
-        table = table+"</table>"
+        table = table+"</table>";
+        return table;
     }
+
 }
 

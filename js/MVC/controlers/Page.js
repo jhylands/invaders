@@ -74,5 +74,16 @@ function Page(){
 	sun.add(sunMesh);
         return sun;
     }
-
+    /**
+     * function to generate a reference to the planet in the __scene so it can be moved
+     * @returns {unresolved}
+     */
+    this.findPlanet = function (){
+        for(i=0;i<__scene.children.length;i++){
+            if(__scene.children[i].name=="planet"){
+                this.threePlanet = __scene.children[i];
+                return null;
+            }
+        }
+    };
 }

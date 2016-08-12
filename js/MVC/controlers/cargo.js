@@ -10,12 +10,14 @@ function conCargo(){
         
         //global THREE references
 	
-	;
+	this.overlay = new vwCargo();
+        this.hold = new CargoHold();
+        
 	
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onPageReady
+        this.onready = onPageReady;
         
         //page changing handshake
         this.change = false; //set to true if request page change.
@@ -27,7 +29,10 @@ function conCargo(){
             switch(from){
                 case 0:
                     //from orbit
+                    var self = this;
                     this.constructFromOrbit();
+                    this.hold.update(function(){self.updateTable();});
+                    this.findPlanet();
                     break;
             }
             this.ready = true;
@@ -43,6 +48,17 @@ function conCargo(){
         this.backToOrbit = function(){
             this.change = true;
             this.nextPage = 0;
+        };
+        this.updateTable = function(){
+            this.makeSTDOverlay("<h1>Cargo</h1>" + this.hold + "<input type='button' id='bk2o' value='Back to orbit' />");
+            //add event listeners
+            var func = this.makeChanger(this,0);
+            document.getElementById('bk2o').addEventListener("click",func);
+        };
+        
+        this.keyboard = function(keyState){};
+        this.update = function(){
+            this.threePlanet.rotation.y += 0.0001;
         };
         
         
