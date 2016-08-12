@@ -13,7 +13,7 @@ class Table {
 
 
     
-    public static function get($type ,$link, $condition =""){
+   /* public static function get($type ,$link, $condition =""){
         $table = $type::$tableName;
         $query = "SELECT * FROM $table";
         $result = mysqli_query($link, $query);
@@ -22,7 +22,7 @@ class Table {
             $objects[] = new $type($link, $row,true);
         }
         return $objects;
-    }
+    }*/
     
     /**
      * public facing function to insert into a table
@@ -31,6 +31,7 @@ class Table {
      * @param Class $type
      * @return INT  The id of the insert
      */
+    /*
     public static function insert($link,$data,$type){
         //array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));
         $cleanData = array();
@@ -44,7 +45,7 @@ class Table {
         }else{
             return FALSE;
         }
-    }
+    }*/
     
     /**
      * Public facing function to update information in a table
@@ -53,6 +54,7 @@ class Table {
      * @param Class $type
      * @return Boolean If the update worked
      */
+    /*
     public static function update($link,$data,$type){
         //array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));
         $cleanData = array();
@@ -64,7 +66,7 @@ class Table {
         \debug($cleanData);
         return self::runUpdate($link,$cleanData,$type);
         
-    }
+    }*/
     
     /**
      * Function to insert new user into a table
@@ -74,6 +76,7 @@ class Table {
      * @param Class $type Static class object
      * @return Boolean Result of insertion
      */
+    /*
     private static function runInsert($link,$data,$type){
         $columns = "(";
         $values = " values(";
@@ -89,7 +92,7 @@ class Table {
         $query .= $columns . $values;
         //\debug($query);
         return  mysqli_query($link, $query);      
-    }
+    }*/
     
     /**
      * Function to update a table
@@ -99,6 +102,7 @@ class Table {
      * @param Class $type Static class object
      * @return Boolean Result of Update
      */
+    /*
     private static function runUpdate($link,$data,$type){
         //check that the ID field is in the key so that the entry can be identified
         if(isset($data[$type::$IDName])){
@@ -115,6 +119,8 @@ class Table {
         }
         
     }
+    
+     */
    public function __construct($link ,$data,$type) {
        //if type is true the data is SQL_row, otherwise it is ID
        if($type){

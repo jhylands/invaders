@@ -5,12 +5,17 @@
  *
  * @author jameshylands
  */
-class Market {
+class Market{
     private $channels= array();
-    private $rates;
+    
     function __construct($con,$id) {
         $this->con = $con;
         $this->id = $id;
+        $query = "SELECT * FROM channels WHERE MarketID=$this->id";
+        $result = mysqli_query($this->con, $query);
+        while($row = mysqli_fetch_array($result)){
+            $this->channels[] = new Channel($this->con,$row,true);
+        }
     }
     
     /**
@@ -18,12 +23,12 @@ class Market {
      * @param Resource $resource
      */
     function get($resource){
-        $query = "SELECT * FROM channels WHERE MarketID=$this->id";
-        $result = mysqli_query($this->con, $query);
-        while($row = mysqli_fetch_array($result)){
-            $channels[] = new Channel($row);
+        foreach($this->channels as $channel){
+            if($channel->getBuyResource().eq($resource)){
+                return $channel;
+            }
         }
-        return $rate1 = $rates1[0]['Rate'];
+        return false;
     }
     
     function getID(){
@@ -39,6 +44,18 @@ class Market {
      */
     function update(){
         
+    }
+    
+    public function __toString() {
+        return json_encode(array('marketID'=>  $this->getID(),'channels'=> $this->channelsToArray()));
+    }
+    
+    public function channelsToArray(){
+        $arr = array();
+        foreach($this->channels as $channel){
+            $arr[] = $channel->toArray();
+        }
+        return $arr;
     }
     
     
