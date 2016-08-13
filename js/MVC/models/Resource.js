@@ -9,7 +9,9 @@ function Resource(id){
      * @returns {String} 
      */
     this.toString = function(){return this.name + ": " + this.code;};
-    this.eq = function(resource){return resource.getID()===this.getID();};
+    this.eq = function(resource){
+        return resource.getID()===this.getID();
+    };
     
 }
 

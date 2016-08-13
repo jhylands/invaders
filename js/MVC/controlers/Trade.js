@@ -54,20 +54,40 @@ function conTrade(){
         };
         
         this.res1c = function (){
+            //update the inner HTML of the other selection
             this.view.setRes1Selection();
             //how you going to update it without rewening the users selection?
-            this.updateTable();
+            this.view.updateInner('resBox2',this.view.makeInnerRes2Box());
         };
         this.res2c = function (){
-            
+            this.view.seRes2Selection();
+            //check ammount2 
         };
         this.ammount1c = function(){
-            
+            //change ammount 2
         };
         this.ammount2c = function(){
-            
+            //change ammount 1
         };
         this.doClick = function(){
-            
+            var self = this;
+            //check if ammount 1 to 2 is correct
+            var buyRe = this.view.getBuyResSelection();
+            var sellRe = this.view.getSellResSelection();
+            var ammount = this.view.getBuyAmmount();
+            if(ammount/this.view.getSellAmmount() == this.market.getRate(buyRe,sellRe)){
+                //do trade
+                $.ajax({url:'i/do/trade.php?buyRe=' + buyRe + "&sellRe=" + sellRe + "&BuyAmmount=" + ammount}).done(self.tradeCallback);
+            }else{
+                alert('Ammount boxes don\'t match');
+            }
         };
+        
+        this.tradeCallback = function(data){
+            if(JSON.parse(data)){
+                alert('Trade complete');
+            }else{
+                alert(data);
+            }
+        }
 }

@@ -10,7 +10,7 @@ function Channel(){
         
         this.sellRe = new Resource(object.sell[0]);
         this.sellRa = object.sell[1];
-    }
+    };
     
     this.getSellResource = function(){return this.sellRe;};
     this.getBuyResource = function(){return this.buyRe;};

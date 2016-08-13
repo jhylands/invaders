@@ -45,11 +45,12 @@ function Market(){
                 options.push(this.channels[i].getSellResource());
             }
         }
+        return options;
     };
     this.resourceListToOption = function(resources){
         var list = "";
         for(var i=0;i<resources.length;i++){
-            list = list + "<option id='" + resources[i].getID() + "'>" + resources[i].getName() + "</option>";
+            list = list + "<option id='" + resources[i].getID() + "' value='" + resources[i].getID() + "'>" + resources[i].getName() + "</option>";
         }
         return list;
     };
