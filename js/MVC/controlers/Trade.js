@@ -35,6 +35,7 @@ function conTrade(){
         this.constructFromOrbit = function(){
             //create overlay
             this.makeSTDOverlay("<h1>Trade floor</h1><input type='button' id='bk2o' value='Back to orbit' />");
+            this.view.unSetRes1Selection();
             //add event listeners
             var func = this.makeChanger(this,0);
             document.getElementById('bk2o').addEventListener("click",func);
@@ -54,20 +55,34 @@ function conTrade(){
         };
         
         this.res1c = function (){
+            var buyRe = this.view.getBuyResSelection();
+            var sellRe = this.view.getSellResSelection();
+            var ammount = this.view.getBuyAmmount();
             //update the inner HTML of the other selection
             this.view.setRes1Selection();
             //how you going to update it without rewening the users selection?
             this.view.updateInner('resBox2',this.view.makeInnerRes2Box());
+            this.view.updateValue('ammountBox2',this.market.getRate(buyRe,sellRe)*ammount);
         };
         this.res2c = function (){
-            this.view.seRes2Selection();
+            this.view.setRes2Selection();
             //check ammount2 
+            var buyRe = this.view.getBuyResSelection();
+            var sellRe = this.view.getSellResSelection();
+            var ammount = this.view.getBuyAmmount();
+            this.view.updateValue('ammountBox2',this.market.getRate(buyRe,sellRe)*ammount);
         };
         this.ammount1c = function(){
-            //change ammount 2
+            var buyRe = this.view.getBuyResSelection();
+            var sellRe = this.view.getSellResSelection();
+            var ammount = this.view.getBuyAmmount();
+            this.view.updateValue('ammountBox2',this.market.getRate(buyRe,sellRe)*ammount);
         };
         this.ammount2c = function(){
-            //change ammount 1
+            var buyRe = this.view.getBuyResSelection();
+            var sellRe = this.view.getSellResSelection();
+            var ammount = this.view.getSellAmmount();
+            this.view.updateValue('ammountBox1',ammount/this.market.getRate(buyRe,sellRe));
         };
         this.doClick = function(){
             var self = this;
@@ -75,9 +90,9 @@ function conTrade(){
             var buyRe = this.view.getBuyResSelection();
             var sellRe = this.view.getSellResSelection();
             var ammount = this.view.getBuyAmmount();
-            if(ammount/this.view.getSellAmmount() == this.market.getRate(buyRe,sellRe)){
+            if(this.view.getSellAmmount()/ammount == this.market.getRate(buyRe,sellRe)){
                 //do trade
-                $.ajax({url:'i/do/trade.php?buyRe=' + buyRe + "&sellRe=" + sellRe + "&BuyAmmount=" + ammount}).done(self.tradeCallback);
+                $.ajax({url:'i/do/trade.php?buyRe=' + buyRe.getID() + "&sellRe=" + sellRe.getID() + "&ammount=" + ammount}).done(self.tradeCallback);
             }else{
                 alert('Ammount boxes don\'t match');
             }

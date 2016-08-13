@@ -20,13 +20,17 @@ class Market{
     
     /**
      * Function to get the rate of a resource
-     * @param Resource $resource
+     * @param Resource $buy
+     * @param Resource $sell 
+     * @return Channel 
      */
-    function get($resource){
+    function get($buy,$sell){
         foreach($this->channels as $channel){
-            if($channel->getBuyResource().eq($resource)){
+            if($channel->getBuyResource()->eq($buy) &&
+                    $channel->getSellResouce()->eq($sell)){
                 return $channel;
             }
+            
         }
         return false;
     }

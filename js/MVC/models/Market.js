@@ -54,4 +54,14 @@ function Market(){
         }
         return list;
     };
+    this.getRate = function(buyRe,sellRe){
+        for(i=0;i<this.channels.length;i++){
+            if(this.channels[i].getBuyResource().eq(buyRe) &&
+                    this.channels[i].getSellResource().eq(sellRe)){
+                return this.channels[i].getRate();
+            }
+        }
+        console.log('Channel requested doesn\'t exist');
+        return false;
+    }
 }

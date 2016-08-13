@@ -6,6 +6,7 @@ function vwTrade(market){
     this.market = market;
     this.res1Selection = 0;
     this.setRes1Selection = function(){this.res1Selection=1;};
+    this.unSetRes1Selection = function(){this.res1Selection=0;};
     this.makeTable = function(){
         return this.makeRes1Box()+this.makeRes2Box()+
                 this.makeAmmount1Box()+this.makeAmmount2Box()+
@@ -56,6 +57,9 @@ function vwTrade(market){
     this.updateInner = function(id,html){
         this.elm(id).innerHTML=html;
     };
+    this.updateValue = function(id,value){
+        this.elm(id).value = value;
+    };
     
     this.getBuyResSelection = function (){
         return new Resource(this.elm('resBox1').value);
@@ -63,6 +67,8 @@ function vwTrade(market){
     this.getSellResSelection = function (){
         return new Resource(this.elm('resBox2').value);
     };
+    this.getBuyAmmount = function(){return this.elm('ammountBox1').value;};
+    this.getSellAmmount = function(){return this.elm('ammountBox2').value;};
     
     
 }
