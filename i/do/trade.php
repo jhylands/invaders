@@ -7,6 +7,6 @@ $sell = new Resource($con);
 $sell->fromID((int)$_GET['sellRe']);
 $ammount = (int)$_GET['ammount'];
 $trader = new Trade($con, $ship);
-echo $trader->make($buy, $amount, $sell);
+echo json_encode($trader->make($buy, $ammount, $sell));
 
 
