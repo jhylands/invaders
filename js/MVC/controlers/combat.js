@@ -1,4 +1,4 @@
-/* global __renderer, __scene */
+/* global __renderer, __scene, place, THREE, __camera */
 
 //battles class file
 //__scene-centric coordinates
@@ -11,18 +11,17 @@ function conCombat(){
 	this.name = "Combat";
 	this.id = 5;
 	
-        this.overlayHandle = new vwCombat();
-        this.animationHandle = new CombatAnimation();
+        this.view = new vwCombat();
+        this.animation;
 
         this.eventHandlers =[];
-        this.bullets = new BulletHandler(__scene,5000);
+        this.bullets = new BulletHandler(5000);
        
         this.dificulty = 0.001;
         this.Crotation = deg(-80);
         this.orbitPos = Math.PI/2;
         this.thi = 0;
         this.dead=false;
-        this.moveToShip=0;
         
         
         //Finished loading variables
@@ -40,12 +39,8 @@ function conCombat(){
             this.start = false;
             this.won = false;
             this.Crotation = deg(-80);
-            this.orbitPos = Math.PI/2;
-            this.thi = 0;
-            this.SPACING = 3;
-            this.inAnimation=1;//0:not in animation,1:to fight,2:from fight
             this.dead=false;
-            this.moveToShip=0;
+            
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:
@@ -57,15 +52,15 @@ function conCombat(){
                 //Notify that this function is ready to be run
                 this.ready = true;
                 this.onready(this.id);
-	}
+	};
         this.destroy = function(to){
             //switch based on who the page is going to next
             switch(to){
             }
-        }
+        };
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
-                this.inAnimation = 1;
+                this.findPlanet();
                 //planet should already exist
 		//lighting should already be set up
                 //The sun should lready be there
@@ -73,19 +68,20 @@ function conCombat(){
                 this.thi=deg(20);
                 this.orbitPos=deg(180);
                 //add spaceship
-                this.ship = this.loadLib();
-                this.ship.setPosition(this.calculateOrbit(0));
-                __scene.add(this.ship.getThree());
+                this.threeShip = new THREE.Mesh(new THREE.CubeGeometry(1,1),new THREE.MeshBasicMaterial());
+                this.loadLib();
+                
+                var self = this;
+                this.animation = new CombatAnimation(this.threeShip.position,this.threePlanet.position,function(){self.makeChanger(self,0)();});
+                /*this.ship.setPosition(this.calculateOrbit(0));
+                __scene.add(this.ship.getThree());*/
+            
 		//add aliens
-                this.aliens = new AlienFleet();
-                this.aliens.setPosition(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
-                __scene.add(this.aliens.getThree());
-                //reset thi and orbitpos
-                this.thi=0;
-                this.orbitPos = Math.PI/2;
-                this.findPlanet();
+                this.alienFleet = new AlienFleet(this.bullets);
+                this.alienFleet.setPosition(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
+                __scene.add(this.alienFleet.getThree());
                 //create user interface
-                this.createUserInterface();
+                this.view.createUserInterface(function(){self.backToOrbit();});
         };
         //create a closure containing a reference to this class and the index of the page to be loaded in
         this.makeChanger = function(page,nextPageID){
@@ -95,12 +91,12 @@ function conCombat(){
                 locPage.destroy(locNextPage);
                 locPage.change=true;
                 locPage.nextPage = locNextPage; 
-            }
-        }
+            };
+        };
         this.reload = function(){
             //GENERATE THE FUNCTION TO BE PASSED TO THE REQUEST
             //create planet closure for access in the anonomous function passed to the http request
-            var __planet = this.planet;
+            var __planet = place;
             //create id closure
             var __id = this.id;
             var funcDone = function(data){
@@ -116,22 +112,25 @@ function conCombat(){
             var onready = this.onready;
             //get information from server about current planet, lightitng ect
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
-        }
+        };
 
         //CREATORS
         this.loadLib = function(){
-            var ship = new LiberatorShip();
-            ship.create();
-            return ship.getThree();
-        }
+            //create closure for this class
+            var self = this;
+            //will this create a closure for ship for the ;inkShip function to use?
+            var ship = new LiberatorShip(this.bullets);
+            //curry ship and this into callback
+            var callback = function(){self.linkShip(ship);};
+            ship.create(callback);
+            this.ship=ship;
+        };
         
         //UPDATES (frame by frame)
         //function to update __scene each frame
 	this.update = function(){
-            if(this.animation.is()){
-                this.animation.do();
-            }else{
-                this.cube.updateCubeMap(__renderer,__scene);
+            if(!this.animation.update()){
+                //this.cube.updateCubeMap(__renderer,__scene);
                 //Rotate the ship
                 this.bullets.update();
                 this.alienFleet.update();
@@ -143,12 +142,11 @@ function conCombat(){
                     this.alienFleet.canShoot();
                 }
                 //detect collisions
-                this.detectCollisions();
+                //this.detectCollisions();
             }
-        }
+        };
         //function to handle keyboard events
 	this.keyboard= function(keyState){
-            var offset = this.calculateOrbit(0);
             //need to check is game is active first
             //MOVEMENT CONTROLLS
             this.ship.keyboard(keyState);
@@ -160,7 +158,7 @@ function conCombat(){
             }
             this.updateCameraPosition();
             //get the camera to look at the spaceship
-            __camera.lookAt( this.ship.position);
+            __camera.lookAt( this.threeShip.position);
             //SHOOTING
             if(keyState.pressed("space")){
                 if(!this.dead){
@@ -180,22 +178,31 @@ function conCombat(){
         
         //DESTRUCTORS
         this.destructor = function(){
-            __scene.remove(this.ship);
+            __scene.remove(this.threeShip);
             __scene.remove(this.aliens);
-        }
+        };
         
         //CALCULATIONS
         
         this.calculateOrbit = function(radialOffset){
-            return new THREE.Vector3(
-                3*(this.planet['Radius']-radialOffset)*Math.cos(this.orbitPos)*Math.cos(this.thi),
-                3*(this.planet['Radius']-radialOffset)*Math.sin(this.thi),
-                3*(this.planet['Radius']-radialOffset)*Math.sin(this.orbitPos)*Math.cos(this.thi));
-	}
+            return calculateOrbit(radialOffset,this.orbitPos,this.thi);
+	};
         this.updateCameraPosition = function(){
-            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(50* Math.sin(this.Crotation),50* Math.cos(this.Crotation),this.ship.position.z)));
-        }
+            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(50* Math.sin(this.Crotation),50* Math.cos(this.Crotation),this.threeShip.position.z)));
+        };
         this.log = function(x){
             return Math.log(x*Math.pow(10,17))/40;
-        }
+        };
+        
+        //CALLBACKS
+        this.linkShip = function(ship){
+            //ship variable curried from loadLib
+            this.threeShip = ship.getThree();
+            __scene.add(this.threeShip);
+            ship.setPosition(this.calculateOrbit(0));
+        };
+        
+    this.backToOrbit = function(){
+        this.animation.setAnimation(2);
+    };
 }

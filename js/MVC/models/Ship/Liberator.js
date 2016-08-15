@@ -2,16 +2,7 @@ function LiberatorShip(bulletHandler){
     //inherits from ship class
     this.__proto__ = new Ship(bulletHandler);
     this.__loader = new THREE.ColladaLoader();
-    this.__loader.load(
-	// resource URL
-	'ships/ship1.dae',
-	// Function when resource is loaded
-	this.makePinaCollada(),
-	// Function called when download progresses
-	function ( xhr ) {
-		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-	}
-    );
+    
     /**
      * Function to store the collada object
      * @returns {Function}
@@ -22,22 +13,47 @@ function LiberatorShip(bulletHandler){
         return function ( collada ) { __self.object = collada.scene;};
     };
     
+    this.storeCollada = function(loadedCollada){
+        this.object = loadedCollada.scene;
+        this.object.rotation.z = deg(180);
+    };
+    
     this.getThree = function (){return this.object;};
     this.keyboard = function(keyState){
+        //var offset = this.calculateOrbit(0);
+        var SPACING = 3;
         if(keyState.pressed("left")){
             //check the object is in range
-            if(this.object.position.z>-8*this.SPACING+offset.z){
-                    this.object.position.z-=0.1
+            if(this.object.position.z>-8*SPACING+this.offset.z){
+                    this.object.position.z-=0.1;
             }
         }else if(keyState.pressed("right")){
             //check object is in range
-            if(this.object.position.z<8*this.SPACING+offset.z){
-                    this.object.position.z+=0.1
+            if(this.object.position.z<8*SPACING+this.offset.z){
+                    this.object.position.z+=0.1;
             }
         }else if(keyState.pressed("space")){
-            this.bullets.create(this.FRIEND,this.ship.position);
+            this.bullets.create(this.FRIEND,this.object.position);
         }
     };
     this.update = function (){};
+    this.create = function (callback){
+        var self = this;
+        var onLoad = function(collada){self.storeCollada(collada);callback();};
+        this.__loader.load(
+            // resource URL
+            'ships/ship1.dae',
+            // Function when resource is loaded
+            onLoad,
+            // Function called when download progresses
+            function ( xhr ) {
+                    console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+            }
+        );
+    };
+    this.setPosition = function (position){
+        this.object.position.copy(position);
+        this.offset = position;
+    };
 }
 

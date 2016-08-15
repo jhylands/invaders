@@ -1,5 +1,6 @@
 //top level class for ships
 function Ship(bulletHandler){
+    
     this.bullets = bulletHandler;
     this.health;
     

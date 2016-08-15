@@ -31,6 +31,12 @@
     //need an asset manager
     //need a method for updating information about where the user is
     var place = <?php echo $ship->place->__toString(); ?>;
+   calculateOrbit = function(radialOffset,longitude ,latitude){
+            return new THREE.Vector3(
+                3*(place['Radius']-radialOffset)*Math.cos(longitude)*Math.cos(latitude),
+                3*(place['Radius']-radialOffset)*Math.sin(latitude),
+                3*(place['Radius']-radialOffset)*Math.sin(longitude)*Math.cos(latitude));
+	};
 </script>
 <script>
 //inishiate page globals

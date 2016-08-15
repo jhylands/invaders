@@ -1,9 +1,12 @@
+/* global THREE */
+
 function AlienFleet(bulletHandler){
     //inherits from ship class
-    this.__proto__ = new Ship();
+    this.__proto__ = new Ship(bulletHandler);
+    this.SPACING=3;
     this.object;
     this.aliens = [];
-    this.canShoot;
+    this.boolCanShoot;
     this.create=function(){
         var template = new AlienShip(bulletHandler);
         template.make();
@@ -26,11 +29,11 @@ function AlienFleet(bulletHandler){
                         //aliens[x][z] = new Object();
                         //create the alian as a mesh object and set the apropreate properties
                         var alien = new AlienShip(bulletHandler);
-                        alien.makeAsFleet(alienMesh.clone());
+                        //alien.makeAsFleet(alienMesh.clone());
                         //alien.children[1].name = aliens.children.length;
-
-                        alien.setPosition(this.SPACING*z,0,this.SPACING*x-10);
-                        alien.velocity = new THREE.Vector3(0.01,0,0);
+                        alien.make();
+                        alien.setPosition(new THREE.Vector3(this.SPACING*z,0,this.SPACING*x-10));
+                        //alien.velocity = new THREE.Vector3(0,0,0);
                         //add the alian to the __scene
                         aliens.add(alien.getThree());
                         this.aliens.push(alien);
@@ -38,20 +41,22 @@ function AlienFleet(bulletHandler){
         }
         this.object = aliens;
     };
-    
+    this.setPosition = function (position){
+        this.object.position.copy(position);
+    };
     this.update = function(){
         for(i=0;i<this.aliens.length;i++){
             this.aliens[i].update();
         }
     };
-            this.moveAliens = function(){
+    this.moveAliens = function(){
             this.aliens.position.setZ(this.aliens.position.z+0.01*this.alienParity);
             if(this.aliens.position.z>this.SPACING*7||this.aliens.position.z<this.SPACING*-7){
                 this.alienParity *=-1;
             }
         };
         
-                this.updateCamera = function (){
+    this.updateCamera = function (){
             //update a single camera from the aliens 
                                     for(x=0;x<alians.length;x++){
                             for(z=0;z<alians[x].length;z++){
@@ -66,9 +71,11 @@ function AlienFleet(bulletHandler){
                             }
                         }
         };
-        this.canShoot= function(){
-            this.canShoot=true;
-        };
+    this.canShoot= function(){
+            this.boolCanShoot=true;
+    };
+    this.getThree= function(){return this.object;};
+    this.create();
 }
 
 
