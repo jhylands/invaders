@@ -4,6 +4,9 @@ function AlienShip(bulletHandler){
     //inherits from ship class
     this.__proto__ = new Ship(bulletHandler);
     this.velocity = new THREE.Vector3(0,0,0);
+    this.parPos = new THREE.Vector3(0,0,0);
+    this.destroy = 0;
+    this.explosion = new Explosion(1);
     this.getThree = function(){return this.object;};
     this.make = function(){
         //Geometry of aliens
@@ -29,18 +32,47 @@ function AlienShip(bulletHandler){
         alienMesh.add(aBody);
         alienMesh.add(aWing);
         this.object = alienMesh;
-        console.log(this.object.position.x);
+        //this.parPos = new THREE.Vector3(0,0,0);
+        //console.log(this.object.position.x);
     };
     //allow for the mesh to be passed as reference to one in a fleet so to reduce memory
-    this.makeAsFleet = function(group){this.object = group;};
+    this.makeAsFleet = function(group,add,remove){
+        //set this mesh as a clone of the others to save memory
+        this.object = group;
+        //redefine remove and add as to the parent object rather than __scene
+        this.remove=remove;
+        this.add = add;
+    };
+    this.remove = function(ship){__scene.remove(ship);};
+    this.add = function(ship){__scene.add(ship);};
     this.setPosition = function(vector3){this.object.position.copy(vector3);};
     this.getPosition = function(){return this.object.position;};
+    this.setParentPosition = function(position){this.parPos = position;};
     this.setVelocity = function(vector3){this.velocity = vector3;};
     this.getVelocity = function(){return this.velocity;};
     this.update = function (){
-        //To include some reference to local ships
-        this.alienAI();
-        this.object.position.add(this.velocity);
+        switch(this.destroy){
+            case 1:
+                this.destructAnimation();
+                break;
+            case 0:
+                //To include some reference to local ships
+                this.alienAI();
+                if(this.bullets.hasHit(this.object,this.FOE)){
+                    this.destroy = 1;
+                    console.log('alien down');
+                    var location = this.object.position;
+                    this.remove(this.object);
+                    this.object = this.explosion.getObject();
+                    this.object.position.copy(location);
+                    this.add(this.object);
+                    var self=this;
+                    setTimeout(function(){self.endAnimation();},2000);
+
+                }
+                this.object.position.add(this.velocity);
+                break;
+        }
     };
     this.alienAI = function(){
             difficulty = 0.001;
@@ -55,9 +87,16 @@ function AlienShip(bulletHandler){
             this.object.position.setY(this.object.position.y+this.velocity.y);
             if(Math.random()<difficulty){
                 //make new bullit
-                //this.bullets.create(this.foeAllegiance,(new THREE.Vector3(0,0,0).add(this.object.position)).add(this.aliens.position));
+                this.bullets.create(this.FOE,(new THREE.Vector3(0,0,0).add(this.object.position)).add(this.parPos));
             }
            
+    };
+    this.destructAnimation = function(){
+        this.explosion.update();
+    };
+    this.endAnimation = function(){
+        this.remove(this.object);
+        this.destroy=2;
     };
 }
 

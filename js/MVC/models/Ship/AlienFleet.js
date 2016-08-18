@@ -20,7 +20,8 @@ function AlienFleet(bulletHandler){
         var aliens = new THREE.Group();
         aliens.name="all";
         //this.cube = mirrorWingCamera;
-        
+        //create closure for passing new add and remove functions
+        var self = this;
         for (x=0;x<COLS;x++){
                 //X loop
                 for(z=0;z<ROWS;z++){
@@ -31,7 +32,7 @@ function AlienFleet(bulletHandler){
                         var alien = new AlienShip(bulletHandler);
                         //alien.makeAsFleet(alienMesh.clone());
                         //alien.children[1].name = aliens.children.length;
-                        alien.make();
+                        alien.makeAsFleet(alienMesh.clone(),function(ship){self.addShip(ship);},function(ship){self.removeShip(ship);});
                         alien.setPosition(new THREE.Vector3(this.SPACING*z,0,this.SPACING*x-10));
                         //alien.velocity = new THREE.Vector3(0,0,0);
                         //add the alian to the __scene
@@ -46,6 +47,7 @@ function AlienFleet(bulletHandler){
     };
     this.update = function(){
         for(i=0;i<this.aliens.length;i++){
+            this.aliens[i].setParentPosition(this.object.position);
             this.aliens[i].update();
         }
     };
@@ -75,6 +77,12 @@ function AlienFleet(bulletHandler){
             this.boolCanShoot=true;
     };
     this.getThree= function(){return this.object;};
+    this.addShip = function(ship){
+        this.object.add(ship);
+    };
+    this.removeShip = function(ship){
+        this.object.remove(ship);
+    };
     this.create();
 }
 

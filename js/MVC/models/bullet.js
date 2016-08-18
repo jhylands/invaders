@@ -1,3 +1,5 @@
+/* global THREE */
+
 function Bullet(allegience,position,timeOut){
     this.allegiance = function(team,reloadTime,colour,velocity){
         //define an allegiance type
@@ -122,6 +124,28 @@ function BulletHandler(timeOut){
             }
         }
         return hitLst;
+    };
+    
+    this.hasHit = function(object,allegiance){
+        for(var i = 0;i<this.bullets.length;i++){
+            if(this.bullets[i].team != allegiance.team){
+                console.log(this.bullets.team +":" + allegiance.team);
+                var originPoint = this.bullets[i].Mesh.position.clone();
+                var vertexIndex = 0;
+                var localVertex = this.bullets[i].Mesh.geometry.vertices[vertexIndex].clone();
+                var globalVertex = localVertex.applyMatrix4( this.bullets[i].Mesh.matrix );
+                var directionVector = globalVertex.sub( this.bullets[i].Mesh.position );
+
+                var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+                var collisionResults = ray.intersectObjects([object] ,true);
+                if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){ 
+                    //object to destroy is the collisionResukts[0].object
+                    this.bullets[i].dead=true;
+                    return true;
+                }	
+            }
+        }
+        return false;
     };
     
 }

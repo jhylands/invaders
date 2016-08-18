@@ -18,6 +18,7 @@
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
 <script src="js/ColladaLoader.js"></script>
+<script src='js/SPE.min.js'></script>
 <script>
     //DATA definitions
     //list of page urls, indexed by id

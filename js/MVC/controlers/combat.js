@@ -133,14 +133,16 @@ function conCombat(){
                 //this.cube.updateCubeMap(__renderer,__scene);
                 //Rotate the ship
                 this.bullets.update();
-                this.alienFleet.update();
+                
                 this.ship.update();
                 //GAME OVER!
                 this.checkGameOver();
                 //Update an alien wing camera
                 if(this.start){
                     this.alienFleet.canShoot();
+                    this.alienFleet.update();
                 }
+                this.view.setHealth(this.ship.getHealth());
                 //detect collisions
                 //this.detectCollisions();
             }

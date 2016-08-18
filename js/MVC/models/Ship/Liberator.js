@@ -36,7 +36,12 @@ function LiberatorShip(bulletHandler){
             this.bullets.create(this.FRIEND,this.object.position);
         }
     };
-    this.update = function (){};
+    this.update = function (){
+        if(this.bullets.hasHit(this.object,this.FRIEND)){
+            this.health--;
+        }
+    };
+    this.getHealth = function (){return this.health;};
     this.create = function (callback){
         var self = this;
         var onLoad = function(collada){self.storeCollada(collada);callback();};
@@ -54,6 +59,13 @@ function LiberatorShip(bulletHandler){
     this.setPosition = function (position){
         this.object.position.copy(position);
         this.offset = position;
+    };
+    this.createParticles = function(){
+        
+    };
+    
+    this.remove = function(){
+        return this.health<=0;
     };
 }
 
