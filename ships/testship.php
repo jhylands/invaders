@@ -9,6 +9,8 @@
         <script src="../js/SPE.min.js"></script>
 	
     <script>
+        var group;
+        var shockwaveGroup;
 	var production=0;
 	var scene;
 	 //declare a truly global variable to hold weather the user has just shot
@@ -120,7 +122,7 @@
 	scene.add( skyBox );
 	scale=0.5
         //debris
-        var group = new SPE.Group( {
+        group = new SPE.Group( {
 					texture: {
 						value: THREE.ImageUtils.loadTexture( './img/sprite-explosion2.png' ),
 						frames: new THREE.Vector2( 5, 5 ),
@@ -129,7 +131,7 @@
 					depthTest: true,
 					depthWrite: false,
 					blending: THREE.AdditiveBlending,
-					scale: 600
+					scale: 30
 				} ),
 				shockwaveGroup = new SPE.Group( {
 					texture: {
@@ -262,6 +264,7 @@
                         var groupgroup = new THREE.Group();
                         groupgroup.add(group.mesh);
                         groupgroup.add(shockwaveGroup.mesh);
+                        groupgroup.position.set(10,0,0);
 			scene.add( groupgroup );
         //
 //SHIP---------------------------------------------------------------------------------------

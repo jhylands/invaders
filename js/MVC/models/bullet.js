@@ -1,13 +1,7 @@
 /* global THREE */
 
 function Bullet(allegience,position,timeOut){
-    this.allegiance = function(team,reloadTime,colour,velocity){
-        //define an allegiance type
-        this.team = team;
-        this.reloadTime = reloadTime;
-        this.colour = colour;
-        this.velocity = velocity;
-    };
+    this.allegiance = allegience;
     
     //So one can't shoot themsleves 
     this.team = allegience.team;
@@ -128,7 +122,7 @@ function BulletHandler(timeOut){
     
     this.hasHit = function(object,allegiance){
         for(var i = 0;i<this.bullets.length;i++){
-            if(this.bullets[i].team != allegiance.team){
+            if(this.bullets[i].allegiance.team != allegiance.team){
                 console.log(this.bullets.team +":" + allegiance.team);
                 var originPoint = this.bullets[i].Mesh.position.clone();
                 var vertexIndex = 0;
