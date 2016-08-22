@@ -14,7 +14,7 @@
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three(73).js"></script>
+<script src="js/three(79).js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
 <script src="js/ColladaLoader.js"></script>
@@ -60,7 +60,8 @@ function loadPage(toPageID,fromPageID){
 window.onload = function() {
         pages = [new conOrbit(),new conMap,new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
-        __renderer = new THREE.WebGLRenderer();
+        __renderer = new THREE.WebGLRenderer({maxLights:6});
+        //__renderer = new THREE.CanvasRenderer();
         __renderer.setSize( window.innerWidth,window.innerHeight);
         document.getElementsByTagName('div')[0].appendChild( __renderer.domElement );
         __scene = new THREE.Scene();

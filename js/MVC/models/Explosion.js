@@ -19,7 +19,7 @@ function Explosion(size){
                 depthTest: false,
                 depthWrite: true,
                 blending: THREE.NormalBlending,
-                scale:0.5
+                scale:50
         } ),
         this.shockwave = new SPE.Emitter( {
                 particleCount: 200,
@@ -67,10 +67,10 @@ function Explosion(size){
                 velocity: {
                         value: new THREE.Vector3( 100 )
                 },
-                /*acceleration: {
+                acceleration: {
                         value: new THREE.Vector3( 0, -20, 0 ),
                         distribution: SPE.distributions.BOX
-                },*/
+                },
                 size: { value: 2 },
                 drag: {
                         value: 1
@@ -89,13 +89,16 @@ function Explosion(size){
                 particleCount: 20,//increasing things make it last longer to take into accoun the extra particals
                 type: SPE.distributions.SPHERE,
                 position: {
-                        radius: 1
+                        radius: 1,
+                        spread:1
                 },
                 maxAge: { value: 2 },
                 // duration: 1,
                 activeMultiplier: 20,
                 velocity: {
-                        value: new THREE.Vector3( 5 )
+                        value: new THREE.Vector3( 0,0,0),
+                        spread: new THREE.Vector3(5,5,5)
+                        
                 },
                 size: { value: [20, 100] },
                 color: {
@@ -139,7 +142,7 @@ function Explosion(size){
         } );
     this.group.addEmitter( this.fireball ).addEmitter( this.flash );
     this.shockwaveGroup.addEmitter( this.debris ).addEmitter( this.mist );
-    this.light = new THREE.PointLight(0xFFFFFF);
+    this.light = new THREE.PointLight(0xFFFFFF,2,30);
     this.meshGroup = new THREE.Group();
     this.meshGroup.add(this.group.mesh);
     this.meshGroup.add(this.shockwaveGroup.mesh);
@@ -153,5 +156,6 @@ function Explosion(size){
     this.update = function(){
         this.group.tick();
         this.shockwaveGroup.tick();
+        
     };
 }
