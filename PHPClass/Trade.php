@@ -3,6 +3,7 @@
 class Trade{
 
     private $con;
+    private $ship;
 
     function __construct($connection,$ship) {
         $this->con = $connection;
@@ -22,11 +23,12 @@ class Trade{
         
         //check trade is valid
         if($this->ship->hold->get($res1)>$amount){
+            $worked = true;
             //changeResources
-            $this->ship->hold->change($res1,-1*$amount);
-            $this->ship->hold->change($res2,$amount*$this->get($res1,$res2));
+            $worked = $worked && $this->ship->hold->change($res1,-1*$amount);
+            $worked = $worked && $this->ship->hold->change($res2,$amount*$this->get($res2,$res1));
             //make trade card
-            return $this->makeCard($res1, $amount, $res2);
+            return $worked;//$this->makeCard($res1, $amount, $res2);
         }else{
             return false;
         }
@@ -40,7 +42,7 @@ class Trade{
      * @return float
      */
     function get($res1,$res2){
-        return $this->getMarket($res1)/$this->getMarket($res1);
+        return $this->getChannel($res2, $res1)->getRate();
     }
     
     /**
@@ -64,12 +66,22 @@ class Trade{
     //functions that are referenced for shorthand here from markets
     
     /**
-     * Shorthand for $this->ship->place->market->get
+     * function has chnaged it now doesn't really have a reason for exitence
      * @param type $resource
      * @return type
      */
-    function getMarket($resource){
-        return $this->ship->place->market->get($resource);
+    function getRate($resource){
+        return $this->ship->place->market->get($resource)->getRate();
+    }
+    
+    /**
+     * Function to get a channel for a particular resource pair
+     * @param Resource $buy
+     * @param Resource $sell
+     * @return Channel
+     */
+    function getChannel($buy,$sell){
+        return $this->ship->place->market->get($buy,$sell);
     }
     
     

@@ -61,5 +61,13 @@ class Resource{
     function getCode(){
         return $this->Code;
     }
+    /**
+     * 
+     * @param Resource $resource
+     * @return BOOLEAN
+     */
+    public function eq($resource){
+        return $resource->getID()==$this->getID();
+    }
 }
 

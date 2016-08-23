@@ -67,8 +67,9 @@ class TradeHandler extends Handler{
         $res2 = new Resource($this->con);
         //commands need cleaning
         if($res1->fromCode($command[2]) && $res2->fromCode($command[3])){
-            $info = "The current rates are " . $res1->getName() . ":" . $res2->getName . " @ ";
-            $info .= $this->trade->getMarket($res1) . ":" . $this->trade->getMarket($res2) ;
+            $channel = $this->trade->getChannel($res1,$res2);
+            $info = "The current rates are " . $res1->getName() . ":" . $res2->getName() . " @ ";
+            $info .= 1 . ":" . $channel->getRate();
             $info .=" respectively with a tax rate of " . ($this->ship->place->market->getTax()*100) . "%<br />";
                 return $info;
         }else{

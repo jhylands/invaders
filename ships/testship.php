@@ -3,10 +3,14 @@
 <head>
     <title>Introduction to Computer Graphics</title>  
  <!-- include javascript libraries -->
-    <script src="../js/three.js"></script>
+    <script src="../js/three(78).js"></script>
+    <script src="../js/ColladaLoader.js"></script>
 	<script src="../js/THREEx.KeyboardState.js"></script>	
+        <script src="../js/SPE.min.js"></script>
 	
     <script>
+        var group;
+        var shockwaveGroup;
 	var production=0;
 	var scene;
 	 //declare a truly global variable to hold weather the user has just shot
@@ -52,7 +56,6 @@
 	}
 	function timeCalculations(){
 		frameRate = frameCount;
-		frameCount = 0;
 		document.getElementById('frame').innerHTML = "Frame Rate:" + frameRate + "fps";
 	 	setTimeout("timeCalculations()",1000);
 	}
@@ -118,42 +121,209 @@
 	var skyBox = new THREE.Mesh( skyGeometry, skyMaterial );
 	scene.add( skyBox );
 	scale=0.5
+        //debris
+        group = new SPE.Group( {
+					texture: {
+						value: THREE.ImageUtils.loadTexture( './img/sprite-explosion2.png' ),
+						frames: new THREE.Vector2( 5, 5 ),
+						loop: 1
+					},
+					depthTest: true,
+					depthWrite: false,
+					blending: THREE.AdditiveBlending,
+					scale: 30
+				} ),
+				shockwaveGroup = new SPE.Group( {
+					texture: {
+						value: THREE.ImageUtils.loadTexture( './img/smokeparticle.png' ),
+					},
+					depthTest: true,
+					depthWrite: true,
+					blending: THREE.AdditiveBlending,
+                                        scale:10
+				} ),
+				shockwave = new SPE.Emitter( {
+					particleCount: 200,
+					type: SPE.distributions.DISC,
+					position: {
+						radius: 5,
+						spread: new THREE.Vector3( 5 )
+					},
+					maxAge: {
+						value: 2,
+						spread: 0
+					},
+					// duration: 1,
+					activeMultiplier: 2000,
+
+					velocity: {
+						value: new THREE.Vector3( 40 )
+					},
+					rotation: {
+						axis: new THREE.Vector3( 1, 0, 0 ),
+						angle: Math.PI * 0.5,
+						static: true
+					},
+					size: { value: 2 },
+					color: {
+						value: [
+							new THREE.Color( 0.4, 0.2, 0.1 ),
+							new THREE.Color( 0.2, 0.2, 0.2 )
+						]
+					},
+					opacity: { value: [0.5, 0.2, 0] }
+				}),
+				debris = new SPE.Emitter( {
+					particleCount: 100,
+					type: SPE.distributions.SPHERE,
+					position: {
+						radius: 0.1,
+					},
+					maxAge: {
+						value: 2
+					},
+					// duration: 2,
+					activeMultiplier: 40,
+
+					velocity: {
+						value: new THREE.Vector3( 100 )
+					},
+					acceleration: {
+						value: new THREE.Vector3( 0, -20, 0 ),
+						distribution: SPE.distributions.BOX
+					},
+					size: { value: 2 },
+					drag: {
+						value: 1
+					},
+					color: {
+						value: [
+							new THREE.Color( 1, 1, 1 ),
+							new THREE.Color( 1, 1, 0 ),
+							new THREE.Color( 1, 0, 0 ),
+							new THREE.Color( 0.4, 0.2, 0.1 )
+						]
+					},
+					opacity: { value: [0.4, 0] }
+				}),
+				fireball = new SPE.Emitter( {
+					particleCount: 20,
+					type: SPE.distributions.SPHERE,
+					position: {
+						radius: 1
+					},
+					maxAge: { value: 2 },
+					// duration: 1,
+					activeMultiplier: 20,
+					velocity: {
+						value: new THREE.Vector3( 10 )
+					},
+					size: { value: [20, 100] },
+					color: {
+						value: [
+							new THREE.Color( 0.5, 0.1, 0.05 ),
+							new THREE.Color( 0.2, 0.2, 0.2 )
+						]
+					},
+					opacity: { value: [0.5, 0.35, 0.1, 0] }
+				}),
+				mist = new SPE.Emitter( {
+					particleCount: 100,
+					position: {
+						spread: new THREE.Vector3( 10, 10, 10 ),
+						distribution: SPE.distributions.SPHERE
+					},
+					maxAge: { value: 2 },
+					// duration: 1,
+					activeMultiplier: 2000,
+					velocity: {
+						value: new THREE.Vector3( 0, 10, 0 ),
+						distribution: SPE.distributions.SPHERE
+					},
+					size: { value: 40 },
+					color: {
+						value: new THREE.Color( 0.2, 0.2, 0.2 )
+					},
+					opacity: { value: [0, 0, 0.2, 0] }
+				}),
+				flash = new SPE.Emitter( {
+					particleCount: 50,
+					position: { spread: new THREE.Vector3( 5, 5, 5 ) },
+					velocity: {
+						spread: new THREE.Vector3( 30 ),
+						distribution: SPE.distributions.SPHERE
+					},
+					size: { value: [2, 20, 20, 20] },
+					maxAge: { value: 2 },
+					activeMultiplier: 2000,
+					opacity: { value: [0.5, 0.25, 0, 0] }
+				} );
+                var emitter = new SPE.Emitter({
+                maxAge: {
+                    value: 0.5
+                },
+        		position: {
+                    value: new THREE.Vector3(0, 0, 0),
+                    spread: new THREE.Vector3( 0, 0, 0 )
+                },
+
+        		acceleration: {
+                    value: new THREE.Vector3(0, 0, 0),
+                    spread: new THREE.Vector3( 0, 0, 0 )
+                },
+
+        		velocity: {
+                    value: new THREE.Vector3(0, 0, 20),
+                    spread: new THREE.Vector3(5, 5, 10)
+                },
+
+                color: {
+                    value: [ new THREE.Color(200,200,200) ]
+                },
+
+                size: {
+                    value: [20, 100]
+                },
+                opacity: { value: [0.5, 0.25, 0, 0] },
+
+        		particleCount: 1000
+        	});
+
+
+			//group.addEmitter( fireball ).addEmitter( flash );
+			shockwaveGroup.addEmitter( emitter );
+			//scene.add( shockwaveGroup.mesh );
+                        var groupgroup = new THREE.Group();
+                        //groupgroup.add(group.mesh);
+                        groupgroup.add(shockwaveGroup.mesh);
+                        groupgroup.position.set(0,0,0);
+			scene.add( groupgroup );
+        //
 //SHIP---------------------------------------------------------------------------------------
 	mirrorCubeCamera = new THREE.CubeCamera( 0.1, 321640, 512 );
         	scene.add( mirrorCubeCamera );
                 	mirrorCubeCamera.position = new THREE.Vector3(0,0,0);
-var loader = new THREE.ObjectLoader();
-loader.load("ship1.js",function ( obj1 ) {
-		var material = new THREE.MeshPhongMaterial( {
-					color: 0xdddddd,
-					specular: 0x222222,
-					shininess: 35,
-                                        envMap: mirrorCubeCamera.renderTarget,
-					map: THREE.ImageUtils.loadTexture( "shell.jpg" ),
-					normalMap: THREE.ImageUtils.loadTexture( "shell.jpg" ),
-					normalScale: new THREE.Vector2( 0.8, 0.8 ),
-                                        side: THREE.DoubleSide
-				} );
-     obj1.children[4].children[0].material = material;
-     obj1.children[4].children[1].material = material;
-     obj1.children[4].children[2].material = material;
-     obj1.children[0].material = material;
-     obj1.children[1].material = material;
-     obj1.children[2].material = material;
-     obj1.children[5].material = material;
-     obj=obj1;
-    /* spaceShip.add(obj.children[4]);
-     spaceShip.add(obj.children[0]);
-     spaceShip.add(obj.children[1]);
-     spaceShip.add(obj.children[2]);
-     spaceShip.add(obj.children[5]);*/
-     scene.add( obj );
-});
-	//siran();
-		//runLoader();
+                        
+                        // instantiate a loader
+var loader = new THREE.ColladaLoader();
+
+loader.load(
+	// resource URL
+	'ship1.dae',
+	// Function when resource is loaded
+	function ( collada ) {
+		scene.add( collada.scene );
+	},
+	// Function called when download progresses
+	function ( xhr ) {
+		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
+	}
+);
 		function update() {
 			//COUNT FPS
-			frameCount++;
+			
+                        
+                        
 			//CAMERA MOVEMENT
 			if(keyboard.pressed("up")){
 				Crotation+=0.01;
@@ -169,6 +339,15 @@ loader.load("ship1.js",function ( obj1 ) {
 			}else if(keyboard.pressed("e")){
 				Crad +=0.1;
 			}
+                        emitter.alive = false;
+                        if(keyboard.pressed("space")){
+                            emitter.alive = true;
+                        }
+                            group.tick( 1/60 );
+                            shockwaveGroup.tick( 1/60 );
+                            frameCount++;
+                            timeCalculations();
+                        //}
 			camera.position.y=Crad* Math.sin(Crotation);
 			camera.position.z=Crad* Math.cos(Crotation);
 			//get the camera to look at the spaceship
@@ -180,9 +359,9 @@ loader.load("ship1.js",function ( obj1 ) {
 		function render() {
 			//Call the update function
 			update();
-                        obj.visible = false;
+                        /*obj.visible = false;
 	mirrorCubeCamera.updateCubeMap( renderer, scene );
-	obj.visible = true;
+	obj.visible = true;*/
 			//Re-draw the scene
 			renderer.render(scene, camera);
 			//Re-call the render function when the next frame is ready to be drawn
@@ -191,7 +370,8 @@ loader.load("ship1.js",function ( obj1 ) {
 		requestAnimationFrame(render);
 
     };
-    </script>
+
+</script>
 </head>
 <body>
 <div style="position:absolute;top:0px;left:0px;z-index:3;">

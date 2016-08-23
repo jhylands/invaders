@@ -5,8 +5,9 @@
  */
 
 class Hold{
+    private $link;
     public function __construct($con,$holdCode) {
-        $this->con = $con;
+        $this->link = $con;
         $this->code = $holdCode;
         $this->update();
     }
@@ -16,7 +17,7 @@ class Hold{
      */
     function update(){
         $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =$this->code";
-        $result = mysqli_query($this->con,$QRY);
+        $result = mysqli_query($this->link,$QRY);
         while($row = mysqli_fetch_array($result)){
                 $this->resources[$row['ResourceID']] = $row['Amount'];
         }
@@ -38,7 +39,7 @@ class Hold{
      */
     public function drop($resource){
         $QRY = "DELETE FROM cargo WHERE HoldCode=" . $this->code . " AND ResourceID=" . $resource->getID ;
-        return mysqli_query($this->con, $QRY);
+        return mysqli_query($this->link, $QRY);
     }
     
     /**
@@ -49,7 +50,7 @@ class Hold{
      */
     public function add($resource,$init){
         $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(" . $this->code . "," . $resource->getID() . "," . $init . ")";
-        return mysqli_query($this->con, $QRY);
+        return mysqli_query($this->link, $QRY);
     }
     
     /**
@@ -63,7 +64,7 @@ class Hold{
         $query = "UPDATE cargo SET cargo.Amount='$amount' WHERE cargo..HoldCode=" . $this->code . " AND cargo.ResourceID=$RID";
         //keep local value up to date
         $this->resources[$RID] = $amount;
-        return mysqli_query($this->con,$query);
+        return mysqli_query($this->link,$query);
     }
     
     /**
@@ -74,12 +75,15 @@ class Hold{
      */
     function change($resource,$change){
         $RID =$resource->getID();
-        //thats not mysql just sql so doesnt work
-        $query = "IF EXISTS(SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID ) UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo.HoldCode=" . $this->code . " AND cargo.ResourceID=$RID ELSE INSERT INTO cargo (HoldCode,ResourceID,Amount) values($this->code,$RID,$change)";
-        echo $query;
+        if($this->checkExistance($resource)){
+           $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo.HoldCode=" . $this->code . " AND cargo.ResourceID=$RID"; 
+        }else{
+            $query = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values($this->code,$RID,$change)";
+        }
+        //echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
-        return mysqli_query($this->con,$query);
+        return mysqli_query($this->link,$query);
     }
     
     /**
@@ -96,5 +100,16 @@ class Hold{
      */
     function all(){
         return $this->resources;
+    }
+    
+    /**
+     * Function to check if resource in hold
+     * @param Resource $resource
+     * @return boolean
+     */
+    private function checkExistance($resource){
+        $RID = $resource->getID();
+        $query = "SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID";
+        return mysqli_query($this->link, $query);
     }
 }
