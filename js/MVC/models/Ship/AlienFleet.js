@@ -83,6 +83,7 @@ function AlienFleet(bulletHandler){
     this.removeShip = function(ship){
         this.object.remove(ship);
     };
+    this.defeated = function(){return this.object.children.length===0;};
     this.create();
 }
 

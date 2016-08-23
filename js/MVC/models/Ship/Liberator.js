@@ -5,6 +5,7 @@ function LiberatorShip(bulletHandler){
     this.__proto__ = new Ship(bulletHandler);
     this.__loader = new THREE.ColladaLoader();
     this.monoPropellant = new MonoPropellant(new THREE.Vector3(0,20,0));
+    this.health=100;
     /**
      * Function to store the collada object
      * @returns {Function}
@@ -51,7 +52,7 @@ function LiberatorShip(bulletHandler){
     };
     this.update = function (){
         if(this.bullets.hasHit(this.object,this.FRIEND)){
-            this.health--;
+            this.health-=5;
         }
         //assumed to be run before keyboard update
         

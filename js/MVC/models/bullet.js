@@ -123,7 +123,7 @@ function BulletHandler(timeOut){
     this.hasHit = function(object,allegiance){
         for(var i = 0;i<this.bullets.length;i++){
             if(this.bullets[i].allegiance.team != allegiance.team){
-                console.log(this.bullets.team +":" + allegiance.team);
+                //console.log(this.bullets[i].allegiance.team +":" + allegiance.team);
                 var originPoint = this.bullets[i].Mesh.position.clone();
                 var vertexIndex = 0;
                 var localVertex = this.bullets[i].Mesh.geometry.vertices[vertexIndex].clone();

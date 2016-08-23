@@ -54,6 +54,9 @@ function conConsole(){
                                     break;
                     }
                     $.ajax({url:"console.php?command="+command}).done(function(resp){
+                            if(resp.indexOf("PLCEUP")+1){
+                                updatePlace();
+                            }
                             //document.getElementById("console").innerHTML = document.getElementById("console").innerHTML.substr(0,document.getElementById("console").innerHTML.length-6);
                             document.getElementById("console").innerHTML += resp + '<br /><br />';
                             document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;

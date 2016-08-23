@@ -14,7 +14,7 @@
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three(79).js"></script>
+<script src="js/three(80).js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
 <script src="js/ColladaLoader.js"></script>
@@ -32,6 +32,12 @@
     //need an asset manager
     //need a method for updating information about where the user is
     var place = <?php echo $ship->place->__toString(); ?>;
+    var updatePlace = function(){
+        $.ajax({url:'i/get/place.php'}).done(function(data){
+            place = JSON.parse(data);
+            //idk how to get the pages to update
+        });
+    };
    calculateOrbit = function(radialOffset,longitude ,latitude){
             return new THREE.Vector3(
                 3*(place['Radius']-radialOffset)*Math.cos(longitude)*Math.cos(latitude),
@@ -60,7 +66,9 @@ function loadPage(toPageID,fromPageID){
 window.onload = function() {
         pages = [new conOrbit(),new conMap,new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
-        __renderer = new THREE.WebGLRenderer({maxLights:6});
+        __renderer = new THREE.WebGLRenderer();
+        __renderer.shadowMap.enabled = true;
+        __renderer.shadowMap.type = THREE.BasicShadowMap;
         //__renderer = new THREE.CanvasRenderer();
         __renderer.setSize( window.innerWidth,window.innerHeight);
         document.getElementsByTagName('div')[0].appendChild( __renderer.domElement );

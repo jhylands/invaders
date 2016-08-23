@@ -10,8 +10,9 @@ function Explosion(size){
                 depthTest: true,
                 depthWrite: false,
                 blending: THREE.AdditiveBlending,
-                scale: 100
-        } ),
+                scale: 100,
+                maxParticleCount:10000
+        } );
         this.shockwaveGroup = new SPE.Group( {
                 texture: {
                         value: THREE.ImageUtils.loadTexture( 'images/smokeparticle.png' ),
@@ -19,7 +20,8 @@ function Explosion(size){
                 depthTest: false,
                 depthWrite: true,
                 blending: THREE.NormalBlending,
-                scale:50
+                scale:50,
+                maxParticleCount:10000
         } ),
         this.shockwave = new SPE.Emitter( {
                 particleCount: 200,
@@ -142,7 +144,12 @@ function Explosion(size){
         } );
     this.group.addEmitter( this.fireball ).addEmitter( this.flash );
     this.shockwaveGroup.addEmitter( this.debris ).addEmitter( this.mist );
-    this.light = new THREE.PointLight(0xFFFFFF,2,30);
+    this.light = new THREE.PointLight(0xffaa33,2,10);
+    /*this.light.castShadow=true;
+    this.light.shadow.camera.near = 1;
+    this.light.shadow.camera.far = 30;
+    // pointLight.shadowCameraVisible = true;
+    //this.light.shadow.bias = 0.01;*/
     this.meshGroup = new THREE.Group();
     this.meshGroup.add(this.group.mesh);
     this.meshGroup.add(this.shockwaveGroup.mesh);
@@ -150,12 +157,15 @@ function Explosion(size){
     this.meshGroup.scale.x=0.1;
     this.meshGroup.scale.y=0.1;
     this.meshGroup.scale.z=0.1;
+    this.lightX=2;
     
-    
+    this.reSet = function(){this.lightX=0.01;};
     this.getObject = function(){return this.meshGroup;};
     this.update = function(){
         this.group.tick();
         this.shockwaveGroup.tick();
+        this.lightX+=0.01;
+        this.light.intensity =1/this.lightX;
         
     };
 }

@@ -61,6 +61,7 @@ function conCombat(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 this.findPlanet();
+                this.won=false;
                 //planet should already exist
 		//lighting should already be set up
                 //The sun should lready be there
@@ -135,14 +136,20 @@ function conCombat(){
                 this.bullets.update();
                 
                 this.ship.update();
-                //GAME OVER!
-                this.checkGameOver();
+
+                
                 //Update an alien wing camera
                 if(this.start){
                     this.alienFleet.canShoot();
                     this.alienFleet.update();
                 }
                 this.view.setHealth(this.ship.getHealth());
+                //check the game has ended
+                if(this.alienFleet.defeated() && !this.won){
+                    this.won=true;
+                    var _self=this;
+                    this.view.displayWinScreen(function(){_self.backToOrbit();}); 
+                }
                 //detect collisions
                 //this.detectCollisions();
             }
@@ -171,11 +178,7 @@ function conCombat(){
 	};
 
         
-        this.checkGameOver = function(){
-            if(this.score==300 && this.won==false){
-                this.overlayHandle.displayWinScreen();            
-            }
-        };
+        
         
         
         //DESTRUCTORS
