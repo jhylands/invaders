@@ -1,8 +1,9 @@
 <html>
 <head>
 <?php
+session_start();
     //check that the user has logged in
-    if(!isset($_COOKIE['User'])){
+    if(!isset($_SESSION['User'])){
         echo "<script>window.location.replace('login.php');</script>";
     }
     include 'scripts/sql.php';

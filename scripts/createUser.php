@@ -15,5 +15,4 @@ mysqli_query($con,"INSERT INTO hold");
 mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",1,500)");
 mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",2,500)");
 mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",3,500)");
-
-?>
+$result = mysqli_query($con,$QRY . $_SESSION['User']);

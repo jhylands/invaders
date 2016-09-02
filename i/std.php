@@ -1,6 +1,6 @@
 <?php
 
-include '/home/a9206732/public_html/invaders-master/scripts/sql.php';
-include '/home/a9206732/public_html/invaders-master/scripts/shipInfo.php';
+include '/home/timepcou/public_html/scripts/sql.php';
+include '/home/timepcou/public_html/scripts/shipInfo.php';
 $ship = new Ship($con,$ShipCode);
 
