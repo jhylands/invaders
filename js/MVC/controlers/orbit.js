@@ -1,3 +1,5 @@
+/* global __scene, place */
+
 //orbit class file
 //planet-centric coordinates
  
@@ -37,7 +39,7 @@ function conOrbit(){
                         break;
                     case 1:
                         //has been loaded from map
-                        this.constructFirst();
+                        this.reConstruct();
                         break;
                     case 2:
                         //from cargo
@@ -64,6 +66,7 @@ function conOrbit(){
             switch(to){
                 case 1:
                     //Go to the map
+                    console.log("going to map");
                     __scene.remove(this.threeSpaceStation);
                     //temperarely
                     __scene.remove(this.threePlanetLights);
@@ -81,12 +84,7 @@ function conOrbit(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
-		this.threePlanet = this.makePlanet(this.planet);
-		
-		//set up lighting
-		this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);
-                this.threePlanetLights.name = "planet";
-                __scene.add(this.threePlanetLights);
+		this.updatePlanet();
                 
                 //add the sun
                 this.sun = this.addSun();
@@ -98,7 +96,13 @@ function conOrbit(){
 		//setup space station overlay
                 //create user interface
                 this.createUserInterface();
-        }
+        };
+        this.reConstruct = function(){
+            this.updatePlanet();
+            __scene.add(this.threeSpaceStation);
+            __scene.add(this.sun);
+            this.createUserInterface();
+        };
         this.constructFromCombat = function(){
             this.orbitPos=Math.PI/2;
             //add spacestation to __scene
@@ -123,7 +127,7 @@ function conOrbit(){
             //add eventhandlers
             for(i=0;i<options.length;i++){
                 var func = this.makeChanger(this,i+1);
-                console.log(func);
+                //console.log(func);
                 document.getElementById(options[i]).addEventListener("click", func);
             }
         }

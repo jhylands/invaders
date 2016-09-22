@@ -1,3 +1,5 @@
+/* global __scene, place */
+
 function Page(){
     //abstract functions for a page
     
@@ -38,9 +40,9 @@ function Page(){
             var Map = planet.Map;
             //not sure why this isn't binding ffs
             img = new THREE.TextureLoader().load('images/' + Map.IMG);
-            if('SPEC' in Map){var spec = new THREE.TextureLoader().load(Map.SPEC);}else{spec=null;}
-            if('BUMP' in Map){var bump = new THREE.TextureLoader().load(Map.BUMP);}else{bump=null;}
-            if('EM' in Map){var em = new THREE.TextureLoader().load(Map.EM);}else{em=null;}
+            if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
+            if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
+            if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}
 
             var planetMaterial = new THREE.MeshPhongMaterial({
                     map:img,
@@ -85,5 +87,19 @@ function Page(){
                 return null;
             }
         }
+    };
+    
+    /**
+     * function to update the planet mesh witht the new plannet mesh
+     * @returns {undefined}
+     */
+    this.updatePlanet = function(){
+        this.findPlanet();
+        __scene.remove(this.threePlanet);
+        this.threePlanet = this.makePlanet(place);
+        //set up lighting
+        this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);
+        this.threePlanetLights.name = "planet";
+        __scene.add(this.threePlanetLights);
     };
 }

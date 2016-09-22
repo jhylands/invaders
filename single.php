@@ -11,7 +11,7 @@ session_start();
 
     $ship = new Ship($con,$ShipCode);
 ?>
-    <title>Introduction to Computer Graphics</title>
+    <title>Anviders</title>
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
@@ -33,10 +33,12 @@ session_start();
     //need an asset manager
     //need a method for updating information about where the user is
     var place = <?php echo $ship->place->__toString(); ?>;
-    var updatePlace = function(){
+    var updatePlace = function(callback){
         $.ajax({url:'i/get/place.php'}).done(function(data){
             place = JSON.parse(data);
-            //idk how to get the pages to update
+            if(callback){
+                callback();
+            }
         });
     };
    calculateOrbit = function(radialOffset,longitude ,latitude){
@@ -65,7 +67,7 @@ function loadPage(toPageID,fromPageID){
 
 
 window.onload = function() {
-        pages = [new conOrbit(),new conMap,new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
+        pages = [new conOrbit(),new conMap(),new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
         __renderer = new THREE.WebGLRenderer();
         __renderer.shadowMap.enabled = true;
