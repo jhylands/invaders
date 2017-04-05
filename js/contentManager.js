@@ -2,6 +2,7 @@
  * Class to cache resources so that the are not constinalty reloaded.
  * Required so that the map doesn't need to reload planets texteures
  * could be used for LOD management 
+ * should things be left in the scene to reduce latency caused by the graphics pipline?
  */
 
 
