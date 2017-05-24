@@ -71,13 +71,13 @@ if (isset($accessToken)) {
   	// Now you can redirect to another page and use the access token from $_SESSION['facebook_access_token']
 } else {
 	// replace your website URL same as added in the developers.facebook.com/apps e.g. if you used http instead of https and you used non-www version or www version of your website then you must add the same here
-	$loginUrl = $helper->getLoginUrl('http://timep.co.uk', $permissions);
+	$loginUrl = $helper->getLoginUrl('http://timep.co.uk/login.php', $permissions);
 	echo '<a href="' . $loginUrl . '">Log in with Facebook!</a>';
 }
 
 echo "<h1>Log in a success</h1>";
 ?>
 <script>
-	document.location.replace("single.php");
+	//document.location.replace("single.php");
 	
 </script>

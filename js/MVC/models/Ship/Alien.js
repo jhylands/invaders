@@ -33,8 +33,13 @@ function AlienShip(bulletHandler){
         alienMesh = new THREE.Group();
         alienMesh.add(aBody);
         alienMesh.add(aWing);
+        var explosionMesh = this.explosion.getObject();
+        explosionMesh.traverseVisible(function(mesh){if(mesh.type!='Group'){mesh.visible=false;}});
         
-        this.object = alienMesh;
+        var groupMesh = new THREE.Group();
+        groupMesh.add(alienMesh);
+        groupMesh.add(explosionMesh);
+        this.object = groupMesh;
         //this.parPos = new THREE.Vector3(0,0,0);
         //console.log(this.object.position.x);
     };
@@ -64,12 +69,13 @@ function AlienShip(bulletHandler){
                 if(this.bullets.hasHit(this.object,this.FOE)){
                     this.destroy = 1;
                     this.explosion.reSet();
-                    console.log('alien down');
+                    //console.log('alien down');
                     var location = this.object.position;
                     this.remove(this.object);
                     this.object = this.explosion.getObject();
                     this.object.position.copy(location);
                     this.add(this.object);
+                    var self=this;
                     var self=this;
                     setTimeout(function(){self.endAnimation();},2000);
 
