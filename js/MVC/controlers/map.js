@@ -57,10 +57,10 @@ function conMap(){
                     - ( event.clientY / window.innerHeight ) * 2 + 1);
                     
                     var raycaster = new THREE.Raycaster();
-                    raycaster.setFromCamera(vector,__camera)
+                    raycaster.setFromCamera(vector,__camera);
                     var intersects = raycaster.intersectObjects( __scene.children );
                     if ( intersects.length > 0 ) {
-                        if(intersects[0].object.name!="sun.jpg" && intersects[0].object.name !=""){
+                        if(intersects[0].object.name!=="sun.jpg" && intersects[0].object.name !==""){
                                 self.travel(intersects[0].object.name);
                         }
                     }

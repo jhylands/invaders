@@ -27,7 +27,7 @@ function Page(){
             locPage.destroy(locNextPage);
             locPage.change=true;
             locPage.nextPage = locNextPage; 
-        }
+        };
     };
 
     
