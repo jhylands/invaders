@@ -1,3 +1,5 @@
+/* global THREE */
+
 //top level class for ships
 function Ship(bulletHandler){
     
@@ -9,19 +11,35 @@ function Ship(bulletHandler){
     /**
      * Function returns the three object of the ship
      */
-    this.getThree = function(){console.log('Abstract function getThree not overwritten!');};
+    this.getThree = function(){console.warn('Abstract function getThree not overwritten!');};
     //this.getThree = function(){return this.object;};
     /**
      * Function to handle any updates to the ship that should occurer every update
      * @returns void
      */
-    this.update = function(){console.log('Abstract function update not overwritten!');};
+    this.update = function(){console.warn('Abstract function update not overwritten!');};
     /**
      * Function to handle updates from keystate
      * @returns void
      */
-    this.keyboard = function(keystate){console.log('Abstract function keyboard not overwritten!');};
-    
+    this.keyboard = function(keystate){console.warn('Abstract function keyboard not overwritten!');};
+    /**
+     * Function to allow the ship to be scaled either to a 
+     * relative size of the the objects around it or 
+     * to fit a particular box.
+     * @returns {THREE.Vector3}
+     */
+    this.scale = function(){
+        return THREE.Vector3(1,1,1);
+    };
+    /**
+     * Abstract function for scaling ship to fit inside a box of particular size
+     * @param {THREE.Vector3} Box
+     * @returns {void}
+     */
+    this.setScale = function(Box){
+        console.warn('Abstract function setScale not overwritten!');
+    };
     this.detectCollisions = function(){
             var hit = this.bullets.checkCollision(this.aliens,this.ship);
             for(n=0;n<this.aliens.children.length;n++){

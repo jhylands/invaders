@@ -36,15 +36,13 @@ function LiberatorShip(bulletHandler){
             //check the object is in range
             if(this.object.position.z>-8*SPACING+this.offset.z){
                     this.object.position.z-=0.1;
-                    this.monoPropellant.fireRight();
-                    this.monoPropellant.setEnabled(true);
+                    this.monoMove(new THREE.Vector3(1,0,0));
             }
         }else if(keyState.pressed("right")){
             //check object is in range
             if(this.object.position.z<8*SPACING+this.offset.z){
                     this.object.position.z+=0.1;
-                    this.monoPropellant.fireLeft();
-                    this.monoPropellant.setEnabled(true);
+                    this.monoMove(new THREE.Vector3(-1,0,0));
             }
         }else if(keyState.pressed("space")){
             this.bullets.create(this.FRIEND,this.object.position);
@@ -84,6 +82,24 @@ function LiberatorShip(bulletHandler){
     
     this.remove = function(){
         return this.health<=0;
+    };
+    /**
+     * 
+     * @param {THREE.Vector3} direction
+     * @returns {void}
+     */
+    this.monoMove = function(direction){
+        this.monoPropellant.setDirection(direction);
+        this.monoPropellant.setEnabled(true);
+    };
+    /**
+     * Function to animate ship when under burn power as opposed to monpropellent
+     * @param {type} direction
+     * @param {type} power
+     * @returns {undefined}
+     */
+    this.powerMove = function(direction,power){
+        console.warn('LiberatorShip.powerMove() Remains unimplemented');
     };
 }
 

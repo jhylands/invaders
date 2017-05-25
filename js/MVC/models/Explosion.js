@@ -144,7 +144,7 @@ function Explosion(size){
         } );
     this.group.addEmitter( this.fireball ).addEmitter( this.flash );
     this.shockwaveGroup.addEmitter( this.debris ).addEmitter( this.mist );
-    this.light = new THREE.PointLight(0xffaa33,2,10);
+    this.light = new THREE.PointLight(0xffaa33,.1,30);
     /*this.light.castShadow=true;
     this.light.shadow.camera.near = 1;
     this.light.shadow.camera.far = 30;
@@ -153,7 +153,7 @@ function Explosion(size){
     this.meshGroup = new THREE.Group();
     this.meshGroup.add(this.group.mesh);
     this.meshGroup.add(this.shockwaveGroup.mesh);
-    this.meshGroup.add(this.light);
+    //this.meshGroup.add(this.light);
     this.meshGroup.scale.x=0.1;
     this.meshGroup.scale.y=0.1;
     this.meshGroup.scale.z=0.1;

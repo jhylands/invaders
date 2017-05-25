@@ -16,7 +16,7 @@ function conMap(){
 	
         
         //class variables
-        this.planetNames = new Array('sun.jpg','mercury_img.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
+        this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
 	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
 	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
         //this.projector = new THREE.Projector;

@@ -53,4 +53,20 @@ function MonoPropellant(velocity){
     this.setEnabled = function(enabled){this.emitter.alive = enabled;};
     this.fireLeft = function (){this.group.mesh.rotation.setFromVector3(new THREE.Vector3(-Math.PI/2,0,0));};
     this.fireRight = function (){this.group.mesh.rotation.setFromVector3(new THREE.Vector3(Math.PI/2,0,0));};
+    /**
+     * 
+     * @param {THREE.Vector3} direction
+     * @returns {void}
+     */
+    this.setDirection = function(direction){
+        this.group.mesh.rotation.setFromVector3(direction.multiplyScalar(Math.PI/2));
+    };
+    /**
+     * Function 
+     * @param {THREE.Vector3} position
+     * @returns {void}
+     */
+    this.setPosition = function(position){
+        this.group.mesh.position.set(position);
+    };
 }

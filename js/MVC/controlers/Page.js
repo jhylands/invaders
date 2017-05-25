@@ -1,4 +1,4 @@
-/* global __scene, place */
+/* global __scene, place, THREE */
 
 function Page(){
     //abstract functions for a page
