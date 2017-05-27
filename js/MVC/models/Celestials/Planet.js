@@ -1,5 +1,5 @@
-function Planet(id){
-    this.__proto__ = new Celestial(id);
+function Planet(){
+    this.__proto__ = new Celestial();
     
     this.getFromServer = function(){
         $.ajax('i/get/place.php?id=' + this.getID());

@@ -50,7 +50,7 @@ class Market{
         
     }
     
-    public function __toString() {
+    function __toString() {
         return json_encode(array('marketID'=>  $this->getID(),'channels'=> $this->channelsToArray()));
     }
     

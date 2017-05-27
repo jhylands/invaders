@@ -39,45 +39,28 @@ function conMap(){
 	//function to create page from nothing
 	this.create = function(from){
             //from orbit
-            this.inAnimation=1;
-            __scene.add(this.ambient);
-            for(i=1;i<=this.planetNames.length;i++){
-                    this.threePlanets[i] = this.makePlanet({'Map':{'IMG':this.planetNames[i]},'Radius':this.planetSizes[i]});
-                    this.threePlanets[i].position.set(this.planetPositions.x[i],0,this.planetPositions.z[i]);
-                    this.threePlanets[i].name = i;
-                    __scene.add(this.threePlanets[i]);
-            }
+            //this.inAnimation=1;
+            //__scene.add(this.ambient);
+            //var sun
+            sun.recurseThroughSystems()
                 
-                //function needs updating for the lates three.js
-                //it also needs a closure
-                var self=this;
-                this.onDocumentMouseDown= function( event ) {
-                    event.preventDefault();
-                    var vector = new THREE.Vector2( ( event.clientX / window.innerWidth ) * 2 - 1,
-                    - ( event.clientY / window.innerHeight ) * 2 + 1);
-                    
-                    var raycaster = new THREE.Raycaster();
-                    raycaster.setFromCamera(vector,__camera);
-                    var intersects = raycaster.intersectObjects( __scene.children );
-                    if ( intersects.length > 0 ) {
-                        if(intersects[0].object.name!=="sun.jpg" && intersects[0].object.name !==""){
-                                self.travel(intersects[0].object.name);
-                        }
-                    }
-                };
-                
-		//Make an event listner for when the user click on the planet they want to travel to
-                document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-                __camera.position.set( this.planetPositions.x[place['ID']],  0,place.Radius*3 );//inishiation of camera
-                this.x = this.planetPositions.x[place['ID']];
-                this.z = place.Radius*3;
-		//setup space station overlay
-                //create user interface
-                this.createUserInterface();
-                __camera.lookAt(new THREE.Vector3(this.planetPositions.x[place['ID']],0,0));
-                //Notify that this function is ready to be run
-                this.ready = true;
-                this.onready(this.id);
+            //function needs updating for the latest three.js
+            //it also needs a closure
+            var self=this;
+            this.onDocumentMouseDown= makeClickHandler(self.travel);
+
+            //Make an event listner for when the user click on the planet they want to travel to
+            document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+            __camera.position.set( this.planetPositions.x[place['ID']],  0,place.Radius*3 );//inishiation of camera
+            this.x = this.planetPositions.x[place['ID']];
+            this.y = place.Radius*3;
+            //setup space station overlay
+            //create user interface
+            this.createUserInterface();
+            __camera.lookAt(new THREE.Vector3(0,0,0));
+            //Notify that this function is ready to be run
+            this.ready = true;
+            this.onready(this.id);
                 
 	};
         this.destroy = function(page){
