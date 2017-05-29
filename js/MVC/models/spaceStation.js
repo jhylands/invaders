@@ -12,7 +12,7 @@ function makeSpaceStation(){
 	spaceStation.position= new THREE.Vector3(0,0,0);
 	var group = new THREE.Group();
 	spaceStation.Cposition = new THREE.Vector3(0,0,10);
-	var planeTexture = new THREE.TextureLoader.load('images/panels.jpg');
+	var planeTexture = new THREE.TextureLoader().load('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
 	var nighty = Math.PI/2;
@@ -53,7 +53,7 @@ function makeSpaceStation(){
 {position: new THREE.Vector3(0,0.5,0), rotation : new THREE.Euler(0,0,0)},
 {position: new THREE.Vector3(0,0.5,0), rotation : new THREE.Euler(nighty,0,0)},
 {position: new THREE.Vector3(0,0.5,1), rotation : new THREE.Euler(nighty,0,0)}];
-	var cylinderTexture = new THREE.ImageUtils.loadTexture('images/shell.jpg');
+	var cylinderTexture = new THREE.TextureLoader().load('images/shell.jpg');
 	var cylinderMaterial = new THREE.MeshPhongMaterial({map:cylinderTexture,ambient:0xc0c0c0,specular:0xd0d0d0,shininess:1});
 	var cylinderGeometry = new THREE.CylinderGeometry(0.15,0.15,1,32);
 	for(i=0;i<bodyData.length;i++){

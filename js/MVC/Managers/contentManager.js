@@ -35,6 +35,7 @@ function ContentManager(){
         var self = this;
         return function(image){
             self.content[URL].image = image;
+            self.content[URL].needsUpdate=true;
         };
     };
 }

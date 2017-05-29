@@ -18,7 +18,7 @@ session_start();
 <script src="js/three/80.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
-<script src="i/get/startingPack.php"></script>
+<script src="js/ProgressiveImgLoader.js"></script>
 <script src="js/ColladaLoader.js"></script>
 <script src='js/SPE.min.js'></script>
 <script>

@@ -39,7 +39,7 @@ function Page(){
             //chorten map references
             var Map = planet.Map;
             //not sure why this isn't binding ffs
-            img = new THREE.TextureLoader().load('images/' + Map.IMG);
+            img = contentManager.getTexture(Map.IMG);
             if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
             if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
             if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}

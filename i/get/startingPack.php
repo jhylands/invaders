@@ -13,4 +13,4 @@ include '../std.php';
 $place = new Place($con);
 $place->fromID(0);
 $place->makeTreeOfPlaces();
-echo json_encode(["sun"=>$place]);
+//echo json_encode(["sun"=>$place]);
