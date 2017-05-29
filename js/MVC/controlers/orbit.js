@@ -1,4 +1,4 @@
-/* global __scene, place, __camera, THREE */
+/* global __scene, place, __camera, THREE, __sun */
 
 //orbit class file
 //planet-centric coordinates
@@ -67,6 +67,7 @@ function conOrbit(){
                 case 1:
                     //Go to the map
                     console.log("going to map");
+                    __scene.remove(__sun.findFromChildren(place['PlaceID']))
                     __scene.remove(this.threeSpaceStation);
                     //temperarely
                     __scene.remove(this.threePlanetLights);
@@ -84,7 +85,7 @@ function conOrbit(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
-		this.updatePlanet();
+		__scene.add(__sun.findFromChildren(place['PlaceID']));
                 
                 //add the sun
                 this.sun = this.addSun();
@@ -98,7 +99,7 @@ function conOrbit(){
                 this.createUserInterface();
         };
         this.reConstruct = function(){
-            
+            __scene.add(__sun.findFromChildren(place['PlaceID']));
             __scene.add(this.threeSpaceStation);
             __scene.add(this.sun);
             this.createUserInterface();

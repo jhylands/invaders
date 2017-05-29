@@ -33,14 +33,10 @@ function Page(){
 
     
     //function to add lighting to a Planet Mesh
-    this.bindLights = function(threePlanet,planet){
-            var planetLight = new THREE.PointLight(parseInt(planet.Reflection,16));
-            var planetObject = new THREE.Group();
-            planetObject.add(threePlanet);
-            planetObject.add(planetLight);
-            return planetObject;
-    }
+    
+    
     //function to add the sun and its lights into the __scene
+    //needs replacing with lense blur
     this.addSun = function(){
         var sun = new THREE.Group();
         var lightcolor =  0xFFFFFF;
@@ -54,7 +50,7 @@ function Page(){
 	sunMesh.position.x = -7000000;
 	sun.add(sunMesh);
         return sun;
-    }
+    };
     /**
      * function to generate a reference to the planet in the __scene so it can be moved
      * @returns {unresolved}

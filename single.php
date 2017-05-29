@@ -31,9 +31,7 @@ session_start();
                             requestAnimationFrame(render);
                     }
                 }; 
-    //need an asset manager
-    //need a method for updating information about where the user is
-    var place = <?php echo $ship->place->__toString(); ?>;
+ 
     var contentManager = new ContentManager();
     var updatePlace = function(callback){
         $.ajax({url:'i/get/place.php'}).done(function(data){

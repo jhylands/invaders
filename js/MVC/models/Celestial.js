@@ -19,6 +19,7 @@ function Celestial(){
         this.Temperature = information['Temperature'];
         this.gravity = information['SurfaceGravity'];
         this.radius = information['Radius'];
+        this.Reflection = information['Reflection'];
         this.map = information['Map'];
         var maxLoop = information['children'].length;
         console.log(maxLoop);
@@ -32,7 +33,17 @@ function Celestial(){
      * Include a reference to this celestials mesh so it only has to be added once
      */
     this.object;
-    this.getThree = function (){if(this.object){return this.three;}else{return this.create();};};
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{this.bindLights();};};
+    //function to bind lights to the celestial to simulate reflection from another light
+    this.bindLights = function(){
+        if(!this.object){this.create();}
+        var planetLight = new THREE.PointLight(parseInt(this.Reflection,16));
+        var planetObject = new THREE.Group();
+        planetObject.add(this.object);
+        planetObject.add(planetLight);
+        this.litObject= planetObject;;
+        return this.litObject;
+    };
     this.create = function(){
         //initiate the maps
             var img;
