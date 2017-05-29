@@ -24,7 +24,7 @@ function useShip(shipCode){
 <input type="button" value="Back to orbit" onclick="window.location.replace('orbit.php')" />
 <table border="1" style="width:100%;">
 <tr>
-	<td><img src="images/earth_img.jpg" width="250px" height="250px" /></td>
+	<td><img src="images/earth_imgl.jpg" width="250px" height="250px" /></td>
 	<td><h2><?php echo $ship['ShipName']; ?></h2></td>
 	<td style="vertical-align:text-bottom;"><input type="button" value="Use Ship" onclick="useShip(
 <?php echo $ship['ShipCode']; ?>

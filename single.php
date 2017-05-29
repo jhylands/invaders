@@ -15,7 +15,7 @@ session_start();
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three(80).js"></script>
+<script src="js/three/80.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
 <script src="i/get/startingPack.php"></script>
@@ -34,6 +34,7 @@ session_start();
     //need an asset manager
     //need a method for updating information about where the user is
     var place = <?php echo $ship->place->__toString(); ?>;
+    var contentManager = new ContentManager();
     var updatePlace = function(callback){
         $.ajax({url:'i/get/place.php'}).done(function(data){
             place = JSON.parse(data);

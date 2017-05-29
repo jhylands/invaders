@@ -12,7 +12,7 @@ function makeSpaceStation(){
 	spaceStation.position= new THREE.Vector3(0,0,0);
 	var group = new THREE.Group();
 	spaceStation.Cposition = new THREE.Vector3(0,0,10);
-	var planeTexture = new THREE.ImageUtils.loadTexture('images/panels.jpg');
+	var planeTexture = new THREE.TextureLoader.load('images/panels.jpg');
 	var planeMaterial = new THREE.MeshPhongMaterial({map:planeTexture});
 	var planeGeometry = new THREE.PlaneGeometry(0.3,1);
 	var nighty = Math.PI/2;

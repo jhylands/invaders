@@ -1,4 +1,4 @@
-/* global __scene, place, THREE */
+/* global __scene, place, THREE, contentManager */
 
 function Page(){
     //abstract functions for a page
@@ -64,12 +64,12 @@ function Page(){
     //function to add the sun and its lights into the __scene
     this.addSun = function(){
         var sun = new THREE.Group();
-        var lightcolor =  0xFFFFFF
+        var lightcolor =  0xFFFFFF;
         var light = new THREE.PointLight( lightcolor );
         light.position.set( -100000, 10, -10 );
         sun.add(light);
 	var sunGeometry = new THREE.SphereGeometry(69550,32,32);
-	var sunTexture = new THREE.ImageUtils.loadTexture('images/sun.jpg');
+	var sunTexture = contentManager.getTexture('sun');
 	var sunMaterial = new THREE.MeshPhongMaterial({map:sunTexture});
 	var sunMesh = new THREE.Mesh(sunGeometry,sunMaterial);
 	sunMesh.position.x = -7000000;
