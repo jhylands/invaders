@@ -1,4 +1,4 @@
-/* global __scene, place, THREE, contentManager */
+/* global __scene, place, THREE, contentManager, __sun */
 
 function Page(){
     //abstract functions for a page
@@ -30,28 +30,7 @@ function Page(){
         };
     };
 
-    
-    //function to generate the Mesh for a planet from a JS-Planet object
-    this.makePlanet = function(planet /*Should adhear to JS-Planet standard*/){
-            //initiate the maps
-            var img;
-            var planetGeometry = new THREE.SphereGeometry(planet['Radius'],32,32);
-            //chorten map references
-            var Map = planet.Map;
-            //not sure why this isn't binding ffs
-            img = contentManager.getTexture(Map.IMG);
-            if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
-            if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
-            if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}
 
-            var planetMaterial = new THREE.MeshPhongMaterial({
-                    map:img,
-                    emissiveMap:em,
-                    bumpMap:bump,
-                    specularMap:spec
-                    });
-            return new THREE.Mesh(planetGeometry,planetMaterial);
-    }
     
     //function to add lighting to a Planet Mesh
     this.bindLights = function(threePlanet,planet){
@@ -90,12 +69,15 @@ function Page(){
     };
     
     /**
+     * This dosn't need to be a function any more because
+     * the celestial class supercedes it
+     * 
      * function to update the planet mesh witht the new plannet mesh
      * @returns {undefined}
      */
     this.updatePlanet = function(){
-        this.findPlanet();
-        __scene.remove(this.threePlanet);
+        var planet = __sun.findFromChildren(place['PlaceID']);
+        __scene.remove(planet.getThree());
         this.threePlanet = this.makePlanet(place);
         //set up lighting
         this.threePlanetLights = this.bindLights(this.threePlanet,this.planet);

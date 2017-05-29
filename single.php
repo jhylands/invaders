@@ -18,7 +18,7 @@ session_start();
 <script src="js/three/80.js"></script>
 <script src="js/THREEx.KeyboardState.js"></script>
 <script src="js/jsInclude.php"></script>
-<script src="js/ProgressiveImgLoader.js"></script>
+<script src="i/get/startingPack.php"></script>
 <script src="js/ColladaLoader.js"></script>
 <script src='js/SPE.min.js'></script>
 <script>
@@ -56,6 +56,7 @@ var render;
 var __renderer;
 var __scene;
 var __camera;
+var __sun = new Celestial();
 
 //create page file
 var pages = [];
@@ -70,6 +71,7 @@ function loadPage(toPageID,fromPageID){
 //clarification of when window.onload fires
 //as opposed to document.onload which can fire before images, scripts ect window.onload only fires once the required dependencies css ect have been loaded
 window.onload = function() {
+    __sun.fromPackage(starSystemData);
         pages = [new conOrbit(),new conMap(),new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
         __renderer = new THREE.WebGLRenderer();

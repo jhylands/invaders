@@ -42,7 +42,10 @@ function conMap(){
             //this.inAnimation=1;
             //__scene.add(this.ambient);
             //var sun
-            sun.recurseThroughSystems()
+            var planetAdder = function(celestial){
+                __scene.add(celestial.getThree());
+            };
+            __sun.recurseThroughSystems(planetAdder)
                 
             //function needs updating for the latest three.js
             //it also needs a closure

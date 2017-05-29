@@ -1,4 +1,4 @@
-/* global __scene, place */
+/* global __scene, place, __camera, THREE */
 
 //orbit class file
 //planet-centric coordinates
@@ -98,7 +98,7 @@ function conOrbit(){
                 this.createUserInterface();
         };
         this.reConstruct = function(){
-            this.updatePlanet();
+            
             __scene.add(this.threeSpaceStation);
             __scene.add(this.sun);
             this.createUserInterface();
@@ -139,17 +139,17 @@ function conOrbit(){
 	this.update = function(){
             //this.orbitPos+=0.00001;
             __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
-            this.threeSpaceStation.position.copy(this.calculateOrbit(3))
+            this.threeSpaceStation.position.copy(this.calculateOrbit(3));
             __camera.lookAt(this.threePlanet.position);
             this.threePlanet.rotation.y += 0.0001;
-	}
+	};
 
 	this.calculateOrbit = function(radialOffset){
             return new THREE.Vector3(
                 3*(this.planet['Radius']-radialOffset)*Math.cos(this.orbitPos),
                 0,
                 3*(this.planet['Radius']-radialOffset)*Math.sin(this.orbitPos));
-	}
+	};
         
         this.reload = function(){
             //GENERATE THE FUNCTION TO BE PASSED TO THE REQUEST

@@ -2,6 +2,7 @@
 //SKYBOX
 function makeSkyBox(){
 	var imagePrefix = "images/nebula-";
+        //var imagePrefix = "images/GalaxyTex-";
 	var directions  = ["xpos", "xneg", "ypos", "yneg", "zpos", "zneg"];
 	var imageSuffix = ".png";
 	var skyGeometry = new THREE.CubeGeometry( 5000000, 5000000, 5000000 );

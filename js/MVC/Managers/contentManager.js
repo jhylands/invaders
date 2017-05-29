@@ -3,6 +3,9 @@
  * Required so that the map doesn't need to reload planets texteures
  * could be used for LOD management 
  * should things be left in the scene to reduce latency caused by the graphics pipline?
+ * 
+ * Thanks to https://gist.github.com/knee-cola/37875bc4359609b96c9f329cd2a68fa1 for 
+ * help in working out that the texture needed ".needsUpdate" set to true
  */
 
 
@@ -12,10 +15,9 @@ function ContentManager(){
     /**
      * Function to get access to a resource located at URL and then do callback with it.
      * @param {String} URL
-     * @param {Function} callback
      * @returns {contentManager.content|contentManager@call;get}
      */
-    this.getTexture = function(URL,callback){
+    this.getTexture = function(URL){
         //check if resource already exists in cache
         if(this.content[URL]){
             return this.content[URL];
@@ -24,6 +26,7 @@ function ContentManager(){
         //create something to give back immidiatly to the program
         this.content[URL] = new THREE.Texture(); 
         var callback = this.textureCallbackGenerator(URL);
+        //assumes the larger one will take a sizable amount of time longer
         var low = new THREE.ImageLoader().load('images/'+URL+'l'+'.jpg',callback);
         var high = new THREE.ImageLoader().load('images/'+URL+'h'+'.jpg',callback);
         return this.content[URL];
