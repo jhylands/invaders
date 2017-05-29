@@ -13,4 +13,5 @@ include '../std.php';
 $place = new Place($con);
 $place->fromID(0);
 $place->makeTreeOfPlaces();
-echo "starSystemData = " . json_encode($place) . ";";
+echo "__sun = " . json_encode($place) . ";";
+echo "__ship = " . $ship . ";";
