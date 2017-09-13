@@ -12,14 +12,18 @@ files = os.listdir(r'../consolemod')
 #files = [ i for i in files if i!='Handler.php']
 
 #need to add an error checking function based on nonetype of m
-def add(search,so,eo,data,info):
+def add(search,data,info):
     m = re.search(search,data)
-    if type(m)==type(None):
+    if not m:
         if info!='MOD':
-            print('Error no ' + info)
+            print('    Error no ' + info)
         return 'ERROR'
     else:
-        return data[m.start()+so:m.end()+eo]
+        try:
+            return m.group(1)
+        except IndexError:
+            return m.group(0)
+
 
 #for each file add command and classname to data structure
 pairs = []
@@ -29,15 +33,15 @@ for file in files:
     data = f.read()
     f.close()
     #check for NOMOD!
-    mod = add('NOMOD!',0,0,data,'MOD')=='ERROR'
+    mod = add('NOMOD\!',data,'MOD')=='ERROR'
     if(mod):
-        command = add('[C][O][M][M][A][N][D].*[;]',8,-1,data,'COMMAND')
-        theClass = add('[c][l][a][s][s]\s*.*[{]',6,-17,data,'class')
-        helper = add('[H][E][L][P].*[;]',5,-1,data,'HELP')
+        command = add('COMMAND:(.*);',data,'COMMAND')
+        theClass = add('class\s+(\w+)\s+extends',data,'class')
+        helper = add('HELP:(.*);',data,'HELP')
         pairs.append( ('consolemod/' + file, command,theClass,helper) )
     else:
         #send the nomod has beeen found to console
-        print('NOMOD!')
+        print('    NOMOD!')
             
 
 imports =''

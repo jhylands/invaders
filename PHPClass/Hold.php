@@ -38,7 +38,7 @@ class Hold{
      * @return success
      */
     public function drop($resource){
-        $QRY = "DELETE FROM cargo WHERE HoldCode=" . $this->code . " AND ResourceID=" . $resource->getID ;
+        $QRY = "DELETE FROM cargo WHERE HoldCode='" . $this->code . "' AND ResourceID='" . $resource->getID() ."'" ;
         return mysqli_query($this->link, $QRY);
     }
     

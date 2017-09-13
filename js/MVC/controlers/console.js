@@ -53,14 +53,20 @@ function conConsole(){
                                     this.makeChanger(this,0)();
                                     break;
                     }
-                    $.ajax({url:"console.php?command="+command}).done(function(resp){
-                            if(resp.indexOf("PLCEUP")+1){
-                                updatePlace();
+                    self = this;
+                    $.ajax({url:"console.php?command="+command}).done(function(){return function(resp){
+                            //get function 
+                            var reg = /<script>(.*)<\/script>/g;
+                            var result = reg.exec(resp)
+                            if(result){
+                                var script = result[1]; //watch out for non-existant
+                                self.consoleScript = Function(script);
+                                self.consoleScript();
                             }
                             //document.getElementById("console").innerHTML = document.getElementById("console").innerHTML.substr(0,document.getElementById("console").innerHTML.length-6);
                             document.getElementById("console").innerHTML += resp + '<br /><br />';
                             document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
-                        });
+                        };}());
                     document.getElementById('writer').value="";
             }
         }else if(e.keyCode==38){

@@ -6,6 +6,7 @@ include 'scripts/shipInfo.php';
 $ship = new Ship($con,$ShipCode);
 //include consolemods
 include 'consolemod/Handler.php';
+include "consolemod/Alert.php";
 include "consolemod/CargoHandler.php";
 include "consolemod/RescourceHandler.php";
 include "consolemod/ShipHandler.php";
@@ -14,7 +15,7 @@ include "consolemod/TravelHandler.php";
 
 //check for sent information
 
-$result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
+$result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_SESSION['User']);
 while($row=mysqli_fetch_array($result)){
 	$userName = $row['Name'];
 }
@@ -31,6 +32,7 @@ foreach($comands as $strcommand){
     switch($command[0]){
             case 'help':
                     echo "This is your ships console. From here you control communication with other systems in orbit around your current location.<br />You can use the following commands:<br />";
+                    echo "alert something #Makes a box apear<br />";
                     echo "cargo [drop] [item] # The function to view what you currently have in your cargo hold<br />";
                     echo "rescode #shows the possible resource codes<br />";
                     echo "ship [ sheilding|location|switch [ship] ]<br />";
@@ -42,6 +44,9 @@ foreach($comands as $strcommand){
                     echo "clear #This clears the console window<br />";
                     //echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
                     break;
+            case "alert":
+                    $handler = new Alert($con,$ship);
+                     break;
             case "cargo":
                     $handler = new CargoHadler($con,$ship);
                      break;

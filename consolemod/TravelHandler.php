@@ -51,7 +51,8 @@ class TravelHandler extends Handler{
         $place = new Place($this->con);
         $place->fromID($comand[2]);
         if($this->travel->tryMove($place)){
-            return "<PLCEUP />Traveled to :" . $place->getName();
+            $script = "<script>window.location.reload();</script>";
+            return $script . "Traveled to :" . $place->getName();
         }
         else{
             return "Not enough fuel";

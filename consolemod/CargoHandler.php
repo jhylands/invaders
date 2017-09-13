@@ -31,7 +31,9 @@ class CargoHadler extends Handler{
      */
     function drop($command){
         $resource = new Resource($this->con);
+        //check resource code exists
         if(!$resource->fromCode($command[2])){return "Error bad resource code";}
+        //check the user has any at all
         if($this->ship->hold->drop($resource)){
             return $resource->getName() . " Dropped";
         }else{

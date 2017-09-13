@@ -11,7 +11,7 @@ session_start();
 
     $ship = new Ship($con,$ShipCode);
 ?>
-    <title>Anviders</title>
+    <title>Avinders</title>
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
