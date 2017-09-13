@@ -1,4 +1,4 @@
-/* global __scene, place, THREE, contentManager, __sun */
+/* global __scene, THREE, contentManager, __sun */
 
 function Page(){
     //abstract functions for a page

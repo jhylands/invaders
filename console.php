@@ -5,10 +5,13 @@ include 'scripts/shipInfo.php';
 //create ship object 
 $ship = new Ship($con,$ShipCode);
 //include consolemods
-$mods = array('','Cargo','Ship','Trade','Travel');
-for($i=0;$i<5;$i++){
-    include 'consolemod/' . $mods[$i] . 'Handler.php';
-}
+include 'consolemod/Handler.php';
+include "consolemod/CargoHandler.php";
+include "consolemod/RescourceHandler.php";
+include "consolemod/ShipHandler.php";
+include "consolemod/TradeHandler.php";
+include "consolemod/TravelHandler.php";
+
 //check for sent information
 
 $result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_COOKIE['User']);
@@ -21,28 +24,40 @@ $comands = explode(";",$_GET['command']);
 foreach($comands as $strcommand){
     echo "<a style='color:#367FCD;'>" . $userName . "></a>" . $strcommand . "<br />";
     $command = explode(' ',$strcommand);
+    //if there is no second command set the second command to help
+    if(count($command)<=1){
+        $command[1] = 'help';
+    }
     switch($command[0]){
             case 'help':
                     echo "This is your ships console. From here you control communication with other systems in orbit around your current location.<br />You can use the following commands:<br />";
-                    echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
                     echo "cargo [drop] [item] # The function to view what you currently have in your cargo hold<br />";
+                    echo "rescode #shows the possible resource codes<br />";
+                    echo "ship [ sheilding|location|switch [ship] ]<br />";
+                    echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
+                    echo "Travel help not yet written<br />";
+
                     echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a...<br /> ";
                     echo "exit #Exit the console and go back to orbit view.<br />";
                     echo "clear #This clears the console window<br />";
                     //echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
                     break;
-            case 'trade':
-                    $handler =  new TradeHandler($con,$ship);
-                    break;
-            case 'cargo':
-                    $handler = new cargoHadler($con,$ship);
-                    break;
-            case 'travel':
-                    $handler = new TravelHandler($con,$ship);
-                    break;
-            case 'ship':
+            case "cargo":
+                    $handler = new CargoHadler($con,$ship);
+                     break;
+            case "rescode":
+                    $handler = new RescourceHandler($con,$ship);
+                     break;
+            case "ship":
                     $handler = new ShipHandler($con,$ship);
-                    break;
+                     break;
+            case "trade":
+                    $handler = new TradeHandler($con,$ship);
+                     break;
+            case "travel":
+                    $handler = new TravelHandler($con,$ship);
+                     break;
+
             case 'fight':
                     echo "ERROR: Should be handled by user side console";
                     break;

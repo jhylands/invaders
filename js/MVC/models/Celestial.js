@@ -12,8 +12,8 @@ function Celestial(){
     this.inOrbitOf = function (){console.warn('Abstract function inOrbitOf not overwritten!');};
     this.getID = function(){ return this.id;};
     this.fromPackage = function(information){
-        this.id = information['PlaceID'];
-        this.name = information['PlaceName'];
+        this.id = information['ID'];
+        this.name = information['Name'];
         this.OrbitalRadius = information['OrbitalRadius'];
         this.hostID = information['InOrbitOf'];
         this.Temperature = information['Temperature'];
@@ -24,16 +24,17 @@ function Celestial(){
         var maxLoop = information['children'].length;
         console.log(maxLoop);
         for(var i=0;i<maxLoop;i++){
-            console.log(this.id + '-' + i);
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);
         }
+        return this;
     };
+    this.getRadius = function(){return this.radius;};
     /*
      * Include a reference to this celestials mesh so it only has to be added once
      */
     this.object;
-    this.getThree = function (){if(this.litObject){return this.litObject;}else{this.bindLights();};};
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
         if(!this.object){this.create();}
@@ -41,7 +42,8 @@ function Celestial(){
         var planetObject = new THREE.Group();
         planetObject.add(this.object);
         planetObject.add(planetLight);
-        this.litObject= planetObject;;
+        this.litObject= planetObject;
+        this.litObject.name = 'planet';
         return this.litObject;
     };
     this.create = function(){
@@ -63,6 +65,7 @@ function Celestial(){
                     specularMap:spec
                     });
             this.object= new THREE.Mesh(planetGeometry,planetMaterial);
+            
             return this.object;
     };
     this.children = new Array();
@@ -73,8 +76,11 @@ function Celestial(){
      */
     this.recurseThroughSystems = function( caller ){
         this.children.map(function(a){a.recurseThroughSystems(caller);});
-        caller(this);
+        this.children.mapcaller(this.getThree());
     };
+    this.addChildrenToScene = function(){
+        
+    }
     /**
      * Function to generate a celestial object from information array (I know thats vauge but its getting to the end of the day)
      * 
@@ -94,10 +100,12 @@ function Celestial(){
         //should be using reduce here
         //return this.children.reduce(function(acc,val,ind,arr){return )
         for(var i =0;i<this.children.length;i++){
-            var child = this.children.findFromChildren(ID);
+            var child = this.children[i].findFromChildren(ID);
             if(child!==-1){
                 return child;
             }
         }
+        return -1;
+        
     };
 }

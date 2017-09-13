@@ -1,4 +1,6 @@
 <?php
+//COMMAND:cargo;
+//HELP:cargo [drop] [item] # The function to view what you currently have in your cargo hold;
 /**
  * Class to handle cargo comands
  */
@@ -9,12 +11,13 @@ class CargoHadler extends Handler{
     }
     
     function handle($command){
+        $helpText = "Cargo allows you to view and drop elements of cargo in the hold of your ship. cargo [drop] [resource]<br />";
         switch($command[1]){
         case 'drop':
                 return $this->drop($command);
                 break;
         case 'help':
-                return "Cargo allows you to view and drop elements of cargo in the hold of your ship. cargo [drop] [resource]<br />";
+                return $helpText;
                 break;
         default:
                 return $this->info();

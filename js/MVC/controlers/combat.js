@@ -1,4 +1,4 @@
-/* global __renderer, __scene, place, THREE, __camera */
+/* global __renderer, __scene, THREE, __camera */
 
 //battles class file
 //__scene-centric coordinates
@@ -94,10 +94,10 @@ function conCombat(){
                 locPage.nextPage = locNextPage; 
             };
         };
-        this.reload = function(){
+        /*this.reload = function(){
             //GENERATE THE FUNCTION TO BE PASSED TO THE REQUEST
             //create planet closure for access in the anonomous function passed to the http request
-            var __planet = place;
+            
             //create id closure
             var __id = this.id;
             var funcDone = function(data){
@@ -113,7 +113,7 @@ function conCombat(){
             var onready = this.onready;
             //get information from server about current planet, lightitng ect
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
-        };
+        };*/
 
         //CREATORS
         this.loadLib = function(){

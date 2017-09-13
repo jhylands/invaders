@@ -1,6 +1,6 @@
 
 
-/* global __camera, __scene, THREE, place */
+/* global __camera, __scene, THREE, I */
 
 function conMap(){
         //inherits from page class
@@ -45,7 +45,7 @@ function conMap(){
             var planetAdder = function(celestial){
                 __scene.add(celestial.getThree());
             };
-            __sun.recurseThroughSystems(planetAdder)
+            I.system.recurseThroughSystems(planetAdder);
                 
             //function needs updating for the latest three.js
             //it also needs a closure
@@ -54,9 +54,9 @@ function conMap(){
 
             //Make an event listner for when the user click on the planet they want to travel to
             document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-            __camera.position.set( this.planetPositions.x[place['ID']],  0,place.Radius*3 );//inishiation of camera
+            __camera.position.set( this.planetPositions.x[I.place.getID()],  0,place.Radius*3 );//inishiation of camera
             this.x = this.planetPositions.x[place['ID']];
-            this.y = place.Radius*3;
+            this.y = I.place.getRadius()*3;
             //setup space station overlay
             //create user interface
             this.createUserInterface();

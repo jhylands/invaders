@@ -13,5 +13,8 @@ include '../std.php';
 $place = new Place($con);
 $place->fromID(0);
 $place->makeTreeOfPlaces();
+echo json_encode([$place,5,$ship->place->getID()]);
+/*
 echo "__sun = " . json_encode($place) . ";";
-echo "__ship = " . $ship . ";";
+echo "__ship=5;";
+echo "__place =" . $ship->place->getID(). ";";*/

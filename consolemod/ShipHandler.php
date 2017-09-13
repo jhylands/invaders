@@ -1,5 +1,6 @@
 <?php
-
+//COMMAND:ship;
+//HELP:ship [ sheilding|location|switch [ship] ];
 /**
  * Description of ShipHandler
  *

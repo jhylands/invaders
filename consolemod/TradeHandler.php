@@ -1,5 +1,6 @@
 <?php
-
+//COMMAND:trade;
+//HELP:trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.;
 class TradeHandler extends Handler{
     
     function __construct($con,$ship) {
@@ -9,6 +10,7 @@ class TradeHandler extends Handler{
     }
 
     function handle($command){
+        
         switch($command[1]){
         case 'do':
                 return $this->_do($command);
