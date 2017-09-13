@@ -7,7 +7,7 @@
  *
  * @author jameshylands
  */
-class Alert extends Handler{
+class AlertHandler extends Handler{
         function __construct($con,$ship){
         $this->con = $con;
         $this->ship = $ship;

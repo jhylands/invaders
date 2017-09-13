@@ -47,6 +47,9 @@ function conCombat(){
                         //page has been loaded by orbit
                         this.constructFirst();
                         break;
+                    case 7:
+                        this.constructFirst();
+                        break;
                         
                 }
                 //Notify that this function is ready to be run

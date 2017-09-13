@@ -6,10 +6,13 @@ include 'scripts/shipInfo.php';
 $ship = new Ship($con,$ShipCode);
 //include consolemods
 include 'consolemod/Handler.php';
-include "consolemod/Alert.php";
+include "consolemod/AlertHandler.php";
 include "consolemod/CargoHandler.php";
+include "consolemod/ExitHandler.php";
+include "consolemod/FightHandler.php";
 include "consolemod/RescourceHandler.php";
 include "consolemod/ShipHandler.php";
+include "consolemod/ShopHandler.php";
 include "consolemod/TradeHandler.php";
 include "consolemod/TravelHandler.php";
 
@@ -34,27 +37,37 @@ foreach($comands as $strcommand){
                     echo "This is your ships console. From here you control communication with other systems in orbit around your current location.<br />You can use the following commands:<br />";
                     echo "alert something #Makes a box apear<br />";
                     echo "cargo [drop] [item] # The function to view what you currently have in your cargo hold<br />";
+                    echo "exit #exit back to orbit<br />";
+                    echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a contractor.<br />";
                     echo "rescode #A program to get information about resource codes.<br />";
                     echo "ship [ name|sheilding|location|switch [ship] ]<br />";
+                    echo "shop [bomb|sheilding|ships] #Things you can buy on this plannet<br />";
                     echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
                     echo "Travel help not yet written<br />";
 
-                    echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a...<br /> ";
-                    echo "exit #Exit the console and go back to orbit view.<br />";
                     echo "clear #This clears the console window<br />";
-                    //echo "shop [bomb|sheilding|ships] #Things you can buy on $planet<br />";
+                    //echo "<br />";
                     break;
             case "alert":
-                    $handler = new Alert($con,$ship);
+                    $handler = new AlertHandler($con,$ship);
                      break;
             case "cargo":
                     $handler = new CargoHadler($con,$ship);
+                     break;
+            case "exit":
+                    $handler = new ExitHandler($con,$ship);
+                     break;
+            case "fight":
+                    $handler = new FightHandler($con,$ship);
                      break;
             case "rescode":
                     $handler = new RescourceHandler($con,$ship);
                      break;
             case "ship":
                     $handler = new ShipHandler($con,$ship);
+                     break;
+            case "shop":
+                    $handler = new ShopHandler($con,$ship);
                      break;
             case "trade":
                     $handler = new TradeHandler($con,$ship);
@@ -63,12 +76,6 @@ foreach($comands as $strcommand){
                     $handler = new TravelHandler($con,$ship);
                      break;
 
-            case 'fight':
-                    echo "ERROR: Should be handled by user side console";
-                    break;
-            case 'exit':
-                    echo "ERROR: should be handled by user side console";
-                    break;
             case 'clear':
                     //echo "ERROR: should be handled by user side console";
                     break;
@@ -81,18 +88,6 @@ foreach($comands as $strcommand){
             case 'ls':
                     echo "Nothing to list<br />";
                 break;
-            case 'shop':
-                    switch($command[1]){
-                            case 'help':
-                                    echo "What you can buy from $planet<br />";
-                                    echo "Bombs<br />";
-                                    echo "Sheilding<br />";
-                                    echo "Ships<br />";
-                                    break;
-                            case 'bombs':
-                                    //If the $command[2]
-                            case 'Sheilding':
-                    }
             default:
                     echo "Sorry I didn't understand that. Try typing 'help' for information on the commands to use<br />";
     }
