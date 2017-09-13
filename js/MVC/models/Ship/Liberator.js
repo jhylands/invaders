@@ -1,11 +1,11 @@
-/* global THREE */
+/* global THREE,I */
 
 function LiberatorShip(bulletHandler){
     //inherits from ship class
     this.__proto__ = new Ship(bulletHandler);
     this.__loader = new THREE.ColladaLoader();
     this.monoPropellant = new MonoPropellant(new THREE.Vector3(0,20,0));
-    this.health=100;
+    this.health=I.shipInfo._ship.Shielding;
     /**
      * Function to store the collada object
      * @returns {Function}
@@ -50,7 +50,12 @@ function LiberatorShip(bulletHandler){
     };
     this.update = function (){
         if(this.bullets.hasHit(this.object,this.FRIEND)){
+            //update health locally 
             this.health-=5;
+            //update database health
+            $.ajax('i/do/TakeHit.php');
+            //update global state syncronisation
+            I.update();
         }
         //assumed to be run before keyboard update
         

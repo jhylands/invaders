@@ -96,8 +96,8 @@
 </span><span id="16" class="l"><a href="#16">16: </a>    
 </span><span id="17" class="l"><a href="#17">17: </a>    <span class="php-keyword1">function</span> handle(<span class="php-var">$comand</span>){
 </span><span id="18" class="l"><a href="#18">18: </a>        <span class="php-keyword1">switch</span>(<span class="php-var">$comand</span>[<span class="php-num">1</span>]){
-</span><span id="19" class="l"><a href="#19">19: </a>            <span class="php-keyword1">case</span> <span class="php-quote">'sheilding'</span>:
-</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getSheilding(<span class="php-var">$comand</span>);
+</span><span id="19" class="l"><a href="#19">19: </a>            <span class="php-keyword1">case</span> <span class="php-quote">'Shielding'</span>:
+</span><span id="20" class="l"><a href="#20">20: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getShielding(<span class="php-var">$comand</span>);
 </span><span id="21" class="l"><a href="#21">21: </a>                <span class="php-keyword1">break</span>;
 </span><span id="22" class="l"><a href="#22">22: </a>            <span class="php-keyword1">case</span> <span class="php-quote">'location'</span>:
 </span><span id="23" class="l"><a href="#23">23: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;getLocation(<span class="php-var">$comand</span>);
@@ -106,13 +106,13 @@
 </span><span id="26" class="l"><a href="#26">26: </a>                <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;switchShip(<span class="php-var">$comand</span>);
 </span><span id="27" class="l"><a href="#27">27: </a>                <span class="php-keyword1">break</span>;
 </span><span id="28" class="l"><a href="#28">28: </a>            <span class="php-keyword1">case</span> <span class="php-quote">'help'</span>:
-</span><span id="29" class="l"><a href="#29">29: </a>                <span class="php-keyword1">return</span> <span class="php-quote">'ship [ sheilding|location|switch [ship] ]'</span>;
+</span><span id="29" class="l"><a href="#29">29: </a>                <span class="php-keyword1">return</span> <span class="php-quote">'ship [ Shielding|location|switch [ship] ]'</span>;
 </span><span id="30" class="l"><a href="#30">30: </a>            <span class="php-keyword1">default</span>:
 </span><span id="31" class="l"><a href="#31">31: </a>                <span class="php-keyword1">return</span> <span class="php-quote">'for help: ship help'</span>;
 </span><span id="32" class="l"><a href="#32">32: </a>        }
 </span><span id="33" class="l"><a href="#33">33: </a>    }
 </span><span id="34" class="l"><a href="#34">34: </a>    
-</span><span id="35" class="l"><a href="#35">35: </a>    <span class="php-keyword1">function</span> getSheilding(<span class="php-var">$comand</span>){
+</span><span id="35" class="l"><a href="#35">35: </a>    <span class="php-keyword1">function</span> getShielding(<span class="php-var">$comand</span>){
 </span><span id="36" class="l"><a href="#36">36: </a>        <span class="php-keyword1">return</span> <span class="php-var">$this</span>-&gt;ship-&gt;getShielding();
 </span><span id="37" class="l"><a href="#37">37: </a>    }
 </span><span id="38" class="l"><a href="#38">38: </a>    

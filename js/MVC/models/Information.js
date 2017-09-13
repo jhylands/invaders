@@ -23,6 +23,18 @@ function Information(){
         //this.system.fromPackage(__sun);
         //__sun = null;
     };
+    this.update = function(){
+        var self=this;
+        $.ajax('i/get/startingPack.php').done(function(){return function(result){
+            var parsing = JSON.parse(result);
+            var __sun=parsing[0];
+            var __ship=parsing[1];
+            var __place=parsing[2];
+            self.system.fromPackage(__sun);
+            self.shipInfo = __ship;
+            self.place = self.system.findFromChildren(__place);
+        };}());
+    };
     this.shipSetup = function(){
         //$.ajax('i/get/ship.php',function(result){system = eval(result);});
         this.shipInfo = __ship;

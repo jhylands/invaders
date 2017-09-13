@@ -156,7 +156,7 @@ function conCombat(){
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
                 //detect collisions
-                //this.detectCollisions();
+                //collision detection done by bullets now
             }
         };
         //function to handle keyboard events

@@ -1,6 +1,6 @@
 <?php
 
-//HELP:shop [bomb|sheilding|ships] #Things you can buy on this plannet;
+//HELP:shop [bomb|Shielding|ships] #Things you can buy on this plannet;
 //COMMAND:shop;
 
 /**
@@ -20,12 +20,12 @@ class ShopHandler extends Handler{
             case 'help':
                     echo "What you can buy from $planet<br />";
                     echo "Bombs<br />";
-                    echo "Sheilding<br />";
+                    echo "Shielding<br />";
                     echo "Ships<br />";
                     break;
             case 'bombs':
                     //If the $command[2]
-            case 'Sheilding':
+            case 'Shielding':
     }
     }
 }

@@ -56,7 +56,7 @@ function Ship(bulletHandler){
             }
             if(this.health<5 && !this.dead){
                 //document.getElementById('die').play()
-                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2od' value='Back to orbit' />";
+                document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much Shielding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><input type='button' id='bk2od' value='Back to orbit' />";
                 document.getElementById('infoBoxParent').hidden = false;
                 var _self = this;
                 document.getElementById('bk2od').addEventListener("click",function(){_self.backToOrbit();});

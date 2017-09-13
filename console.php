@@ -40,8 +40,8 @@ foreach($comands as $strcommand){
                     echo "exit #exit back to orbit<br />";
                     echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a contractor.<br />";
                     echo "rescode #A program to get information about resource codes.<br />";
-                    echo "ship [ name|sheilding|location|switch [ship] ]<br />";
-                    echo "shop [bomb|sheilding|ships] #Things you can buy on this plannet<br />";
+                    echo "ship [ name|shielding|location|switch [ship] ]<br />";
+                    echo "shop [bomb|Shielding|ships] #Things you can buy on this plannet<br />";
                     echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
                     echo "Travel help not yet written<br />";
 

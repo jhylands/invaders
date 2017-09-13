@@ -74,6 +74,24 @@ class Ship{
     function getShielding(){
         return $this->_ship['Shielding'];
     }
+    function setShielding($value){
+        $query = "UPDATE ships SET Shielding='$value' WHERE ShipCode=$this->ShipCode";
+        return mysqli_query($this->con,$query);
+    }
+    /**
+     * Set value of resource in hold
+     * @param type $resource
+     * @param type $change
+     * @return success
+     */
+    function changeShielding($change){
+        
+        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '$change' WHERE ShipCode=$this->ShipCode"; 
+       
+        $r = mysqli_query($this->con,$query);
+        $this->update();
+        return $r;
+    }
     function getBuildCode(){
         return $this->_ship['BuildCode'];
     }
