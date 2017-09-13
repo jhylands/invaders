@@ -57,6 +57,7 @@ function conCombat(){
                 this.onready(this.id);
 	};
         this.destroy = function(to){
+            __scene.remove(this.threeShip);
             //switch based on who the page is going to next
             switch(to){
             }
@@ -151,6 +152,7 @@ function conCombat(){
                 if(this.alienFleet.defeated() && !this.won){
                     this.won=true;
                     var _self=this;
+                    $.ajax('i/do/won.php');
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
                 //detect collisions
