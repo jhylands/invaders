@@ -5,7 +5,7 @@ function LiberatorShip(bulletHandler){
     this.__proto__ = new Ship(bulletHandler);
     this.__loader = new THREE.ColladaLoader();
     this.monoPropellant = new MonoPropellant(new THREE.Vector3(0,20,0));
-    this.health=I.shipInfo._ship.Shielding;
+    this.health=3;
     /**
      * Function to store the collada object
      * @returns {Function}
@@ -49,6 +49,7 @@ function LiberatorShip(bulletHandler){
         }
     };
     this.update = function (){
+        this.getHealth()
         if(this.bullets.hasHit(this.object,this.FRIEND)){
             //update health locally 
             this.health-=5;
@@ -61,7 +62,7 @@ function LiberatorShip(bulletHandler){
         
         this.monoPropellant.update();
     };
-    this.getHealth = function (){return this.health;};
+    this.getHealth = function (){this.health=I.shipInfo._ship.Shielding;return this.health;};
     this.create = function (callback){
         var self = this;
         var onLoad = function(collada){self.storeCollada(collada);callback();};

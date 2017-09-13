@@ -85,9 +85,9 @@ class Ship{
      * @return success
      */
     function changeShielding($change){
-        
+        $change = (INT) $change;
         $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '$change' WHERE ShipCode=$this->ShipCode"; 
-       
+       //echo $query;
         $r = mysqli_query($this->con,$query);
         $this->update();
         return $r;

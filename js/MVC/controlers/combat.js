@@ -1,4 +1,4 @@
-/* global __renderer, __scene, THREE, __camera */
+/* global __renderer, __scene, THREE, __camera, I */
 
 //battles class file
 //__scene-centric coordinates
@@ -40,7 +40,7 @@ function conCombat(){
             this.won = false;
             this.Crotation = deg(-80);
             this.dead=false;
-            
+            I.update();
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:
@@ -57,7 +57,7 @@ function conCombat(){
                 this.onready(this.id);
 	};
         this.destroy = function(to){
-            __scene.remove(this.threeShip);
+            this.destructor();
             //switch based on who the page is going to next
             switch(to){
             }
