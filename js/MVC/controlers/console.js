@@ -63,9 +63,10 @@ function conConsole(){
                                 self.consoleScript = Function(script);
                                 self.consoleScript();
                             }
-                            //document.getElementById("console").innerHTML = document.getElementById("console").innerHTML.substr(0,document.getElementById("console").innerHTML.length-6);
-                            document.getElementById("console").innerHTML += resp + '<br /><br />';
-                            document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
+                            var console = document.getElementById("console");
+                            console.innerHTML = console.innerHTML.substr(0,console.innerHTML.length-6);
+                            console.innerHTML += resp + '<br /><br />';
+                            console.scrollTop = document.getElementById('console').scrollHeight;
                         };}());
                     document.getElementById('writer').value="";
             }

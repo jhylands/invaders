@@ -13,7 +13,7 @@ include '../std.php';
 $place = new Place($con);
 $place->fromID(0);
 $place->makeTreeOfPlaces();
-echo json_encode([$place,5,$ship->place->getID()]);
+echo json_encode([$place,$ship,$ship->place->getID()]);
 /*
 echo "__sun = " . json_encode($place) . ";";
 echo "__ship=5;";

@@ -56,8 +56,8 @@ class Ship{
         return $this->setPositionFromID($place->ID);
     }
     function getName(){
-        if($this->_ship['Name']){
-            return $this->_ship['Name'];
+        if($this->_ship['ShipName']){
+            return $this->_ship['ShipName'];
             
         }else{ 
             return 0;

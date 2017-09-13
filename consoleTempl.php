@@ -68,7 +68,7 @@ foreach($comands as $strcommand){
     }
     if(isset($handler))
     {
-        echo $handler->handle($command);
+        echo $handler->handle($command) . "<br />";
     }
 }
 exit(404);

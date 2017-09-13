@@ -34,8 +34,8 @@ foreach($comands as $strcommand){
                     echo "This is your ships console. From here you control communication with other systems in orbit around your current location.<br />You can use the following commands:<br />";
                     echo "alert something #Makes a box apear<br />";
                     echo "cargo [drop] [item] # The function to view what you currently have in your cargo hold<br />";
-                    echo "rescode #shows the possible resource codes<br />";
-                    echo "ship [ sheilding|location|switch [ship] ]<br />";
+                    echo "rescode #A program to get information about resource codes.<br />";
+                    echo "ship [ name|sheilding|location|switch [ship] ]<br />";
                     echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
                     echo "Travel help not yet written<br />";
 
@@ -98,7 +98,7 @@ foreach($comands as $strcommand){
     }
     if(isset($handler))
     {
-        echo $handler->handle($command);
+        echo $handler->handle($command) . "<br />";
     }
 }
 exit(404);

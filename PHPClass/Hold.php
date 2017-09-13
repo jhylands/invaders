@@ -34,6 +34,8 @@ class Hold{
     
     /**
      * Drop resource from cargo 
+     * WARNING
+     * If this function doesn't work check SQL permissions it requies the permission to delete
      * @param type $resource
      * @return success
      */
