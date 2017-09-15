@@ -56,4 +56,12 @@ class Channel extends Table{
         return array('buy'=>array($this->getBuyResource()->getID()),$this->buyRa,
                 'sell'=>array($this->getSellResouce()->getID(),  $this->sellRa));
     }
+    
+    public function makeChannels(){
+        //for each location
+        //for each resource as buy
+        //for each resource as sell
+        "Insert INTO channels (MarketID,ResourceBuyID,ResourceSellID,rate) values(";
+        
+    }
 }

@@ -15,8 +15,8 @@ session_start();
     <style id="style"></style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three/80.js"></script>
-<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/three/80.min.js"></script>
+<script src="js/THREEx.KeyboardState.min.js"></script>
 <script src="js/jsInclude.php"></script>
 <script src="i/get/startingPack.php"></script>
 <script src="js/ColladaLoader.js"></script>

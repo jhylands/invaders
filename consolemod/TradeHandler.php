@@ -30,7 +30,7 @@ class TradeHandler extends Handler{
      * @param type $comand
      * @return responce
      */
-    function _do($comand){
+    function _do($command){
         //command[0] = trade
         //command[1] = do
         //command[2] should be an ammount
@@ -39,14 +39,14 @@ class TradeHandler extends Handler{
         
         $res1 = new Resource($this->con);
         $res2 = new Resource($this->con);
-        $amount = $comand[2];
+        $ammount = $command[2];
         //commands need cleaning
-        if($res1->fromCode($comand[3]) &&$res2->fromCode($comand[4])){
+        if($res1->fromCode($command[3]) && $res2->fromCode($command[4])){
                 //check if the user has enough to sell that much
-                if($this->ship->hold->get($res1)<$amount){
+                if($this->ship->hold->get($res1)<$ammount){
                         return "Not enough " . $res1->getName() .  "<br />";
                 }else{
-                        if($this->trade->make($res1,$amount,$res2)){
+                        if($this->trade->make($res1,$ammount,$res2)){
                             return "Trade made<br />";
                         }else{
                             return "The planet is on international holiday, please try again later.<br />";

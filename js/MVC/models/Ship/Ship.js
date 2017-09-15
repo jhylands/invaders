@@ -66,7 +66,7 @@ function Ship(bulletHandler){
                 //add eventhandlers
             }
         };
-        this.FRIEND = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(1,0,0),1000);
+        this.FRIEND = this.bullets.createAllegiance("Friend",0x0000FF,new THREE.Vector3(1,0,0),500);
         this.FOE = this.bullets.createAllegiance("Foe",0xFF000,new THREE.Vector3(-1,0,0),0);
         
 }

@@ -15,9 +15,9 @@ function conCombat(){
         this.animation;
 
         this.eventHandlers =[];
-        this.bullets = new BulletHandler(5000);
+        this.bullets = new BulletHandler(5000);//the 5000 doesn't get used
        
-        this.dificulty = 0.001;
+        this.dificulty = 0.01;
         this.Crotation = deg(-80);
         this.orbitPos = Math.PI/2;
         this.thi = 0;
