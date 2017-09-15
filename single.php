@@ -1,18 +1,28 @@
 <html>
 <head>
 <?php
-session_start();
+
+    include 'scripts/sql.php';
+    include 'scripts/shipInfo.php';
     //check that the user has logged in
     if(!isset($_SESSION['User'])){
         echo "<script>window.location.replace('login.php');</script>";
     }
-    include 'scripts/sql.php';
-    include 'scripts/shipInfo.php';
-
     $ship = new Ship($con,$ShipCode);
 ?>
     <title>Avinders</title>
-    <style id="style"></style>
+    <style id="style">
+    </style>
+    <style>body{
+            background-color: black;
+        }
+        #loading{
+                position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 350px);
+    font-size: 200px;
+    color: white;
+        }</style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 <script src="js/three/80.min.js"></script>
@@ -43,6 +53,24 @@ session_start();
     };
    
 </script>
+<script type="application/x-glsl" id="sky-vertex">  
+varying vec2 vUV;
+
+void main() {  
+  vUV = uv;
+  vec4 pos = vec4(position, 1.0);
+  gl_Position = projectionMatrix * modelViewMatrix * pos;
+}
+</script>
+<script type="application/x-glsl" id="sky-fragment">  
+uniform sampler2D texture;  
+varying vec2 vUV;
+
+void main() {  
+  vec4 sample = texture2D(texture, vUV);
+  gl_FragColor = vec4(sample.xyz, sample.w);
+}
+</script> 
 <script>
 //inishiate page globals
 var render;
@@ -125,6 +153,6 @@ function start(){
 </div>
 <div id="overlay" style="position:absolute;top:0px;width:100%;left:0px;height:100%;z-index:5;">
 </div>
-
+    <div id="loading">Loading ...</div>
 </body>
 </html>
