@@ -1,9 +1,9 @@
-/* global SPE, THREE */
+/* global SPE, THREE, contentManager */
 
 function Explosion(size){
         this.group = new SPE.Group( {
                 texture: {
-                        value: THREE.ImageUtils.loadTexture( 'images/sprite-explosion2.png' ),
+                        value: contentManager.getTexture( 'sprite-explosion2','png' ),
                         frames: new THREE.Vector2( 5, 5 ),
                         loop: 1
                 },
@@ -15,7 +15,7 @@ function Explosion(size){
         } );
         this.shockwaveGroup = new SPE.Group( {
                 texture: {
-                        value: THREE.ImageUtils.loadTexture( 'images/smokeparticle.png' ),
+                        value: contentManager.getTexture( 'smokeparticle','png' ),
                 },
                 depthTest: false,
                 depthWrite: true,

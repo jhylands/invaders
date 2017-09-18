@@ -22,7 +22,7 @@ function Celestial(){
         this.Reflection = information['Reflection'];
         this.map = information['Map'];
         var maxLoop = information['children'].length;
-        console.log(maxLoop);
+        //console.log(maxLoop);
         for(var i=0;i<maxLoop;i++){
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);

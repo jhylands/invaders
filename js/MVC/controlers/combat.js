@@ -40,6 +40,7 @@ function conCombat(){
             this.won = false;
             this.Crotation = deg(-80);
             this.dead=false;
+            
             I.update();
                 //switch based on where the page is coming from
                 switch(from){
@@ -65,6 +66,8 @@ function conCombat(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 this.findPlanet();
+                //create user interface
+                this.view.createUserInterface(function(){self.backToOrbit();});
                 this.won=false;
                 //planet should already exist
 		//lighting should already be set up
@@ -73,8 +76,12 @@ function conCombat(){
                 this.thi=deg(20);
                 this.orbitPos=deg(180);
                 //add spaceship
-                this.threeShip = new THREE.Mesh(new THREE.CubeGeometry(1,1),new THREE.MeshBasicMaterial());
-                this.loadLib();
+                if (!this.threeShip){
+                    this.threeShip = new THREE.Mesh(new THREE.CubeGeometry(1,1),new THREE.MeshBasicMaterial());
+                    this.loadLib();
+                }else{
+                    this.linkShip(this.ship);
+                }
                 
                 var self = this;
                 this.animation = new CombatAnimation(this.threeShip.position,this.threePlanet.position,function(){self.makeChanger(self,0)();});
@@ -85,8 +92,7 @@ function conCombat(){
                 this.alienFleet = new AlienFleet(this.bullets);
                 this.alienFleet.setPosition(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
                 __scene.add(this.alienFleet.getThree());
-                //create user interface
-                this.view.createUserInterface(function(){self.backToOrbit();});
+                
         };
         //create a closure containing a reference to this class and the index of the page to be loaded in
         this.makeChanger = function(page,nextPageID){
@@ -155,6 +161,9 @@ function conCombat(){
                     $.ajax('i/do/won.php');
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
+                if(this.ship.getHealth()<1){
+                    this.view.displayFailScreen(function(){_self.backToOrbit();});
+                }
                 //detect collisions
                 //collision detection done by bullets now
             }
@@ -189,7 +198,7 @@ function conCombat(){
         //DESTRUCTORS
         this.destructor = function(){
             __scene.remove(this.threeShip);
-            __scene.remove(this.aliens);
+            __scene.remove(this.alienFleet.getThree());
         };
         
         //CALCULATIONS

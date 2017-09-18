@@ -17,7 +17,15 @@ function ContentManager(){
      * @param {String} URL
      * @returns {contentManager.content|contentManager@call;get}
      */
-    this.getTexture = function(URL){
+    this.getTexture = function(URL,extention){
+        var bit = extention?1:0;
+        if(bit){
+            extention = "." + extention;
+        }else{
+            var extention = '.jpg';
+        
+            
+        }
         //check if resource already exists in cache
         if(this.content[URL]){
             return this.content[URL];
@@ -27,8 +35,8 @@ function ContentManager(){
         this.content[URL] = new THREE.Texture(); 
         var callback = this.textureCallbackGenerator(URL);
         //assumes the larger one will take a sizable amount of time longer
-        var low = new THREE.ImageLoader().load('images/'+URL+'l'+'.jpg',callback);
-        var high = new THREE.ImageLoader().load('images/'+URL+'h'+'.jpg',callback);
+        var low = new THREE.ImageLoader().load('images/'+URL+'l'+extention,callback);
+        var high = new THREE.ImageLoader().load('images/'+URL+'h'+extention,callback);
         return this.content[URL];
     };
     

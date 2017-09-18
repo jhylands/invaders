@@ -30,6 +30,9 @@ function vwCombat(){
             //take the responce and put it in the class box
             this.elm("console").innerHTML = this.elm("console").innerHTML + '<br />' +  resp;});*/
     };
+    this.displayFailScreen = function(bk2oFunction){
+        
+    };
     this.setHealth = function (health){
         this.elm('health').style.width = (250*health/100) + "px";
         this.elm('healthTXT').innerHTML = health + "%";

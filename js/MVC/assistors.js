@@ -51,7 +51,7 @@ function makeSkyBox(){
 	return new THREE.Mesh( skyGeometry, skyMaterial );
         */
         //Credit to http://www.ianww.com/blog/2014/02/17/making-a-skydome-in-three-dot-js/
-        var geometry = new THREE.SphereGeometry(300000, 60, 40);  
+        var geometry = new THREE.SphereGeometry(5000000, 60, 40);  
         var uniforms = {  
           texture: { type: 't', value: contentManager.getTexture('eso') }
         };

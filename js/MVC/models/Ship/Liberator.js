@@ -77,6 +77,7 @@ function LiberatorShip(bulletHandler){
             }
         );
     };
+
     this.setPosition = function (position){
         this.object.position.copy(position);
         this.offset = position;
