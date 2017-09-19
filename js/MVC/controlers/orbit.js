@@ -142,7 +142,7 @@ function conOrbit(){
             __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
             this.threeSpaceStation.position.copy(this.calculateOrbit(3));
             __camera.lookAt(this.threePlanet.position);
-            this.threePlanet.rotation.y += 0.001;
+            //this.threePlanet.rotation.y += 0.001;
             
 	};
 

@@ -42,7 +42,6 @@ function Celestial(){
         var planetObject = new THREE.Group();
         planetObject.add(this.object);
         planetObject.add(planetLight);
-        planetObject.add(this.createEarthCloud());
         this.litObject= planetObject;
         this.litObject.name = 'planet';
         return this.litObject;
@@ -68,8 +67,8 @@ function Celestial(){
                     bumpScale:2,
                     specularMap:spec
                     });
-            this.object= new THREE.Mesh(planetGeometry,planetMaterial);
-            
+            var object = new THREE.Mesh(planetGeometry,planetMaterial);
+            this.object = object;
             if('CLD' in Map){
                 /*var cloudGeometry = new THREE.SphereGeometry(this.radius*1.001,32,32);
                 var cld = new THREE.TextureLoader().load('images/' + Map.CLD);
@@ -80,9 +79,9 @@ function Celestial(){
                     depthWrite:false
                 });
                 var clouds = new THREE.Mesh(cloudGeometry,cloudMaterial);*/
-                //this.object.add(this.createEarthCloud());
+                this.object.add(this.createEarthCloud());
             }
-            
+            window.setInterval(function(){return function(){object.rotation.y+=0.0001;};}(),50);
             return this.object;
     };
     this.children = new Array();
