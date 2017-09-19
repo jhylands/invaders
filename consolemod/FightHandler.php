@@ -15,6 +15,11 @@ class FightHandler extends Handler {
     }
     
     function handle($command){
-        return "<script>this.makeChanger(this,5)();</script>Fight";
+        $shielding = $this->ship->getShielding();
+        if($shielding<=5){
+            return "You do not have the required shielding requirement, you must have more than 5 units! You have " . $shielding ."!";
+        }else{
+            return "<script>this.makeChanger(this,5)();</script>Fight";
+        }
     }
 }

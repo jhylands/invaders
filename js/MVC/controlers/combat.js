@@ -161,7 +161,8 @@ function conCombat(){
                     $.ajax('i/do/won.php');
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
-                if(this.ship.getHealth()<1){
+                if(this.ship.getHealth()<1 && ! this.dead){
+                    this.dead=true;
                     var _self=this;
                     this.view.displayFailScreen(function(){_self.backToOrbit();});
                 }
