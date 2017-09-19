@@ -32,6 +32,8 @@ function Ship(bulletHandler){
     this.scale = function(){
         return THREE.Vector3(1,1,1);
     };
+    this.remove = function(ship){__scene.remove(ship);};
+    this.add = function(ship){__scene.add(ship);};
     /**
      * Abstract function for scaling ship to fit inside a box of particular size
      * @param {THREE.Vector3} Box

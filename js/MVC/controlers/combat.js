@@ -162,6 +162,7 @@ function conCombat(){
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
                 if(this.ship.getHealth()<1){
+                    var _self=this;
                     this.view.displayFailScreen(function(){_self.backToOrbit();});
                 }
                 //detect collisions
@@ -171,8 +172,7 @@ function conCombat(){
         //function to handle keyboard events
 	this.keyboard= function(keyState){
             //need to check is game is active first
-            //MOVEMENT CONTROLLS
-            this.ship.keyboard(keyState);
+            
             //CAMERA MOVEMENT
             if(keyState.pressed("up")){
                 this.Crotation+=0.01;
@@ -182,11 +182,15 @@ function conCombat(){
             this.updateCameraPosition();
             //get the camera to look at the spaceship
             __camera.lookAt( this.threeShip.position);
-            //SHOOTING
-            if(keyState.pressed("space")){
-                if(!this.dead){
-                    this.start=true;//allow the aliens to start shooting
-                    document.getElementById('infoBoxParent').hidden = true;
+            if(this.ship.getHealth()>1){
+                //MOVEMENT CONTROLLS
+                this.ship.keyboard(keyState);
+                //SHOOTING
+                if(keyState.pressed("space")){
+                    if(!this.dead){
+                        this.start=true;//allow the aliens to start shooting
+                        document.getElementById('infoBoxParent').hidden = true;
+                    }
                 }
             }
 	};
