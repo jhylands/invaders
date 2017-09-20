@@ -61,6 +61,39 @@ class Market{
         }
         return $arr;
     }
+    /**
+     * function to get a list of the resources IDs
+     */
+    function getResources(){
+        $ids = [];
+        $query = "SELECT ResourceID from resources";
+        $result = mysqli_query($this->con, $query);
+        while($row = mysqli_fetch_array($result)){
+            $ids[] = $row['ResourceID'];
+        }
+        return $ids;
+    }
     
+    //needs to take into consideration what is already in the database
+    function makeChannels(){
+        //make all the channels within this market 
+        //given a list of ResourceID
+        $resources = $this->getResources();
+        $QRY = "";
+        foreach($resources as &$from){
+            foreach($resources as &$to){
+                if($from!=$to){
+                    $rate = rand(1,3);
+                    $QRY = "INSERT INTO channels (ResourceBuyID,ResourceSellID,Rate,MarketID) VALUES ('" . $from . "','" . $to . "','" . $rate . "','" . $this->getID() ."');";
+                    if(!mysqli_query($this->con, $QRY))
+                    {
+                    echo("Error description: " . mysqli_error($this->con));
+                    }
+                }
+            }
+        }
+        
+        
+    }
     
 }

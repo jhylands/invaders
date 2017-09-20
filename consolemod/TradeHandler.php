@@ -17,6 +17,8 @@ class TradeHandler extends Handler{
                 break;
         case 'info':
                 return $this->info($command);
+        case 'make':
+            return $this->makeChannels();
         case 'help':
                 return "trade has three commands, do, info and help. The help function is what you have just asked for. The other two functions are explained here. <br />To use info type 'trade info' followed by the two materials you would like information on. For example you might type 'trade info MET UR' which would give you the trade rate of Metal and Uranium on this planet.<br />To use the do function type 'trade do' followed by the amount of the first material you wish to trade, the code for the first material you would like to trade and then the material you wish to trade to. For example 'trade do 100 MET UR' will trade 100 units of metal into uranium.<br />";
                 break;
@@ -53,7 +55,7 @@ class TradeHandler extends Handler{
                         }
                 }
         }else{
-                return "ERROR: incorrect material codes<br />";
+                return "ERROR: incorrect material codes<br /> The correct format is trade do [ammount] [sell resource] [buy resource]";
         }
     }
     
@@ -77,5 +79,10 @@ class TradeHandler extends Handler{
         }else{
                 return "ERROR: incorrect material codes<br />";
         }
+    }
+    
+    function makeChannels(){
+        $market = $this->ship->place->market;
+        return $market->makeChannels();
     }
 }
