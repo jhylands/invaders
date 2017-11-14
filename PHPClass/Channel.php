@@ -53,8 +53,9 @@ class Channel extends Table{
         return json_encode($this->toArray());
     }
     public function toArray(){
-        return array('buy'=>array($this->getBuyResource()->getID()),$this->buyRa,
-                'sell'=>array($this->getSellResouce()->getID(),  $this->sellRa));
+        return array('buy'=>$this->getBuyResource()->getID(),
+                'sell'=>$this->getSellResouce()->getID(),
+            'rate'=>  $this->sellRa);
     }
     
     public function makeChannels(){

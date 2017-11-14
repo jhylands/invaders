@@ -1,3 +1,5 @@
+//the market should be just a collection of channels
+//can we push the side effects, (update) to another location so the class becomes 'pure'
 function Market(){
     // TradeChannel()
     this.channels = [];
@@ -22,6 +24,21 @@ function Market(){
         this.callback();
     };
     
+    /**
+     * Function take a list of channels
+     * 
+     * Changes the state of the market to the set of those channels
+     * @param {channel[]} channels
+     * 
+     */
+    this.fromChannels = function(channels){
+        for(i=0;i<channels.length;i++){
+            var tmpChannel = new Channel();
+            tmpChannel.setFromObject(channels[i]);
+            this.channels.push(tmpChannel);
+        }
+    }
+    
     //i think there is a better way of making ths
     this.toString = function(){
         return "<select id='buyResList'>" + this.resourceListToOptions(this.getBuyOptions()) + "</select>";
@@ -29,20 +46,30 @@ function Market(){
     
     /**
      * Function to take make a list of the buying option at this location
+     * @param {resource}
      * @returns {undefined}
      */
-    this.getBuyOptions = function(){
+    this.getBuyOptions = function(sellResource){
         var options = [];
+        //loop through all the channels and ask
+        //can this resource be bought with the one being sold
+        //has this resource already been included on this list 
+        //this needs a better method
         for(var i=0;i<this.channels.length;i++){
-            options.push(this.channels[i].getBuyResource());
+            var resource = this.channels[i].getBuyResource();
+            var canBuy = this.channels[i].getSellResource() === sellResource;
+            if(!options.includes(resource) && canBuy){
+                options.push(resource);
+            }
         }
         return options;
     };
-    this.getSellOptions = function(buyOption){
+    this.getSellOptions = function(){
         var options = [];
         for(var i=0;i<this.channels.length;i++){
-            if(this.channels[i].getBuyResource().eq(buyOption)){
-                options.push(this.channels[i].getSellResource());
+            var resource = this.channels[i].getSellResource();
+            if(!options.includes(resource)){
+                options.push(resource);
             }
         }
         return options;
@@ -54,10 +81,10 @@ function Market(){
         }
         return list;
     };
-    this.getRate = function(buyRe,sellRe){
+    this.getRate = function(buy,sell){
         for(i=0;i<this.channels.length;i++){
-            if(this.channels[i].getBuyResource().eq(buyRe) &&
-                    this.channels[i].getSellResource().eq(sellRe)){
+            if(this.channels[i].getBuyResource().eq(buy) &&
+                    this.channels[i].getSellResource().eq(sell)){
                 return this.channels[i].getRate();
             }
         }

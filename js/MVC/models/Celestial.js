@@ -49,7 +49,7 @@ function Celestial(){
     this.create = function(){
         //initiate the maps
             var img;
-            console.log('Radius for planet:' + this.radius);
+            
             var planetGeometry = new THREE.SphereGeometry(this.radius,32,32);
             
             //chorten map references
@@ -170,7 +170,7 @@ function Celestial(){
                     imageTrans.src	= 'images/earthcloudmap.jpg';
             }, false);
             imageMap.src	= 'images/earthcloudmap.jpg';
-            console.log('Radius for clouds:' + this.radius);
+            
             var geometry	= new THREE.SphereGeometry(parseInt(this.radius) + 20, 32, 32);
             var material	= new THREE.MeshPhongMaterial({
                     map		: new THREE.Texture(canvasResult),

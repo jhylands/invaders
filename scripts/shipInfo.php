@@ -15,10 +15,3 @@ if(isset($_SESSION['User'])){
 }else{
   echo "ERROR user not logged in";
 }
-
-
-spl_autoload_register(function ($class) {
-    include '/home/timepcou/public_html/PHPClass/' . $class . '.php';
-});
-
-?>

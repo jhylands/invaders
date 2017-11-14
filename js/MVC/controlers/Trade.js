@@ -41,9 +41,7 @@ function conTrade(){
             document.getElementById('bk2o').addEventListener("click",func);
         };
         this.keyboard= function(keyState){};
-        this.update = function(){
-            this.threePlanet.rotation.y += 0.0001;
-        };
+        this.update = function(){};
         
         this.updateTable = function (){
             //create overlay
@@ -104,5 +102,5 @@ function conTrade(){
             }else{
                 alert(data);
             }
-        }
+        };
 }
