@@ -8,6 +8,14 @@ function Channel(){
         
         this.sellRe = new Resource(object.sell);
         this.rate = object.rate;
+        return this;
+    };
+    
+    this.setFromIDs = function(buy,sell,rate){
+        this.buy = new Resource(buy);
+        this.sell = new Resource(sell);
+        this.rate = rate;
+        return this;
     };
     
     this.getSellResource = function(){return this.sell;};
@@ -15,3 +23,4 @@ function Channel(){
     this.getRate = function(){return this.rate;};
     
 }
+

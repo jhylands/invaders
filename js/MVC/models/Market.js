@@ -37,7 +37,7 @@ function Market(){
             tmpChannel.setFromObject(channels[i]);
             this.channels.push(tmpChannel);
         }
-    }
+    };
     
     //i think there is a better way of making ths
     this.toString = function(){
@@ -74,7 +74,7 @@ function Market(){
         }
         return options;
     };
-    this.resourceListToOption = function(resources){
+    this.resourceListToOptions = function(resources){
         var list = "";
         for(var i=0;i<resources.length;i++){
             list = list + "<option id='" + resources[i].getID() + "' value='" + resources[i].getID() + "'>" + resources[i].getName() + "</option>";
