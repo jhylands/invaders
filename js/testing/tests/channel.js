@@ -16,7 +16,8 @@ var makeChannels = function(){
   [ 2, 2 ] ];
   var channels =[];
   for(var i=0;i<pairs.length;i++){
-      channels.push((new Channel()).setFromIDs(pairs[i][0],pairs[i][1],Math.random()));
+      //add offset becue the ids in the database start at 2
+      channels.push((new Channel()).setFromIDs(pairs[i][0]+2,pairs[i][1]+2,Math.random()));
   }
   return channels;
 };

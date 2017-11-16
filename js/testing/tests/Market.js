@@ -3,11 +3,12 @@
 //a market should be created from a set of channels
 //and the function that can be used on those channels 
 
-
+tests.MarketTest= function(){
 //channel generator 
 //take from channel function tester
 
-
+paris = new Market();
+paris.fromChannels(makeChannels())
 
 /*
  * getBuyOptions
@@ -17,7 +18,17 @@
  * 
  * This function is dependent of the state of the channel array
  */
-
+var buys = paris.getBuyOptions();
+var buytest={};
+buytest.objects = buys.map((a)=>typeof(a)===typeof(new Resource(0))).reduce((a,b)=>a&&b);
+buytest.len = buys.length===3;
+buytest.ids = buys.map((a)=>a.getID()>=2&&a.getID()<=4).reduce((a,b)=>a&&b);
+if(buytest.objects&&
+    buytest.len&&
+    buytest.ids)
+{console.log('getBuyOptions passed');}
+else
+{console.warn('getBuyOptions Failed' + JSON.strigify(buytest));}
 
 /*
  * getSellOptions
@@ -28,6 +39,17 @@
  *  This function is dependednt of the state of the channel array 
  * 
  */
+var sells = paris.getBuyOptions();
+var selltest={};
+selltest.objects = sells.map((a)=>typeof(a)===typeof(new Resource(0))).reduce((a,b)=>a&&b);
+selltest.len = sells.length===3;
+selltest.ids = sells.map((a)=>a.getID()>=2&&a.getID()<=4).reduce((a,b)=>a&&b);
+if(selltest.objects&&
+    selltest.len&&
+    selltest.ids)
+{console.log('getBuyOptions passed');}
+else
+{console.warn('getBuyOptions Failed' + JSON.strigify(selltest));}
 
 /*
  * resourceListToOption
@@ -36,6 +58,7 @@
  * a string which is html for the option box to be used on the page
  * 
  */
+
 
 /*
  * getRate
@@ -46,3 +69,5 @@
  * false if there is no channel trading in that direction between the two
  * resources
  */
+
+}

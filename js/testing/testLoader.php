@@ -5,6 +5,7 @@
 
 header('Content-Type: application/javascript');
 $path = "tests/";
+echo 'var tests = {};';
 list_all_files($path);
 
 function list_all_files($path) {

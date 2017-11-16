@@ -1,4 +1,7 @@
 function Resource(id){
+    if(typeof(id)!=typeof(1)){
+        console.error('Resource production from invalid ID!' + id);
+    }
     this.getName = function(){return this.name;};
     this.getID = function(){return this.id;};
     this.names = ['','','Helium','Metal','Urainium']
