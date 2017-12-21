@@ -8,41 +8,61 @@ function vwTrade(market){
     this.setRes1Selection = function(){this.res1Selection=1;};
     this.unSetRes1Selection = function(){this.res1Selection=0;};
     this.makeTable = function(){
-        return this.makeRes1Box()+this.makeRes2Box()+
+        return this.makeRes1Box()+ '<br />'+this.makeRes2Box()+ "<br />"+
                 this.makeAmmount1Box()+this.makeAmmount2Box()+
                 this.makeDoButton();
     };
     this.attatchListeners = function(controler){
+        if(controler==""){console.warn("Controler not defined error in vwTrade.js");}
+        var f = function(c){
+            if(typeof(c)==="undefined"){console.error("its not working");}
+            return function(){c.res1c();};
+        }(controler);
         //attach onchange to resBox1
-        this.elm('resBox1').addEventListener("change",function(){controler.res1c();});
+        $('#resBox1').on('change',f);
         //attach onchange to resBox2
-        this.elm('resBox2').addEventListener("change",function(){controler.res2c();});
+        var f1 = function(c){
+            if(typeof(c)==="undefined"){console.error("its not working");}
+            return function(){c.res2c();};
+        }(controler);
+        $('#resBox2').on('change',f1);
         //attach onchange to ammountBox1
-        this.elm('ammountBox1').addEventListener("change",function(){controler.ammount1c();});
+        var f2 = function(c){
+            if(typeof(c)==="undefined"){console.error("its not working");}
+            return function(){c.ammount1c();};
+        }(controler);
+        $('#ammountBox1').on('change',f2)
         //attach onchange to ammountBox2
-        this.elm('ammountBox2').addEventListener("change",function(){controler.ammount2c();});
+        $('#ammountBox2')[0].change =function(){controler.ammount2c();};
         //attach onchange to doTradeButton
-        this.elm('doTradeButton').addEventListener("click",function(){controler.doClick();});
+        $('#doTradeButton')[0].click(function(){controler.doClick();});
     };
     
     this.makeRes1Box = function(){
-        var options = this.makeInnerRes1Box();
-        return "<select id='resBox1'>" + options + "</select>";
+        var buyOptions = this.market.getBuyOptions();
+        var options = buyOptions.map((a)=>{return {'id':'b'+a.getID(),
+                'value':a.getID(),
+                'string':a.getName()};});
+        return this.makeSelect('resBox1',options);
     };
-    this.makeInnerRes1Box = function(){
-        return this.market.resourceListToOption(this.market.getBuyOptions());
+    this.updateRes1Box = function(){
+        this.updateOuter('resBox1',this.makeRes1Box());
     };
+   
     this.makeRes2Box = function(){
         var options;
         if(this.res1Selection){
-            options = this.makeInnerRes2Box();
+            options = this.market.getSellOptions(this.getBuyResSelection());
         }else{
-            options = this.market.resourceListToOption(this.market.getSellOptions(this.market.getBuyOptions()[0]));
+            options = this.market.getSellOptions(this.market.getBuyOptions()[0]);
         }
-        return "<select id='resBox2'>" + options + "</select><br />";
+        options = options.map((a)=>{return {'id':'s' +a.getID(),
+                'value':a.getID(),
+                'string':a.getName()};});
+        return this.makeSelect('resBox2',options) ;
     };
-    this.makeInnerRes2Box = function (){
-        return this.market.resourceListToOption(this.market.getSellOptions(this.getBuyResSelection()));
+    this.updateRes2Box= function(){
+        this.updateOuter('resBox2',this.makeRes2Box());
     };
     this.makeAmmount1Box = function(){
         return "<input type='number' id='ammountBox1' value='1' />";
@@ -57,18 +77,21 @@ function vwTrade(market){
     this.updateInner = function(id,html){
         this.elm(id).innerHTML=html;
     };
+    this.updateOuter = function(id,html){
+        this.elm(id).outerHTML=html;
+    };
     this.updateValue = function(id,value){
         this.elm(id).value = value;
     };
     
     this.getBuyResSelection = function (){
-        return new Resource(this.elm('resBox1').value);
+        return new Resource(parseInt(this.elm('resBox1').value));
     };
     this.getSellResSelection = function (){
-        return new Resource(this.elm('resBox2').value);
+        return new Resource(parseInt(this.elm('resBox2').value));
     };
-    this.getBuyAmmount = function(){return this.elm('ammountBox1').value;};
-    this.getSellAmmount = function(){return this.elm('ammountBox2').value;};
+    this.getBuyAmmount = function(){return parseFloat(this.elm('ammountBox1').value);};
+    this.getSellAmmount = function(){return parseFloat(this.elm('ammountBox2').value);};
     
     
 }

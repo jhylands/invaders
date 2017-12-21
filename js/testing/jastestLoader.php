@@ -4,7 +4,7 @@
  */
 
 header('Content-Type: application/javascript');
-$path = "tests_rawjs/";
+$path = "tests_jasmine/";
 echo 'var tests = {};';
 list_all_files($path);
 

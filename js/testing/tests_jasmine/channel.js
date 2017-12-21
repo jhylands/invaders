@@ -1,3 +1,5 @@
+/* global tests */
+
 //A block to test the channel class
 
 //A channel is a 3 tuple of a buy resource, sell resource
@@ -22,3 +24,20 @@ var makeChannels = function(){
   return channels;
 };
 
+//channels should be so simple they don't need testing 
+//the test is the same complexity as the program istelf if not more complicated
+
+
+tests.channels = function(){
+    var channels = makeChannels();
+    for(var i=0;i<channels.length;i++){
+        var channel = channels[i];
+        var test ={};
+        
+        test.sellre = channel.getSellResource()==channel
+    }
+        
+    
+    
+    
+}

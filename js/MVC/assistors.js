@@ -1,4 +1,9 @@
 /* global THREE, __camera, __scene, I, ContentManager, contentManager */
+Document.prototype.createElementFromString = function (str) {
+    const element = new DOMParser().parseFromString(str, 'text/html');
+    const child = element.documentElement.querySelector('body').firstChild;
+    return child;
+};
 
 function makeClickHandeler(callback){
     return function ( event ) {

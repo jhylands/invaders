@@ -31,6 +31,7 @@
 <script src="i/get/startingPack.php"></script>
 <script src="js/ColladaLoader.js"></script>
 <script src='js/SPE.min.js'></script>
+<script src="js/math.min.js"></script>
 <script>
     //DATA definitions
     //list of page urls, indexed by id

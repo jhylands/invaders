@@ -4,10 +4,10 @@ function Channel(){
     this.rate;
     
     this.setFromObject = function(object){
-        this.buy = new Resource(object.buy);
+        this.buy = new Resource(parseInt(object.buy));
         
-        this.sellRe = new Resource(object.sell);
-        this.rate = object.rate;
+        this.sell = new Resource(parseInt(object.sell));
+        this.rate = parseFloat(object.rate);
         return this;
     };
     

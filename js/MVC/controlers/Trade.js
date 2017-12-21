@@ -3,7 +3,7 @@ function conTrade(){
         this.__proto__ = new Page();
         
         //class information
-	this.name = "Combat";
+	this.name = "Trade";
 	this.id = 3;
         this.market = new Market();
         this.view = new vwTrade(this.market);
@@ -34,11 +34,13 @@ function conTrade(){
         };
         this.constructFromOrbit = function(){
             //create overlay
-            this.makeSTDOverlay("<h1>Trade floor</h1><input type='button' id='bk2o' value='Back to orbit' />");
+            this.makeSTDOverlay("<h1>Trade floor</h1><p>Loading market information</p><input type='button' id='bk2o' value='Back to orbit'>");
             this.view.unSetRes1Selection();
             //add event listeners
             var func = this.makeChanger(this,0);
             document.getElementById('bk2o').addEventListener("click",func);
+            //This function is called when the information about the market comes back
+            //this.updateTable();
         };
         this.keyboard= function(keyState){};
         this.update = function(){};
@@ -59,11 +61,13 @@ function conTrade(){
             //update the inner HTML of the other selection
             this.view.setRes1Selection();
             //how you going to update it without rewening the users selection?
-            this.view.updateInner('resBox2',this.view.makeInnerRes2Box());
+            this.view.updateRes2Box();
             this.view.updateValue('ammountBox2',this.market.getRate(buyRe,sellRe)*ammount);
+            this.view.attatchListeners(this);
         };
         this.res2c = function (){
-            this.view.setRes2Selection();
+            //what was setting res2Selection suposed to do?
+            //this.view.setRes2Selection();
             //check ammount2 
             var buyRe = this.view.getBuyResSelection();
             var sellRe = this.view.getSellResSelection();

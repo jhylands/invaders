@@ -1,3 +1,5 @@
+/* global tests */
+
 //block to test the market class
 
 //a market should be created from a set of channels
@@ -8,7 +10,7 @@ tests.MarketTest= function(){
 //take from channel function tester
 
 paris = new Market();
-paris.fromChannels(makeChannels())
+paris.fromChannels(makeChannels());
 
 /*
  * getBuyOptions
