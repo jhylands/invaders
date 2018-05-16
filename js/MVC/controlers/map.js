@@ -11,7 +11,7 @@ function conMap(){
 	this.id = 1;
     
     //global THREE references
-	
+    /* I should be the only global now */	
 	
 	
     
@@ -19,10 +19,13 @@ function conMap(){
     this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
 	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
 	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
+    
     //this.projector = new THREE.Projector;
     this.eventHandlers =[];
-    this.inAnimation = 1;
+    this.inAnimation = 1; //what does this mean, can we have a table explaining 
+    
     this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
+    
     //Finished loading variables
     this.ready = false;
     this.onready = onPageReady;
@@ -38,37 +41,45 @@ function conMap(){
         
 	//function to create page from nothing
 	this.create = function(from){
-            //from orbit
-            //this.inAnimation=1;
-            //__scene.add(this.ambient);
-            //var sun
-            //create a curried function to add elements to the scene
-            var curriedPlanetAdder = function(celestialThreeObject){
-                return function(){__scene.add(celestialThreeObject);};
-            };
-            I.system.recurseThroughSystems(curriedPlanetAdder);
-                
-            //function needs updating for the latest three.js
-            //it also needs a closure
-            var self=this;
-            this.onDocumentMouseDown= makeClickHandler(self.travel);
-
-            //Make an event listner for when the user click on the planet they want to travel to
-            document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+        //from orbit
+        //this.inAnimation=1;
+        //add ambiant light to the scene as orbit will remove the sunlamp
+        __scene.add(this.ambient);
+        
+        //add planets to the scene
+        this.addPlanetsToScene();
             
-            //inishiation of camera
-            __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
-            this.x = this.planetPositions.x[I.place['ID']];
-            this.y = I.place.getRadius()*3;
-            //setup space station overlay
-            //create user interface
-            this.createUserInterface();
-            __camera.lookAt(new THREE.Vector3(0,0,0));
-            //Notify that this function is ready to be run
-            this.ready = true;
-            this.onready(this.id);
-                
+        //create click eventhandler and keep a local reference
+        var self=this;
+        this.onDocumentMouseDown= makeClickHandler(self.travel);
+
+        //Make an event listner for when the user click on the planet they want to travel to
+        document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+        
+        //inishiation of camera
+        __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
+        this.x = this.planetPositions.x[I.place['ID']];
+        this.y = I.place.getRadius()*3;
+        //setup space station overlay
+        //create user interface
+        this.createUserInterface();
+        __camera.lookAt(new THREE.Vector3(0,0,0));
+        //Notify that this function is ready to be run
+        this.ready = true;
+        this.onready(this.id);
+            
 	};
+
+    /*
+    Void function to add all the celestial bodies to the scene*/
+    this.addPlanetsToScene = function(){
+        //create a curried function to add elements to the scene
+        var curriedPlanetAdder = function(celestialThreeObject){
+            return function(){__scene.add(celestialThreeObject);};
+        };
+        
+        I.system.recurseThroughSystems(curriedPlanetAdder);
+    };
         this.destroy = function(page){
             //this is called twice just before the error occures
             
@@ -87,12 +98,11 @@ function conMap(){
 		//no keyboard events for orbit
 	};
 	this.travel = function(location){
-            var changingFunction = this.makeChanger(this,0);
-            $.ajax('i/do/travel.php?to=' + location).done(function(){
-                updatePlace(changingFunction);
-            });
-            
-        };
+        var changingFunction = this.makeChanger(this,0);
+        $.ajax('i/do/travel.php?to=' + location).done(function(){
+            updatePlace(changingFunction);
+        });
+    };
 	//function to update __scene each frame
     //set this.z for testing
     this.z=100;
