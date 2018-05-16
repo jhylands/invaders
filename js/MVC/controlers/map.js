@@ -5,7 +5,7 @@
 function conMap(){
     //inherits from page class
     this.__proto__ = new Page();
-    this.view = new VWMap();
+    this.view = new vwMap();
     this.animation = new MapAnimation();
     //class information
 	this.name = "Map";
