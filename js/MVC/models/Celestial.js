@@ -92,7 +92,9 @@ function Celestial(){
      */
     this.recurseThroughSystems = function( caller ){
         this.children.map(function(a){a.recurseThroughSystems(caller);});
-        this.children.mapcaller(this.getThree());
+        //uncurry the caller
+        var uncurriedCaller = caller(this.getThree());
+        this.children.map(uncurriedCaller);
     };
     this.addChildrenToScene = function(){
         

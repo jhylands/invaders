@@ -3,37 +3,37 @@
 /* global __camera, __scene, THREE, I */
 
 function conMap(){
-        //inherits from page class
-        this.__proto__ = new Page();
-        
-        //class information
+    //inherits from page class
+    this.__proto__ = new Page();
+    
+    //class information
 	this.name = "Map";
 	this.id = 1;
-        
-        //global THREE references
+    
+    //global THREE references
 	
-	;
 	
-        
-        //class variables
-        this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
+	
+    
+    //class variables
+    this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
 	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
 	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
-        //this.projector = new THREE.Projector;
-        this.eventHandlers =[];
-        this.inAnimation = 1;
-        this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
-        //Finished loading variables
-        this.ready = false;
-        this.onready = onPageReady
-        this.onDocumentMouseDown;
-        
-        //page changing handshake
-        this.change = false; //set to true if request page change.
-        this.nextPage; //set to the id of the next page.
-        //planet should adhear to JS-Planet standard
+    //this.projector = new THREE.Projector;
+    this.eventHandlers =[];
+    this.inAnimation = 1;
+    this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
+    //Finished loading variables
+    this.ready = false;
+    this.onready = onPageReady
+    this.onDocumentMouseDown;
+    
+    //page changing handshake
+    this.change = false; //set to true if request page change.
+    this.nextPage; //set to the id of the next page.
+    //planet should adhear to JS-Planet standard
 
-        this.threePlanets=[];
+    this.threePlanets=[];
         
         
 	//function to create page from nothing
@@ -42,10 +42,11 @@ function conMap(){
             //this.inAnimation=1;
             //__scene.add(this.ambient);
             //var sun
-            var planetAdder = function(celestial){
-                __scene.add(celestial.getThree());
+            //create a curried function to add elements to the scene
+            var curriedPlanetAdder = function(celestial){
+                return function(){__scene.add(celestial.getThree());};
             };
-            I.system.recurseThroughSystems(planetAdder);
+            I.system.recurseThroughSystems(curriedPlanetAdder);
                 
             //function needs updating for the latest three.js
             //it also needs a closure
