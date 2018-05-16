@@ -25,7 +25,7 @@ function conMap(){
     this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
     //Finished loading variables
     this.ready = false;
-    this.onready = onPageReady
+    this.onready = onPageReady;
     this.onDocumentMouseDown;
     
     //page changing handshake
@@ -43,8 +43,8 @@ function conMap(){
             //__scene.add(this.ambient);
             //var sun
             //create a curried function to add elements to the scene
-            var curriedPlanetAdder = function(celestial){
-                return function(){__scene.add(celestial.getThree());};
+            var curriedPlanetAdder = function(celestialThreeObject){
+                return function(){__scene.add(celestialThreeObject);};
             };
             I.system.recurseThroughSystems(curriedPlanetAdder);
                 
@@ -55,8 +55,10 @@ function conMap(){
 
             //Make an event listner for when the user click on the planet they want to travel to
             document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-            __camera.position.set( this.planetPositions.x[I.place.getID()],  0,place.Radius*3 );//inishiation of camera
-            this.x = this.planetPositions.x[place['ID']];
+            
+            //inishiation of camera
+            __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
+            this.x = this.planetPositions.x[I.place['ID']];
             this.y = I.place.getRadius()*3;
             //setup space station overlay
             //create user interface
@@ -92,16 +94,18 @@ function conMap(){
             
         };
 	//function to update __scene each frame
+    //set this.z for testing
+    this.z=100;
 	this.update = function(){
             if(this.inAnimation==1){
-                if(this.z<place.Radius*3+6*60*100){
+                if(this.z<I.place.Radius*3+6*60*100){
                     __camera.position.set(this.x,0,this.z);
                     this.z+=100;
                 }else{
                     this.inAnimation=2;//0;
                 }
             }else if(this.inAnimation==2){
-                if(this.z>place.Radius*3){
+                if(this.z>I.place.Radius*3){
                     __camera.position.set(this.x,0,this.z);
                     this.z=100;
                 }else{
