@@ -25,5 +25,21 @@ function MapAnimation(){
     //vector from the center object to the outa object
     this.F=this.outa.minus(this.core);
     
-    
+    this.updateAnimation = function (){ 
+       if(this.inAnimation==1){
+           if(this.z<I.place.Radius*3+6*60*100){
+               __camera.position.set(this.x,0,this.z);
+               this.z+=100;
+           }else{
+               this.inAnimation=2;//0;
+           }
+       }else if(this.inAnimation==2){
+           if(this.z>I.place.Radius*3){
+               __camera.position.set(this.x,0,this.z);
+               this.z=100;
+           }else{
+               //back to orbit
+           }
+       }
+    };
 }

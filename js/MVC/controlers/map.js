@@ -58,8 +58,9 @@ function conMap(){
         
         //inishiation of camera
         __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
-        this.x = this.planetPositions.x[I.place['ID']];
-        this.y = I.place.getRadius()*3;
+        this.x = this.planetPositions.x[I.place.getID()];
+        this.y = 0;
+        this.z = I.place.getRadius()*3;
         //setup space station overlay
         //create user interface
         this.createUserInterface();
@@ -80,20 +81,20 @@ function conMap(){
         
         I.system.recurseThroughSystems(curriedPlanetAdder);
     };
-        this.destroy = function(page){
-            //this is called twice just before the error occures
-            
-            console.log("going to " + page + " see yo soon");
-            __scene.remove(this.ambient);
-            for(var i=0;i<this.threePlanets.length;i++){
-                __scene.remove(this.threePlanets[i]);
-            }
-            document.removeEventListener('mousedown',this.onDocumentMouseDown);
-        };
-        //function to make the overlay html what is needed for this page
-        this.createUserInterface = function(){
-            document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
-        };
+    this.destroy = function(page){
+        //this is called twice just before the error occures
+        
+        console.log("going to " + page + " see yo soon");
+        __scene.remove(this.ambient);
+        for(var i=0;i<this.threePlanets.length;i++){
+            __scene.remove(this.threePlanets[i]);
+        }
+        document.removeEventListener('mousedown',this.onDocumentMouseDown);
+    };
+    //function to make the overlay html what is needed for this page
+    this.createUserInterface = function(){
+        document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
+    };
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	};
@@ -104,25 +105,9 @@ function conMap(){
         });
     };
 	//function to update __scene each frame
-    //set this.z for testing
-    this.z=100;
 	this.update = function(){
-            if(this.inAnimation==1){
-                if(this.z<I.place.Radius*3+6*60*100){
-                    __camera.position.set(this.x,0,this.z);
-                    this.z+=100;
-                }else{
-                    this.inAnimation=2;//0;
-                }
-            }else if(this.inAnimation==2){
-                if(this.z>I.place.Radius*3){
-                    __camera.position.set(this.x,0,this.z);
-                    this.z=100;
-                }else{
-                    //back to orbit
-                }
-            }
-                
+        //there is no animation to start with we are just
+        //trying to get the initial setup working            
             
 	};
 
