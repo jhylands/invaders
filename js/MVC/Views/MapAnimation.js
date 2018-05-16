@@ -1,6 +1,17 @@
 /* global __camera */
 
 function MapAnimation(){
+    this.inAnimation = 1; //what does this mean, can we have a table explaining 
+    
+    //function to handle the animation aspects of creating the view class
+    this.create = function(){
+    
+
+    };
+
+    this.update = function ();
+
+
     //object at centre of scene
     this.core;
     //object at edge of scene

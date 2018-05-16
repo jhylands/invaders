@@ -5,26 +5,14 @@
 function conMap(){
     //inherits from page class
     this.__proto__ = new Page();
-    
+    this.view = new VWMap();
+    this.animation = new MapAnimation();
     //class information
 	this.name = "Map";
 	this.id = 1;
     
-    //global THREE references
-    /* I should be the only global now */	
-	
-	
-    
-    //class variables
-    this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
-	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
-	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
-    
     //this.projector = new THREE.Projector;
     this.eventHandlers =[];
-    this.inAnimation = 1; //what does this mean, can we have a table explaining 
-    
-    this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
     
     //Finished loading variables
     this.ready = false;
@@ -42,12 +30,11 @@ function conMap(){
 	//function to create page from nothing
 	this.create = function(from){
         //from orbit
-        //this.inAnimation=1;
-        //add ambiant light to the scene as orbit will remove the sunlamp
-        __scene.add(this.ambient);
+        //create the visual aspects
+        this.view.create();
         
-        //add planets to the scene
-        this.addPlanetsToScene();
+        //create the animation aspects
+        this.animation.create(); 
             
         //create click eventhandler and keep a local reference
         var self=this;
@@ -56,31 +43,11 @@ function conMap(){
         //Make an event listner for when the user click on the planet they want to travel to
         document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
         
-        //inishiation of camera
-        __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
-        this.x = this.planetPositions.x[I.place.getID()];
-        this.y = 0;
-        this.z = I.place.getRadius()*3;
-        //setup space station overlay
-        //create user interface
-        this.createUserInterface();
-        __camera.lookAt(new THREE.Vector3(0,0,0));
         //Notify that this function is ready to be run
         this.ready = true;
         this.onready(this.id);
-            
 	};
 
-    /*
-    Void function to add all the celestial bodies to the scene*/
-    this.addPlanetsToScene = function(){
-        //create a curried function to add elements to the scene
-        var curriedPlanetAdder = function(celestialThreeObject){
-            return function(){__scene.add(celestialThreeObject);};
-        };
-        
-        I.system.recurseThroughSystems(curriedPlanetAdder);
-    };
     this.destroy = function(page){
         //this is called twice just before the error occures
         
@@ -90,10 +57,6 @@ function conMap(){
             __scene.remove(this.threePlanets[i]);
         }
         document.removeEventListener('mousedown',this.onDocumentMouseDown);
-    };
-    //function to make the overlay html what is needed for this page
-    this.createUserInterface = function(){
-        document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
     };
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
@@ -108,6 +71,8 @@ function conMap(){
 	this.update = function(){
         //there is no animation to start with we are just
         //trying to get the initial setup working            
+        this.view.update();
+        this.animation.update();
             
 	};
 
