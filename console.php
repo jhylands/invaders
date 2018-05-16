@@ -1,4 +1,5 @@
 <?php
+include 'scripts/autoload.php';
 include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
 
