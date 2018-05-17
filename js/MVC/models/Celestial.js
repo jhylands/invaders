@@ -1,17 +1,24 @@
-/* global THREE, contentManager */
+/* global THREE, contentManager,console */
 
 /**
  * Class representing the abstraction of a celectial object, planet, moon sun
  */
 function Celestial(){
     this.id;
+    this.children = [];
+    /*
+     * Include a reference to this celestials mesh so it only has to be added once
+     */
+    this.object;
     /**
      * Function to get the object, around which, this is orbiting
      * @returns {Celectial}
      */
     this.inOrbitOf = function (){console.warn('Abstract function inOrbitOf not overwritten!');};
-    this.getID = function(){ return this.id;};
+    this.getID = function(){ return parseInt(this.id);};
+    this.getOrbitalRadius = function(){return parseInt(this.OrbitalRadius);};
     this.fromPackage = function(information){
+        /*jshint sub:true*/
         this.id = information['ID'];
         this.name = information['Name'];
         this.OrbitalRadius = information['OrbitalRadius'];
@@ -21,20 +28,22 @@ function Celestial(){
         this.radius = information['Radius'];
         this.Reflection = information['Reflection'];
         this.map = information['Map'];
-        var maxLoop = information['children'].length;
+       var maxLoop = information['children'].length;
         //console.log(maxLoop);
         for(var i=0;i<maxLoop;i++){
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);
         }
+        /*
+        var self = this;
+        this.children = information.children.map(self.makeCelestial);
+        */
         return this;
+        
     };
+    
     this.getRadius = function(){return this.radius;};
-    /*
-     * Include a reference to this celestials mesh so it only has to be added once
-     */
-    this.object;
-    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();}};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
         if(!this.object){this.create();}
@@ -49,6 +58,9 @@ function Celestial(){
     this.create = function(){
         //initiate the maps
             var img;
+            var spec=null;
+            var bump=null;
+            var em=null;
             
             var planetGeometry = new THREE.SphereGeometry(this.radius,32,32);
             
@@ -56,10 +68,9 @@ function Celestial(){
             var Map = this.map;
             //not sure why this isn't binding ffs
             img = contentManager.getTexture(Map.IMG);
-            if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
-            if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
-            if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}
-            
+            if('SPEC' in Map){spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}
+            if('BUMP' in Map){bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}
+            if('EM' in Map){em = new THREE.TextureLoader().load('images/' +Map.EM);}            
             var planetMaterial = new THREE.MeshPhongMaterial({
                     map:img,
                     emissiveMap:em,
@@ -84,19 +95,21 @@ function Celestial(){
             window.setInterval(function(){return function(){object.rotation.y+=0.0001;};}(),50);
             return this.object;
     };
-    this.children = new Array();
     /**
      * 
      * @param {function} caller
      * @returns {void}
      */
     this.recurseThroughSystems = function( caller ){
+        //added debugging
+        console.log(this.map);
         this.children.map(function(a){a.recurseThroughSystems(caller);});
-        this.children.mapcaller(this.getThree());
+        caller(this);
+        this.children.map(caller);
     };
     this.addChildrenToScene = function(){
         
-    }
+    };
     /**
      * Function to generate a celestial object from information array (I know thats vauge but its getting to the end of the day)
      * 
@@ -110,7 +123,7 @@ function Celestial(){
     };
     
     this.findFromChildren = function(ID){
-        if(this.getID()===ID){
+        if(this.getID()===parseInt(ID)){
             return this;
         }
         //should be using reduce here
@@ -180,5 +193,5 @@ function Celestial(){
             });
             var mesh	= new THREE.Mesh(geometry, material);
             return mesh	;
-    }
+    };
 }

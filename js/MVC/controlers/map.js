@@ -3,111 +3,76 @@
 /* global __camera, __scene, THREE, I */
 
 function conMap(){
-        //inherits from page class
-        this.__proto__ = new Page();
-        
-        //class information
+    //inherits from page class
+    this.__proto__ = new Page();
+    this.view = new vwMap();
+    this.animation = new MapAnimation();
+    //class information
 	this.name = "Map";
 	this.id = 1;
-        
-        //global THREE references
-	
-	;
-	
-        
-        //class variables
-        this.planetNames = new Array('sun.jpg','Mercury.jpg','venus_img.jpg','earth_img.jpg','mars_img.jpg','moon_img.jpg');
-	this.planetPositions = {'x':new Array(-100,0,9000,21000,30000,25000),'z':new Array(0,0,0,0,0,20)};
-	this.planetSizes = new Array(20,2440,6052,6371,3390,1);
-        //this.projector = new THREE.Projector;
-        this.eventHandlers =[];
-        this.inAnimation = 1;
-        this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
-        //Finished loading variables
-        this.ready = false;
-        this.onready = onPageReady
-        this.onDocumentMouseDown;
-        
-        //page changing handshake
-        this.change = false; //set to true if request page change.
-        this.nextPage; //set to the id of the next page.
-        //planet should adhear to JS-Planet standard
+    
+    //this.projector = new THREE.Projector;
+    this.eventHandlers =[];
+    
+    //Finished loading variables
+    this.ready = false;
+    this.onready = onPageReady;
+    this.onDocumentMouseDown;
+    
+    //page changing handshake
+    this.change = false; //set to true if request page change.
+    this.nextPage; //set to the id of the next page.
+    //planet should adhear to JS-Planet standard
 
-        this.threePlanets=[];
+    this.threePlanets=[];
         
         
 	//function to create page from nothing
 	this.create = function(from){
-            //from orbit
-            //this.inAnimation=1;
-            //__scene.add(this.ambient);
-            //var sun
-            var planetAdder = function(celestial){
-                __scene.add(celestial.getThree());
-            };
-            I.system.recurseThroughSystems(planetAdder);
-                
-            //function needs updating for the latest three.js
-            //it also needs a closure
-            var self=this;
-            this.onDocumentMouseDown= makeClickHandler(self.travel);
-
-            //Make an event listner for when the user click on the planet they want to travel to
-            document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
-            __camera.position.set( this.planetPositions.x[I.place.getID()],  0,place.Radius*3 );//inishiation of camera
-            this.x = this.planetPositions.x[place['ID']];
-            this.y = I.place.getRadius()*3;
-            //setup space station overlay
-            //create user interface
-            this.createUserInterface();
-            __camera.lookAt(new THREE.Vector3(0,0,0));
-            //Notify that this function is ready to be run
-            this.ready = true;
-            this.onready(this.id);
-                
-	};
-        this.destroy = function(page){
-            //this is called twice just before the error occures
+        //from orbit
+        //create the visual aspects
+        this.view.create();
+        
+        //create the animation aspects
+        this.animation.create(); 
             
-            console.log("going to " + page + " see yo soon");
-            __scene.remove(this.ambient);
-            for(var i=0;i<this.threePlanets.length;i++){
-                __scene.remove(this.threePlanets[i]);
-            }
-            document.removeEventListener('mousedown',this.onDocumentMouseDown);
-        };
-        //function to make the overlay html what is needed for this page
-        this.createUserInterface = function(){
-            document.getElementById('overlay').innerHTML = "<p>Click on destination</p>";
-        };
+        //create click eventhandler and keep a local reference
+        var self=this;
+        this.onDocumentMouseDown= makeClickHandler(self.travel);
+
+        //Make an event listner for when the user click on the planet they want to travel to
+        document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
+        
+        //Notify that this function is ready to be run
+        this.ready = true;
+        this.onready(this.id);
+	};
+
+    this.destroy = function(page){
+        //this is called twice just before the error occures
+        
+        console.log("going to " + page + " see yo soon");
+        __scene.remove(this.ambient);
+        for(var i=0;i<this.threePlanets.length;i++){
+            __scene.remove(this.threePlanets[i]);
+        }
+        document.removeEventListener('mousedown',this.onDocumentMouseDown);
+    };
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	};
 	this.travel = function(location){
-            var changingFunction = this.makeChanger(this,0);
-            $.ajax('i/do/travel.php?to=' + location).done(function(){
-                updatePlace(changingFunction);
-            });
-            
-        };
+        var changingFunction = this.makeChanger(this,0);
+        $.ajax('i/do/travel.php?to=' + location).done(function(){
+            updatePlace(changingFunction);
+        });
+    };
 	//function to update __scene each frame
 	this.update = function(){
-            if(this.inAnimation==1){
-                if(this.z<place.Radius*3+6*60*100){
-                    __camera.position.set(this.x,0,this.z);
-                    this.z+=100;
-                }else{
-                    this.inAnimation=2;//0;
-                }
-            }else if(this.inAnimation==2){
-                if(this.z>place.Radius*3){
-                    __camera.position.set(this.x,0,this.z);
-                    this.z=100;
-                }else{
-                    //back to orbit
-                }
-            }
-                
+        //there is no animation to start with we are just
+        //trying to get the initial setup working            
+        this.view.update();
+        this.animation.update();
             
 	};
 

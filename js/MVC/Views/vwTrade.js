@@ -31,7 +31,7 @@ function vwTrade(market){
             if(typeof(c)==="undefined"){console.error("its not working");}
             return function(){c.ammount1c();};
         }(controler);
-        $('#ammountBox1').on('change',f2)
+        $('#ammountBox1').on('change',f2);
         //attach onchange to ammountBox2
         $('#ammountBox2')[0].change =function(){controler.ammount2c();};
         //attach onchange to doTradeButton

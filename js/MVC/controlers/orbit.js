@@ -2,7 +2,10 @@
 
 //orbit class file
 //planet-centric coordinates
- 
+/**
+ * Represents the orbit controler
+ * @class
+ */ 
 function conOrbit(){
         //inherits from page class
         this.__proto__ = new Page();
@@ -25,7 +28,12 @@ function conOrbit(){
         this.nextPage; //set to the id of the next page.
         
         
-	//function to create page from nothing
+	/**
+     * Function to create page from nothing
+     * @function 
+     * @memberOf conOrbit
+     * @param {Int}
+     */
 	this.create = function(from){
                 //update planet 
                 this.planet = I.place;

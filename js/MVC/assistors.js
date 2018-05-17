@@ -5,7 +5,7 @@ Document.prototype.createElementFromString = function (str) {
     return child;
 };
 
-function makeClickHandeler(callback){
+function makeClickHandler(callback){
     return function ( event ) {
         event.preventDefault();
         var vector = new THREE.Vector2( ( event.clientX / window.innerWidth ) * 2 - 1,
