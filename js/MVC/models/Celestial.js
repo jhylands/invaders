@@ -5,7 +5,7 @@
  */
 function Celestial(){
     this.id;
-    this.children = new Array();
+    this.children = [];
     /*
      * Include a reference to this celestials mesh so it only has to be added once
      */
@@ -17,6 +17,7 @@ function Celestial(){
     this.inOrbitOf = function (){console.warn('Abstract function inOrbitOf not overwritten!');};
     this.getID = function(){ return this.id;};
     this.fromPackage = function(information){
+/* jshint ignore:start */
         this.id = information['ID'];
         this.name = information['Name'];
         this.OrbitalRadius = information['OrbitalRadius'];
@@ -32,9 +33,11 @@ function Celestial(){
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);
         }
+/* jshint ignore:end */
         return this;
     };
     this.getRadius = function(){return this.radius;};
+
     this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
@@ -50,6 +53,9 @@ function Celestial(){
     this.create = function(){
         //initiate the maps
             var img;
+            var spec=null;
+            var bump=null;
+            var em=null;
             
             var planetGeometry = new THREE.SphereGeometry(this.radius,32,32);
             
@@ -57,10 +63,9 @@ function Celestial(){
             var Map = this.map;
             //not sure why this isn't binding ffs
             img = contentManager.getTexture(Map.IMG);
-            if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
-            if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
-            if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}
-            
+            if('SPEC' in Map){spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}
+            if('BUMP' in Map){bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}
+            if('EM' in Map){em = new THREE.TextureLoader().load('images/' +Map.EM);}            
             var planetMaterial = new THREE.MeshPhongMaterial({
                     map:img,
                     emissiveMap:em,
@@ -102,7 +107,7 @@ function Celestial(){
     };
     this.addChildrenToScene = function(){
         
-    }
+    };
     /**
      * Function to generate a celestial object from information array (I know thats vauge but its getting to the end of the day)
      * 
@@ -186,5 +191,5 @@ function Celestial(){
             });
             var mesh	= new THREE.Mesh(geometry, material);
             return mesh	;
-    }
+    };
 }
