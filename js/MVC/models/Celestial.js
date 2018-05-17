@@ -4,7 +4,8 @@
  * Class representing the abstraction of a celectial object, planet, moon sun
  */
 function Celestial(){
-    this.id;
+"use strict";
+    this.id=null;
     /**
      * Function to get the object, around which, this is orbiting
      * @returns {Celectial}
@@ -12,6 +13,7 @@ function Celestial(){
     this.inOrbitOf = function (){console.warn('Abstract function inOrbitOf not overwritten!');};
     this.getID = function(){ return this.id;};
     this.fromPackage = function(information){
+/* jshint ignore:start */
         this.id = information['ID'];
         this.name = information['Name'];
         this.OrbitalRadius = information['OrbitalRadius'];
@@ -27,14 +29,15 @@ function Celestial(){
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);
         }
+/* jshint ignore:end */
         return this;
     };
     this.getRadius = function(){return this.radius;};
     /*
      * Include a reference to this celestials mesh so it only has to be added once
      */
-    this.object;
-    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
+    this.object=null;
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();}};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
         if(!this.object){this.create();}
@@ -98,7 +101,7 @@ function Celestial(){
     };
     this.addChildrenToScene = function(){
         
-    }
+    };
     /**
      * Function to generate a celestial object from information array (I know thats vauge but its getting to the end of the day)
      * 
@@ -182,5 +185,5 @@ function Celestial(){
             });
             var mesh	= new THREE.Mesh(geometry, material);
             return mesh	;
-    }
+    };
 }
