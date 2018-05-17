@@ -4,8 +4,12 @@
  * Class representing the abstraction of a celectial object, planet, moon sun
  */
 function Celestial(){
-"use strict";
-    this.id=null;
+    this.id;
+    this.children = [];
+    /*
+     * Include a reference to this celestials mesh so it only has to be added once
+     */
+    this.object;
     /**
      * Function to get the object, around which, this is orbiting
      * @returns {Celectial}
@@ -33,11 +37,8 @@ function Celestial(){
         return this;
     };
     this.getRadius = function(){return this.radius;};
-    /*
-     * Include a reference to this celestials mesh so it only has to be added once
-     */
-    this.object=null;
-    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();}};
+
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
         if(!this.object){this.create();}
@@ -89,17 +90,20 @@ function Celestial(){
             window.setInterval(function(){return function(){object.rotation.y+=0.0001;};}(),50);
             return this.object;
     };
-    this.children = [];
     /**
      * 
      * @param {function} caller
      * @returns {void}
      */
     this.recurseThroughSystems = function( caller ){
+        //added debugging
+        console.log(this.map);
         this.children.map(function(a){a.recurseThroughSystems(caller);});
         //uncurry the caller
-        var uncurriedCaller = caller(this.getThree());
-        this.children.map(uncurriedCaller);
+        var planet = this.getThree();
+        planet.name = this.id;
+        caller(planet)();
+        this.children.map(caller);
     };
     this.addChildrenToScene = function(){
         

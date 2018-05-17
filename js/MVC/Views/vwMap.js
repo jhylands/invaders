@@ -10,8 +10,8 @@ function vwMap(){
         this.addPlanetsToScene();
         this.createUserInterface();
         //inishiation of camera
-        __camera.position.set( this.planetPositions.x[I.place.getID()],  0,I.place.Radius*3 );
-        this.x = this.planetPositions.x[I.place.getID()];
+        __camera.position.set( I.place.OrbitalRadius,  0,I.place.radius*3 );
+        this.x = 0;
         this.y = 0;
         this.z = I.place.getRadius()*3;
         //setup space station overlay
@@ -26,7 +26,9 @@ function vwMap(){
     this.addPlanetsToScene = function(){
         //create a curried function to add elements to the scene
         var curriedPlanetAdder = function(celestialThreeObject){
-            return function(){__scene.add(celestialThreeObject);};
+            return function(){
+                __scene.add(celestialThreeObject);
+            };
         };
         
         I.system.recurseThroughSystems(curriedPlanetAdder);
