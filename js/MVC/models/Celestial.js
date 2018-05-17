@@ -52,6 +52,9 @@ function Celestial(){
     this.create = function(){
         //initiate the maps
             var img;
+            var spec=null;
+            var bump=null;
+            var em=null;
             
             var planetGeometry = new THREE.SphereGeometry(this.radius,32,32);
             
@@ -59,10 +62,9 @@ function Celestial(){
             var Map = this.map;
             //not sure why this isn't binding ffs
             img = contentManager.getTexture(Map.IMG);
-            if('SPEC' in Map){var spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}else{spec=null;}
-            if('BUMP' in Map){var bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}else{bump=null;}
-            if('EM' in Map){var em = new THREE.TextureLoader().load('images/' +Map.EM);}else{em=null;}
-            
+            if('SPEC' in Map){spec = new THREE.TextureLoader().load('images/' +Map.SPEC);}
+            if('BUMP' in Map){bump = new THREE.TextureLoader().load('images/' +Map.BUMP);}
+            if('EM' in Map){em = new THREE.TextureLoader().load('images/' +Map.EM);}            
             var planetMaterial = new THREE.MeshPhongMaterial({
                     map:img,
                     emissiveMap:em,
@@ -87,7 +89,7 @@ function Celestial(){
             window.setInterval(function(){return function(){object.rotation.y+=0.0001;};}(),50);
             return this.object;
     };
-    this.children = new Array();
+    this.children = [];
     /**
      * 
      * @param {function} caller
