@@ -34,7 +34,7 @@ function vwMap(){
             planet.name = celestial.getID();
             //move the planet to the right location
             planet.position.setZ(celestial.getOrbitalRadius()/100);
-            setTimeout(function(){__scene.add(celestial);},1000);
+            __scene.add(planet);
         };
         
         I.system.recurseThroughSystems(planetAdder);
