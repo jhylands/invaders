@@ -5,6 +5,11 @@
  */
 function Celestial(){
     this.id;
+    this.children = new Array();
+    /*
+     * Include a reference to this celestials mesh so it only has to be added once
+     */
+    this.object;
     /**
      * Function to get the object, around which, this is orbiting
      * @returns {Celectial}
@@ -30,10 +35,6 @@ function Celestial(){
         return this;
     };
     this.getRadius = function(){return this.radius;};
-    /*
-     * Include a reference to this celestials mesh so it only has to be added once
-     */
-    this.object;
     this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
@@ -84,17 +85,20 @@ function Celestial(){
             window.setInterval(function(){return function(){object.rotation.y+=0.0001;};}(),50);
             return this.object;
     };
-    this.children = new Array();
     /**
      * 
      * @param {function} caller
      * @returns {void}
      */
     this.recurseThroughSystems = function( caller ){
+        //added debugging
+        console.log(this.map);
         this.children.map(function(a){a.recurseThroughSystems(caller);});
         //uncurry the caller
-        var uncurriedCaller = caller(this.getThree());
-        this.children.map(uncurriedCaller);
+        var planet = this.getThree();
+        planet.name = this.id;
+        caller(planet)();
+        this.children.map(caller);
     };
     this.addChildrenToScene = function(){
         
