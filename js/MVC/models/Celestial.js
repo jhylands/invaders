@@ -37,8 +37,9 @@ function Celestial(){
         /*
         var self = this;
         this.children = information.children.map(self.makeCelestial);
-        return this;
         */
+        return this;
+        
     };
     
     this.getRadius = function(){return this.radius;};
@@ -122,7 +123,7 @@ function Celestial(){
     };
     
     this.findFromChildren = function(ID){
-        if(this.getID()===ID){
+        if(this.getID()===parseInt(ID)){
             return this;
         }
         //should be using reduce here

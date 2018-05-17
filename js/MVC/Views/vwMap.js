@@ -28,12 +28,13 @@ function vwMap(){
     this.addPlanetsToScene = function(){
         //create a curried function to add elements to the scene
         var planetAdder = function(celestial){
-            var planet = celestial.getThree();
+            if(!celestial.object){celestial.create();}
+            var planet = celestial.object;
             //give the planet a name so that when it is clicked we know what has been clicked
             planet.name = celestial.getID();
             //move the planet to the right location
-            planet.location.setZ(celestial.getOrbitalRadius()/100);
-            __scene.add(celestialThreeObject);
+            planet.position.setZ(celestial.getOrbitalRadius()/100);
+            setTimeout(function(){__scene.add(celestial);},1000);
         };
         
         I.system.recurseThroughSystems(planetAdder);
