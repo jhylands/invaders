@@ -1,4 +1,4 @@
-/* global THREE, contentManager */
+/* global THREE, contentManager,console */
 
 /**
  * Class representing the abstraction of a celectial object, planet, moon sun
@@ -38,7 +38,7 @@ function Celestial(){
     };
     this.getRadius = function(){return this.radius;};
 
-    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();};};
+    this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();}};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
         if(!this.object){this.create();}
