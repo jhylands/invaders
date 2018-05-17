@@ -19,19 +19,24 @@ function vwMap(){
         this.createUserInterface();
         __camera.lookAt(new THREE.Vector3(0,0,0));
     };
-    this.update = function(){};
+    this.update = function(){
+        
+    };
 
     /*
     Void function to add all the celestial bodies to the scene*/
     this.addPlanetsToScene = function(){
         //create a curried function to add elements to the scene
-        var curriedPlanetAdder = function(celestialThreeObject){
-            return function(){
-                __scene.add(celestialThreeObject);
-            };
+        var planetAdder = function(celestial){
+            var planet = celestial.getThree();
+            //give the planet a name so that when it is clicked we know what has been clicked
+            planet.name = celestial.getID();
+            //move the planet to the right location
+            planet.location.setZ(celestial.getOrbitalRadius()/100);
+            __scene.add(celestialThreeObject);
         };
         
-        I.system.recurseThroughSystems(curriedPlanetAdder);
+        I.system.recurseThroughSystems(planetAdder);
     };
 
     //function to make the overlay html what is needed for this page

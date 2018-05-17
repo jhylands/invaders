@@ -15,9 +15,10 @@ function Celestial(){
      * @returns {Celectial}
      */
     this.inOrbitOf = function (){console.warn('Abstract function inOrbitOf not overwritten!');};
-    this.getID = function(){ return this.id;};
+    this.getID = function(){ return parseInt(this.id);};
+    this.getOrbitalRadius = function(){return parseInt(this.OrbitalRadius);};
     this.fromPackage = function(information){
-/* jshint ignore:start */
+        /*jshint sub:true*/
         this.id = information['ID'];
         this.name = information['Name'];
         this.OrbitalRadius = information['OrbitalRadius'];
@@ -27,17 +28,20 @@ function Celestial(){
         this.radius = information['Radius'];
         this.Reflection = information['Reflection'];
         this.map = information['Map'];
-        var maxLoop = information['children'].length;
+       var maxLoop = information['children'].length;
         //console.log(maxLoop);
         for(var i=0;i<maxLoop;i++){
             var ChildsInformation = information['children'][i];
             this.children[i] = this.makeCelestial(ChildsInformation);
         }
-/* jshint ignore:end */
+        /*
+        var self = this;
+        this.children = information.children.map(self.makeCelestial);
         return this;
+        */
     };
+    
     this.getRadius = function(){return this.radius;};
-
     this.getThree = function (){if(this.litObject){return this.litObject;}else{return this.bindLights();}};
     //function to bind lights to the celestial to simulate reflection from another light
     this.bindLights = function(){
@@ -99,10 +103,7 @@ function Celestial(){
         //added debugging
         console.log(this.map);
         this.children.map(function(a){a.recurseThroughSystems(caller);});
-        //uncurry the caller
-        var planet = this.getThree();
-        planet.name = this.id;
-        caller(planet)();
+        caller(this);
         this.children.map(caller);
     };
     this.addChildrenToScene = function(){
