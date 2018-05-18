@@ -1,14 +1,11 @@
 <html>
 <head>
 <?php
-    include 'header.php';
+    include 'users/init.php';
+    if (!securePage($_SERVER['PHP_SELF'])){die();} 
     include 'scripts/autoload.php';
     include 'scripts/sql.php';
     include 'scripts/shipInfo.php';
-    //check that the user has logged in
-    if(!isset($_SESSION['User'])){
-        echo "<script>window.location.replace('login.php');</script>";
-    }
     $ship = new Ship($con,$ShipCode);
 ?>
     <title>Avinders</title>

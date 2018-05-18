@@ -32,7 +32,7 @@ require_once 'users/init.php';
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-12">
-					<h1>This is the main content section</h1>
+					<h1>This is the main content section<?= $user->data()->id ?></h1>
 					<!-- Content Goes Here. Class width can be adjusted -->
 					<!-- End of main content section -->
 			</div> <!-- /.col -->
