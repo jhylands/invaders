@@ -19,7 +19,7 @@ include "consolemod/TravelHandler.php";
 
 //check for sent information
 
-$result = mysqli_query($con,"SELECT * FROM users WHERE FID=" . $_SESSION['User']);
+$result = mysqli_query($con,"SELECT * FROM OldUsers WHERE FID=" . $_SESSION['User']);
 while($row=mysqli_fetch_array($result)){
 	$userName = $row['Name'];
 }
