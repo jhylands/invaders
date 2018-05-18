@@ -3,6 +3,7 @@ $QRY = "SELECT * FROM OldUsers,ships,shipTypes,locations,markets WHERE OldUsers.
 $FID = $user->data()->id;
 $result = mysqli_query($con,$QRY . $FID);
 if(!$result){
+    //something needs to go in here for error checking
     echo "<script>document.write('" . $QRY. "');</script>";
     die();
 }
