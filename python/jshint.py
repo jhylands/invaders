@@ -18,7 +18,7 @@ def getName(fname):
 
 def getModules():
     files = os.listdir(r'../js/MVC')
-    modules=['THREE','console','window','document','onPageReady','I','__scene','__camera']
+    modules=['$','THREE','console','window','document','onPageReady','I','__scene','__camera']
     i=0
     while i< len(files):
         fullName = '../js/MVC/' + files[i]
