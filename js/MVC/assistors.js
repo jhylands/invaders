@@ -15,7 +15,7 @@ function makeClickHandler(callback){
         raycaster.setFromCamera(vector,__camera);
         var intersects = raycaster.intersectObjects( __scene.children );
         if ( intersects.length > 0 ) {
-            if(intersects[0].object.name!=="sun.jpg" && intersects[0].object.name !==""){
+            if(intersects[0].object.name!=0 && intersects[0].object.name !==""){
                     callback(intersects[0].object.name);
             }
         }

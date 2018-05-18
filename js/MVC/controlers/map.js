@@ -1,6 +1,6 @@
 
 
-/* global __camera, __scene, THREE, I */
+/* global __camera, __scene, THREE, I,onPageReadt,$,makeClickHandler */
 
 function conMap(){
     //inherits from page class
@@ -38,7 +38,7 @@ function conMap(){
             
         //create click eventhandler and keep a local reference
         var self=this;
-        this.onDocumentMouseDown= makeClickHandler(self.travel);
+        this.onDocumentMouseDown= makeClickHandler(self.travelMaker());
 
         //Make an event listner for when the user click on the planet they want to travel to
         document.addEventListener( 'mousedown', this.onDocumentMouseDown, false );
@@ -61,11 +61,15 @@ function conMap(){
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
 	};
-	this.travel = function(location){
-        var changingFunction = this.makeChanger(this,0);
-        $.ajax('i/do/travel.php?to=' + location).done(function(){
-            updatePlace(changingFunction);
-        });
+    this.travelMaker = function(){
+        var self = this;
+        var travel = function(location){
+            var changingFunction = self.makeChanger(self,0);
+            $.ajax('i/do/travel.php?to=' + location).done(function(){
+                updatePlace(changingFunction);
+            });
+        };
+        return travel;
     };
 	//function to update __scene each frame
 	this.update = function(){

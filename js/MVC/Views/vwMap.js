@@ -33,8 +33,8 @@ function vwMap(){
             //give the planet a name so that when it is clicked we know what has been clicked
             planet.name = celestial.getID();
             //move the planet to the right location
-            planet.position.setZ(celestial.getOrbitalRadius()/100);
-            setTimeout(function(){__scene.add(celestial);},1000);
+            planet.position.setZ(celestial.getOrbitalRadius());
+            __scene.add(planet);
         };
         
         I.system.recurseThroughSystems(planetAdder);
