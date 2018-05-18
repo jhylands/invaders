@@ -13,12 +13,5 @@ if(isset($_SESSION['User'])){
   }
   
 }else{
-  echo "ERROR user not logged in";
+  echo "ERROR user not logged in! <a href='login.php'>Click here</a> to login.";
 }
-
-
-spl_autoload_register(function ($class) {
-    include '/home/timepcou/public_html/PHPClass/' . $class . '.php';
-});
-
-?>

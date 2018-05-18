@@ -25,8 +25,8 @@ class Trade{
         if($this->ship->hold->get($res1)>$amount){
             $worked = true;
             //changeResources
-            $worked = $worked && $this->ship->hold->change($res1,-1*$amount);
-            $worked = $worked && $this->ship->hold->change($res2,$amount*$this->get($res2,$res1));
+            $worked &=  $this->ship->hold->change($res1,-1*$amount);
+            $worked &=  $this->ship->hold->change($res2,$amount*$this->get($res2,$res1));
             //make trade card
             return $worked;//$this->makeCard($res1, $amount, $res2);
         }else{

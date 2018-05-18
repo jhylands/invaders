@@ -42,7 +42,7 @@ class Resource{
      * @param $Code
      */
     function fromCode($Code){
-        $this->Code = $Code;
+        $this->Code = mysqli_real_escape_string($this->con,strtoupper($Code));
         $query = "SELECT * FROM resources WHERE Code='$Code'";
         $result = mysqli_query($this->con,$query);
         while($row = mysqli_fetch_array($result)){

@@ -1,11 +1,13 @@
-/* global THREE */
+/* global THREE,I */
 
 function LiberatorShip(bulletHandler){
     //inherits from ship class
     this.__proto__ = new Ship(bulletHandler);
     this.__loader = new THREE.ColladaLoader();
     this.monoPropellant = new MonoPropellant(new THREE.Vector3(0,20,0));
-    this.health=100;
+    this.explosion = new Explosion(20);
+    this.destroy =0;
+    this.health=3;
     /**
      * Function to store the collada object
      * @returns {Function}
@@ -49,14 +51,31 @@ function LiberatorShip(bulletHandler){
         }
     };
     this.update = function (){
-        if(this.bullets.hasHit(this.object,this.FRIEND)){
-            this.health-=5;
+        this.getHealth()
+        switch(this.destroy){
+            case 1:
+            this.destructAnimation();
+            break;
+        case 0:
+            if(this.bullets.hasHit(this.object,this.FRIEND)){
+                //update health locally 
+                this.health-=5;
+                //update database health
+                $.ajax('i/do/TakeHit.php');
+                //update global state syncronisation
+                I.update();
+                //check if health is now bellow zero!
+                if(this.health<=0){
+                    this.blowUp();
+                }
+            }
+            break;
         }
         //assumed to be run before keyboard update
         
         this.monoPropellant.update();
     };
-    this.getHealth = function (){return this.health;};
+    this.getHealth = function (){this.health=I.shipInfo._ship.Shielding;return this.health;};
     this.create = function (callback){
         var self = this;
         var onLoad = function(collada){self.storeCollada(collada);callback();};
@@ -71,6 +90,7 @@ function LiberatorShip(bulletHandler){
             }
         );
     };
+
     this.setPosition = function (position){
         this.object.position.copy(position);
         this.offset = position;
@@ -80,9 +100,9 @@ function LiberatorShip(bulletHandler){
         this.monoPropellant.setEnabled(false);
     };
     
-    this.remove = function(){
+    /*this.remove = function(){
         return this.health<=0;
-    };
+    };*/
     /**
      * 
      * @param {THREE.Vector3} direction
@@ -100,6 +120,27 @@ function LiberatorShip(bulletHandler){
      */
     this.powerMove = function(direction,power){
         console.warn('LiberatorShip.powerMove() Remains unimplemented');
+    };
+    
+    this.blowUp = function(){
+        this.destroy = 1;
+        this.explosion.reSet();
+        //console.log('alien down');
+        var location = this.object.position;
+        this.remove(this.object);
+        this.explosionO = this.explosion.getObject();
+        this.explosionO.position.copy(location);
+        this.add(this.explosionO);
+        //var self=this;
+        var self=this;
+        setTimeout(function(){self.endAnimation();},2000);
+    }
+    this.destructAnimation = function(){
+        this.explosion.update();
+    };
+    this.endAnimation = function(){
+        this.remove(this.explosionO);
+        this.destroy=2;
     };
 }
 

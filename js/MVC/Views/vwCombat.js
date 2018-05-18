@@ -21,7 +21,7 @@ function vwCombat(){
     
     this.displayWinScreen = function(bk2oFunction){
         //won=true;
-        this.elm('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewareded 100 Helium for your efforts</p><br /><input id='bk2o' type='button' value='Back to orbit' />";
+        this.elm('infoBox').innerHTML = "<h1>You have won!</h1><p>You have been rewarded 100 Helium for your efforts</p><br /><input id='bk2o' type='button' value='Back to orbit' />";
         this.elm('infoBoxParent').hidden = false;
         //add eventhandlers
         this.elm('bk2o').addEventListener("click",bk2oFunction);
@@ -29,6 +29,12 @@ function vwCombat(){
         /*$.ajax({url:"scripts/combat/won.php",post:"data:shipInfo"}).done(function(resp){
             //take the responce and put it in the class box
             this.elm("console").innerHTML = this.elm("console").innerHTML + '<br />' +  resp;});*/
+    };
+    this.displayFailScreen = function(bk2oFunction){
+        this.elm('infoBox').innerHTML = "<h1>You have lost!</h1><p>You have been destroyed</p><br /><input id='bk2o' type='button' value='Back to orbit' />";
+        this.elm('infoBoxParent').hidden = false;
+        //add eventhandlers
+        this.elm('bk2o').addEventListener("click",bk2oFunction);
     };
     this.setHealth = function (health){
         this.elm('health').style.width = (250*health/100) + "px";

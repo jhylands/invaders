@@ -34,6 +34,8 @@ function AlienFleet(bulletHandler){
                         //alien.children[1].name = aliens.children.length;
                         alien.makeAsFleet(alienMesh.clone(),function(ship){self.addShip(ship);},function(ship){self.removeShip(ship);});
                         alien.setPosition(new THREE.Vector3(this.SPACING*z,0,this.SPACING*x-10));
+                        //set the size of the explosion to be mostly small with a small chance of being big
+                        alien.explosion = new Explosion(this.getExplosionSize());
                         //alien.velocity = new THREE.Vector3(0,0,0);
                         //add the alian to the __scene
                         aliens.add(alien.getThree());
@@ -57,7 +59,17 @@ function AlienFleet(bulletHandler){
                 this.alienParity *=-1;
             }
         };
-        
+    /**
+     * Function to scale the size of the explosion based on a random number from 0 to 1
+     * If rnd is between 0 and .9 it is scalled such that 0 yeilds a 1 and .9 yeilds a 2
+     * otherwise rnd is scalled so a .9 yeilds a 2 and a .99 yeilds 10
+     * @returns {Number}
+
+     */     
+    this.getExplosionSize = function(){
+        var rnd = Math.random();
+        return rnd<=.9?1+rnd/.9:10/.99*rnd+2-9/.99;  
+    };
     this.updateCamera = function (){
             //update a single camera from the aliens 
                                     for(x=0;x<alians.length;x++){

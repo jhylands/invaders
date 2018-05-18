@@ -1,9 +1,9 @@
-/* global SPE, THREE */
+/* global SPE, THREE, contentManager */
 
 function Explosion(size){
         this.group = new SPE.Group( {
                 texture: {
-                        value: THREE.ImageUtils.loadTexture( 'images/sprite-explosion2.png' ),
+                        value: contentManager.getTexture( 'sprite-explosion2','png' ),
                         frames: new THREE.Vector2( 5, 5 ),
                         loop: 1
                 },
@@ -15,7 +15,7 @@ function Explosion(size){
         } );
         this.shockwaveGroup = new SPE.Group( {
                 texture: {
-                        value: THREE.ImageUtils.loadTexture( 'images/smokeparticle.png' ),
+                        value: contentManager.getTexture( 'smokeparticle','png' ),
                 },
                 depthTest: false,
                 depthWrite: true,
@@ -45,7 +45,7 @@ function Explosion(size){
                         angle: Math.PI * 0.5,
                         static: true
                 },
-                size: { value: 2 },
+                size: { value: 2*size },
                 color: {
                         value: [
                                 new THREE.Color( 0.4, 0.2, 0.1 ),
@@ -55,13 +55,13 @@ function Explosion(size){
                 opacity: { value: [0.5, 0.2, 0] }
         }),
         this.debris = new SPE.Emitter( {
-                particleCount: 100,
+                particleCount: 1,//00*Math.round(Math.sqrt(size)),
                 type: SPE.distributions.SPHERE,
                 position: {
                         radius: 0.1,
                 },
                 maxAge: {
-                        value: 2
+                        value: 2*size
                 },
                 // duration: 2,
                 activeMultiplier: 40,
@@ -75,7 +75,7 @@ function Explosion(size){
                 },
                 size: { value: 2 },
                 drag: {
-                        value: 1
+                        value: 1/size
                 },
                 color: {
                         value: [
@@ -102,7 +102,7 @@ function Explosion(size){
                         spread: new THREE.Vector3(5,5,5)
                         
                 },
-                size: { value: [20, 100] },
+                size: { value: [20*size, 100*size] },
                 color: {
                         value: [
                                 new THREE.Color( 0.5, 0.1, 0.05 ),

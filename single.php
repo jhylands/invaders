@@ -1,25 +1,37 @@
 <html>
 <head>
 <?php
-session_start();
+    include 'scripts/autoload.php';
+    include 'scripts/sql.php';
+    include 'scripts/shipInfo.php';
     //check that the user has logged in
     if(!isset($_SESSION['User'])){
         echo "<script>window.location.replace('login.php');</script>";
     }
-    include 'scripts/sql.php';
-    include 'scripts/shipInfo.php';
-
     $ship = new Ship($con,$ShipCode);
 ?>
-    <title>Anviders</title>
-    <style id="style"></style>
+    <title>Avinders</title>
+    <style id="style">
+    </style>
+    <style>body{
+            background-color: black;
+        }
+        #loading{
+                position: absolute;
+    top: calc(50% - 200px);
+    left: calc(50% - 350px);
+    font-size: 200px;
+    color: white;
+        }</style>
  <!-- include javascript libraries -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-<script src="js/three(80).js"></script>
-<script src="js/THREEx.KeyboardState.js"></script>
+<script src="js/three/80.min.js"></script>
+<script src="js/THREEx.KeyboardState.min.js"></script>
 <script src="js/jsInclude.php"></script>
+<script src="i/get/startingPack.php"></script>
 <script src="js/ColladaLoader.js"></script>
 <script src='js/SPE.min.js'></script>
+<script src="js/math.min.js"></script>
 <script>
     //DATA definitions
     //list of page urls, indexed by id
@@ -30,9 +42,8 @@ session_start();
                             requestAnimationFrame(render);
                     }
                 }; 
-    //need an asset manager
-    //need a method for updating information about where the user is
-    var place = <?php echo $ship->place->__toString(); ?>;
+ 
+    var contentManager = new ContentManager();
     var updatePlace = function(callback){
         $.ajax({url:'i/get/place.php'}).done(function(data){
             place = JSON.parse(data);
@@ -41,20 +52,33 @@ session_start();
             }
         });
     };
-   calculateOrbit = function(radialOffset,longitude ,latitude){
-            return new THREE.Vector3(
-                3*(place['Radius']-radialOffset)*Math.cos(longitude)*Math.cos(latitude),
-                3*(place['Radius']-radialOffset)*Math.sin(latitude),
-                3*(place['Radius']-radialOffset)*Math.sin(longitude)*Math.cos(latitude));
-	};
+   
 </script>
+<script type="application/x-glsl" id="sky-vertex">  
+varying vec2 vUV;
+
+void main() {  
+  vUV = uv;
+  vec4 pos = vec4(position, 1.0);
+  gl_Position = projectionMatrix * modelViewMatrix * pos;
+}
+</script>
+<script type="application/x-glsl" id="sky-fragment">  
+uniform sampler2D texture;  
+varying vec2 vUV;
+
+void main() {  
+  vec4 sample = texture2D(texture, vUV);
+  gl_FragColor = vec4(sample.xyz, sample.w);
+}
+</script> 
 <script>
 //inishiate page globals
 var render;
 var __renderer;
 var __scene;
 var __camera;
-
+var I;
 //create page file
 var pages = [];
 var timerSet=false;
@@ -65,8 +89,13 @@ function loadPage(toPageID,fromPageID){
     pages[toPageID].create(fromPageID);
 }
 
-
+//clarification of when window.onload fires
+//as opposed to document.onload which can fire before images, scripts ect window.onload only files once the required dependencies css ect have been loaded
 window.onload = function() {
+        I = new Information();
+        I.setup();
+    };
+function start(){
         pages = [new conOrbit(),new conMap(),new conCargo(),new conTrade(),new conShipYard(), new conCombat(),new conAchivement(),new conConsole()];
 	//define world
         __renderer = new THREE.WebGLRenderer();
@@ -112,11 +141,11 @@ window.onload = function() {
 		__renderer.render(__scene, __camera);
 		//Re-call the render function when the next frame is ready to be drawn
 		requestAnimationFrame(render);
-	}
+	};
 	
 	//import the page
 	loadPage(0,0);
-};
+}
 </script>
 </head>
 <body>
@@ -125,6 +154,6 @@ window.onload = function() {
 </div>
 <div id="overlay" style="position:absolute;top:0px;width:100%;left:0px;height:100%;z-index:5;">
 </div>
-
+    <div id="loading">Loading ...</div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* global THREE */
+/* global THREE, __scene */
 
 function AlienShip(bulletHandler){
     //inherits from ship class
@@ -51,8 +51,7 @@ function AlienShip(bulletHandler){
         this.remove=remove;
         this.add = add;
     };
-    this.remove = function(ship){__scene.remove(ship);};
-    this.add = function(ship){__scene.add(ship);};
+    
     this.setPosition = function(vector3){this.object.position.copy(vector3);};
     this.getPosition = function(){return this.object.position;};
     this.setParentPosition = function(position){this.parPos = position;};

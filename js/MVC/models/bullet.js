@@ -38,7 +38,7 @@ function BulletHandler(timeOut){
     //initiate bullet list
     this.bullets = [];
     this.firendlyFire = false;
-    //set timeout for bullets
+    //set timeout for bullets but this doesn't change anything because the reloadTime is now set by team
     this.timeOut = timeOut;
     //set max fire rate
     this.canShoot = {'AmIHerer':function(){return 'yes';}};

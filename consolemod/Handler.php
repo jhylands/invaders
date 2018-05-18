@@ -1,5 +1,5 @@
 <?php
-
+//NOMOD!
 /**
  * Abstract class Handler that handles command input
  *

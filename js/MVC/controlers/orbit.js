@@ -1,8 +1,11 @@
-/* global __scene, place */
+/* global __scene, __camera, THREE, I */
 
 //orbit class file
 //planet-centric coordinates
- 
+/**
+ * Represents the orbit controler
+ * @class
+ */ 
 function conOrbit(){
         //inherits from page class
         this.__proto__ = new Page();
@@ -25,11 +28,16 @@ function conOrbit(){
         this.nextPage; //set to the id of the next page.
         
         
-	//function to create page from nothing
+	/**
+     * Function to create page from nothing
+     * @function 
+     * @memberOf conOrbit
+     * @param {Int}
+     */
 	this.create = function(from){
                 //update planet 
-                this.planet = place;
-            
+                this.planet = I.place;
+                this.threePlanet = I.place.getThree();
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:
@@ -67,6 +75,7 @@ function conOrbit(){
                 case 1:
                     //Go to the map
                     console.log("going to map");
+                    __scene.remove(I.place.getThree());
                     __scene.remove(this.threeSpaceStation);
                     //temperarely
                     __scene.remove(this.threePlanetLights);
@@ -84,7 +93,7 @@ function conOrbit(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
-		this.updatePlanet();
+		__scene.add(this.threePlanet);
                 
                 //add the sun
                 this.sun = this.addSun();
@@ -98,7 +107,7 @@ function conOrbit(){
                 this.createUserInterface();
         };
         this.reConstruct = function(){
-            this.updatePlanet();
+            __scene.add(this.threePlanet);
             __scene.add(this.threeSpaceStation);
             __scene.add(this.sun);
             this.createUserInterface();
@@ -112,13 +121,13 @@ function conOrbit(){
         }
         this.createUserInterface = function(){
             var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink','consoleLink'];
-            var shipName = "Need to dynamically get ship name";
+            var shipName = I.shipInfo._ship.ShipName;
             htmlOverlay = '<div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;"><table style="width:100%;background-color:black;"><tr>    <td width="30%"><h2>Current ship: ';
             htmlOverlay += shipName;
             htmlOverlay += '</h2></td>	<td rowspan="2" width="20%">	<table style="width:100%;height:100%;">	<tr>		<td id="mapLink" class="clickable" >Map</td>		<td id="cargoLink" class="clickable">Cargo Bay</td>	</tr>	<tr>		<td id="tradeLink" class="clickable">Trade</td>		<td id="shipYardLink" class="clickable">Ship yard</td>	</tr>	<tr>		<td id="fightLink" class="clickable">Fight for ';
-            htmlOverlay += this.planet.Name;
+            htmlOverlay += this.planet.name;
             htmlOverlay += '</td>		<td id="achivementsLink" class="clickable">Achievements</td>	</tr>	</table>	</td>	<td rowspan="2" ><h2>Current temperature on ';
-            htmlOverlay += this.planet.Name;
+            htmlOverlay += this.planet.name;
             htmlOverlay += ' is ' + this.planet.Temperature;
             htmlOverlay += '&#8451</h2></td></tr><tr>	<td class="clickable" id="consoleLink"><h2>Goto Console</h2></td></tr></table></div>';
             document.getElementById('overlay').innerHTML = htmlOverlay;
@@ -138,18 +147,19 @@ function conOrbit(){
 	//function to update __scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;
-            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,10)));
-            this.threeSpaceStation.position.copy(this.calculateOrbit(3))
+            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
+            this.threeSpaceStation.position.copy(this.calculateOrbit(3));
             __camera.lookAt(this.threePlanet.position);
-            this.threePlanet.rotation.y += 0.0001;
-	}
+            //this.threePlanet.rotation.y += 0.001;
+            
+	};
 
 	this.calculateOrbit = function(radialOffset){
             return new THREE.Vector3(
-                3*(this.planet['Radius']-radialOffset)*Math.cos(this.orbitPos),
+                3*(this.planet.radius-radialOffset)*Math.cos(this.orbitPos),
                 0,
-                3*(this.planet['Radius']-radialOffset)*Math.sin(this.orbitPos));
-	}
+                3*(this.planet.radius-radialOffset)*Math.sin(this.orbitPos));
+	};
         
         this.reload = function(){
             //GENERATE THE FUNCTION TO BE PASSED TO THE REQUEST
@@ -170,6 +180,6 @@ function conOrbit(){
             var onready = this.onready;
             //get information from server about current planet, lightitng ect
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
-        }
+        };
 	//this.create();
 }

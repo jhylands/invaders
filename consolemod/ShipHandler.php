@@ -1,5 +1,6 @@
 <?php
-
+//COMMAND:ship;
+//HELP:ship [ name|shielding|location|switch [ship] ];
 /**
  * Description of ShipHandler
  *
@@ -14,34 +15,40 @@ class ShipHandler extends Handler{
         $this->ship = $ship;
     }
     
-    function handle($comand){
-        switch($comand[1]){
-            case 'sheilding':
-                return $this->getSheilding($comand);
+    function handle($command){
+        switch($command[1]){
+            case 'shielding':
+                return $this->getShielding($command);
                 break;
             case 'location':
-                return $this->getLocation($comand);
+                return $this->getLocation($command);
                 break;
             case 'switch':
-                return $this->switchShip($comand);
+                return $this->switchShip($command);
+                break;
+            case 'name':
+                return $this->getName($command);
                 break;
             case 'help':
-                return 'ship [ sheilding|location|switch [ship] ]';
+                return 'ship [ shielding|location|switch [ship] ]';
             default:
                 return 'for help: ship help';
         }
     }
     
-    function getSheilding($comand){
+    function getShielding($comand){
         return $this->ship->getShielding();
     }
     
     //function not defined
-    function getLocation($comand){
+    function getLocation($command){
         return $this->ship->place->getID();
     }
     
-    function switchShip($comand){
+    function switchShip($command){
         return "not yet possible";
+    }
+    function getName($command){
+        return $this->ship->getName();
     }
 }
