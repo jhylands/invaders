@@ -1,5 +1,5 @@
 <?php
-$QRY = "SELECT * FROM users,ships,shipTypes,locations,markets WHERE users.FID=ships.OwnerID AND locations.PlaceID=markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND users.FID=";
+$QRY = "SELECT * FROM OldUsers,ships,shipTypes,locations,markets WHERE OldUsers.FID=ships.OwnerID AND locations.PlaceID=markets.PlaceID AND locations.PlaceID=ships.Location AND ships.ShipType=shipTypes.ShipType AND users.FID=";
 //echo $QRY . $_COOKIE['User'];
 session_start();
 $FID = $_SESSION['User'];
