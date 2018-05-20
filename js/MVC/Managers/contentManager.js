@@ -34,7 +34,10 @@ function ContentManager(){
         var callback = this.textureCallbackGenerator(URL);
         //assumes the larger one will take a sizable amount of time longer
         var low = new THREE.ImageLoader().load('images/'+URL+'l'+extention,callback);
-        var high = new THREE.ImageLoader().load('images/'+URL+'h'+extention,callback);
+        if(I.quality!=0){
+            console.log(I.quality);
+            var high = new THREE.ImageLoader().load('images/'+URL+'h'+extention,callback);
+        }
         return this.content[URL];
     };
     

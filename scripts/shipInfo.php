@@ -8,5 +8,5 @@ if(!$result){
     die();
 }
 while($row = mysqli_fetch_array($result)){
-  $ShipCode = $row['ShipCode'];
+  $ShipCode = $row;
 }

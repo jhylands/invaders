@@ -16,7 +16,7 @@ function Information(){
             var __sun=parsing[0];
             var __ship=parsing[1];
             var __place=parsing[2];
-            self.quality = parsing[3];
+            self.quality = parseInt(parsing[3]);
             self.system.fromPackage(__sun);
             self.shipInfo = __ship;
             self.place = self.system.findFromChildren(__place);
@@ -32,7 +32,7 @@ function Information(){
             var __sun=parsing[0];
             var __ship=parsing[1];
             var __place=parsing[2];
-            self.quality = parsing[3];
+            self.quality = parseInt(parsing[3]);
             self.system.fromPackage(__sun);
             self.shipInfo = __ship;
             self.place = self.system.findFromChildren(__place);
