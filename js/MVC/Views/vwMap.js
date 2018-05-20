@@ -10,14 +10,14 @@ function vwMap(){
         this.addPlanetsToScene();
         this.createUserInterface();
         //inishiation of camera
-        __camera.position.set( I.place.OrbitalRadius,  0,I.place.radius*3 );
+        __camera.position.set( 200000,  0,0);
         this.x = 0;
         this.y = 0;
-        this.z = I.place.getRadius()*3;
+        this.z = 0;//I.place.getRadius()*3;
         //setup space station overlay
         //create user interface
         this.createUserInterface();
-        __camera.lookAt(new THREE.Vector3(0,0,0));
+        __camera.lookAt(new THREE.Vector3(0,0,75000));
     };
     this.update = function(){
         
@@ -33,7 +33,7 @@ function vwMap(){
             //give the planet a name so that when it is clicked we know what has been clicked
             planet.name = celestial.getID();
             //move the planet to the right location
-            planet.position.setZ(celestial.getOrbitalRadius());
+            planet.position.setZ((math.log(celestial.getOrbitalRadius())-11)*50000);
             __scene.add(planet);
         };
         
