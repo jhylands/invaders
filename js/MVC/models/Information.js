@@ -1,3 +1,5 @@
+/* global start */
+
 /**
  * Class to manage global information about the game.
  * @returns {I}
@@ -6,7 +8,6 @@ function Information(){
     this.system = new Celestial();
     this.place;//reference to the current position of the users current ship in the celctial tree
     this.ship;//the current ship
-    this.ship;
     
     this.setup = function(){
         var self=this;
@@ -15,6 +16,7 @@ function Information(){
             var __sun=parsing[0];
             var __ship=parsing[1];
             var __place=parsing[2];
+            self.quality = parsing[3];
             self.system.fromPackage(__sun);
             self.shipInfo = __ship;
             self.place = self.system.findFromChildren(__place);
@@ -30,6 +32,7 @@ function Information(){
             var __sun=parsing[0];
             var __ship=parsing[1];
             var __place=parsing[2];
+            self.quality = parsing[3];
             self.system.fromPackage(__sun);
             self.shipInfo = __ship;
             self.place = self.system.findFromChildren(__place);

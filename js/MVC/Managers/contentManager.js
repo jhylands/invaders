@@ -22,9 +22,7 @@ function ContentManager(){
         if(bit){
             extention = "." + extention;
         }else{
-            var extention = '.jpg';
-        
-            
+            extention = '.jpg';
         }
         //check if resource already exists in cache
         if(this.content[URL]){
