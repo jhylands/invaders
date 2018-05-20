@@ -1,5 +1,5 @@
-/* global THREE, __camera, __scene, I, ContentManager, contentManager */
-Document.prototype.createElementFromString = function (str) {
+/* global THREE, __camera, __scene, I, ContentManager, contentManager , DOMParser*/
+document.prototype.createElementFromString = function (str) {
     const element = new DOMParser().parseFromString(str, 'text/html');
     const child = element.documentElement.querySelector('body').firstChild;
     return child;
@@ -22,7 +22,7 @@ function makeClickHandler(callback){
     };
 }
 
-calculateOrbit = function(radialOffset,longitude ,latitude){
+var calculateOrbit = function(radialOffset,longitude ,latitude){
             return new THREE.Vector3(
                 3*(I.place.getRadius()-radialOffset)*Math.cos(longitude)*Math.cos(latitude),
                 3*(I.place.getRadius()-radialOffset)*Math.sin(latitude),
@@ -67,7 +67,7 @@ function makeSkyBox(){
           fragmentShader: document.getElementById('sky-fragment').textContent
         });
 
-        skyBox = new THREE.Mesh(geometry, material);  
+        var skyBox = new THREE.Mesh(geometry, material);  
         skyBox.scale.set(-1, 1, 1);  
         skyBox.rotation.set(0,Math.PI/2,0); //rotated to make poping of images less defined
         skyBox.eulerOrder = 'XZY';  
