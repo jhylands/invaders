@@ -17,3 +17,6 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_haskell_checkers = ['hlint', 'ghc_mod']
+
+
+nmap <F8> :TagbarToggle<CR>
