@@ -1,19 +1,26 @@
 function Channel(){
-    this.buyRe;
-    this.buyRa;
-    this.sellRa;
-    this.sellRe;
+    this.buy;
+    this.sell;
+    this.rate;
     
     this.setFromObject = function(object){
-        this.buyRe = new Resource(object.buy[0]);
-        this.buyRa = object.buy[1];
+        this.buy = new Resource(parseInt(object.buy));
         
-        this.sellRe = new Resource(object.sell[0]);
-        this.sellRa = object.sell[1];
+        this.sell = new Resource(parseInt(object.sell));
+        this.rate = parseFloat(object.rate);
+        return this;
     };
     
-    this.getSellResource = function(){return this.sellRe;};
-    this.getBuyResource = function(){return this.buyRe;};
-    this.getRate = function(){return this.sellRa;};
+    this.setFromIDs = function(buy,sell,rate){
+        this.buy = new Resource(buy);
+        this.sell = new Resource(sell);
+        this.rate = rate;
+        return this;
+    };
+    
+    this.getSellResource = function(){return this.sell;};
+    this.getBuyResource = function(){return this.buy;};
+    this.getRate = function(){return this.rate;};
     
 }
+

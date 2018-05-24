@@ -1,4 +1,4 @@
-/* global __renderer, __scene, place, THREE, __camera */
+/* global __renderer, __scene, THREE, __camera, I */
 
 //battles class file
 //__scene-centric coordinates
@@ -15,9 +15,9 @@ function conCombat(){
         this.animation;
 
         this.eventHandlers =[];
-        this.bullets = new BulletHandler(5000);
+        this.bullets = new BulletHandler(5000);//the 5000 doesn't get used
        
-        this.dificulty = 0.001;
+        this.dificulty = 0.01;
         this.Crotation = deg(-80);
         this.orbitPos = Math.PI/2;
         this.thi = 0;
@@ -41,10 +41,14 @@ function conCombat(){
             this.Crotation = deg(-80);
             this.dead=false;
             
+            I.update();
                 //switch based on where the page is coming from
                 switch(from){
                     case 0:
                         //page has been loaded by orbit
+                        this.constructFirst();
+                        break;
+                    case 7:
                         this.constructFirst();
                         break;
                         
@@ -54,6 +58,7 @@ function conCombat(){
                 this.onready(this.id);
 	};
         this.destroy = function(to){
+            this.destructor();
             //switch based on who the page is going to next
             switch(to){
             }
@@ -61,6 +66,8 @@ function conCombat(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 this.findPlanet();
+                //create user interface
+                this.view.createUserInterface(function(){self.backToOrbit();});
                 this.won=false;
                 //planet should already exist
 		//lighting should already be set up
@@ -69,8 +76,12 @@ function conCombat(){
                 this.thi=deg(20);
                 this.orbitPos=deg(180);
                 //add spaceship
-                this.threeShip = new THREE.Mesh(new THREE.CubeGeometry(1,1),new THREE.MeshBasicMaterial());
-                this.loadLib();
+                if (!this.threeShip){
+                    this.threeShip = new THREE.Mesh(new THREE.CubeGeometry(1,1),new THREE.MeshBasicMaterial());
+                    this.loadLib();
+                }else{
+                    this.linkShip(this.ship);
+                }
                 
                 var self = this;
                 this.animation = new CombatAnimation(this.threeShip.position,this.threePlanet.position,function(){self.makeChanger(self,0)();});
@@ -81,8 +92,7 @@ function conCombat(){
                 this.alienFleet = new AlienFleet(this.bullets);
                 this.alienFleet.setPosition(this.calculateOrbit(0).add(new THREE.Vector3(20,0,0)));
                 __scene.add(this.alienFleet.getThree());
-                //create user interface
-                this.view.createUserInterface(function(){self.backToOrbit();});
+                
         };
         //create a closure containing a reference to this class and the index of the page to be loaded in
         this.makeChanger = function(page,nextPageID){
@@ -94,10 +104,10 @@ function conCombat(){
                 locPage.nextPage = locNextPage; 
             };
         };
-        this.reload = function(){
+        /*this.reload = function(){
             //GENERATE THE FUNCTION TO BE PASSED TO THE REQUEST
             //create planet closure for access in the anonomous function passed to the http request
-            var __planet = place;
+            
             //create id closure
             var __id = this.id;
             var funcDone = function(data){
@@ -113,7 +123,7 @@ function conCombat(){
             var onready = this.onready;
             //get information from server about current planet, lightitng ect
             $.ajax({url:"pages/orbit.php",post:"data:shipInfo"}).done(funcDone);
-        };
+        };*/
 
         //CREATORS
         this.loadLib = function(){
@@ -148,17 +158,22 @@ function conCombat(){
                 if(this.alienFleet.defeated() && !this.won){
                     this.won=true;
                     var _self=this;
+                    $.ajax('i/do/won.php');
                     this.view.displayWinScreen(function(){_self.backToOrbit();}); 
                 }
+                if(this.ship.getHealth()<1 && ! this.dead){
+                    this.dead=true;
+                    var _self=this;
+                    this.view.displayFailScreen(function(){_self.backToOrbit();});
+                }
                 //detect collisions
-                //this.detectCollisions();
+                //collision detection done by bullets now
             }
         };
         //function to handle keyboard events
 	this.keyboard= function(keyState){
             //need to check is game is active first
-            //MOVEMENT CONTROLLS
-            this.ship.keyboard(keyState);
+            
             //CAMERA MOVEMENT
             if(keyState.pressed("up")){
                 this.Crotation+=0.01;
@@ -168,11 +183,15 @@ function conCombat(){
             this.updateCameraPosition();
             //get the camera to look at the spaceship
             __camera.lookAt( this.threeShip.position);
-            //SHOOTING
-            if(keyState.pressed("space")){
-                if(!this.dead){
-                    this.start=true;//allow the aliens to start shooting
-                    document.getElementById('infoBoxParent').hidden = true;
+            if(this.ship.getHealth()>1){
+                //MOVEMENT CONTROLLS
+                this.ship.keyboard(keyState);
+                //SHOOTING
+                if(keyState.pressed("space")){
+                    if(!this.dead){
+                        this.start=true;//allow the aliens to start shooting
+                        document.getElementById('infoBoxParent').hidden = true;
+                    }
                 }
             }
 	};
@@ -184,7 +203,7 @@ function conCombat(){
         //DESTRUCTORS
         this.destructor = function(){
             __scene.remove(this.threeShip);
-            __scene.remove(this.aliens);
+            __scene.remove(this.alienFleet.getThree());
         };
         
         //CALCULATIONS

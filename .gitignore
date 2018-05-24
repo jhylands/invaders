@@ -1,4 +1,5 @@
-/nbproject/private/
 #ignore swap files
 *.swp
 *.swo
+#don't update images
+*.png

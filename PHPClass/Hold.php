@@ -34,12 +34,14 @@ class Hold{
     
     /**
      * Drop resource from cargo 
+     * WARNING
+     * If this function doesn't work check SQL permissions it requies the permission to delete
      * @param type $resource
      * @return success
      */
     public function drop($resource){
-        $QRY = "DELETE FROM cargo WHERE HoldCode=" . $this->code . " AND ResourceID=" . $resource->getID ;
-        return mysqli_query($this->link, $QRY);
+        //$QRY = "DELETE FROM cargo WHERE HoldCode='" . $this->code . "' AND ResourceID='" . $resource->getID() ."'" ;
+        return $this->set($resource,0);
     }
     
     /**
@@ -64,7 +66,9 @@ class Hold{
         $query = "UPDATE cargo SET cargo.Amount='$amount' WHERE cargo..HoldCode=" . $this->code . " AND cargo.ResourceID=$RID";
         //keep local value up to date
         $this->resources[$RID] = $amount;
-        return mysqli_query($this->link,$query);
+        $r = mysqli_query($this->link,$query);
+        $this->update();
+        return $r;
     }
     
     /**
@@ -83,7 +87,9 @@ class Hold{
         //echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
-        return mysqli_query($this->link,$query);
+        $r = mysqli_query($this->link,$query);
+        $this->update();
+        return $r;
     }
     
     /**

@@ -381,7 +381,7 @@ function update() {
 				//bullit human collisions
 				if(Collision(bullit[i].object.position,spaceShip.position,1) && health<5){
 				document.getElementById('die').play()
-				document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much sheilding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
+				document.getElementById('infoBox').innerHTML = "<h1>You have lost too much shielding!</h1><p>Your commander has ordered you to retreat as you have lost too much Shielding. It is military policy that you cannot fight with your shielding bellow 5%</p><br /><a href='orbit.php'><input type='button' value='Back to orbit' /></a>";
 				document.getElementById('infoBoxParent').hidden = false;
 				start= false;
 				dead=true;

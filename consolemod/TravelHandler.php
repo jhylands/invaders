@@ -1,10 +1,6 @@
 <?php
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+//COMMAND:travel;
+//HELP:Travel help not yet written;
 
 /**
  * Description of TravelHandler
@@ -29,7 +25,7 @@ class TravelHandler extends Handler{
                 return $this->_goto($comand);
                 break;
             case 'help':
-                return "trade [cost|goto] [place]";
+                return "travel [cost|goto] [place]";
         }
         return "For trade commands: trade help";
     }
@@ -55,7 +51,8 @@ class TravelHandler extends Handler{
         $place = new Place($this->con);
         $place->fromID($comand[2]);
         if($this->travel->tryMove($place)){
-            return "<PLCEUP />Traveled to :" . $place->getName();
+            $script = "<script>window.location.reload();</script>";
+            return $script . "Traveled to :" . $place->getName();
         }
         else{
             return "Not enough fuel";

@@ -29,7 +29,7 @@ include 'scripts/sql.php';
 //CREATE TABLES
 $i=0;
 // Create main table
-$QRY[$i++]="CREATE TABLE users(FID INT,Name TEXT, CurrentShip INT,Experiance INT, PRIMARY KEY (FID))";
+$QRY[$i++]="CREATE TABLE OldUsers(FID INT,Name TEXT, CurrentShip INT,Experiance INT, PRIMARY KEY (FID))";
 $QRY[$i++]="CREATE TABLE ships(ShipCode INT AUTO_INCREMENT, ShipType INT, ShipName TEXT, OwnerID INT, Location INT, Shielding INT, HoldCode INT, IventoryCode INT, PRIMARY KEY (ShipCode))";
 $QRY[$i++]="CREATE TABLE shipTypes(shipType INT AUTO_INCREMENT, BuildCode TEXT, MetalCost INT, HeliumCost INT, UraniumCost INT, ElectricalCost INT, Storage INT, Battery INT, HeliumConsumption INT, UraniumConsumption INT, ElectricConsumption INT, SolarEffecientcy FLOAT,LaserPower INT , PlasmaPower INT, BombStorageCapacity INT, Shielding INT, PRIMARY KEY (ShipType))";
 $QRY[$i++]="CREATE TABLE locations(PlaceID INT AUTO_INCREMENT, PlaceName TEXT, OrbitalRadius FLOAT, InOrbitOf INT, Temperature FLOAT, SurfaceGravity FLOAT,Radius INT, Reflection CHAR(6), PRIMARY KEY (PlaceID))";
@@ -51,7 +51,7 @@ $QRY[$i++]="CREATE TABLE weaponsBay(BayID INT AUTO_INCREMENT,WeaponID INT, Ivent
 $QRY[$i++]="CREATE TABLE weaponUse(FireID INT AUTO_INCREMENT, Uses INT, WeaponID INT, PRIMARY KEY(FireID))";
 $QRY[$i++]="CREATE TABLE map(MapID INT AUTO_INCREMENT PRIMARY KEY, PlaceID INT,MapType TEXT,URL TEXT)";
 //ENTRIES IN TABLES
-$QRY[$i++]="INSERT INTO users (FID,Name,CurrentShip,Experiance) VALUES (738392784,'James Hylands',1,0)";
+$QRY[$i++]="INSERT INTO OldUsers (FID,Name,CurrentShip,Experiance) VALUES (738392784,'James Hylands',1,0)";
 $QRY[$i++]="INSERT INTO ships (ShipType,OwnerID,ShipName,Location,Shielding,HoldCode,IventoryCode) VALUES (1,738392784,'Liberator',3,100,1,1)";
 $QRY[$i++]="INSERT INTO hold(HoldCode) VALUES (1)";
 $QRY[$i++]="INSERT INTO weaponsIventory(IventoryCode) VALUES(1)";

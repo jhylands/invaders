@@ -46,21 +46,25 @@ function conConsole(){
                             case 'clear':
                                     document.getElementById('console').innerHTML = "";
                                     break;
-                            case 'fight':
-                                    this.makeChanger(this,5)();
-                                    break;
-                            case 'exit':
-                                    this.makeChanger(this,0)();
-                                    break;
                     }
-                    $.ajax({url:"console.php?command="+command}).done(function(resp){
-                            if(resp.indexOf("PLCEUP")+1){
-                                updatePlace();
+                    self = this;
+                    $.ajax({url:"console.php?command="+command}).done(function(){return function(resp){
+                            //get function 
+                            var reg = /<script>(.*)<\/script>/g;
+                            var result = reg.exec(resp)
+                            if(result){
+                                var script = result[1]; //watch out for non-existant
+                                self.consoleScript = Function(script);
+                                self.consoleScript();
                             }
-                            //document.getElementById("console").innerHTML = document.getElementById("console").innerHTML.substr(0,document.getElementById("console").innerHTML.length-6);
-                            document.getElementById("console").innerHTML += resp + '<br /><br />';
-                            document.getElementById('console').scrollTop = document.getElementById('console').scrollHeight;
-                        });
+                            var console = document.getElementById("console");
+                            //handle if respose comes back after the user has exited the console
+                            if(console){
+                                console.innerHTML = console.innerHTML.substr(0,console.innerHTML.length-6);
+                                console.innerHTML += resp + '<br /><br />';
+                                console.scrollTop = document.getElementById('console').scrollHeight;
+                            }
+                        };}());
                     document.getElementById('writer').value="";
             }
         }else if(e.keyCode==38){
@@ -85,7 +89,7 @@ function conConsole(){
     };
     this.destroy = function(){/*All overlay information should be overwitten by next action*/};
     this.constructFromOrbit = function(){
-        var console = '<p id= "console" style="height:80%;max-height:80%;overflow:hidden;color:#F0F0F0;font-family: `Lucida Console`;font-size:18px;">Welcome name, Last login nowish"; ?><br /></p>';
+        var console = '<p id= "console" style="height:80%;max-height:80%;overflow:hidden;color:#F0F0F0;font-family: `Lucida Console`;font-size:18px;">Welcome name, Last login nowish"; ?><br />      </p>';
         var writer = '<div style="position:relative;bottom:30px;left:0px;width:100%;"><input id="writer" value="" tabindex="0" type="text"  style="width:100%;color:#F0F0F0;background-color:black;border:0;font-size:18pt;" autofocus/></div>';
         //create overlay
         this.makeSTDOverlay(console+writer);

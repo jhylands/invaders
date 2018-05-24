@@ -3,7 +3,7 @@
 function MonoPropellant(velocity){
     this.group = new SPE.Group( {
             texture: {
-                    value: THREE.ImageUtils.loadTexture( 'images/smokeparticle.png' ),
+                    value:  new THREE.ImageLoader().load( 'images/smokeparticle.png' ),
             },
             depthTest: true,
             depthWrite: true,

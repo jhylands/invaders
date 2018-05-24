@@ -56,8 +56,8 @@ class Ship{
         return $this->setPositionFromID($place->ID);
     }
     function getName(){
-        if($this->_ship['Name']){
-            return $this->_ship['Name'];
+        if($this->_ship['ShipName']){
+            return $this->_ship['ShipName'];
             
         }else{ 
             return 0;
@@ -73,6 +73,24 @@ class Ship{
     }
     function getShielding(){
         return $this->_ship['Shielding'];
+    }
+    function setShielding($value){
+        $query = "UPDATE ships SET Shielding='$value' WHERE ShipCode=$this->ShipCode";
+        return mysqli_query($this->con,$query);
+    }
+    /**
+     * Set value of resource in hold
+     * @param type $resource
+     * @param type $change
+     * @return success
+     */
+    function changeShielding($change){
+        $change = (INT) $change;
+        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '$change' WHERE ShipCode=$this->ShipCode"; 
+       //echo $query;
+        $r = mysqli_query($this->con,$query);
+        $this->update();
+        return $r;
     }
     function getBuildCode(){
         return $this->_ship['BuildCode'];

@@ -1,0 +1,5 @@
+#!/bin/bash
+rm include.js
+php jsinclude.php >> include.js
+python ../python/nodeConversion.py
+
