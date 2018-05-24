@@ -25,10 +25,7 @@ function vwMap(){
     };
     this.destroy = function(page){
         //testing that the remove is working
-        var num = __scene.children.length;
         __scene.remove(this.ambient);
-        if(__scene.children.length>=num){console.warn('object not removed');}
-        else{console.log('object removed');}
         for(var i=0;i<this.threePlanets.length;i++){
             __scene.remove(this.threePlanets[i]);
         }
