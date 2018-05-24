@@ -75,10 +75,10 @@ function conOrbit(){
                 case 1:
                     //Go to the map
                     console.log("going to map");
-                    __scene.remove(I.place.getThree());
+                    __scene.remove(this.threePlanet);
                     __scene.remove(this.threeSpaceStation);
                     //temperarely
-                    __scene.remove(this.threePlanetLights);
+                    //__scene.remove(this.threePlanetLights);
                     __scene.remove(this.sun);
                     break;
                 case 5:
@@ -93,7 +93,7 @@ function conOrbit(){
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
-		__scene.add(this.threePlanet);
+		        __scene.add(this.threePlanet);
                 
                 //add the sun
                 this.sun = this.addSun();
