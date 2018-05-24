@@ -1,5 +1,5 @@
 /* global THREE, __camera, __scene, I, ContentManager, contentManager , DOMParser*/
-document.prototype.createElementFromString = function (str) {
+document.__proto__.createElementFromString = function (str) {
     const element = new DOMParser().parseFromString(str, 'text/html');
     const child = element.documentElement.querySelector('body').firstChild;
     return child;
@@ -32,29 +32,6 @@ var calculateOrbit = function(radialOffset,longitude ,latitude){
 //--------------------------------------------------------------------------------
 //SKYBOX
 function makeSkyBox(){
-    /*
-	//var imagePrefix = "images/nebula-";
-        //var imagePrefix = "milkyway/GalaxyTex_";
-        var imagePrefix = "images/GalaxyTex-";
-        var directions  = ["yneg", "ypos", "xpos", "xneg", "zpos", "zneg"];
-	//var directions  = ["PositiveX", "NegativeX", "PositiveY", "NegativeY", "PositiveZ", "NegativeZ"];
-	var imageSuffix = ".png";
-	var skyGeometry = new THREE.CubeGeometry( 5000000, 5000000, 5000000 );
-	var imageURLs = [];
-	for (var i = 0; i < 6; i++)
-		imageURLs.push( imagePrefix + directions[i] + imageSuffix );
-	var textureCube = THREE.ImageUtils.loadTextureCube( imageURLs );
-	var shader = THREE.ShaderLib[ "cube" ];
-	shader.uniforms[ "tCube" ].value = textureCube;
-	var skyMaterial = new THREE.ShaderMaterial( {
-		fragmentShader: shader.fragmentShader,
-		vertexShader: shader.vertexShader,
-		uniforms: shader.uniforms,
-		depthWrite: false,
-		side: THREE.BackSide
-	} );
-	return new THREE.Mesh( skyGeometry, skyMaterial );
-        */
         //Credit to http://www.ianww.com/blog/2014/02/17/making-a-skydome-in-three-dot-js/
         var geometry = new THREE.SphereGeometry(5000000, 60, 40);  
         var uniforms = {  

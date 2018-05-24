@@ -1,6 +1,7 @@
 function vwMap(){
     this.__proto__ = new vw();
     this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
+    this.threePlanets=[];
     
     this.create = function(){
         //fucntion to handle the visual creation aspects from the conMap class
@@ -22,10 +23,20 @@ function vwMap(){
     this.update = function(){
         
     };
-
+    this.destroy = function(page){
+        //testing that the remove is working
+        var num = __scene.children.length;
+        __scene.remove(this.ambient);
+        if(__scene.children.length>=num){console.warn('object not removed');}
+        else{console.log('object removed');}
+        for(var i=0;i<this.threePlanets.length;i++){
+            __scene.remove(this.threePlanets[i]);
+        }
+    };
     /*
     Void function to add all the celestial bodies to the scene*/
     this.addPlanetsToScene = function(){
+        var vwMapObject = this;
         //create a curried function to add elements to the scene
         var planetAdder = function(celestial){
             if(!celestial.object){celestial.create();}
@@ -34,6 +45,7 @@ function vwMap(){
             planet.name = celestial.getID();
             //move the planet to the right location
             planet.position.setZ((math.log(celestial.getOrbitalRadius())-11)*50000);
+            vwMapObject.threePlanets.push(planet);
             __scene.add(planet);
         };
         
