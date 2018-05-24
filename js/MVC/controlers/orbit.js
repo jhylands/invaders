@@ -147,8 +147,8 @@ function conOrbit(){
 	//function to update __scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;
-            //__camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
-            this.threeSpaceStation.position.copy(this.calculateOrbit(3));
+            __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
+            this.threeSpaceStation.position.copy(this.calculateOrbit(3).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
             __camera.lookAt(this.threePlanet.position);
             //this.threePlanet.rotation.y += 0.001;
             
