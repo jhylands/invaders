@@ -5,9 +5,9 @@
  */
 
 class Hold{
-    private $link;
-    public function __construct($con,$holdCode) {
-        $this->link = $con;
+    private $db;
+    public function __construct($db,$holdCode) {
+        $this->db = $db;
         $this->code = $holdCode;
         $this->update();
     }
@@ -16,8 +16,8 @@ class Hold{
      * Update information for the database
      */
     function update(){
-        $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =$this->code";
-        $result = mysqli_query($this->link,$QRY);
+        $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =%d";
+        $result = $this->db->query($QRY,array($this->code));
         while($row = mysqli_fetch_array($result)){
                 $this->resources[$row['ResourceID']] = $row['Amount'];
         }
@@ -52,7 +52,7 @@ class Hold{
      */
     public function add($resource,$init){
         $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(" . $this->code . "," . $resource->getID() . "," . $init . ")";
-        return mysqli_query($this->link, $QRY);
+        return $this->db->query( $QRY);
     }
     
     /**
@@ -66,7 +66,7 @@ class Hold{
         $query = "UPDATE cargo SET cargo.Amount='$amount' WHERE cargo..HoldCode=" . $this->code . " AND cargo.ResourceID=$RID";
         //keep local value up to date
         $this->resources[$RID] = $amount;
-        $r = mysqli_query($this->link,$query);
+        $r = $this->db->query($query);
         $this->update();
         return $r;
     }
@@ -87,7 +87,7 @@ class Hold{
         //echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
-        $r = mysqli_query($this->link,$query);
+        $r = $this->db->query($query);
         $this->update();
         return $r;
     }
@@ -116,6 +116,6 @@ class Hold{
     private function checkExistance($resource){
         $RID = $resource->getID();
         $query = "SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID";
-        return mysqli_query($this->link, $query);
+        return $this->db->query( $query);
     }
 }
