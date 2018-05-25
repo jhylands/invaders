@@ -34,7 +34,7 @@ class Ship{
     }
     function _updateShip(){
         $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=%d";
-        $result = $db->query($QRY,[$this->ShipCode]);
+        $results = $db->query($QRY,[$this->ShipCode]);
         foreach($results as &$result){
                 $ship = $result;
         }

@@ -17,9 +17,9 @@ class Hold{
      */
     function update(){
         $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =%d";
-        $result = $this->db->query($QRY,array($this->code));
-        while($row = mysqli_fetch_array($result)){
-                $this->resources[$row['ResourceID']] = $row['Amount'];
+        $results = $this->db->query($QRY,array($this->code));
+        foreach($results as &$result){
+                $this->resources[$result['ResourceID']] = $result['Amount'];
         }
     }
     
@@ -51,8 +51,8 @@ class Hold{
      * @return success
      */
     public function add($resource,$init){
-        $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(" . $this->code . "," . $resource->getID() . "," . $init . ")";
-        return $this->db->query( $QRY);
+        $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(%d,%d,%f)";
+        return $this->db->query( $QRY , [ $this->code , $resource->getID() ,$init]);
     }
     
     /**
@@ -63,10 +63,10 @@ class Hold{
      */
     public function set($resource,$amount){
         $RID =$resource->getID();
-        $query = "UPDATE cargo SET cargo.Amount='$amount' WHERE cargo..HoldCode=" . $this->code . " AND cargo.ResourceID=$RID";
+        $query = "UPDATE cargo SET cargo.Amount='%f' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d";
         //keep local value up to date
         $this->resources[$RID] = $amount;
-        $r = $this->db->query($query);
+        $r = $this->db->query($query,[$amount,$this->code,$RID]);
         $this->update();
         return $r;
     }
@@ -80,14 +80,19 @@ class Hold{
     function change($resource,$change){
         $RID =$resource->getID();
         if($this->checkExistance($resource)){
-           $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '$change' WHERE cargo.HoldCode=" . $this->code . " AND cargo.ResourceID=$RID"; 
+           $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '%f' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d"; 
+            $r = $this->db->query($query,[$change,$this->code,$RID]);
         }else{
-            $query = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values($this->code,$RID,$change)";
+            $the_cargo = array(
+                'HoldCode'   =>$this->code ,
+                'ResourceID' =>$RID        ,
+                'Amount'     =>$change     
+            );
+            $r = $this->db->insert('cargo',$the_cargo);
         }
         //echo $query;
         //keep local value up to date
         $this->resources[$RID] += $change;
-        $r = $this->db->query($query);
         $this->update();
         return $r;
     }
@@ -115,7 +120,7 @@ class Hold{
      */
     private function checkExistance($resource){
         $RID = $resource->getID();
-        $query = "SELECT HoldCode FROM cargo WHERE HoldCode=$this->code AND ResourceID=$RID";
-        return $this->db->query( $query);
+        $query = "SELECT HoldCode FROM cargo WHERE HoldCode=%d AND ResourceID=%d";
+        return $this->db->query( $query,[$this->code,$RID]);
     }
 }

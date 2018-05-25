@@ -18,7 +18,7 @@ class Resource{
     function fromID($ID){
         $this->ID = $ID;
         $query = "SELECT * FROM resources WHERE ResourceID=%d";
-        $result = $db->query($query,[$ID]);
+        $results = $db->query($query,[$ID]);
         foreach($results as &$result){
                 $this->Name = $result['Name'];
                 $this->Code = $result['Code'];
@@ -31,7 +31,7 @@ class Resource{
     function fromName($Name){
         $this->Name = $Name;
         $query = "SELECT * FROM resources WHERE Name='%s'";
-        $result = $db->query($query,[$name]);
+        $results = $db->query($query,[$name]);
         foreach($results as &$result){
                 $this->ID = $result['ResourceID'];
                 $this->Code = $result['Code'];
@@ -44,7 +44,7 @@ class Resource{
     function fromCode($Code){
         $this->Code = mysqli_real_escape_string($this->db,strtoupper($Code));
         $query = "SELECT * FROM resources WHERE Code='%s'";
-        $result = $db->query($query,[$Code]);
+        $results = $db->query($query,[$Code]);
         foreach($results as &$result){
                 $this->ID = $result['ResourceID'];
                 $this->Name = $result['Name'];
