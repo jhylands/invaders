@@ -17,11 +17,11 @@ class Ship{
     
     function __construct($connection,$ShipCode){
         //assert ShipCode is int 
-        $this->con = $connection;
+        $this->db = $connection;
         $this->ShipCode = $ShipCode;
         $this->_updateShip();
         $this->hold = new Hold($connection, $this->_ship['HoldCode']);
-        $this->place = new Place($this->con);
+        $this->place = new Place($this->db);
         $this->update();
     }
     function __toString(){
@@ -33,10 +33,10 @@ class Ship{
         $this->_updatePosition();
     }
     function _updateShip(){
-        $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=$this->ShipCode";
-        $result = mysqli_query($this->con,$QRY);
-        while($row = mysqli_fetch_array($result)){
-                $ship = $row;
+        $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=%d";
+        $result = $db->query($QRY,[$this->ShipCode]);
+        foreach($results as &$result){
+                $ship = $result;
         }
         $this->_ship = $ship;
     }
@@ -49,8 +49,8 @@ class Ship{
     //getPosition depreshiated to $this->place->ID
     //setPosition depreshiated to setPositionFromID
     function setPositionFromID($placeID){
-        $query = "UPDATE ships SET Location=$placeID WHERE ShipCode=$this->ShipCode";
-        return mysqli_query($this->con,$query);
+        $query = "UPDATE ships SET Location=%d WHERE ShipCode=%d";
+        return $db->query($query,[$placeID,$this->ShipCode]);
     }
     function setPositionFromPlace($place){
         return $this->setPositionFromID($place->ID);
@@ -68,15 +68,15 @@ class Ship{
     }
     //security floor
     function setName($name){
-        $query = "UPDATE ships SET Name='$name' WHERE ShipCode=$this->ShipCode";
-        return mysqli_query($this->con,$query);
+        $query = "UPDATE ships SET Name='%s' WHERE ShipCode=%d";
+        return $db->query($query,[$name,$this->ShipCode]);
     }
     function getShielding(){
         return $this->_ship['Shielding'];
     }
     function setShielding($value){
-        $query = "UPDATE ships SET Shielding='$value' WHERE ShipCode=$this->ShipCode";
-        return mysqli_query($this->con,$query);
+        $query = "UPDATE ships SET Shielding='%s' WHERE ShipCode=%s";
+        return $db->query($query,[$value,$this->ShipCode]);
     }
     /**
      * Set value of resource in hold
@@ -86,9 +86,9 @@ class Ship{
      */
     function changeShielding($change){
         $change = (INT) $change;
-        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '$change' WHERE ShipCode=$this->ShipCode"; 
+        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '%s' WHERE ShipCode=%d"; 
        //echo $query;
-        $r = mysqli_query($this->con,$query);
+        $r = $db->query($query,[$change,$this->ShipCode]);
         $this->update();
         return $r;
     }

@@ -6,7 +6,7 @@ class Trade{
     private $ship;
 
     function __construct($connection,$ship) {
-        $this->con = $connection;
+        $this->db = $connection;
         $this->ship = $ship;
     }
     
@@ -53,13 +53,14 @@ class Trade{
      * @return success
      */
     private function makeCard($res1,$amount,$res2){
-        $QRY = "INSERT INTO trades (ShipCode,ResourceSold,ResourceBought,MarketID,Amount) values(";
-        $QRY.= $this->ship->getCode() . ",";
-        $QRY.= $res1->getID() . ",";
-        $QRY.= $res2->getID() . ",";
-        $QRY.= $this->ship->place->market->getID() . ",";
-        $QRY.= $amount . ")";
-        return mysqli_query($this->con, $QRY);
+        $QRY = "INSERT INTO trades (ShipCode,ResourceSold,ResourceBought,MarketID,Amount) values(%d,%d,%d,%d,%f)";
+        return $db->query( $QRY,[
+            $this->ship->getCode(),
+            $res1->getID(),
+            $res2->getID(),
+            $this->ship->place->market->getID(),
+            $amount
+        ]);
     }
     
     //SHORTHANDS

@@ -4,34 +4,34 @@
  * Place Class to manage place objects
  */
 class Place{
-    function __construct($connect){
-        $this->con = $connect;
+    function __construct($db){
+        $this->db = $db;
     }
     function fromID($ID){
         //get information from the location table
         $this->ID=$ID;
-        $query = "SELECT * FROM locations WHERE PlaceID=$ID";
-        $result = mysqli_query($this->con,$query);
-        while($row = mysqli_fetch_array($result)){
-                $this->Name = $row['PlaceName'];
-                $this->URL = $row['PlanetURL'];
-                $this->OrbitalRadius = $row['OrbitalRadius'];
-                $this->InOrbitOf = $row['InOrbitOf'];
-                $this->Temperature = $row['Temperature'];
-                $this->SurfaceGravity = $row['SurfaceGravity'];
-                $this->Radius = $row['Radius'];
-                $this->Reflection = $row['Reflection'];
+        $query = "SELECT * FROM locations WHERE PlaceID=%d";//$ID
+        $results = $db->query($query,array($ID));
+        foreach($results as &$result){
+                $this->Name = $result['PlaceName'];
+                $this->URL = $result['PlanetURL'];
+                $this->OrbitalRadius = $result['OrbitalRadius'];
+                $this->InOrbitOf = $result['InOrbitOf'];
+                $this->Temperature = $result['Temperature'];
+                $this->SurfaceGravity = $result['SurfaceGravity'];
+                $this->Radius = $result['Radius'];
+                $this->Reflection = $result['Reflection'];
         }
         //get information from the map table
-        $query = "SELECT * FROM maps WHERE PlaceID=$ID";
-        $result = mysqli_query($this->con, $query);
-        while($row = mysqli_fetch_array($result)){
-            $this->Map[$row['MapType']] = $row['URL'];
+        $query = "SELECT * FROM maps WHERE PlaceID=%d";
+        $results = $db->query( $query,array($ID));
+        foreach($results as &$result){
+            $this->Map[$result['MapType']] = $result['URL'];
         }
-        $this->market = new Market($this->con,$this->ID);
+        $this->market = new Market($this->db,$this->ID);
     }
     function __toString() {
-        return json_encode(array_diff_key(get_object_vars($this),["con"=>1,"market"=>1]));
+        return json_encode(array_diff_key(get_object_vars($this),["db"=>1,"market"=>1]));
     }
     function eq($place){
         return $this->ID==$place->ID;
@@ -60,11 +60,11 @@ class Place{
      */
     function getChildrenIDs(){
         $ID = $this->getID();
-        $query = "SELECT PlaceID FROM locations WHERE InOrbitOf=$ID";
-        $result = mysqli_query($this->con,$query);
+        $query = "SELECT PlaceID FROM locations WHERE InOrbitOf=%d";
+        $results = $db->query($query,array($ID));
         $iDs = [];
-        while($row = mysqli_fetch_array($result)){
-            $iDs[] = $row['PlaceID'];
+        foreach($results as &$result){
+            $iDs[] = $result['PlaceID'];
         }
         return $iDs;
     }
@@ -76,7 +76,7 @@ class Place{
         $childrenIDs= $this->getChildrenIDs(); 
         $children = [];
         foreach ($childrenIDs as &$child){
-            $place = new Place($this->con);
+            $place = new Place($this->db);
             $place->fromID($child);
             $children[] = $place;
         }
