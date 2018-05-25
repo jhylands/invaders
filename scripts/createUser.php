@@ -4,15 +4,17 @@
 //add some initial cargo to the cargo table
 <?php 
 include 'scripts/sql.php';
-//get facebook ID and name from facebook
-//enter then into the users table
-mysqli_query($con,"INSERT INTO users (FID,Name) VALUES(" . $FID . ",'" . $name . "')");
+function createUser($FID,$name){
+        //get facebook ID and name from facebook
+        //enter then into the users table
+        $db->query("INSERT INTO users (FID,Name) VALUES(%d,'%s')",array($FID,$name));
+        $oldUserID = $db->lastId();
+        $db->query("INSERT INTO ships (ShipName,ShipType,UserID,Location,Shielding) VALUES('FirstShip',1,%d,3,100)",array($FID));
 
-mysqli_query($con,"INSERT INTO ships (ShipName,ShipType,UserID,Location,Shielding) VALUES('FirstShip',1," . $FID . ",3,100)");
-
-mysqli_query($con,"INSERT INTO hold");
-
-mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",1,500)");
-mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",2,500)");
-mysqli_query($con, "INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(" . $holdCode . ",3,500)");
-$result = mysqli_query($con,$QRY . $_SESSION['User']);
+        $db->query("INSERT INTO hold");
+        $HoldCode = $db->lastId();
+        for($i=1;$i<4;$i++){
+            $db->query("INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(%d,%d,500)",array($HoldCode,$i));
+        }
+        $result = $db->query($con,$QRY . $_SESSION['User']);
+}

@@ -30,3 +30,7 @@ if($e->email_act != 1){
   if(!$login){Redirect::to('login.php?err=There+was+a+problem+logging+you+in+automatically.');}
   //where the user goes just after login is in usersc/scripts/custom_login_script.php
 }
+
+//include a call to the scripts createUser.php
+include '../../scripts/createUser.php';
+createUser($FID,$name);
