@@ -9,10 +9,10 @@
  */
 class TravelHandler extends Handler{
     
-    function __construct($con,$ship) {
-        $this->con = $con;
+    function __construct($db,$ship) {
+        $this->db = $db;
         $this->ship = $ship;
-        $this->travel = new Travel($con,$ship);
+        $this->travel = new Travel($db,$ship);
     }
     
 
@@ -36,7 +36,7 @@ class TravelHandler extends Handler{
      * @return INT
      */
     function getCost($comand){
-        $place = new Place($this->con);
+        $place = new Place($this->db);
         $place->fromID($comand[2]);
         return $this->travel->getFuelReqTo($place);
     }
@@ -48,7 +48,7 @@ class TravelHandler extends Handler{
      * @return string
      */
     function _goto($comand){
-        $place = new Place($this->con);
+        $place = new Place($this->db);
         $place->fromID($comand[2]);
         if($this->travel->tryMove($place)){
             $script = "<script>window.location.reload();</script>";

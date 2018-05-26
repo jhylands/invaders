@@ -1,5 +1,4 @@
 <?php
-include 'scripts/sql.php';
 include 'scripts/shipInfo.php';
 
 //create ship object 

@@ -3,10 +3,10 @@
 //HELP:trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.;
 class TradeHandler extends Handler{
     
-    function __construct($con,$ship) {
-        $this->con = $con;
+    function __construct($db,$ship) {
+        $this->db = $db;
         $this->ship = $ship;
-        $this->trade = new Trade($con,$ship);
+        $this->trade = new Trade($db,$ship);
     }
 
     function handle($command){
@@ -39,8 +39,8 @@ class TradeHandler extends Handler{
         //command[3] should be what the user is selling
         //command[4] should be what the user is buying
         
-        $res1 = new Resource($this->con);
-        $res2 = new Resource($this->con);
+        $res1 = new Resource($this->db);
+        $res2 = new Resource($this->db);
         $ammount = $command[2];
         //commands need cleaning
         if($res1->fromCode($command[3]) && $res2->fromCode($command[4])){
@@ -67,8 +67,8 @@ class TradeHandler extends Handler{
         //command[1] = info
         //command[2] should be the first material
         //command[3] should be the second material
-        $res1 = new Resource($this->con);
-        $res2 = new Resource($this->con);
+        $res1 = new Resource($this->db);
+        $res2 = new Resource($this->db);
         //commands need cleaning
         if($res1->fromCode($command[2]) && $res2->fromCode($command[3])){
             $channel = $this->trade->getChannel($res1,$res2);

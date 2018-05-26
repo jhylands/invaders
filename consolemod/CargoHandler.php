@@ -5,8 +5,8 @@
  * Class to handle cargo comands
  */
 class CargoHadler extends Handler{
-    function __construct($con,$ship){
-        $this->con = $con;
+    function __construct($db,$ship){
+        $this->db = $db;
         $this->ship = $ship;
     }
     
@@ -30,7 +30,7 @@ class CargoHadler extends Handler{
      * @return Responce
      */
     function drop($command){
-        $resource = new Resource($this->con);
+        $resource = new Resource($this->db);
         //check resource code exists
         if(!$resource->fromCode($command[2])){return "Error bad resource code";}
         //check the user has any at all
@@ -49,7 +49,7 @@ class CargoHadler extends Handler{
         $response = "On this ship you have:<br />";
         $resources = $this->ship->hold->all();
         foreach($resources as $key=>$value){
-            $res = new Resource($this->con);
+            $res = new Resource($this->db);
             $res->fromID($key);
             $response.= $res->getName() . " : " . $value . "<br />";
         }

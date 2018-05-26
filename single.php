@@ -4,7 +4,6 @@
     include 'users/init.php';
     if (!securePage($_SERVER['PHP_SELF'])){die();} 
     include 'scripts/autoload.php';
-    include 'scripts/sql.php';
     include 'scripts/shipInfo.php';
     $ship = new Ship($con,$ShipCode);
 ?>
