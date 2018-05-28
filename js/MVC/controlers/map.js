@@ -24,7 +24,6 @@ function conMap(){
     this.nextPage; //set to the id of the next page.
     //planet should adhear to JS-Planet standard
 
-    this.threePlanets=[];
         
         
 	//function to create page from nothing
@@ -52,10 +51,7 @@ function conMap(){
         //this is called twice just before the error occures
         
         console.log("going to " + page + " see yo soon");
-        __scene.remove(this.ambient);
-        for(var i=0;i<this.threePlanets.length;i++){
-            __scene.remove(this.threePlanets[i]);
-        }
+        this.view.destroy(page);
         document.removeEventListener('mousedown',this.onDocumentMouseDown);
     };
 	this.keyboard= function(keyState){

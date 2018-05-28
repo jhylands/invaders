@@ -1,0 +1,147 @@
+[19-May-2018 23:00:35 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:35 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:35 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:35 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:35 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:35 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:35 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:35 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:42 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:42 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:42 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:42 Europe/London] PHP Notice:  Undefined index: id in /home/timepcou/public_html/i/do/drop.php on line 5
+[19-May-2018 23:00:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:49 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:49 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:49 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined index: buyRe in /home/timepcou/public_html/i/do/trade.php on line 5
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined index: sellRe in /home/timepcou/public_html/i/do/trade.php on line 7
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined index: ammount in /home/timepcou/public_html/i/do/trade.php on line 8
+[19-May-2018 23:00:49 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:56 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:56 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:56 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined index: to in /home/timepcou/public_html/i/do/travel.php on line 5
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined property: Place::$OrbitalRadius in /home/timepcou/public_html/PHPClass/Place.php on line 52
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[19-May-2018 23:00:56 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[19-May-2018 23:00:56 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:03 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:01:03 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:01:03 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:03 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:03 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:03 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:03 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[19-May-2018 23:01:03 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[19-May-2018 23:01:03 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[20-May-2018 13:09:21 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[20-May-2018 22:28:58 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[20-May-2018 22:29:06 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[20-May-2018 23:18:03 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[20-May-2018 23:18:21 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:39:02 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:39:15 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:39:35 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:40:17 Europe/London] PHP Notice:  Undefined index: id in /home/timepcou/public_html/i/do/drop.php on line 5
+[23-May-2018 16:40:22 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[23-May-2018 16:40:22 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[23-May-2018 16:40:26 Europe/London] PHP Notice:  Undefined index: to in /home/timepcou/public_html/i/do/travel.php on line 5
+[23-May-2018 16:40:26 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:40:32 Europe/London] PHP Notice:  Undefined index: buyRe in /home/timepcou/public_html/i/do/trade.php on line 5
+[23-May-2018 16:40:32 Europe/London] PHP Notice:  Undefined index: sellRe in /home/timepcou/public_html/i/do/trade.php on line 7
+[23-May-2018 16:40:32 Europe/London] PHP Notice:  Undefined index: ammount in /home/timepcou/public_html/i/do/trade.php on line 8
+[23-May-2018 16:40:32 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:40:36 Europe/London] PHP Notice:  Undefined index: buyRe in /home/timepcou/public_html/i/do/trade.php on line 5
+[23-May-2018 16:40:36 Europe/London] PHP Notice:  Undefined index: sellRe in /home/timepcou/public_html/i/do/trade.php on line 7
+[23-May-2018 16:40:36 Europe/London] PHP Notice:  Undefined index: ammount in /home/timepcou/public_html/i/do/trade.php on line 8
+[23-May-2018 16:40:36 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:40:40 Europe/London] PHP Notice:  Undefined index: buyRe in /home/timepcou/public_html/i/do/trade.php on line 5
+[23-May-2018 16:40:40 Europe/London] PHP Notice:  Undefined index: sellRe in /home/timepcou/public_html/i/do/trade.php on line 7
+[23-May-2018 16:40:40 Europe/London] PHP Notice:  Undefined index: ammount in /home/timepcou/public_html/i/do/trade.php on line 8
+[23-May-2018 16:40:40 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[23-May-2018 16:44:40 Europe/London] PHP Notice:  Undefined index: buyRe in /home/timepcou/public_html/i/do/trade.php on line 5
+[23-May-2018 16:44:40 Europe/London] PHP Notice:  Undefined index: sellRe in /home/timepcou/public_html/i/do/trade.php on line 7
+[23-May-2018 16:44:40 Europe/London] PHP Notice:  Undefined index: ammount in /home/timepcou/public_html/i/do/trade.php on line 8
+[23-May-2018 16:44:40 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:13:19 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:20:35 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:20:46 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:20:49 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:20:49 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 13:20:53 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:21:52 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:25:12 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:25:50 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:26:31 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:37:29 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:37:57 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:40:20 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:40:29 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:41:01 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:42:57 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:43:56 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:49:20 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:49:21 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:49:21 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:57:25 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 13:57:25 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:09:26 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:17:32 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:17:32 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 14:30:47 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:30:52 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:30:58 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:32:31 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:35:08 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:37:25 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:37:36 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:37:36 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 14:40:01 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:45:20 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:48:29 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:48:38 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:48:43 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:48:43 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 14:48:46 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:49:46 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 14:49:46 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 14:52:13 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 14:52:13 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:00:46 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:00:50 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:01:02 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:01:10 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:01:40 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:08:19 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:08:19 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:08:31 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:08:31 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:11:34 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:11:34 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:11:50 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:11:50 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:12:27 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:12:27 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:14:48 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:14:48 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[24-May-2018 15:15:04 Europe/London] PHP Notice:  Undefined property: Hold::$resources in /home/timepcou/public_html/PHPClass/Hold.php on line 32
+[24-May-2018 15:15:04 Europe/London] PHP Notice:  Undefined offset: 2 in /home/timepcou/public_html/PHPClass/Hold.php on line 89
+[28-May-2018 13:55:02 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:55:02 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:55:02 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:55:02 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/do/TakeHit.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
