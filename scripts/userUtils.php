@@ -3,7 +3,7 @@
 //Add their first ship to the ships table
 //add their ships hold to the hold table add add the id of that to the ships entry
 //add some initial cargo to the cargo table
-function createUser($db,$FID,$name){
+function INVADERScreateUser($db,$FID,$name){
         //get facebook ID and name from facebook
         //enter then into the users table
         try{
@@ -42,7 +42,7 @@ function createUser($db,$FID,$name){
     }
 }
 
-function deleteUser($db,$id){
+function INVADERSdeleteUser($db,$id){
     echo "<h1>id:$id</h1>";
     echo dump($db->query("SELECT * FROM ships WHERE OwnerID = ? ",[$id]));
     $HoldCode = $db->query("SELECT HoldCode FROM ships WHERE OwnerID = ?",array($id))->first()->HoldCode;
