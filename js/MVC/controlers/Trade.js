@@ -94,7 +94,7 @@ function conTrade(){
             var ammount = this.view.getBuyAmmount();
             if(this.view.getSellAmmount()/ammount == this.market.getRate(buyRe,sellRe)){
                 //do trade
-                $.ajax({url:'i/do/trade.php?buyRe=' + buyRe.getID() + "&sellRe=" + sellRe.getID() + "&ammount=" + ammount}).done(self.tradeCallback);
+                $.ajax({url:'http://timep.co.uk/i/do/trade.php?buyRe=' + buyRe.getID() + "&sellRe=" + sellRe.getID() + "&ammount=" + ammount}).done(self.tradeCallback);
             }else{
                 alert('Ammount boxes don\'t match');
             }

@@ -1,0 +1,42 @@
+[28-May-2018 13:39:05 Europe/London] PHP Warning:  include(/home/timepcou/public_html/PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:05 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:05 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 13:39:19 Europe/London] PHP Warning:  include(/home/timepcou/public_html/PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:19 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:19 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 13:39:21 Europe/London] PHP Warning:  include(/home/timepcou/public_html/PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:21 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:21 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 13:39:22 Europe/London] PHP Warning:  include(/home/timepcou/public_html/PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:22 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:22 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 13:39:39 Europe/London] PHP Warning:  include(/home/timepcou/public_html/PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:39 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:39:39 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 13:56:00 Europe/London] PHP Warning:  include(../PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:56:00 Europe/London] PHP Warning:  include(): Failed opening '../PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 13:56:00 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9
+[28-May-2018 14:32:45 Europe/London] PHP Warning:  include(/home/timepcou/public_html/invaders/../PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 14:32:45 Europe/London] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/invaders/../PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/scripts/autoload.php on line 5
+[28-May-2018 14:32:45 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/single.php:9
+Stack trace:
+#0 {main}
+  thrown in /home/timepcou/public_html/invaders/single.php on line 9

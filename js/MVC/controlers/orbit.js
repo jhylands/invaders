@@ -21,7 +21,7 @@ function conOrbit(){
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onPageReady
+        this.onready = onPageReady;
         
         //page changing handshake
         this.change = false; //set to true if request page change.
@@ -68,17 +68,17 @@ function conOrbit(){
                 //Notify that this function is ready to be run
                 this.ready = true;
                 this.onready(this.id);
-	}
+	};
         this.destroy = function(to){
             //switch based on who the page is going to next
             switch(to){
                 case 1:
                     //Go to the map
                     console.log("going to map");
-                    __scene.remove(I.place.getThree());
+                    __scene.remove(this.threePlanet);
                     __scene.remove(this.threeSpaceStation);
                     //temperarely
-                    __scene.remove(this.threePlanetLights);
+                    //__scene.remove(this.threePlanetLights);
                     __scene.remove(this.sun);
                     break;
                 case 5:
@@ -89,11 +89,11 @@ function conOrbit(){
                     document.getElementById('overlay').innerHTML = "";
                     break;
             }
-        }
+        };
         //function to construct the __scene if nothing has yet been constructed.
         this.constructFirst = function(){
                 //add any planets
-		__scene.add(this.threePlanet);
+		        __scene.add(this.threePlanet);
                 
                 //add the sun
                 this.sun = this.addSun();
@@ -118,11 +118,11 @@ function conOrbit(){
             __scene.add(this.threeSpaceStation);
             //create UI
             this.createUserInterface();
-        }
+        };
         this.createUserInterface = function(){
             var options = ['mapLink','cargoLink','tradeLink','shipYardLink','fightLink','achivementsLink','consoleLink'];
             var shipName = I.shipInfo._ship.ShipName;
-            htmlOverlay = '<div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;"><table style="width:100%;background-color:black;"><tr>    <td width="30%"><h2>Current ship: ';
+            var htmlOverlay = '<div style="position:absolute;top:80%;width:100%;left:0px;z-index:5;"><table style="width:100%;background-color:black;"><tr>    <td width="30%"><h2>Current ship: ';
             htmlOverlay += shipName;
             htmlOverlay += '</h2></td>	<td rowspan="2" width="20%">	<table style="width:100%;height:100%;">	<tr>		<td id="mapLink" class="clickable" >Map</td>		<td id="cargoLink" class="clickable">Cargo Bay</td>	</tr>	<tr>		<td id="tradeLink" class="clickable">Trade</td>		<td id="shipYardLink" class="clickable">Ship yard</td>	</tr>	<tr>		<td id="fightLink" class="clickable">Fight for ';
             htmlOverlay += this.planet.name;
@@ -134,21 +134,21 @@ function conOrbit(){
             document.getElementById('style').innerHTML = 'body{	background-color:black;	color:white;	font-size:80%;	}	.clickable:hover{	background-color:#0000A0;	color:#FFFFE0;	cursor:pointer; cursor:hand;	}';
             
             //add eventhandlers
-            for(i=0;i<options.length;i++){
+            for(var i=0;i<options.length;i++){
                 var func = this.makeChanger(this,i+1);
                 //console.log(func);
                 document.getElementById(options[i]).addEventListener("click", func);
             }
-        }
+        };
 	//function to handle keyboard events
 	this.keyboard= function(keyState){
 		//no keyboard events for orbit
-	}
+	};
 	//function to update __scene each frame
 	this.update = function(){
             //this.orbitPos+=0.00001;
             __camera.position.copy(this.calculateOrbit(0).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
-            this.threeSpaceStation.position.copy(this.calculateOrbit(3));
+            this.threeSpaceStation.position.copy(this.calculateOrbit(3).add(new THREE.Vector3(0,0,parseFloat(this.planet.radius))));
             __camera.lookAt(this.threePlanet.position);
             //this.threePlanet.rotation.y += 0.001;
             
