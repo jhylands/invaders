@@ -8,16 +8,34 @@ function createUser($db,$FID,$name){
         //enter then into the users table
         try{
         echo '<h1>incliding name now</h1>';
-        $a = array('FID'=>$FID,'Name'=>$name);
-        echo $db->insert('OldUsers',$a);
-        //echo $db->query("INSERT INTO OldUsers (FID,Name) VALUES(%d,'%s')",array($FID,$name));
-        echo "<h1>" . $db->lastId() . "</h1>";
-        echo $db->query("INSERT INTO ships (ShipName,ShipType,UserID,Location,Shielding) VALUES('FirstShip',1,%d,3,100)",array($FID));
+        //get the values for inclusion in db 
+        $shipCode=$db->query("Select ShipCode from ships order by ShipCode DESC limit 1")->first()->ShipCode+1;
+        $holdCode=$db->query("Select HoldCode from hold order by HoldCode DESC limit 1")->results()[0]->HoldCode+1;
+        echo "<br />ShipCode:$shipCode<br />";
+        echo "<br />HoldCode:$holdCode<br />";
+        
 
-        echo $db->query("INSERT INTO hold");
-        $HoldCode = $db->lastId();
+
+        $ship = array('FID'=>$FID,'Name'=>$name,'Experiance'=>0,'quality'=>1,'CurrentShip'=>$shipCode);
+        $db->insert('OldUsers',$ship);
+        $ship = array(
+            'ShipCode'=>$shipCode,
+            'ShipName'=>'FirstShip',
+            'ShipType'=>1          ,
+            'OwnerID'=> $FID        ,
+            'Location'=>3          ,
+            'Shielding'=>100,
+            'holdCode'=> $holdCode
+        );
+        if($db->insert('ships',$ship)){echo'ships(1)';}else{echo 'ships(0)';}
+        $db->insert('hold',['HoldCode'=>$holdCode]);
         for($i=1;$i<4;$i++){
-            echo $db->query("INSERT INTO Cargo (HoldCode,ResourceID,Amount) VALUES(%d,%d,500)",array($HoldCode,$i));
+            $hold= array(
+            'HoldCode'=>    $holdCode,
+            'ResourceID'=>  $i,
+            'Amount'=>      500
+             );
+            echo $db->insert("cargo",$hold);
         }
        echo '<h1>ending query</h1>'; 
 } catch (Exception $e) {
