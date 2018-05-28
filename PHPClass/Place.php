@@ -11,7 +11,7 @@ class Place{
         //get information from the location table
         $this->ID=$ID;
         $query = "SELECT * FROM locations WHERE PlaceID=%d";//$ID
-        $results = $db->query($query,array($ID));
+        $results = $this->db->query($query,array($ID));
         foreach($results as &$result){
                 $this->Name = $result['PlaceName'];
                 $this->URL = $result['PlanetURL'];
@@ -24,7 +24,7 @@ class Place{
         }
         //get information from the map table
         $query = "SELECT * FROM maps WHERE PlaceID=%d";
-        $results = $db->query( $query,array($ID));
+        $results = $this->db->query( $query,array($ID));
         foreach($results as &$result){
             $this->Map[$result['MapType']] = $result['URL'];
         }
@@ -61,7 +61,7 @@ class Place{
     function getChildrenIDs(){
         $ID = $this->getID();
         $query = "SELECT PlaceID FROM locations WHERE InOrbitOf=%d";
-        $results = $db->query($query,array($ID));
+        $results = $this->db->query($query,array($ID));
         $iDs = [];
         foreach($results as &$result){
             $iDs[] = $result['PlaceID'];
