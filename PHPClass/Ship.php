@@ -33,7 +33,7 @@ class Ship{
         $this->_updatePosition();
     }
     function _updateShip(){
-        $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=%d";
+        $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=?";
         $this->_ship = $this->db->query($QRY,[$this->ShipCode])->first(true);
     }
     function _updateHold(){
