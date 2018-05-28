@@ -1,6 +1,7 @@
 function vwMap(){
     this.__proto__ = new vw();
     this.ambient = new THREE.AmbientLight( 0xAAAAAA ); // soft white light
+    this.threePlanets=[];
     
     this.create = function(){
         //fucntion to handle the visual creation aspects from the conMap class
@@ -10,22 +11,29 @@ function vwMap(){
         this.addPlanetsToScene();
         this.createUserInterface();
         //inishiation of camera
-        __camera.position.set( I.place.OrbitalRadius,  0,I.place.radius*3 );
+        __camera.position.set( 200000,  0,0);
         this.x = 0;
         this.y = 0;
-        this.z = I.place.getRadius()*3;
+        this.z = 0;//I.place.getRadius()*3;
         //setup space station overlay
         //create user interface
         this.createUserInterface();
-        __camera.lookAt(new THREE.Vector3(0,0,0));
+        __camera.lookAt(new THREE.Vector3(0,0,75000));
     };
     this.update = function(){
         
     };
-
+    this.destroy = function(page){
+        //testing that the remove is working
+        __scene.remove(this.ambient);
+        for(var i=0;i<this.threePlanets.length;i++){
+            __scene.remove(this.threePlanets[i]);
+        }
+    };
     /*
     Void function to add all the celestial bodies to the scene*/
     this.addPlanetsToScene = function(){
+        var vwMapObject = this;
         //create a curried function to add elements to the scene
         var planetAdder = function(celestial){
             if(!celestial.object){celestial.create();}
@@ -33,7 +41,8 @@ function vwMap(){
             //give the planet a name so that when it is clicked we know what has been clicked
             planet.name = celestial.getID();
             //move the planet to the right location
-            planet.position.setZ(celestial.getOrbitalRadius());
+            planet.position.setZ((math.log(celestial.getOrbitalRadius())-11)*50000);
+            vwMapObject.threePlanets.push(planet);
             __scene.add(planet);
         };
         

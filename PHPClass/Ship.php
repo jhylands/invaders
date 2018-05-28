@@ -18,7 +18,7 @@ class Ship{
     function __construct($connection,$ShipCode){
         //assert ShipCode is int 
         $this->con = $connection;
-        $this->ShipCode = $ShipCode;
+        $this->ShipCode = $ShipCode['ShipCode'];
         $this->_updateShip();
         $this->hold = new Hold($connection, $this->_ship['HoldCode']);
         $this->place = new Place($this->con);

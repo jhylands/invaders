@@ -268,10 +268,9 @@ if(Input::exists()){
                         include($abs_us_root.$us_url_root.'usersc/scripts/during_user_creation.php');
                         if($act==1) logger($theNewId,"User","Registration completed and verification email sent.");
                         if($act==0) logger($theNewId,"User","Registration completed.");
-
                         //Add user to the Invaders system
-                        makeInvadersUser($theNewId);
 
+                        makeInvadersUser($theNewId);
                         Redirect::to($us_url_root.'users/joinThankYou.php');
                 }
 

@@ -10,7 +10,7 @@ function MapAnimation(){
     };
 
     this.update = function (){};
-    this.main = function(){
+        this.main = function(){
         //object at centre of scene
         this.core;
         //object at edge of scene
