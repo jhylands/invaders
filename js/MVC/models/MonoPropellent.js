@@ -39,8 +39,10 @@ function MonoPropellant(velocity){
         },
         opacity: { value: [0.5, 0.25, 0, 0] },
 
-                particleCount: 2000
+        particleCount: 2000,
+        maxParticleCount : 10000
     });
+    this.group.maxParticleCount=1000;
     this.group.addEmitter(this.emitter);
     this.group.enabled = false;
     

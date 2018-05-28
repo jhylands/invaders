@@ -13,7 +13,7 @@ function conAchivement(){
         
         //Finished loading variables
         this.ready = false;
-        this.onready = onPageReady;
+        this.onready = onPageReady
         
         //page changing handshake
         this.change = false; //set to true if request page change.

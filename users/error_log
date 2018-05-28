@@ -1,0 +1,18 @@
+[18-May-2018 23:55:27 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[18-May-2018 23:55:27 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[18-May-2018 23:55:33 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[18-May-2018 23:55:33 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[18-May-2018 23:55:38 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[18-May-2018 23:55:38 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 00:24:16 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 00:24:16 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 16:46:53 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:01 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:09 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:18 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:27 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:32 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:38 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:46 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:50 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
+[23-May-2018 16:47:55 Europe/London] PHP Notice:  Undefined variable: row in /home/timepcou/public_html/users/helpers/us_helpers.php on line 259
