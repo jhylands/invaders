@@ -7,7 +7,7 @@ include 'scripts/sql.php';
 function createUser($FID,$name){
         //get facebook ID and name from facebook
         //enter then into the users table
-        $db->query("INSERT INTO users (FID,Name) VALUES(%d,'%s')",array($FID,$name));
+        $db->query("INSERT INTO Oldusers (FID,Name) VALUES(%d,'%s')",array($FID,$name));
         $oldUserID = $db->lastId();
         $db->query("INSERT INTO ships (ShipName,ShipType,UserID,Location,Shielding) VALUES('FirstShip',1,%d,3,100)",array($FID));
 
