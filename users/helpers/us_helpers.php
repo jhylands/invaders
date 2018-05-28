@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // UserSpice Specific Functions
 require_once $abs_us_root.$us_url_root.'usersc/includes/custom_functions.php';
 require_once $abs_us_root.$us_url_root.'usersc/includes/analytics.php';
+require_once $abs_us_root.$us_url_root.'scripts/userUtils.php';
 $user_agent = $_SERVER['HTTP_USER_AGENT'];
 
 if(!function_exists('testUS')) {
@@ -446,6 +447,8 @@ if(!function_exists('deleteUsers')) {
 			$query1 = $db->query("DELETE FROM users WHERE id = ?",array($id));
 			$query2 = $db->query("DELETE FROM user_permission_matches WHERE user_id = ?",array($id));
 			$query3 = $db->query("DELETE FROM profiles WHERE user_id = ?",array($id));
+            //Invaders designed
+            INVADERSdeleteUser($db,$id); 
 			$i++;
 		}
 		return $i;
