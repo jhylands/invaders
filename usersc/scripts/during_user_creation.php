@@ -33,4 +33,4 @@ if($e->email_act != 1){
 
 //include a call to the scripts createUser.php
 include '../../scripts/createUser.php';
-createUser($db,$theNewId,'fname');
+createUser($db,$theNewId,$_POST['username']);

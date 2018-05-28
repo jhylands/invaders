@@ -7,12 +7,12 @@ function createUser($db,$FID,$name){
         //get facebook ID and name from facebook
         //enter then into the users table
         try{
-        echo '<h1>incliding name now</h1>';
+        //echo '<h1>incliding name now</h1>';
         //get the values for inclusion in db 
         $shipCode=$db->query("Select ShipCode from ships order by ShipCode DESC limit 1")->first()->ShipCode+1;
         $holdCode=$db->query("Select HoldCode from hold order by HoldCode DESC limit 1")->results()[0]->HoldCode+1;
-        echo "<br />ShipCode:$shipCode<br />";
-        echo "<br />HoldCode:$holdCode<br />";
+        //echo "<br />ShipCode:$shipCode<br />";
+        //echo "<br />HoldCode:$holdCode<br />";
         
 
 
@@ -35,9 +35,9 @@ function createUser($db,$FID,$name){
             'ResourceID'=>  $i,
             'Amount'=>      500
              );
-            echo $db->insert("cargo",$hold);
+            //echo $db->insert("cargo",$hold);
         }
-       echo '<h1>ending query</h1>'; 
+       //echo '<h1>ending query</h1>'; 
 } catch (Exception $e) {
     echo '<h1>Caught exception: ',  $e->getMessage(), "</h1>\n";
 }
