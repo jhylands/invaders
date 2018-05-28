@@ -32,5 +32,5 @@ if($e->email_act != 1){
 }
 
 //include a call to the scripts createUser.php
-include '../../scripts/createUser.php';
-createUser($FID,$name);
+require_once $abs_us_root.$us_url_root.'scripts/userUtils.php';
+INVADERScreateUser($db,$theNewId,$_POST['username']);
