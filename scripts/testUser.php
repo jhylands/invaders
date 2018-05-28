@@ -1,5 +1,9 @@
 <?php
-include 'createUser.php';
+include 'userUtils.php';
 include '../users/init.php';
 $db = DB::getInstance();
-createUser($db,$_GET['id'],'js');
+if($_GET['cd']=='d'){
+    deleteUser($db,$_GET['id']);
+}else{ 
+    createUser($db,$_GET['id'],'name');
+}

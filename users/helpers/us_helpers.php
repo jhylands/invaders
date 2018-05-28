@@ -446,6 +446,9 @@ if(!function_exists('deleteUsers')) {
 			$query1 = $db->query("DELETE FROM users WHERE id = ?",array($id));
 			$query2 = $db->query("DELETE FROM user_permission_matches WHERE user_id = ?",array($id));
 			$query3 = $db->query("DELETE FROM profiles WHERE user_id = ?",array($id));
+            //Invaders designed
+            include '../../scripts/userUtils.php';
+            deleteUser($db,$id); 
 			$i++;
 		}
 		return $i;

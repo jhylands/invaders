@@ -29,16 +29,26 @@ function createUser($db,$FID,$name){
         );
         if($db->insert('ships',$ship)){echo'ships(1)';}else{echo 'ships(0)';}
         $db->insert('hold',['HoldCode'=>$holdCode]);
-        for($i=1;$i<4;$i++){
+        for($i=2;$i<5;$i++){
             $hold= array(
             'HoldCode'=>    $holdCode,
             'ResourceID'=>  $i,
             'Amount'=>      500
              );
-            //echo $db->insert("cargo",$hold);
+            if($db->insert("cargo",$hold)){echo 'cargoo';}else{echo'carstop';}
         }
-       //echo '<h1>ending query</h1>'; 
-} catch (Exception $e) {
-    echo '<h1>Caught exception: ',  $e->getMessage(), "</h1>\n";
+    } catch (Exception $e) {
+        echo '<h1>Caught exception: ',  $e->getMessage(), "</h1>\n";
+    }
 }
+
+function deleteUser($db,$id){
+    echo "<h1>id:$id</h1>";
+    echo dump($db->query("SELECT * FROM ships WHERE OwnerID = ? ",[$id]));
+    $HoldCode = $db->query("SELECT HoldCode FROM ships WHERE OwnerID = ?",array($id))->first()->HoldCode;
+    echo "<h1>HoldCode:$HoldCode</h1>";
+    $query4 = $db->query("DELETE FROM OldUsers WHERE FID = ?",array($id));
+    $query5 = $db->query("DELETE FROM ships WHERE OwnerID = ?",array($id));
+    $query6 = $db->query("DELETE FROM hold WHERE HoldCode = ?",array($HoldCode));
+    $query7 = $db->query("DELETE FROM cargo WHERE HoldCode = ?",array($HoldCode));
 }
