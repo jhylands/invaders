@@ -6,7 +6,7 @@
 include 'scripts/sql.php';
 //get facebook ID and name from facebook
 //enter then into the users table
-mysqli_query($con,"INSERT INTO users (FID,Name) VALUES(" . $FID . ",'" . $name . "')");
+mysqli_query($con,"INSERT INTO Oldusers (FID,Name) VALUES(" . $FID . ",'" . $name . "')");
 
 mysqli_query($con,"INSERT INTO ships (ShipName,ShipType,UserID,Location,Shielding) VALUES('FirstShip',1," . $FID . ",3,100)");
 
