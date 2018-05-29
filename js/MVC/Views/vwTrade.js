@@ -31,11 +31,19 @@ function vwTrade(market){
             if(typeof(c)==="undefined"){console.error("its not working");}
             return function(){c.ammount1c();};
         }(controler);
-        $('#ammountBox1').on('change',f2);
+        $('#ammountBox1').on('change',f2)
         //attach onchange to ammountBox2
-        $('#ammountBox2')[0].change =function(){controler.ammount2c();};
+        var f3 = function(c){
+            if(typeof(c)==="undefined"){console.error("its not working");}
+            return function(){c.ammount2c();};
+        }(controler);
+        $('#ammountBox2').on('change',f3);
         //attach onchange to doTradeButton
-        $('#doTradeButton')[0].click(function(){controler.doClick();});
+        var f4 = function(c){
+            if(typeof(c)==="undefined"){console.error("its not working");}
+            return function(){c.doClick();};
+        }(controler);
+        $('#doTradeButton').on('click',f4);
     };
     
     this.makeRes1Box = function(){

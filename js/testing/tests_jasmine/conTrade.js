@@ -2,7 +2,6 @@
 
 describe("conTrade test",function(){
     var body = document.getElementsByTagName("body")[0];
-    bod
     window.onPageReady=0;
     var trader = new conTrade();
     trader.constructFromOrbit();
