@@ -17,7 +17,7 @@ class Resource{
     //WARNING No check for valididty of id,name or code on creation
     function fromID($ID){
         $this->ID = $ID;
-        $query = "SELECT * FROM resources WHERE ResourceID=%d";
+        $query = "SELECT * FROM resources WHERE ResourceID=?";
         $results = $db->query($query,[$ID]);
         foreach($results as &$result){
                 $this->Name = $result['Name'];
@@ -30,7 +30,7 @@ class Resource{
      */
     function fromName($Name){
         $this->Name = $Name;
-        $query = "SELECT * FROM resources WHERE Name='%s'";
+        $query = "SELECT * FROM resources WHERE Name='?'";
         $results = $db->query($query,[$name]);
         foreach($results as &$result){
                 $this->ID = $result['ResourceID'];
@@ -43,7 +43,7 @@ class Resource{
      */
     function fromCode($Code){
         $this->Code = mysqli_real_escape_string($this->db,strtoupper($Code));
-        $query = "SELECT * FROM resources WHERE Code='%s'";
+        $query = "SELECT * FROM resources WHERE Code='?'";
         $results = $db->query($query,[$Code]);
         foreach($results as &$result){
                 $this->ID = $result['ResourceID'];

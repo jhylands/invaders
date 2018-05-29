@@ -53,7 +53,7 @@ class Trade{
      * @return success
      */
     private function makeCard($res1,$amount,$res2){
-        $QRY = "INSERT INTO trades (ShipCode,ResourceSold,ResourceBought,MarketID,Amount) values(%d,%d,%d,%d,%f)";
+        $QRY = "INSERT INTO trades (ShipCode,ResourceSold,ResourceBought,MarketID,Amount) values(?,?,?,?,?)";
         return $db->query( $QRY,[
             $this->ship->getCode(),
             $res1->getID(),

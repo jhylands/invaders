@@ -11,7 +11,7 @@ class Market{
     function __construct($db,$id) {
         $this->db = $db;
         $this->id = $id;
-        $query = "SELECT * FROM channels WHERE MarketID=%d";
+        $query = "SELECT * FROM channels WHERE MarketID=?";
         $results = $db->query( $query,array($this->id));
         foreach($results as &$result){
             $this->channels[] = new Channel($this->db,$result,true);

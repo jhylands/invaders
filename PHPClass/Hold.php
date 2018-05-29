@@ -16,7 +16,7 @@ class Hold{
      * Update information for the database
      */
     function update(){
-        $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =%d";
+        $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =?";
         $results = $this->db->query($QRY,array($this->code));
         foreach($results as &$result){
                 $this->resources[$result['ResourceID']] = $result['Amount'];
@@ -51,7 +51,7 @@ class Hold{
      * @return success
      */
     public function add($resource,$init){
-        $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(%d,%d,%f)";
+        $QRY = "INSERT INTO cargo (HoldCode,ResourceID,Amount) values(?,%d,%f)";
         return $this->db->query( $QRY , [ $this->code , $resource->getID() ,$init]);
     }
     
@@ -63,7 +63,7 @@ class Hold{
      */
     public function set($resource,$amount){
         $RID =$resource->getID();
-        $query = "UPDATE cargo SET cargo.Amount='%f' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d";
+        $query = "UPDATE cargo SET cargo.Amount='?' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d";
         //keep local value up to date
         $this->resources[$RID] = $amount;
         $r = $this->db->query($query,[$amount,$this->code,$RID]);
@@ -80,7 +80,7 @@ class Hold{
     function change($resource,$change){
         $RID =$resource->getID();
         if($this->checkExistance($resource)){
-           $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '%f' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d"; 
+           $query = "UPDATE cargo SET cargo.Amount=cargo.Amount + '?' WHERE cargo.HoldCode=%d AND cargo.ResourceID=%d"; 
             $r = $this->db->query($query,[$change,$this->code,$RID]);
         }else{
             $the_cargo = array(
@@ -120,7 +120,7 @@ class Hold{
      */
     private function checkExistance($resource){
         $RID = $resource->getID();
-        $query = "SELECT HoldCode FROM cargo WHERE HoldCode=%d AND ResourceID=%d";
+        $query = "SELECT HoldCode FROM cargo WHERE HoldCode=? AND ResourceID=%d";
         return $this->db->query( $query,[$this->code,$RID]);
     }
 }

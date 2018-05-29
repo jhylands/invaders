@@ -136,7 +136,7 @@ class Table {
         if($this->refresh){
             $this->table = $table;
             $this->columnName = $column;
-            $query = "select * from %s where %s=%s limit 1";
+            $query = "select * from ? where ?=%s limit 1";
             //echo $query . "<br />";
             $results = $db->query( $query,[$table,$column,$columnValue]);
             if(!$results){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
@@ -160,7 +160,7 @@ class Table {
      * @return boolean|\make
      */
     protected function getForeign($table,$thisColumn,$id,$make){
-        $query = "select * from %s where %s=%d";
+        $query = "select * from ? where ?=%d";
         $results = $db->query( $query,[$table,$thisColumn,$id]);
         if(!$results){echo "GF:" . $query ;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
         $things = array();
@@ -193,7 +193,7 @@ class Table {
         //clean($value)
         $table = $this->table;
         $idColumn = $this->columnName;
-        $query = "Update %s SET %s='?' WHERE %s=%d";
+        $query = "Update ? SET ?='?' WHERE %s=%d";
         echo $query;
         return $db->query($query,[$table,$column,$value,$idColumn,$this->getID()]);
     }

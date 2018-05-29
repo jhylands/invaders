@@ -45,7 +45,7 @@ class Ship{
     //getPosition depreshiated to $this->place->ID
     //setPosition depreshiated to setPositionFromID
     function setPositionFromID($placeID){
-        $query = "UPDATE ships SET Location=%d WHERE ShipCode=%d";
+        $query = "UPDATE ships SET Location=? WHERE ShipCode=%d";
         return $this->db->query($query,[$placeID,$this->ShipCode]);
     }
     function setPositionFromPlace($place){
@@ -64,14 +64,14 @@ class Ship{
     }
     //security floor
     function setName($name){
-        $query = "UPDATE ships SET Name='%s' WHERE ShipCode=%d";
+        $query = "UPDATE ships SET Name='?' WHERE ShipCode=?";
         return $this->db->query($query,[$name,$this->ShipCode]);
     }
     function getShielding(){
         return $this->_ship['Shielding'];
     }
     function setShielding($value){
-        $query = "UPDATE ships SET Shielding='%s' WHERE ShipCode=%s";
+        $query = "UPDATE ships SET Shielding='?' WHERE ShipCode=%s";
         return $this->db->query($query,[$value,$this->ShipCode]);
     }
     /**
@@ -82,7 +82,7 @@ class Ship{
      */
     function changeShielding($change){
         $change = (INT) $change;
-        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '%s' WHERE ShipCode=%d"; 
+        $query = "UPDATE ships SET ships.Shielding=ships.Shielding + '?' WHERE ShipCode=?"; 
        //echo $query;
         $r = $this->db->query($query,[$change,$this->ShipCode]);
         $this->update();
