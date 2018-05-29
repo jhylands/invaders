@@ -21,6 +21,9 @@ class Owner {
         return $this->db->query($query,[$quality,$this->FID]);
     }
     function update(){}
+    function getName(){
+        return $this->__user['Name'];
+    }
 
 }
         

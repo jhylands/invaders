@@ -54,7 +54,7 @@ for (file,command,theClass,helper) in pairs:
     helps+= '                    echo "' + helper +'<br />";\n'
     #add switch cases to file
     case +='            case "' + command + '":\n                    $handler = new '
-    case += theClass + '($con,$ship);\n                     break;\n'
+    case += theClass + '($db,$ship);\n                     break;\n'
     
 with open('../consoleTempl.php','r') as f:
     code = f.read()

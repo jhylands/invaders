@@ -3,7 +3,7 @@ include 'scripts/autoload.php';
 include 'scripts/shipInfo.php';
 
 //create ship object 
-$ship = new Ship($con,$ShipCode);
+$ship = new Ship($db,$ShipCode);
 //include consolemods
 include 'consolemod/Handler.php';
 include "consolemod/AlertHandler.php";
@@ -18,10 +18,7 @@ include "consolemod/TravelHandler.php";
 
 //check for sent information
 
-$result = mysqli_query($con,"SELECT * FROM OldUsers WHERE FID=" . $_SESSION['User']);
-while($row=mysqli_fetch_array($result)){
-	$userName = $row['Name'];
-}
+$userName = $ship->owner->getName();
 
 if(isset($_GET['command'])){
 $comands = explode(";",$_GET['command']);
@@ -41,7 +38,7 @@ foreach($comands as $strcommand){
                     echo "fight #This function takes you to the comabat area for this celectial bodies authoraties where you can get paid to work as a contractor.<br />";
                     echo "rescode #A program to get information about resource codes.<br />";
                     echo "ship [ name|shielding|location|switch [ship] ]<br />";
-                    echo "shop [bomb|Shielding|ships] #Things you can buy on this plannet<br />";
+                    echo "shop [bomb|shielding|ships] #Things you can buy on this plannet<br />";
                     echo "trade [info|do|help] [Met|He|Ur] [Met|He|Ur] #The trade function allows you to find out trade information.<br />";
                     echo "Travel help not yet written<br />";
 
@@ -49,31 +46,31 @@ foreach($comands as $strcommand){
                     //echo "<br />";
                     break;
             case "alert":
-                    $handler = new AlertHandler($con,$ship);
+                    $handler = new AlertHandler($db,$ship);
                      break;
             case "cargo":
-                    $handler = new CargoHadler($con,$ship);
+                    $handler = new CargoHadler($db,$ship);
                      break;
             case "exit":
-                    $handler = new ExitHandler($con,$ship);
+                    $handler = new ExitHandler($db,$ship);
                      break;
             case "fight":
-                    $handler = new FightHandler($con,$ship);
+                    $handler = new FightHandler($db,$ship);
                      break;
             case "rescode":
-                    $handler = new RescourceHandler($con,$ship);
+                    $handler = new RescourceHandler($db,$ship);
                      break;
             case "ship":
-                    $handler = new ShipHandler($con,$ship);
+                    $handler = new ShipHandler($db,$ship);
                      break;
             case "shop":
-                    $handler = new ShopHandler($con,$ship);
+                    $handler = new ShopHandler($db,$ship);
                      break;
             case "trade":
-                    $handler = new TradeHandler($con,$ship);
+                    $handler = new TradeHandler($db,$ship);
                      break;
             case "travel":
-                    $handler = new TravelHandler($con,$ship);
+                    $handler = new TravelHandler($db,$ship);
                      break;
 
             case 'clear':
