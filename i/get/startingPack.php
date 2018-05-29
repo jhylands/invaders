@@ -17,5 +17,5 @@ echo json_encode([
     $place,
     $ship,
     $ship->place->getID(),
-    $ShipCode['quality']
+    $ship->getOwner()->getQuality()
 ]);

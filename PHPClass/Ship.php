@@ -23,14 +23,17 @@ class Ship{
         $this->hold = new Hold($connection, $this->_ship['HoldCode']);
         $this->place = new Place($this->db);
         $this->update();
+        $this->owner = new Owner($connection,$this->_ship['OwnerID']);
+        //$this->owner->update() //not needed as user automatically connectes to db
     }
     function __toString(){
-        return json_encode(array("ship" => $this->_ship, "hold" => $this->hold->__toString()));
+        return json_encode(array("ship" => $this->_ship, "hold" => $this->hold->__toString(),"owner"=> $this->owner->__toString()));
     }
     function update(){
         $this->_updateShip();
         $this->_updateHold();
         $this->_updatePosition();
+        $this->_updateOwner();
     }
     function _updateShip(){
         $QRY = "SELECT * FROM ships,shipTypes WHERE ships.ShipType=shipTypes.ShipType AND ships.ShipCode=?";
@@ -41,6 +44,9 @@ class Ship{
     }
     function _updatePosition(){
         $this->place->fromID($this->_ship['Location']);
+    }
+    function _updateOwner(){
+        $this->owner->update();
     }
     //getPosition depreshiated to $this->place->ID
     //setPosition depreshiated to setPositionFromID
@@ -98,6 +104,9 @@ class Ship{
      */
     function change($shipCode){
         
+    }
+    function getOwner(){
+        return $this->owner;
     }
 }
 ?>
