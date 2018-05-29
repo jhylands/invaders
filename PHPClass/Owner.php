@@ -20,7 +20,7 @@ class Owner {
         $query = "UPDATE OldUsers SET Quality=? WHERE FID=?";
         return $this->db->query($query,[$quality,$this->FID]);
     }
-
+    function update(){}
 
 }
         

@@ -22,8 +22,8 @@ class Ship{
         $this->_updateShip();
         $this->hold = new Hold($connection, $this->_ship['HoldCode']);
         $this->place = new Place($this->db);
-        $this->update();
         $this->owner = new Owner($connection,$this->_ship['OwnerID']);
+        $this->update();
         //$this->owner->update() //not needed as user automatically connectes to db
     }
     function __toString(){
