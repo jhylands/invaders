@@ -12,7 +12,7 @@ class Market{
         $this->db = $db;
         $this->id = $id;
         $query = "SELECT * FROM channels WHERE MarketID=?";
-        $results = $db->query( $query,array($this->id));
+        $results = $db->query( $query,array($this->id))->results(true);
         foreach($results as &$result){
             $this->channels[] = new Channel($this->db,$result,true);
         }
@@ -67,7 +67,7 @@ class Market{
     function getResources(){
         $ids = [];
         $query = "SELECT ResourceID from resources";
-        $results = $db->query( $query);
+        $results = $db->query( $query)->results(true);
         foreach($results as &$result){
             $ids[] = $result['ResourceID'];
         }

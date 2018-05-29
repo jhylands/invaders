@@ -17,7 +17,7 @@ class Hold{
      */
     function update(){
         $QRY = "SELECT * FROM cargo WHERE cargo.HoldCode =?";
-        $results = $this->db->query($QRY,array($this->code));
+        $results = $this->db->query($QRY,array($this->code))->results(true);
         foreach($results as &$result){
                 $this->resources[$result['ResourceID']] = $result['Amount'];
         }

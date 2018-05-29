@@ -9,4 +9,4 @@ if(!$results){
     echo "<script>document.write('" . $QRY. "');</script>";
     die();
 }
-$ShipCode =$results->first()->ShipCode;
+$ShipCode =$results->first(true)['ShipCode'];

@@ -12,9 +12,9 @@ class Channel extends Table{
         $SQL_row = $this->getRow("channel", "ChannelID", $data);
         $this->buyRa = 1;
         $this->sellRa = $SQL_row['Rate'];
-        $this->buyRe = new Resource($link);
+        $this->buyRe = new Resource($db);
         $this->buyRe->fromID($SQL_row['ResourceBuyID']);
-        $this->sellRe = new Resource($link);
+        $this->sellRe = new Resource($db);
         $this->sellRe->fromID($SQL_row['ResourceSellID']);
     }
 

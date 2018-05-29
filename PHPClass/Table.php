@@ -140,7 +140,7 @@ class Table {
             //echo $query . "<br />";
             $results = $db->query( $query,[$table,$column,$columnValue]);
             if(!$results){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
-            $this->data =  mysqli_fetch_array($results);
+            $this->data =  $results->results(true);
             $this->refresh = false;
         }
         return $this->data;

@@ -11,7 +11,7 @@ class Place{
         //get information from the location table
         $this->ID=$ID;
         $query = "SELECT * FROM locations WHERE PlaceID=?";//$ID
-        $results = $this->db->query($query,array($ID));
+        $results = $this->db->query($query,array($ID))->results(true);
         foreach($results as &$result){
                 $this->Name = $result['PlaceName'];
                 $this->URL = $result['PlanetURL'];
