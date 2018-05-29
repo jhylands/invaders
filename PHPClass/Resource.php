@@ -6,7 +6,7 @@
 class Resource{
     function __construct($connection){
         //require a connection to the database to check values
-        $this->con = $connection;
+        $this->db = $connection;
         $this->ID = null;
         $this->Name = null;
         $this->Code = null;
@@ -17,11 +17,11 @@ class Resource{
     //WARNING No check for valididty of id,name or code on creation
     function fromID($ID){
         $this->ID = $ID;
-        $query = "SELECT * FROM resources WHERE ResourceID=$ID";
-        $result = mysqli_query($this->con,$query);
-        while($row = mysqli_fetch_array($result)){
-                $this->Name = $row['Name'];
-                $this->Code = $row['Code'];
+        $query = "SELECT * FROM resources WHERE ResourceID=?";
+        $results = $this->db->query($query,[$ID])->results(true);
+        foreach($results as &$result){
+                $this->Name = $result['Name'];
+                $this->Code = $result['Code'];
         }
     }
     /**
@@ -30,11 +30,11 @@ class Resource{
      */
     function fromName($Name){
         $this->Name = $Name;
-        $query = "SELECT * FROM resources WHERE Name='$Name'";
-        $result = mysqli_query($this->con,$query);
-        while($row = mysqli_fetch_array($result)){
-                $this->ID = $row['ResourceID'];
-                $this->Code = $row['Code'];
+        $query = "SELECT * FROM resources WHERE Name='?'";
+        $results = $this->db->query($query,[$name])->results(true);
+        foreach($results as &$result){
+                $this->ID = $result['ResourceID'];
+                $this->Code = $result['Code'];
         }
     }
     /**
@@ -42,12 +42,12 @@ class Resource{
      * @param $Code
      */
     function fromCode($Code){
-        $this->Code = mysqli_real_escape_string($this->con,strtoupper($Code));
-        $query = "SELECT * FROM resources WHERE Code='$Code'";
-        $result = mysqli_query($this->con,$query);
-        while($row = mysqli_fetch_array($result)){
-                $this->ID = $row['ResourceID'];
-                $this->Name = $row['Name'];
+        $this->Code = mysqli_real_escape_string($this->db,strtoupper($Code));
+        $query = "SELECT * FROM resources WHERE Code='?'";
+        $results = $this->db->query($query,[$Code])->results(true);
+        foreach($results as &$result){
+                $this->ID = $result['ResourceID'];
+                $this->Name = $result['Name'];
                 return true;
         }
         return false;

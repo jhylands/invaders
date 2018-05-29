@@ -1,6 +1,6 @@
 <?php
 
 include '../std.php';
-$resource = new Resource($con);
+$resource = new Resource($db);
 $resource->fromID((int)$_GET['id']);
 echo $ship->hold->drop($resource);

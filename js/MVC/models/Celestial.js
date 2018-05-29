@@ -29,6 +29,7 @@ function Celestial(){
         this.Reflection = information['Reflection'];
         this.map = information['Map'];
        var maxLoop = information['children'].length;
+        if (maxLoop==0&&this.id==0){console.error("Starting pack not loaded correctly!");}
         //console.log(maxLoop);
         for(var i=0;i<maxLoop;i++){
             var ChildsInformation = information['children'][i];

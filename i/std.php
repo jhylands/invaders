@@ -1,14 +1,15 @@
 <?php
+$abs = '/home/timepcou/public_html/invaders/';
+$relative = '../../';
 
-//layzy class loader
-    spl_autoload_register(function ($class) {
-        include '/home/timepcou/public_html/PHPClass/' . $class . '.php';
-    });
+$relative = __DIR__ . '/../';
 
-require_once '/home/timepcou/public_html/users/init.php';
+include $relative . 'scripts/autoload.php';
+
+require_once $relative . 'users/init.php';
 if (!securePage($_SERVER['PHP_SELF'])){die();} 
-include '/home/timepcou/public_html/scripts/sql.php';
-include '/home/timepcou/public_html/scripts/shipInfo.php';
+//include $relative . 'scripts/sql.php';
+include $relative . 'scripts/shipInfo.php';
 
-$ship = new Ship($con,$ShipCode);
+$ship = new Ship($db,$ShipCode);
 

@@ -1,4 +1,5 @@
 <?php
+
 /*
 UserSpice 4
 An Open Source PHP User Management System
@@ -265,6 +266,7 @@ if(Input::exists()){
                         include($abs_us_root.$us_url_root.'usersc/scripts/during_user_creation.php');
                         if($act==1) logger($theNewId,"User","Registration completed and verification email sent.");
                         if($act==0) logger($theNewId,"User","Registration completed.");
+
                         Redirect::to($us_url_root.'users/joinThankYou.php');
                 }
 

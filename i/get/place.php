@@ -1,6 +1,6 @@
 <?php
 
 include '../std.php';
-$ship = new Ship($con,$ShipCode);
+$ship = new Ship($db,$ShipCode);
 
 echo $ship->place;

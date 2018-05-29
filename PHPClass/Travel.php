@@ -8,7 +8,7 @@ class Travel extends Distance{
      * @param Ship $ship
      */
     function __construct($connection,$ship){
-        $this->con = $connection;
+        $this->db = $connection;
         $this->ship = $ship;
     }
     

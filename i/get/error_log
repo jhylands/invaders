@@ -1,0 +1,683 @@
+[19-Dec-2017 17:07:36 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[19-Dec-2017 17:07:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-Dec-2017 17:07:36 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-Dec-2017 17:07:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-Dec-2017 17:07:36 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-Dec-2017 17:07:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 12:17:28 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[21-Dec-2017 12:17:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[21-Dec-2017 12:17:28 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 12:17:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 12:17:28 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 12:17:28 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 12:17:44 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[21-Dec-2017 12:17:44 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[21-Dec-2017 12:17:44 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 12:17:44 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 12:17:44 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 12:17:44 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 14:45:06 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[21-Dec-2017 14:45:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[21-Dec-2017 14:45:06 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 14:45:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[21-Dec-2017 14:45:06 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[21-Dec-2017 14:45:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[22-Dec-2017 08:23:26 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[22-Dec-2017 08:23:26 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[22-Dec-2017 08:23:26 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[22-Dec-2017 08:23:26 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[22-Dec-2017 08:23:26 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[22-Dec-2017 08:23:26 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[26-Dec-2017 16:09:16 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[26-Dec-2017 16:09:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[26-Dec-2017 16:09:16 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[26-Dec-2017 16:09:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[26-Dec-2017 16:09:16 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[26-Dec-2017 16:09:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[31-Dec-2017 02:07:21 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[31-Dec-2017 02:07:21 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[31-Dec-2017 02:07:21 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[31-Dec-2017 02:07:21 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[31-Dec-2017 02:07:21 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[31-Dec-2017 02:07:21 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[10-Feb-2018 11:16:42 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[10-Feb-2018 11:16:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[10-Feb-2018 11:16:42 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[10-Feb-2018 11:16:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[10-Feb-2018 11:16:42 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[10-Feb-2018 11:16:42 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[11-Feb-2018 11:39:43 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[11-Feb-2018 11:39:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[11-Feb-2018 11:39:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[11-Feb-2018 11:39:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[11-Feb-2018 11:39:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[11-Feb-2018 11:39:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[20-Feb-2018 13:05:39 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[20-Feb-2018 13:05:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[20-Feb-2018 13:05:39 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[20-Feb-2018 13:05:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[20-Feb-2018 13:05:39 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[20-Feb-2018 13:05:39 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[01-Apr-2018 16:31:11 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[01-Apr-2018 16:31:11 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[01-Apr-2018 16:31:11 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[01-Apr-2018 16:31:11 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[01-Apr-2018 16:31:11 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[01-Apr-2018 16:31:11 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[14-Apr-2018 16:59:07 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[14-Apr-2018 16:59:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[14-Apr-2018 16:59:07 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[14-Apr-2018 16:59:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[14-Apr-2018 16:59:07 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[14-Apr-2018 16:59:07 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[27-Apr-2018 17:27:35 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[27-Apr-2018 17:27:35 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[27-Apr-2018 17:27:35 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[27-Apr-2018 17:27:35 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[27-Apr-2018 17:27:35 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[27-Apr-2018 17:27:35 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[13-May-2018 06:50:43 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[13-May-2018 06:50:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[13-May-2018 06:50:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[13-May-2018 06:50:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[13-May-2018 06:50:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[13-May-2018 06:50:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 16:02:01 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[16-May-2018 16:02:01 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[16-May-2018 16:02:01 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[16-May-2018 16:02:01 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 16:02:01 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 16:02:01 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 16:02:01 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 19:14:06 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[16-May-2018 19:14:06 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[16-May-2018 19:14:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[16-May-2018 19:14:06 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 19:14:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 19:14:06 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 19:14:06 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 20:23:22 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[16-May-2018 20:23:22 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[16-May-2018 20:23:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[16-May-2018 20:23:22 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 20:23:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 20:23:22 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 20:23:22 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 21:21:19 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[16-May-2018 21:21:19 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[16-May-2018 21:21:19 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[16-May-2018 21:21:19 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 21:21:19 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 21:21:19 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 21:21:19 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 22:08:58 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[16-May-2018 22:08:58 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[16-May-2018 22:08:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[16-May-2018 22:08:58 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 22:08:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[16-May-2018 22:08:58 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[16-May-2018 22:08:58 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 12:14:43 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[17-May-2018 12:14:43 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[17-May-2018 12:14:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[17-May-2018 12:14:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 12:14:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 12:14:43 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 12:14:43 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 12:21:16 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[17-May-2018 12:21:16 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[17-May-2018 12:21:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[17-May-2018 12:21:16 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 12:21:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 12:21:16 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 12:21:16 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 20:14:53 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[17-May-2018 20:14:53 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[17-May-2018 20:14:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[17-May-2018 20:14:53 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 20:14:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 20:14:53 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 20:14:53 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 20:26:08 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[17-May-2018 20:26:08 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[17-May-2018 20:26:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[17-May-2018 20:26:08 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 20:26:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 20:26:08 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 20:26:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 22:09:00 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[17-May-2018 22:09:00 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[17-May-2018 22:09:00 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[17-May-2018 22:09:00 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 22:09:00 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[17-May-2018 22:09:00 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[17-May-2018 22:09:00 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 13:42:03 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 13:42:03 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:08 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 22:59:08 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 22:59:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 22:59:08 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:08 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:08 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 22:59:09 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 22:59:09 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:36 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:02:36 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 23:02:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 23:02:36 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:36 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:36 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined index: User in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 9
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:02:37 UTC] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[18-May-2018 23:02:37 UTC] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[18-May-2018 23:07:25 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:25 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:25 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:25 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:07:52 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:07 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:18 UTC] PHP Notice:  Undefined variable: user in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:08:18 UTC] PHP Fatal error:  Uncaught Error: Call to a member function data() on null in /home/timepcou/public_html/scripts/shipInfo.php:5
+Stack trace:
+#0 /home/timepcou/public_html/i/std.php(7): include()
+#1 /home/timepcou/public_html/i/get/startingPack.php(3): include('/home/timepcou/...')
+#2 {main}
+  thrown in /home/timepcou/public_html/scripts/shipInfo.php on line 5
+[18-May-2018 23:11:46 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:11:46 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:11:46 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:11:46 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:11:46 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:11:46 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:14:03 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:15:48 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:41 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:41 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:42 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:42 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:42 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:17:42 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:19:03 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:19:03 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:19:23 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:19:23 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:22:36 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:22:36 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:22:38 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:22:38 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:19 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:19 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:30 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:31 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:23:31 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:34 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:34 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:35 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:35 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:35 UTC] PHP Warning:  require_once(users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/i/std.php on line 7
+[18-May-2018 23:24:35 UTC] PHP Fatal error:  require_once(): Failed opening required 'users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/i/std.php on line 7
+[19-May-2018 00:27:18 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:22 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:22 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:22 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:23 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:23 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:27:59 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:27:59 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:33:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:33:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:34:42 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:34:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:34:42 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:34:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:34:42 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:34:42 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:34:43 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:34:43 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:34:43 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:34:43 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:34:43 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:34:43 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:35:18 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:35:18 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:37:24 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:37:24 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:37:24 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:37:24 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:37:24 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 00:37:24 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:42:04 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:42:04 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:42:04 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 39
+[19-May-2018 00:42:04 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 42
+[19-May-2018 00:42:04 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:42:04 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:42:04 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 39
+[19-May-2018 00:42:04 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 42
+[19-May-2018 00:42:04 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:42:10 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 00:42:10 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:42:10 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 39
+[19-May-2018 00:42:10 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 42
+[19-May-2018 00:42:10 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:42:10 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:42:10 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 39
+[19-May-2018 00:42:10 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 42
+[19-May-2018 00:42:10 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 00:42:54 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:42:54 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:44:32 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 00:44:33 Europe/London] PHP Notice:  Use of undefined constant result - assumed 'result' in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:55:00 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:55:00 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/get/place.php on line 4
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:39 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:39 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:55 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 22:59:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 22:59:55 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 22:59:55 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 22:59:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:05 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:05 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:05 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:14 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:14 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:14 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:14 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:14 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:14 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:22 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:00:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:00:22 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:00:22 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:00:22 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:08 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:01:08 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:01:24 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:24 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:25 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:25 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:25 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:25 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:43 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:01:43 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[19-May-2018 23:02:06 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:02:06 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:02:06 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:06 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:06 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:06 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:07 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:02:07 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:02:07 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:07 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:07 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:07 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:12 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:02:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:02:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:12 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:12 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:55 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:02:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:02:55 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:02:55 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:02:55 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:03:05 Europe/London] PHP Notice:  Undefined variable: ShipCode in /home/timepcou/public_html/i/std.php on line 13
+[19-May-2018 23:03:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Ship.php on line 38
+[19-May-2018 23:03:05 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:03:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[19-May-2018 23:03:05 Europe/London] PHP Notice:  Undefined variable: ship in /home/timepcou/public_html/PHPClass/Ship.php on line 41
+[19-May-2018 23:03:05 Europe/London] PHP Warning:  mysqli_fetch_array() expects parameter 1 to be mysqli_result, boolean given in /home/timepcou/public_html/PHPClass/Hold.php on line 21
+[20-May-2018 12:40:15 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:40:15 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:43:05 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:43:06 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:44:17 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:44:17 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:44:52 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:44:52 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:47:02 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:51:40 Europe/London] PHP Warning:  Illegal string offset 'HoldCode' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:51:44 Europe/London] PHP Warning:  Illegal string offset 'HoldCode' in /home/timepcou/public_html/i/get/startingPack.php on line 16
+[20-May-2018 12:55:36 Europe/London] PHP Warning:  Illegal string offset 'quality' in /home/timepcou/public_html/i/get/startingPack.php on line 20
+[23-May-2018 14:29:40 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 14:29:40 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 14:29:40 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 14:29:40 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 14:29:40 Europe/London] PHP Notice:  Undefined variable: master_account in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[23-May-2018 14:29:40 Europe/London] PHP Warning:  in_array() expects parameter 2 to be array, null given in /home/timepcou/public_html/users/helpers/us_helpers.php on line 599
+[28-May-2018 12:40:50 UTC] PHP Warning:  require_once(/home/timepcou/public_html/users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 12:40:50 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/timepcou/public_html/users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 12:40:55 UTC] PHP Warning:  require_once(/home/timepcou/public_html/users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 12:40:55 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/timepcou/public_html/users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:48:44 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 6
+[28-May-2018 13:48:44 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 6
+[28-May-2018 13:48:44 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 6
+[28-May-2018 13:48:44 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:14
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 14
+[28-May-2018 12:51:23 UTC] PHP Warning:  require_once(/home/timepcou/public_html/invadersusers/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 11
+[28-May-2018 12:51:23 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/timepcou/public_html/invadersusers/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 11
+[28-May-2018 13:51:53 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:51:53 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:51:53 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:51:53 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:52:56 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:52:56 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:52:56 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:52:56 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:19 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:19 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:19 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:19 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:26 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:26 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:26 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:27 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:27 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:27 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:27 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:50 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:50 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:50 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:50 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:52 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:52 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:52 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:52 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/start.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:54 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:54 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:54 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:54 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/ship.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:55 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:55 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:55 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:55 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/place.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:57 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:57 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:54:57 Europe/London] PHP Notice:  Undefined variable: relative in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(PHPClass/Ship.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Warning:  include(): Failed opening 'PHPClass/Ship.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 8
+[28-May-2018 13:54:57 Europe/London] PHP Fatal error:  Uncaught Error: Class 'Ship' not found in /home/timepcou/public_html/invaders/i/std.php:16
+Stack trace:
+#0 /home/timepcou/public_html/invaders/i/get/startingPack.php(3): include()
+#1 {main}
+  thrown in /home/timepcou/public_html/invaders/i/std.php on line 16
+[28-May-2018 13:57:50 Europe/London] PHP Notice:  Undefined variable: con in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:57:50 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:57:50 Europe/London] PHP Notice:  Undefined variable: con in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:57:50 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:57:56 Europe/London] PHP Notice:  Undefined variable: con in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:57:56 Europe/London] PHP Warning:  mysqli_query() expects parameter 1 to be mysqli, null given in /home/timepcou/public_html/invaders/scripts/shipInfo.php on line 4
+[28-May-2018 13:36:32 UTC] PHP Warning:  include(/home/timepcou/public_html/invaders/i../scripts/autoload.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 7
+[28-May-2018 13:36:32 UTC] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/invaders/i../scripts/autoload.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 7
+[28-May-2018 13:36:32 UTC] PHP Warning:  require_once(/home/timepcou/public_html/invaders/i../users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 9
+[28-May-2018 13:36:32 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/timepcou/public_html/invaders/i../users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 9
+[28-May-2018 13:37:11 UTC] PHP Warning:  include(/home/timepcou/public_html/invaders/i../scripts/autoload.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 7
+[28-May-2018 13:37:11 UTC] PHP Warning:  include(): Failed opening '/home/timepcou/public_html/invaders/i../scripts/autoload.php' for inclusion (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 7
+[28-May-2018 13:37:11 UTC] PHP Warning:  require_once(/home/timepcou/public_html/invaders/i../users/init.php): failed to open stream: No such file or directory in /home/timepcou/public_html/invaders/i/std.php on line 9
+[28-May-2018 13:37:11 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/timepcou/public_html/invaders/i../users/init.php' (include_path='.:/opt/alt/php70/usr/share/pear') in /home/timepcou/public_html/invaders/i/std.php on line 9

@@ -8,13 +8,13 @@
 class Market{
     private $channels= array();
     
-    function __construct($con,$id) {
-        $this->con = $con;
+    function __construct($db,$id) {
+        $this->db = $db;
         $this->id = $id;
-        $query = "SELECT * FROM channels WHERE MarketID=$this->id";
-        $result = mysqli_query($this->con, $query);
-        while($row = mysqli_fetch_array($result)){
-            $this->channels[] = new Channel($this->con,$row,true);
+        $query = "SELECT * FROM channels WHERE MarketID=?";
+        $results = $db->query( $query,array($this->id))->results(true);
+        foreach($results as &$result){
+            $this->channels[] = new Channel($this->db,$result,true);
         }
     }
     
@@ -67,9 +67,9 @@ class Market{
     function getResources(){
         $ids = [];
         $query = "SELECT ResourceID from resources";
-        $result = mysqli_query($this->con, $query);
-        while($row = mysqli_fetch_array($result)){
-            $ids[] = $row['ResourceID'];
+        $results = $db->query( $query)->results(true);
+        foreach($results as &$result){
+            $ids[] = $result['ResourceID'];
         }
         return $ids;
     }
@@ -79,15 +79,20 @@ class Market{
         //make all the channels within this market 
         //given a list of ResourceID
         $resources = $this->getResources();
-        $QRY = "";
         foreach($resources as &$from){
             foreach($resources as &$to){
                 if($from!=$to){
                     $rate = rand(1,3);
-                    $QRY = "INSERT INTO channels (ResourceBuyID,ResourceSellID,Rate,MarketID) VALUES ('" . $from . "','" . $to . "','" . $rate . "','" . $this->getID() ."');";
-                    if(!mysqli_query($this->con, $QRY))
+                    $channel = array(
+                        'ResourceBuyID' => $from,
+                        'ResourceSellID'=> $to,
+                        'Rate'          => $rate,
+                        'MarketID'      => $this->getID()
+                    );
+                    
+                    if(!$db->insert('channels',$channel))
                     {
-                    echo("Error description: " . mysqli_error($this->con));
+                    echo("Error description: cannout be provided because I don't know how to do this using the API. We are in PHPClass/Market.php btw ");
                     }
                 }
             }

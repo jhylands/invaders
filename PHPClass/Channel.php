@@ -7,14 +7,14 @@
  */
 class Channel extends Table{
     
-    function __construct($link,$data,$type=false) {
-        parent::__construct($link, $data, $type);
+    function __construct($db,$data,$type=false) {
+        parent::__construct($db, $data, $type);
         $SQL_row = $this->getRow("channel", "ChannelID", $data);
         $this->buyRa = 1;
         $this->sellRa = $SQL_row['Rate'];
-        $this->buyRe = new Resource($link);
+        $this->buyRe = new Resource($db);
         $this->buyRe->fromID($SQL_row['ResourceBuyID']);
-        $this->sellRe = new Resource($link);
+        $this->sellRe = new Resource($db);
         $this->sellRe->fromID($SQL_row['ResourceSellID']);
     }
 
