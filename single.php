@@ -1,12 +1,11 @@
 <html>
 <head>
 <?php
-    include 'users/init.php';
+    //include 'users/init.php';
+    require 'scripts/autoload.php';
+    require 'scripts/shipInfo.php';
     if (!securePage($_SERVER['PHP_SELF'])){die();} 
-    include 'scripts/autoload.php';
-    include 'scripts/sql.php';
-    include 'scripts/shipInfo.php';
-    $ship = new Ship($con,$ShipCode);
+    $ship = new Ship($db,$ShipCode);
 ?>
     <title>Avinders</title>
     <style id="style">

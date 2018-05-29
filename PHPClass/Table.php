@@ -16,10 +16,10 @@ class Table {
    /* public static function get($type ,$link, $condition =""){
         $table = $type::$tableName;
         $query = "SELECT * FROM $table";
-        $result = mysqli_query($link, $query);
-        if(!$result){echo "GT:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
-        while($row = mysqli_fetch_array($result)){
-            $objects[] = new $type($link, $row,true);
+        $results = mysqli_query($link, $query);
+        if(!$results){echo "GT:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
+        foreach($resultss as &$result){
+            $objects[] = new $type($link, $result,true);
         }
         return $objects;
     }*/
@@ -136,11 +136,11 @@ class Table {
         if($this->refresh){
             $this->table = $table;
             $this->columnName = $column;
-            $query = "select * from $table where $column=$columnValue limit 1";
+            $query = "select * from ? where ?=%s limit 1";
             //echo $query . "<br />";
-            $result = mysqli_query($this->link, $query);
-            if(!$result){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
-            $this->data =  mysqli_fetch_array($result);
+            $results = $db->query( $query,[$table,$column,$columnValue]);
+            if(!$results){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
+            $this->data =  $results->results(true);
             $this->refresh = false;
         }
         return $this->data;
@@ -160,12 +160,12 @@ class Table {
      * @return boolean|\make
      */
     protected function getForeign($table,$thisColumn,$id,$make){
-        $query = "select * from $table where $thisColumn=" . $id;
-        $result = mysqli_query($this->link, $query);
-        if(!$result){echo "GF:" . $query ;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
+        $query = "select * from ? where ?=%d";
+        $results = $db->query( $query,[$table,$thisColumn,$id]);
+        if(!$results){echo "GF:" . $query ;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
         $things = array();
-        while($row=  mysqli_fetch_array($result)){
-            $things[] = new $make($this->link,$row,true);
+        foreach($resultss as &$result){
+            $things[] = new $make($this->link,$result,true);
         }
         return $things;
     }
@@ -193,18 +193,18 @@ class Table {
         //clean($value)
         $table = $this->table;
         $idColumn = $this->columnName;
-        $query = "Update $table SET $column='$value' WHERE " . $idColumn . "=" . $this->getID();
+        $query = "Update ? SET ?='?' WHERE %s=%d";
         echo $query;
-        return mysqli_query($this->link, $query);
+        return $db->query($query,[$table,$column,$value,$idColumn,$this->getID()]);
     }
     /*
        //does this need column?
     protected function getRow($table,$column,$columnValue){ 
         if(isset($this->data)){
             $query = "select * from $table where $column=$columnValue limit 1";
-            $result = mysqli_query($this->link, $query);
-            if(!$result){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
-            $this->data = mysqli_fetch_array($result);
+            $results = $db->query( $query);
+            if(!$results){echo "GR:" . $query;array_walk(debug_backtrace(),create_function('$a,$b','print "{$a[\'function\']}()(".basename($a[\'file\']).":{$a[\'line\']}); ";'));return False;}
+            $this->data = mysqli_fetch_array($results);
         }
         return $this->data;
     }*/

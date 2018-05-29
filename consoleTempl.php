@@ -1,18 +1,15 @@
 <?php
-include 'scripts/sql.php';
+include 'scripts/autoload.php';
 include 'scripts/shipInfo.php';
 
 //create ship object 
-$ship = new Ship($con,$ShipCode);
+$ship = new Ship($db,$ShipCode);
 //include consolemods
 include 'consolemod/Handler.php';
 //IMPORTCLASS INPUT
 //check for sent information
 
-$result = mysqli_query($con,"SELECT * FROM OldUsers WHERE FID=" . $_SESSION['User']);
-while($row=mysqli_fetch_array($result)){
-	$userName = $row['Name'];
-}
+$userName = $ship->owner->getName();
 
 if(isset($_GET['command'])){
 $comands = explode(";",$_GET['command']);

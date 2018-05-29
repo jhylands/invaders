@@ -8,8 +8,8 @@
  * @author jameshylands
  */
 class AlertHandler extends Handler{
-        function __construct($con,$ship){
-        $this->con = $con;
+        function __construct($db,$ship){
+        $this->db = $db;
         $this->ship = $ship;
     }
     

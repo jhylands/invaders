@@ -10,8 +10,8 @@ include 'scripts/LineTable.php';
  * @author jameshylands
  */
 class RescourceHandler extends Handler{
-    function __construct($con,$ship){
-        $this->con = $con;
+    function __construct($db,$ship){
+        $this->db = $db;
         $this->ship = $ship;
     }
     function handle($command){
@@ -35,7 +35,7 @@ class RescourceHandler extends Handler{
     function all(){
         //What we are tring to do is 
         $QRY = "SELECT Name,Code From resources";
-        $result = mysqli_query($this->con,$QRY);
+        $result = mysqli_query($this->db,$QRY);
         $data = [['<b>Name</b>','<b>Code</b>']];
         while($row = mysqli_fetch_array($result)){
             $data[] = [$row['Name'],$row['Code']];
@@ -45,13 +45,13 @@ class RescourceHandler extends Handler{
     }
     
     function code2name($Code){
-        $res = new Resource($this->con);
+        $res = new Resource($this->db);
         $res->fromCode($Code);
         return $res->getName();
     }
     
     function name2code($Name){
-        $res = new Resource($this->con);
+        $res = new Resource($this->db);
         $res->fromName($Name);
         return $res->getCode();
     }

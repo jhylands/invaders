@@ -9,8 +9,8 @@
  * @author jameshylands
  */
 class ShopHandler extends Handler{
-    function __construct($con,$ship) {
-        $this->con = $con;
+    function __construct($db,$ship) {
+        $this->db = $db;
         $this->ship = $ship;
     }
     
@@ -30,7 +30,7 @@ class ShopHandler extends Handler{
         //What is the cost of the ammount 
         $cost = $ammount*100;
         //$this->ship = new Ship();
-        $resource = new Resource($this->con);
+        $resource = new Resource($this->db);
         $resource->fromID(3);//metal
         //can they afford this
         if($this->ship->hold->get($resource)>$cost){

@@ -10,12 +10,12 @@ include '../std.php';
  */
 
 //$ship = new Ship();
-$place = new Place($con);
+$place = new Place($db);
 $place->fromID(0);
 $place->makeTreeOfPlaces();
 echo json_encode([
     $place,
     $ship,
     $ship->place->getID(),
-    $ShipCode['quality']
+    $ship->getOwner()->getQuality()
 ]);
